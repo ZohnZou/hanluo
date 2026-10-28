@@ -14,10 +14,12 @@
   .header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
   .back { display:inline-block; margin-bottom:14px; font-size:13px; color:var(--muted); }
   .back:hover { color:var(--blue); }
+  .new-badge { background:var(--red); color:#fff; font-size:10px; padding:1px 7px; border-radius:8px; margin-left:8px; flex-shrink:0; font-weight:700; }
+  .new-dot { display:inline-block; background:var(--red); color:#fff; font-size:11px; min-width:18px; height:18px; line-height:18px; text-align:center; border-radius:9px; padding:0 5px; }
 
   .list-title { font-size:20px; font-weight:700; margin:8px 0 4px; }
   .list-sub { color:var(--muted); font-size:13px; margin-bottom:16px; }
-  .item { display:flex; align-items:center; min-width:0; gap:10px; padding:11px 14px; margin:6px 0; background:var(--card); border:1px solid var(--border); border-radius:10px; color:var(--text); }
+  .item { display:flex; align-items:center; gap:10px; padding:11px 14px; margin:6px 0; background:var(--card); border:1px solid var(--border); border-radius:10px; color:var(--text); min-width:0; }
   .item:hover { border-color:var(--blue); }
   .item .date { font-family:monospace; color:var(--muted); font-size:12px; white-space:nowrap; }
   .item .t { flex:1; font-size:14px; min-width:0; overflow-wrap:anywhere; word-break:break-word; }
@@ -28,8 +30,42 @@
 <body>
   <a class="back" href="../">← 返回总目录</a>
   <div class="list-title">AI闭环诊断</div>
-  <div class="list-sub">共 7 份 · 按日期倒序</div>
-<a class="item" href="AI闭环诊断_2026-10-27.html"><span class="date">2026-10-27</span><span class="t">AI闭环诊断_2026-10-27</span></a><a class="item" href="AI闭环诊断_2026-10-26.html"><span class="date">2026-10-26</span><span class="t">AI闭环诊断_2026-10-26</span></a><a class="item" href="AI闭环诊断_2026-10-23.html"><span class="date">2026-10-23</span><span class="t">AI闭环诊断_2026-10-23</span></a><a class="item" href="AI闭环诊断_2026-10-22.html"><span class="date">2026-10-22</span><span class="t">AI闭环诊断_2026-10-22</span></a><a class="item" href="AI闭环诊断_2026-10-21.html"><span class="date">2026-10-21</span><span class="t">AI闭环诊断_2026-10-21</span></a><a class="item" href="AI闭环诊断_2026-10-20.html"><span class="date">2026-10-20</span><span class="t">AI闭环诊断_2026-10-20</span></a><a class="item" href="AI闭环诊断_2026-10-19.html"><span class="date">2026-10-19</span><span class="t">AI闭环诊断_2026-10-19</span></a>
+  <div class="list-sub">共 7 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
+  <div id="list"></div>
   <div class="foot">寒洛 · 自动更新</div>
+<script>
+
+const NEW_DAYS = 7;
+function getReadSet() {
+  try { return new Set(JSON.parse(localStorage.getItem('hanluo_read') || '[]')); }
+  catch(e) { return new Set(); }
+}
+function markRead(url, el) {
+  const s = getReadSet(); s.add(url);
+  localStorage.setItem('hanluo_read', JSON.stringify([...s]));
+  if (el) { const b = el.querySelector('.new-badge'); if (b) b.remove(); }
+}
+function isNew(date, url) {
+  const d = new Date(date + 'T00:00:00');
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - NEW_DAYS);
+  return d >= cutoff && !getReadSet().has(url);
+}
+
+const TYPE = "AI闭环诊断";
+fetch('../index.json').then(r=>r.json()).then(data => {
+  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+  const list = document.getElementById('list');
+  items.forEach(i => {
+    const url = i.url.replace('diagnosis/', '');
+    const a = document.createElement('a');
+    a.className = 'item';
+    a.href = url;
+    a.onclick = function(){ markRead(i.url, this); };
+    a.innerHTML = '<span class="date">'+i.date+'</span><span class="t">'+i.title+'</span>';
+    if (isNew(i.date, i.url)) a.innerHTML += '<span class="new-badge">NEW</span>';
+    list.appendChild(a);
+  });
+});
+</script>
 </body>
 </html>

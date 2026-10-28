@@ -14,9 +14,11 @@
   .header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
   .back { display:inline-block; margin-bottom:14px; font-size:13px; color:var(--muted); }
   .back:hover { color:var(--blue); }
+  .new-badge { background:var(--red); color:#fff; font-size:10px; padding:1px 7px; border-radius:8px; margin-left:8px; flex-shrink:0; font-weight:700; }
+  .new-dot { display:inline-block; background:var(--red); color:#fff; font-size:11px; min-width:18px; height:18px; line-height:18px; text-align:center; border-radius:9px; padding:0 5px; }
 
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:16px 0; }
-  .cat { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; }
+  .cat { position:relative; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; }
   .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
   .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
   .cat-name { font-size:15px; font-weight:700; overflow-wrap:anywhere; }
@@ -29,50 +31,48 @@
 <body>
   <div class="header">
     <h1>📊 寒洛 · HTML 交付中心</h1>
-    <div class="sub">总目录 · 13 类 · 共 95 份材料 · 点分类进入列表</div>
+    <div class="sub">总目录 · 13 类 · 共 95 份 · <span style="color:var(--red)">●</span> 红点=有新增未读</div>
   </div>
-  <div class="grid">
-<a class="cat" href="review/">
-  <div class="cat-head"><span class="cat-name">操盘复盘</span><span class="cnt">8</span></div>
-  <div class="cat-desc">每日持仓技术面复盘</div>
-</a><a class="cat" href="prediction/">
-  <div class="cat-head"><span class="cat-name">建仓预测</span><span class="cnt">8</span></div>
-  <div class="cat-desc">自选股建仓建议</div>
-</a><a class="cat" href="dashboard/">
-  <div class="cat-head"><span class="cat-name">板块仪表盘</span><span class="cnt">8</span></div>
-  <div class="cat-desc">A股板块每日情报</div>
-</a><a class="cat" href="brief/">
-  <div class="cat-head"><span class="cat-name">早报</span><span class="cnt">10</span></div>
-  <div class="cat-desc">每日盘前早报</div>
-</a><a class="cat" href="news/">
-  <div class="cat-head"><span class="cat-name">每日资讯</span><span class="cnt">10</span></div>
-  <div class="cat-desc">每日新闻汇总</div>
-</a><a class="cat" href="verify/">
-  <div class="cat-head"><span class="cat-name">收盘验证</span><span class="cnt">10</span></div>
-  <div class="cat-desc">预测验证闭环</div>
-</a><a class="cat" href="earnings/">
-  <div class="cat-head"><span class="cat-name">今日财报</span><span class="cnt">2</span></div>
-  <div class="cat-desc">财报数据</div>
-</a><a class="cat" href="diagnosis/">
-  <div class="cat-head"><span class="cat-name">AI闭环诊断</span><span class="cnt">7</span></div>
-  <div class="cat-desc">AI诊断</div>
-</a><a class="cat" href="deepseek/">
-  <div class="cat-head"><span class="cat-name">DeepSeek分析</span><span class="cnt">6</span></div>
-  <div class="cat-desc">DeepSeek深度分析</div>
-</a><a class="cat" href="atr/">
-  <div class="cat-head"><span class="cat-name">ATR止损</span><span class="cnt">7</span></div>
-  <div class="cat-desc">动态止损</div>
-</a><a class="cat" href="weekly/">
-  <div class="cat-head"><span class="cat-name">周迭代/诊断</span><span class="cnt">2</span></div>
-  <div class="cat-desc">周报与诊断</div>
-</a><a class="cat" href="report/">
-  <div class="cat-head"><span class="cat-name">深度报告</span><span class="cnt">15</span></div>
-  <div class="cat-desc">个股深度研究</div>
-</a><a class="cat" href="other/">
-  <div class="cat-head"><span class="cat-name">其他</span><span class="cnt">2</span></div>
-  <div class="cat-desc">其他材料</div>
-</a>
-  </div>
+  <div class="grid" id="grid"></div>
   <div class="foot">寒洛 · 数据源 Tushare VIP · 自动更新</div>
+<script>
+
+const NEW_DAYS = 7;
+function getReadSet() {
+  try { return new Set(JSON.parse(localStorage.getItem('hanluo_read') || '[]')); }
+  catch(e) { return new Set(); }
+}
+function markRead(url, el) {
+  const s = getReadSet(); s.add(url);
+  localStorage.setItem('hanluo_read', JSON.stringify([...s]));
+  if (el) { const b = el.querySelector('.new-badge'); if (b) b.remove(); }
+}
+function isNew(date, url) {
+  const d = new Date(date + 'T00:00:00');
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - NEW_DAYS);
+  return d >= cutoff && !getReadSet().has(url);
+}
+
+const TYPE_DESC = {"操盘复盘": "每日持仓技术面复盘", "建仓预测": "自选股建仓建议", "板块仪表盘": "A股板块每日情报", "深度报告": "个股深度研究", "早报": "每日盘前早报", "收盘验证": "预测验证闭环", "每日资讯": "每日新闻汇总", "今日财报": "财报数据", "AI闭环诊断": "AI诊断", "DeepSeek分析": "DeepSeek深度分析", "ATR止损": "动态止损", "周迭代/诊断": "周报与诊断", "其他": "其他材料"};
+fetch('index.json').then(r=>r.json()).then(data => {
+  const items = data.items || [];
+  const grid = document.getElementById('grid');
+  const byType = {};
+  items.forEach(i => { (byType[i.type] = byType[i.type] || []).push(i); });
+  const order = ['操盘复盘','建仓预测','板块仪表盘','深度报告','早报','收盘验证','每日资讯','今日财报','AI闭环诊断','DeepSeek分析','ATR止损','周迭代/诊断','其他'];
+  order.forEach(t => {
+    const arr = byType[t];
+    if (!arr) return;
+    const unread = arr.filter(i => isNew(i.date, i.url)).length;
+    const dirn = {"操盘复盘": "review", "建仓预测": "prediction", "板块仪表盘": "dashboard", "早报": "brief", "每日资讯": "news", "收盘验证": "verify", "今日财报": "earnings", "AI闭环诊断": "diagnosis", "DeepSeek分析": "deepseek", "ATR止损": "atr", "周迭代/诊断": "weekly", "深度报告": "report", "其他": "other"}[t];
+    const a = document.createElement('a');
+    a.className = 'cat';
+    a.href = dirn + '/';
+    a.innerHTML = '<div class="cat-head"><span class="cat-name">'+t+'</span><span class="cnt">'+arr.length+'</span></div><div class="cat-desc">'+(TYPE_DESC[t]||'')+'</div>';
+    if (unread > 0) a.innerHTML += '<span class="new-dot" style="position:absolute;top:-7px;right:-7px;">'+unread+'</span>';
+    grid.appendChild(a);
+  });
+});
+</script>
 </body>
 </html>
