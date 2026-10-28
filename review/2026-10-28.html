@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘复盘 2026-10-28</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --amber: #d29922;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+    line-height: 1.65;
+    padding: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header { text-align: center; padding: 20px 8px 8px; }
+  .header h1 { font-size: 22px; letter-spacing: 1px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; background: rgba(210,153,34,.15); color: var(--amber); border: 1px solid rgba(210,153,34,.4); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+  .card h2 { font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .code { color: var(--blue); font-weight: 600; font-family: monospace; }
+  .up { color: var(--red); font-weight: 700; }      /* A股红涨 */
+  .down { color: var(--green); font-weight: 700; }  /* A股绿跌 */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+  .cell { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .cell .k { font-size: 11px; color: var(--muted); }
+  .cell .v { font-size: 16px; font-weight: 600; margin-top: 2px; font-family: monospace; }
+  .divider { border-top: 1px dashed var(--border); margin: 14px 0; }
+  .sec-title { font-size: 13px; color: var(--purple); font-weight: 700; margin: 14px 0 6px; letter-spacing: 1px; }
+  ul { padding-left: 18px; }
+  li { margin: 6px 0; font-size: 14px; }
+  .judge { background: rgba(88,166,255,.08); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .danger { background: rgba(248,81,73,.08); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .warn { background: rgba(210,153,34,.08); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin: 18px 0 6px; }
+  .chip { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-left:4px; }
+  .chip.red { background:rgba(248,81,73,.15); color:var(--red); }
+  .chip.green { background:rgba(63,185,80,.15); color:var(--green); }
+  .chip.grey { background:rgba(139,148,158,.15); color:var(--muted); }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+  th, td { padding: 7px 10px; border: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; }
+  td { font-family: monospace; }
+  @media (max-width: 640px) {
+    body { padding: 10px; font-size: 13px; }
+    .header h1 { font-size: 18px; }
+    .card { padding: 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    li { font-size: 13px; }
+    .cell .v { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>📋 操盘复盘 · 2026-10-28</h1>
+    <div class="sub">生益科技 1500股 · 成本128.30 · 浮亏-20.12% <span class="tag">A级质量 · R0豁免</span></div>
+  </div>
+
+  <div class="card">
+    <h2>生益科技 <span class="code">600183.SH</span> <span class="chip grey">1500股</span> <span class="chip grey">成本128.30</span> <span class="chip red">现价102.49 +5.00%</span> <span class="chip green">浮亏-20.12%</span></h2>
+    <div class="grid">
+      <div class="cell"><div class="k">今日收盘</div><div class="v up">102.49</div></div>
+      <div class="cell"><div class="k">涨跌幅</div><div class="v up">+5.00%</div></div>
+      <div class="cell"><div class="k">今日最低</div><div class="v">100.00</div></div>
+      <div class="cell"><div class="k">今日最高</div><div class="v">103.00</div></div>
+      <div class="cell"><div class="k">MA5</div><div class="v">104.29</div></div>
+      <div class="cell"><div class="k">MA10</div><div class="v">110.45</div></div>
+      <div class="cell"><div class="k">MA20</div><div class="v">119.92</div></div>
+      <div class="cell"><div class="k">布林下轨</div><div class="v">95.92</div></div>
+    </div>
+
+    <div class="sec-title">今日走势</div>
+    <p style="font-size:14px;">低开高走：开 102.20 → 冲高 103.00 → 回踩 100.00 → 收 102.49（<span class="up">+5.00%</span>）。结束连续三日大跌（10-22 -7.34%、10-26 -9.52%、10-27 -2.64%），放量反弹（成交 56.76 万手，约 57.7 亿元），较前几日明显放大，有资金回补迹象。但收盘仍未站上 MA5(104.29)，反弹强度一般，定性为超跌反抽。</p>
+
+    <div class="sec-title">技术面</div>
+    <ul>
+      <li><b>均线空头排列未改</b>：MA5(104.29) &lt; MA10(110.45) &lt; MA20(119.92)，现价 102.49 位于全部均线下方，中期趋势仍弱。</li>
+      <li><b>布林位置</b>：现价贴下轨上方（下轨 95.92，距下轨 +6.8%），远在中轨 119.92 下方（-14.5%），处弱势区间。</li>
+      <li><b>量能</b>：今日放量反弹，结束缩量阴跌，但需连续放量站上 MA5 才能确认底部，单日反抽不足以反转。</li>
+      <li><b>形态</b>：10-22 破位后急跌至 97.61，今日反抽至 102.49，属急跌后的技术性修复，未见底部结构。</li>
+    </ul>
+
+    <div class="sec-title">支撑 / 压力</div>
+    <div class="tablewrap"><table>
+      <tr><th>类型</th><th>价位</th><th>依据</th></tr>
+      <tr><td>压力2</td><td>110.45</td><td>MA10</td></tr>
+      <tr><td>压力1</td><td>104.29</td><td>MA5</td></tr>
+      <tr><td>现价</td><td><b>102.49</b></td><td>—</td></tr>
+      <tr><td>支撑1</td><td>97.61</td><td>10-27 低点</td></tr>
+      <tr><td>支撑2</td><td>95.92</td><td>布林下轨</td></tr>
+    </table></div>
+
+    <div class="judge"><b>我的判断：</b>今日 +5% 是好事，但定性为<b>超跌反弹，不是趋势反转</b>——均线还是空头排列，现价连 MA5 都没站上。基本面撑得住：质量评分 A 级(8.1)、财务 9.0、三季报业绩预增 164%-181%、覆铜板 AI 逻辑硬，这是你扛着 -20% 浮亏的底气，这个逻辑我认可。</div>
+
+    <div class="danger"><b>操作问题直说：</b>今天做 T <b>方向做反了</b>。卖出均价 101.78、买入均价 102.24，高买低卖，净股数没变，成本反而从 127.54 抬到 128.30。做 T 的目的是摊低成本，今天等于白做还倒贴 0.76 元/股——反弹日你是在"追高买、回踩卖"，完全做反了。</div>
+
+    <div class="warn"><b>风险提示：</b>浮亏 -20.12% 已远超 A 级 -7% 止损线，但因 R0 豁免 FULL + 基本面硬，可继续持有等反弹。但成本 128.30 距离现价太远，回本需 +25% 涨幅，别指望短期一次反弹解套。守住一个底线：别再让错误的 T 把成本越做越高。</div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 明日策略要点</h2>
+    <ul>
+      <li><b>关键位</b>：103.00（今日高点）→ 站上则看反弹延续，目标 MA5 104.29；跌破 100.00（今日低点）→ 反弹失败，回踩 97.61 / 95.92。</li>
+      <li><b>做 T 纪律</b>：只在<b>绿盘低吸、红盘高抛</b>，反弹日尤其不能追高。目标是降成本，不是博反弹——今天的高买低卖不能再犯。</li>
+      <li><b>仓位</b>：你自己管。我只提醒——浮亏 20% 已超止损线，若继续下探 95.92（布林下轨）需重新评估，别越跌越加摊成一个深套的重仓。</li>
+      <li><b>观察</b>：能否连续 2 日放量站上 MA5，是判断这波是"反抽"还是"反转"的分水岭。</li>
+    </ul>
+  </div>
+
+  <div class="foot">寒洛 · 操盘复盘 · 数据源 Tushare VIP（realtime_quote 当日收盘 102.49）</div>
+</body>
+</html>
