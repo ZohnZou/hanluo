@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z哥搬砖战法 · 指标使用说明书</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--red:#f85149;--green:#3fb950;--blue:#58a6ff;--amber:#d29922;--purple:#bc8cff;--white:#e6edf3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Microsoft YaHei','PingFang SC',sans-serif;line-height:1.7;padding:16px;max-width:960px;margin:0 auto}
+.header{text-align:center;padding:20px 8px 8px}
+.header h1{font-size:22px;letter-spacing:1px}
+.header .sub{color:var(--muted);font-size:13px;margin-top:4px}
+.tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;margin:2px;border:1px solid}
+.tag.yellow{background:rgba(210,153,34,.15);color:var(--amber);border-color:rgba(210,153,34,.4)}
+.tag.green{background:rgba(63,185,80,.15);color:var(--green);border-color:rgba(63,185,80,.4)}
+.tag.red{background:rgba(248,81,73,.15);color:var(--red);border-color:rgba(248,81,73,.4)}
+.tag.blue{background:rgba(88,166,255,.15);color:var(--blue);border-color:rgba(88,166,255,.4)}
+.tag.white{background:rgba(230,237,243,.12);color:var(--white);border-color:rgba(230,237,243,.3)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin:14px 0}
+.card h2{font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:rgba(88,166,255,.15);color:var(--blue);font-weight:700;font-size:14px;flex-shrink:0}
+p{font-size:14px;margin:6px 0}
+ul{padding-left:18px}
+li{margin:6px 0;font-size:14px}
+.sec-title{font-size:13px;color:var(--purple);font-weight:700;margin:16px 0 6px;letter-spacing:1px}
+.judge{background:rgba(88,166,255,.08);border-left:3px solid var(--blue);padding:10px 14px;border-radius:6px;margin:10px 0;font-size:14px}
+.good{background:rgba(63,185,80,.08);border-left:3px solid var(--green);padding:10px 14px;border-radius:6px;margin:10px 0;font-size:14px}
+.danger{background:rgba(248,81,73,.08);border-left:3px solid var(--red);padding:10px 14px;border-radius:6px;margin:10px 0;font-size:14px}
+.warn{background:rgba(210,153,34,.08);border-left:3px solid var(--amber);padding:10px 14px;border-radius:6px;margin:10px 0;font-size:14px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0}
+th,td{padding:8px 10px;border:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--bg);color:var(--muted);font-weight:600;white-space:nowrap}
+td{line-height:1.6}
+td b{color:var(--text)}
+.sig{font-weight:700;white-space:nowrap;font-size:14px}
+.line-white{color:#ffffff;font-weight:700}
+.line-yellow{color:#f5d76e;font-weight:700}
+.line-green{color:#3fb950;font-weight:700}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin:18px 0 6px}
+.toc{line-height:2.1;font-size:14px}
+.toc a{color:var(--blue);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+@media(max-width:640px){body{padding:10px;font-size:13px}.header h1{font-size:18px}.card{padding:14px}li,p{font-size:13px}table{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📖 Z哥搬砖战法 · 指标使用说明书</h1>
+  <div class="sub">通达信主图指标 · 怎么装 · 怎么看 · 每个信号是什么意思 · 2026-10-24</div>
+  <div style="margin-top:8px">
+    <span class="tag yellow">黄色=机会信号</span>
+    <span class="tag green">绿色=顶部警告</span>
+    <span class="tag red">红色=预警</span>
+    <span class="tag blue">蓝色=止损</span>
+    <span class="tag white">白色=洗盘</span>
+  </div>
+</div>
+
+<!-- 目录 -->
+<div class="card">
+  <h2><span class="num">☰</span> 目录</h2>
+  <div class="toc">
+    <a href="#s1">一、这是什么 / 装在哪</a> ·
+    <a href="#s2">二、先看两条线（定趋势）</a> ·
+    <a href="#s3">三、左上角数字（评分+市值）</a> ·
+    <a href="#s4">四、黄色字：机会信号</a> ·
+    <a href="#s5">五、绿色字：顶部警告</a> ·
+    <a href="#s6">六、红色字：预警</a> ·
+    <a href="#s7">七、蓝色字：止损</a> ·
+    <a href="#s8">八、白色字：洗盘</a> ·
+    <a href="#s9">九、看盘三步法</a> ·
+    <a href="#s10">十、一张图看懂全部信号</a> ·
+    <a href="#s11">十一、风险提示</a>
+  </div>
+</div>
+
+<!-- 一、装在哪 -->
+<div class="card" id="s1">
+  <h2><span class="num">1</span> 这是什么 / 装在哪</h2>
+  <p>这是<b>搬砖战法（砖型图战法）的完整量化指标</b>，装进通达信后，直接在 K 线图上画线、标信号，把「红砖绿砖」的定性判断升级成「J值多少、量放大几倍、破了哪条线」的定量判断。</p>
+  <div class="judge"><b>安装步骤：</b>通达信 → 功能 → 公式系统 → 公式管理器（Ctrl+F）→ 技术指标 → 其他类型 → 新建 → 粘贴代码 → 测试通过 → 确定。然后在个股 K 线图，输入指标名称回车，即可叠加到主图。</div>
+  <p class="muted">装好后，K 线图上会出现：一条<b style="color:#ffffff">白色粗线</b>、一条<b style="color:#f5d76e">黄色粗线</b>、一条<b style="color:#3fb950">绿色细线</b>，以及各种颜色的文字信号（B1、B2、绿帽、大风车……）。左上角还有一排数字。</p>
+</div>
+
+<!-- 二、两条线 -->
+<div class="card" id="s2">
+  <h2><span class="num">2</span> 先看两条线（这是灵魂，定趋势）</h2>
+  <table>
+    <tr><th>线</th><th>颜色</th><th>是什么</th><th>怎么看</th></tr>
+    <tr><td><b class="line-white">Z哥白线</b></td><td>白色粗线</td><td>短线节奏线（EMA 双重平滑）</td><td>股价在这条线上方 = 短线能拿；跌破 = 收紧纪律</td></tr>
+    <tr><td><b class="line-yellow">大哥线</b></td><td>黄色粗线</td><td>趋势/观察池边界（4条均线平均）</td><td>股价在这条线上方 = 趋势还在；跌破 = 不再看</td></tr>
+    <tr><td><b class="line-green">BBI 线</b></td><td>绿色细线</td><td>多空分界辅助线</td><td>评分里「不破BBI」的基准线</td></tr>
+  </table>
+  <div class="good"><b>一句话铁律：白线在黄线上方 = 多头，才谈买；白线在黄线下方 = 空头，只观望。白线下穿黄线（死叉）= 清仓。</b></div>
+  <div class="danger">看盘第一步永远是先看这两条线的位置关系，别的信号都要建立在这个前提上。别本末倒置——趋势不对，再好的 B1 也不碰。</div>
+</div>
+
+<!-- 三、左上角数字 -->
+<div class="card" id="s3">
+  <h2><span class="num">3</span> 左上角数字（评分 + 市值）</h2>
+  <p>左上角有一排数字，是<b>5 维评分系统</b>，每项 1 分，总分 0-5：</p>
+  <table>
+    <tr><th>显示</th><th>含义</th><th>得 1 分的条件</th></tr>
+    <tr><td>价</td><td>收盘上升</td><td>今天收红（涨）</td></tr>
+    <tr><td>升</td><td>趋势向上</td><td>收盘站上 20 日线</td></tr>
+    <tr><td>BBI</td><td>不破 BBI</td><td>收盘站上 BBI 线</td></tr>
+    <tr><td>量</td><td>无巨量真阴</td><td>没有「放量下跌」的真阴线</td></tr>
+    <tr><td>J</td><td>J 没死叉</td><td>KDJ 的 J 值没死叉</td></tr>
+  </table>
+  <div class="judge"><b>怎么看：</b>总分 <b>5 分 = 多头趋势里的健康状态</b>，能拿得住；分数越低，越要小心。<b>它是「持股权重」，不是买卖信号</b>——别看到 5 分就冲进去买，看到 0 分就恐慌。</div>
+  <p class="muted">另外左上角还有个黄色数字是<b>自由市值（亿）</b>，用来过滤大盘股——市值越小越有资金进场的弹性空间。</p>
+</div>
+
+<!-- 四、黄色字：机会信号 -->
+<div class="card" id="s4">
+  <h2><span class="num">4</span> 黄色字 = 机会信号（买入 / 放飞 / 清仓）</h2>
+  <p>黄色字标在 K 线下方，是「有机会动手」的信号。逐个拆：</p>
+  <table>
+    <tr><th class="sig">信号</th><th>触发条件（人话）</th><th>含义</th><th>怎么操作</th></tr>
+    <tr><td class="sig" style="color:var(--amber)">B1</td><td>白线在黄线上方（趋势还在）+ J 值跌到 13 以下（超跌）</td><td>多头趋势里的深度回调，跌过头了</td><td>抄底点，对应「N型起跳」</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">B2</td><td>3 天内 J 跌破过 14 + 今天放量 1.25 倍 + 涨 4% 以上 + J 还没到 70</td><td>超跌后放量强反弹，主力进场</td><td>追势点，对应「上升延续」</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">B3</td><td>4 天内 J 跌破过 15 + 昨天放量涨 3% + 今天没破位</td><td>昨天放量上攻，今天稳住</td><td>确认点，趋势延续</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">突破</td><td>破 20 天新高 + 放量 + 涨 4% 以上，8 天内第一次</td><td>平台突破，启动</td><td>突破点，对应「横盘起跳」</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">飞1</td><td>B1 抄底后，第一次涨到 15%</td><td>抄底赚到了，第一次达标</td><td>放飞止盈，先落一部分</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">飞2</td><td>B1 抄底后，第一次涨到 25%</td><td>抄底大赚，第二次达标</td><td>再次放飞，落袋为安</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">清仓</td><td>白线下穿黄线（死叉）</td><td>趋势转空</td><td>无条件清仓离场</td></tr>
+  </table>
+  <div class="warn">注意：黄色字里 <b>B1/B2/B3/突破 是买入机会</b>，但 <b>飞1/飞2 是止盈、清仓是离场</b>——同样是黄字，含义相反，别搞混。</div>
+</div>
+
+<!-- 五、绿色字：顶部警告 -->
+<div class="card" id="s5">
+  <h2><span class="num">5</span> 绿色字 = 顶部警告（出货 / 见顶）</h2>
+  <p>绿色字是「危险，主力可能在出货」的信号，看到要多留个心眼：</p>
+  <table>
+    <tr><th class="sig">信号</th><th>触发条件（人话）</th><th>含义</th><th>怎么操作</th></tr>
+    <tr><td class="sig" style="color:var(--green)">绿帽</td><td>昨天刚突破前高，今天高开低走收阴 + 放量</td><td>突破次日就高开低走放量 = 假突破套人</td><td>主力出货，减/清</td></tr>
+    <tr><td class="sig" style="color:var(--green)">大风车</td><td>10 天涨了 30% 以上 + 昨天创新高 + 今天冲高回落收阴 + 放量</td><td>高位放量滞涨，见顶信号</td><td>顶部，逃</td></tr>
+    <tr><td class="sig" style="color:var(--green)">3/4</td><td>昨天突破前高，今天收阴，量缩到昨天的 0.6-0.9 倍</td><td>突破后缩量回踩，健康整理还是走弱待观察</td><td>观察，别急着加</td></tr>
+  </table>
+  <div class="danger"><b>绿帽和大风车要重点记：</b>这两个是「放量滞涨/高开低走」的典型出货形态，跟量价关系里的「放量滞涨=出货」完全同源。看到绿帽或大风车，先减仓，别赌。</div>
+</div>
+
+<!-- 六、红色字：预警 -->
+<div class="card" id="s6">
+  <h2><span class="num">6</span> 红色字 = 预警（不是立刻卖，但要盯紧）</h2>
+  <table>
+    <tr><th class="sig">信号</th><th>触发条件（人话）</th><th>含义</th><th>怎么操作</th></tr>
+    <tr><td class="sig" style="color:var(--red)">滴</td><td>趋势还在（白线&gt;黄线）+ 跌破前日低点</td><td>趋势没坏，但短线下破位了</td><td>预警，盯紧别大意</td></tr>
+    <tr><td class="sig" style="color:var(--red)">突破接十字星</td><td>昨天突破前高，今天涨幅小于 4% 的十字星整理</td><td>突破后滞涨整理</td><td>观察是否走弱</td></tr>
+    <tr><td class="sig" style="color:var(--amber)">单针</td><td>短期超卖，但长期指标在高位</td><td>高位的一根长下影针</td><td>危险，警惕</td></tr>
+  </table>
+  <div class="warn"><b>滴</b>最常用：趋势还在但破了前日低点，说明短线上攻力竭，是「该不该继续拿」的临界信号。不是立刻卖，但要降低预期。</div>
+</div>
+
+<!-- 七、蓝色字：止损 -->
+<div class="card" id="s7">
+  <h2><span class="num">7</span> 蓝色字 = 止损（认错，走人）</h2>
+  <table>
+    <tr><th class="sig">信号</th><th>触发条件（人话）</th><th>含义</th><th>怎么操作</th></tr>
+    <tr><td class="sig" style="color:var(--blue)">止损</td><td>B1 抄底（J&lt;13）之后的 10 天内，股价跌破大哥线（黄线）</td><td>抄底失败了，破黄线</td><td>认错，无条件离场</td></tr>
+  </table>
+  <div class="danger">这是纪律信号：抄底抄在半山腰、跌破趋势线，<b>别补仓、别扛，认错走人</b>。破了黄线还死扛，就是「大部分亏损自找的」那种亏。</div>
+</div>
+
+<!-- 八、白色字：洗盘 -->
+<div class="card" id="s8">
+  <h2><span class="num">8</span> 白色字 = 洗盘（别慌，可能是机会）</h2>
+  <table>
+    <tr><th class="sig">信号</th><th>触发条件（人话）</th><th>含义</th><th>怎么操作</th></tr>
+    <tr><td class="sig" style="color:var(--white)">震</td><td>趋势还在（白线&gt;黄线）+ 今天跌 1%-8% + 缩量到 0.75 以下</td><td>多头趋势里的缩量下跌 = 洗盘，不是出货</td><td>别慌，可以拿/低吸</td></tr>
+  </table>
+  <div class="good"><b>震仓和绿帽要对着看：</b>同样是下跌，<b>缩量下跌（震）= 洗盘，主力没跑</b>；<b>放量下跌（绿帽/大风车）= 出货，主力在逃</b>。这一条跟量价关系框架「缩量下跌是洗盘、放量下跌是出货」一模一样。</div>
+</div>
+
+<!-- 九、三步法 -->
+<div class="card" id="s9">
+  <h2><span class="num">9</span> 看盘三步法（按这个顺序看）</h2>
+  <div class="good"><b>第一步 · 看趋势</b>：白线在黄线上方吗？不在 → 只看不买。在 → 进入第二步。</div>
+  <div class="good"><b>第二步 · 看评分</b>：左上角总分几分？5 分 = 健康，能拿；低于 3 分 → 谨慎。</div>
+  <div class="good"><b>第三步 · 看信号</b>：找黄色买点（B1/B2/B3/突破），同时警惕绿色（绿帽/大风车）和蓝色（止损）。有买点 + 无顶部警告 → 才动手。</div>
+  <div class="danger">反过来，任何时候出现<b>清仓（白线死叉黄线）</b>或<b>止损（破黄线）</b>，不管评分多高、信号多好，先走。</div>
+</div>
+
+<!-- 十、一张图汇总 -->
+<div class="card" id="s10">
+  <h2><span class="num">10</span> 一张图看懂全部信号（速查表）</h2>
+  <div class="tablewrap"><table>
+    <tr><th>信号</th><th>颜色</th><th>性质</th><th>一句话意思</th></tr>
+    <tr><td class="sig">B1</td><td style="color:var(--amber)">黄</td><td>买入</td><td>趋势还在 + J超跌，抄底</td></tr>
+    <tr><td class="sig">B2</td><td style="color:var(--amber)">黄</td><td>买入</td><td>超跌后放量强反弹，追势</td></tr>
+    <tr><td class="sig">B3</td><td style="color:var(--amber)">黄</td><td>买入</td><td>昨日放量突破，今日稳住</td></tr>
+    <tr><td class="sig">突破</td><td style="color:var(--amber)">黄</td><td>买入</td><td>破20日新高放量，启动</td></tr>
+    <tr><td class="sig">飞1 / 飞2</td><td style="color:var(--amber)">黄</td><td>止盈</td><td>抄底后涨15%/25%，放飞落袋</td></tr>
+    <tr><td class="sig">清仓</td><td style="color:var(--amber)">黄</td><td>离场</td><td>白线死叉黄线，趋势转空</td></tr>
+    <tr><td class="sig">绿帽</td><td style="color:var(--green)">绿</td><td>出货</td><td>突破次日高开低走放量，套人</td></tr>
+    <tr><td class="sig">大风车</td><td style="color:var(--green)">绿</td><td>见顶</td><td>10日涨30%冲高回落放量</td></tr>
+    <tr><td class="sig">3/4</td><td style="color:var(--green)">绿</td><td>观察</td><td>突破后缩量阴线回踩</td></tr>
+    <tr><td class="sig">滴</td><td style="color:var(--red)">红</td><td>预警</td><td>趋势还在但破前日低点</td></tr>
+    <tr><td class="sig">单针</td><td style="color:var(--amber)">黄</td><td>预警</td><td>高位长下影针，危险</td></tr>
+    <tr><td class="sig">止损</td><td style="color:var(--blue)">蓝</td><td>止损</td><td>抄底后破黄线，认错走人</td></tr>
+    <tr><td class="sig">震</td><td style="color:var(--white)">白</td><td>洗盘</td><td>趋势中缩量下跌，主力没跑</td></tr>
+  </table></div>
+</div>
+
+<!-- 十一、风险 -->
+<div class="card" id="s11">
+  <h2><span class="num">11</span> 风险提示</h2>
+  <ul>
+    <li><b>指标是工具，不是圣杯</b>：信号是「概率提醒」，不是「必胜指令」。任何单一信号都要结合趋势、位置、大盘环境综合判断。</li>
+    <li><b>趋势不对，信号再好也打折</b>：白线在黄线下方时，所有买入信号都要降级处理。</li>
+    <li><b>止损纪律比信号更重要</b>：出现「止损」「清仓」，先执行，别用情绪对抗指标。</li>
+    <li><b>量价是底层逻辑</b>：这套指标的所有信号，本质都是「放量=真、缩量=洗、放量滞涨=出货」，跟我沉淀的量价关系框架同源，别孤立使用。</li>
+  </ul>
+  <div class="warn">本说明书仅为指标使用方法的技术说明，不构成投资建议。市场有风险，交易需独立决策，盈亏自负。</div>
+</div>
+
+<div class="foot">寒洛 · Z哥搬砖战法指标使用说明书 · 2026-10-24 · 配套：Z哥Skill / references/tdx-full-indicator.md（完整代码解析）</div>
+</body>
+</html>

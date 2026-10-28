@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物理AI双会场 · GTC柏林 + 宇树世界物理AI大会</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --amber: #d29922;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+    line-height: 1.7; padding: 16px; max-width: 960px; margin: 0 auto;
+  }
+  .header { text-align: center; padding: 22px 8px 8px; }
+  .header h1 { font-size: 23px; letter-spacing: 1px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .tag { display:inline-block; font-size:11px; padding:2px 10px; border-radius:12px; margin:6px 3px 0; background:rgba(210,153,34,.15); color:var(--amber); border:1px solid rgba(210,153,34,.4); }
+  .tag.b { background:rgba(88,166,255,.15); color:var(--blue); border-color:rgba(88,166,255,.4); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .card h2 { font-size:17px; margin-bottom:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .card h3 { font-size:15px; color:var(--purple); margin:16px 0 6px; letter-spacing:.5px; }
+  .sec { font-size:13px; color:var(--purple); font-weight:700; margin:14px 0 6px; letter-spacing:1px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:10px; margin:10px 0; }
+  .cell { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; }
+  .cell .k { font-size:11px; color:var(--muted); }
+  .cell .v { font-size:15px; font-weight:600; margin-top:2px; font-family:monospace; }
+  ul { padding-left:18px; }
+  li { margin:6px 0; font-size:14px; }
+  .judge { background:rgba(88,166,255,.08); border-left:3px solid var(--blue); padding:10px 14px; border-radius:6px; margin:12px 0; font-size:14px; }
+  .warn { background:rgba(210,153,34,.08); border-left:3px solid var(--amber); padding:10px 14px; border-radius:6px; margin:10px 0; font-size:13px; }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin:18px 0 6px; }
+  .chip { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-left:4px; }
+  .chip.green { background:rgba(63,185,80,.15); color:var(--green); }
+  .chip.grey { background:rgba(139,148,158,.15); color:var(--muted); }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-size:13px; margin:8px 0; }
+  th, td { padding:7px 10px; border:1px solid var(--border); text-align:left; }
+  th { background:var(--bg); color:var(--muted); font-weight:600; }
+  td { vertical-align:top; }
+  @media (max-width:640px) {
+    body { padding:10px; font-size:13px; }
+    .header h1 { font-size:18px; }
+    .card { padding:14px; }
+    .grid { grid-template-columns:repeat(2,1fr); }
+    li { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>🤖 物理AI双会场 · 信息汇总</h1>
+    <div class="sub">NVIDIA GTC 柏林（10/20–22）+ 宇树世界物理AI大会（10/22 杭州）</div>
+    <div><span class="tag b">仿真工厂</span><span class="tag">落地验证</span><span class="tag">具身智能</span></div>
+  </div>
+
+  <!-- 第一部分：GTC柏林 -->
+  <div class="card">
+    <h2>① NVIDIA GTC 柏林 2026 <span class="chip grey">10月20–22日</span><span class="chip green">首次欧洲GTC</span></h2>
+    <p style="font-size:14px;">黄仁勋主题演讲核心命题：「<b>通用机器人的 ChatGPT 时刻正在逼近</b>」。英伟达这轮的重点不是再发一款新机器人，而是把机器人开发的<b>仿真、训练、部署工具链</b>补齐——也就是你问的「机器人模型仿真工厂」。</p>
+
+    <div class="sec">核心发布 1 · Agile ONE SN（前沿人形参考平台）</div>
+    <ul>
+      <li><b>出品方</b>：Agile Robots（敏捷机器人），基于 NVIDIA Isaac GR00T + Jetson Thor。</li>
+      <li><b>本体</b>：Agile ONE S，高 1.40 米 / 重 40kg / 31 自由度，单臂负载 3kg。</li>
+      <li><b>灵巧手</b>：WUJI Hand 2 五指手 ×2，各 20 自由度，1kHz 力控 + 触觉。</li>
+      <li><b>算力</b>：Jetson Thor，2070 FP4 teraflops + 128GB 统一内存，端上实时推理。</li>
+      <li><b>安全</b>：计划集成 NVIDIA Halos 全栈安全系统。</li>
+      <li><b>定位</b>：把仿真/训练/部署工具统一到单平台，setup 时间从「数周」压缩到「数天」，2027 年初可用，Stanford / ETH Zurich 已表达意向。</li>
+    </ul>
+
+    <div class="sec">核心发布 2 · 「仿真工厂」体系（数据 → 部署）</div>
+    <div class="tablewrap"><table>
+      <tr><th>模块</th><th>是什么</th><th>关键数字/伙伴</th></tr>
+      <tr><td><b>SimReady Central Library</b></td><td>仿真就绪的机器人与工厂资产库</td><td><b>2000+</b> 资产，Comau / FANUC / Franka / LG / Universal Robots 等，上架 Hugging Face</td></tr>
+      <tr><td><b>Human 1M Dataset</b></td><td>人类活动数据集（训练动作数据）</td><td>三视角同步视频 + 3D 手部追踪，Cosmos 联盟伙伴可用全量</td></tr>
+      <tr><td><b>Isaac Lab 3.0</b>（GA）</td><td>开源 agent-ready 机器人学习框架</td><td>桌面到数据中心，多 GPU，Newton + PhysX 物理引擎</td></tr>
+      <tr><td><b>Isaac OS</b></td><td>开源运行时（基于 Holoscan）</td><td>连接 AI/传感器/控制/硬件，确定性实时</td></tr>
+      <tr><td><b>三个 DGX Station 工作流</b></td><td>开源参考流程</td><td>GR00T 1.7 RL 微调 / Isaac Lab 灵巧操作训练 / Cosmos 世界模型 post-train（合成数据）</td></tr>
+      <tr><td><b>NVIDIA Halos</b></td><td>全栈安全平台（IGX Thor）</td><td>Agility / Dexory / KION / SICK 等接入</td></tr>
+    </table></div>
+    <p style="font-size:13px;color:var(--muted);">「仿真工厂」= SimReady 资产库 + Isaac Lab 训练 + Cosmos 世界模型造合成数据，用仿真批量「生产」机器人模型，再 Sim2Real 部署。</p>
+
+    <div class="sec">欧洲生态落地（不是画饼，是真接）</div>
+    <ul>
+      <li><b>ABB</b>：Omniverse 库 + RobotStudio HyperReality，仿真虚拟调试。</li>
+      <li><b>KUKA</b>：Omniverse 库 + Visual Components FactoryLens，工厂仿真实时渲染。</li>
+      <li><b>Toyota Material Handling + SoftServe</b>：Omniverse + Isaac Sim，部署时间 <b>-50%</b>。</li>
+      <li><b>彩蛋 Microduck</b>：Hugging Face + Pollen Robotics 用 Isaac Lab/Sim/Newton 做的开源小机器人，面向开发者/学生训练物理行为（黄仁勋现场演示）。</li>
+    </ul>
+  </div>
+
+  <!-- 第二部分：宇树 -->
+  <div class="card">
+    <h2>② 宇树世界物理AI大会 + 世界物理AI大赛 <span class="chip grey">10月22日 杭州</span></h2>
+    <p style="font-size:14px;">宇树科技（2016–2026 十年）在杭州国际博览中心二期办「2026世界物理AI大会暨宇树合作伙伴生态大会」，主题「<b>宇十俱进，树业共生</b>」。</p>
+    <div class="grid">
+      <div class="cell"><div class="k">嘉宾</div><div class="v">3000+</div></div>
+      <div class="cell"><div class="k">展区</div><div class="v">4000+㎡</div></div>
+      <div class="cell"><div class="k">主论坛</div><div class="v">1</div></div>
+      <div class="cell"><div class="k">分论坛</div><div class="v">7</div></div>
+      <div class="cell"><div class="k">开放演讲</div><div class="v">20+</div></div>
+      <div class="cell"><div class="k">展示专区</div><div class="v">40+</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);">7 个分论坛：中国区 / 国际区合作伙伴、行业应用、教育与产教融合、开发者、创投（「宇创计划」具身智能路演）。</p>
+
+    <div class="sec">重磅 · 世界物理AI大赛（WPAC）</div>
+    <ul>
+      <li><b>官宣人</b>：王兴兴（宇树董事长 / CTO），定位「全球首个聚焦<b>具身智能落地能力</b>的顶级赛事」。</li>
+      <li><b>奖金</b>：每年数千万元人民币（自媒体口径，待官方通稿确认）。</li>
+      <li><b>八大赛道</b>：任意移动、田径、格斗、灵巧操作、生产、体育赛事、多模态交互、康养。</li>
+      <li><b>报名</b>：2026-11-01 零点开放，零国籍 / 零学历门槛，支持个人开发者单枪匹马参赛。</li>
+      <li><b>核心逻辑</b>：用<b>真实物理世界当考卷</b>——不是 PPT、不是渲染、不是模拟，是真让机器人跑起来、抓起来、扶起来。</li>
+    </ul>
+
+    <div class="warn">⚠️ 信源分级：WPAC 八大赛道细节（比亚迪产线调度、西湖藕粉、杭州方言交互等具体场景）来自搜狐号深度解读，<b>该文自标「含AI生成内容、非官方通稿」</b>。核心事实（宇树官宣 WPAC、聚焦落地能力、数千万元奖金池）可信，但赛道具体场景与奖金数字存在演绎成分，交易前以 WPAC 官网 / 宇树官方公众号为准。</div>
+  </div>
+
+  <!-- 第三部分：寒洛视角 -->
+  <div class="card">
+    <h2>③ 寒洛视角 · 独立判断</h2>
+    <div class="judge"><b>一句话主线：</b>这两场会说的是同一件事——物理 AI 正从「概念演示」切换到「落地验证」。英伟达卖「铲子」（仿真工厂 + 工具链），宇树办「考场」（真实物理世界的落地能力大考）。一个做基础设施，一个做验证标尺，合起来把「具身智能落地」这条叙事做实了。</div>
+    <ul>
+      <li><b>标尺不变</b>：落地能力（连续运转不出错）＞ 概念 / 演示。GTC 柏林这轮最大的信号不是又一款人形机器人，而是 2000+ 仿真资产 + Isaac Lab 3.0 + Cosmos 世界模型这套「量产机器人模型」的基础设施——解决的是「能不能规模化落地」，不是「能不能跑通 demo」。</li>
+      <li><b>产业链映射（韬定律 / Serenity 框架）</b>：物理 AI 落地加速，最先被抽血、最先受益的仍是上游——<b>半导体设备 / 材料 ＞ 先进封装 ＞ 晶圆代工</b>。机器人的「ChatGPT 时刻」越近，对算力、传感器、关节电机的上游需求越刚性。</li>
+      <li><b>投资提示</b>：宇树 WPAC 是情绪催化，但赛事本身不产生当期利润；真正能落到订单、市占率、公告的，还是上游设备和国产供应链里「别人做不出来」的独一档环节。别把赛事热度当业绩。</li>
+    </ul>
+  </div>
+
+  <div class="foot">寒洛 · 物理AI双会场信息汇总 · 2026-10-23 · 数据源：NVIDIA 官方新闻稿 / GTC Berlin 官网 / 宇树公开报道（搜狐·新浪·CSDN）</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATR动态止损 2026-10-20</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+         max-width: 1200px; margin: 0 auto; padding: 20px;
+         background: #f1f5f9; color: #1e293b; font-size: 13px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%);
+             color: white; padding: 24px 28px; border-radius: 14px;
+             margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 22px; margin-bottom: 4px; }
+  .header .meta { opacity: 0.85; font-size: 13px; }
+  .header .badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+  .card { background: white; border-radius: 12px; padding: 20px 22px;
+           margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px;
+                 padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; color: #1e3a5f;
+                 display: flex; align-items: center; gap: 8px; }
+  .card-title .icon { font-size: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f8fafc; text-align: left; padding: 8px 10px; font-weight: 600;
+       color: #475569; border-bottom: 2px solid #e2e8f0; white-space: nowrap; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  a { color: #1d4ed8; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer { text-align: center; color: #94a3b8; font-size: 12px; margin-top: 24px; padding: 16px; }
+  @media (max-width: 768px) { body { padding: 12px; } th, td { padding: 6px 6px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>⚠️ ATR动态止损报告</h1>
+    <div class="meta">ATR + 布林线 + 筹码均价 三重验证</div>
+  </div>
+  <div class="badge">2026-10-20</div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">⚠️</span> 风险监控（2只持仓）</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px"><div style="background:white;border-radius:10px;padding:12px 16px;flex:1;min-width:90px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);border-left:3px solid #b91c1c"><div style="font-size:22px;font-weight:800;color:#b91c1c">1</div><div style="font-size:11px;color:#64748b;margin-top:2px">⚠️已触发</div></div><div style="background:white;border-radius:10px;padding:12px 16px;flex:1;min-width:90px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);border-left:3px solid #dc2626"><div style="font-size:22px;font-weight:800;color:#dc2626">0</div><div style="font-size:11px;color:#64748b;margin-top:2px">🔴破布林</div></div><div style="background:white;border-radius:10px;padding:12px 16px;flex:1;min-width:90px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);border-left:3px solid #f59e0b"><div style="font-size:22px;font-weight:800;color:#f59e0b">2</div><div style="font-size:11px;color:#64748b;margin-top:2px">🟡破均线</div></div><div style="background:white;border-radius:10px;padding:12px 16px;flex:1;min-width:90px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.08);border-left:3px solid #15803d"><div style="font-size:22px;font-weight:800;color:#15803d">1</div><div style="font-size:11px;color:#64748b;margin-top:2px">✅安全</div></div></div>
+  <table>
+    <thead><tr style="background:#f8fafc">
+      <th style="padding:8px 10px">股票</th><th style="padding:8px 10px">代码</th><th style="padding:8px 10px">现价</th>
+      <th style="padding:8px 10px">成本</th><th style="padding:8px 10px">盈亏</th><th style="padding:8px 10px">ATR14</th>
+      <th style="padding:8px 10px">折中止损</th><th style="padding:8px 10px">布林下轨</th><th style="padding:8px 10px">MA20</th>
+      <th style="padding:8px 10px">筹码均价</th><th style="padding:8px 10px">风险</th>
+    </tr></thead>
+    <tbody><tr>
+  <td style="padding:10px 12px"><strong>生益科技</strong></td>
+  <td style="padding:10px 12px"><a href="https://quote.eastmoney.com/sh600183.html" target="_blank" style="color:#1d4ed8">600183</a></td>
+  <td style="padding:10px 12px">117.63</td>
+  <td style="padding:10px 12px">136.95</td>
+  <td style="padding:10px 12px;color:#b91c1c;font-weight:700">-14.11%</td>
+  <td style="padding:10px 12px">7.689</td>
+  <td style="padding:10px 12px;color:#7c3aed;font-weight:700">127.46</td>
+  <td style="padding:10px 12px">108.07</td>
+  <td style="padding:10px 12px">133.56</td>
+  <td style="padding:10px 12px">135.20</td>
+  <td style="padding:10px 12px"><span style="background:#fee2e2;color:#b91c1c;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600">⚠️已触发</span></td>
+</tr>
+<tr>
+  <td style="padding:10px 12px"><strong>宏昌电子</strong></td>
+  <td style="padding:10px 12px"><a href="https://quote.eastmoney.com/sh603002.html" target="_blank" style="color:#1d4ed8">603002</a></td>
+  <td style="padding:10px 12px">14.78</td>
+  <td style="padding:10px 12px">14.56</td>
+  <td style="padding:10px 12px;color:#15803d;font-weight:700">+1.51%</td>
+  <td style="padding:10px 12px">1.515</td>
+  <td style="padding:10px 12px;color:#7c3aed;font-weight:700">12.76</td>
+  <td style="padding:10px 12px">14.73</td>
+  <td style="padding:10px 12px">17.91</td>
+  <td style="padding:10px 12px">18.09</td>
+  <td style="padding:10px 12px"><span style="background:#fef9c3;color:#a16207;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600">🟡破均线</span></td>
+</tr></tbody>
+  </table>
+</div>
+<div class="disclaimer-box">
+⚠️ <b>风险提示与免责声明</b>：本报告由「寒洛」个人辅助决策系统自动生成，
+<b>仅供系统所有者本人内部参考，不构成任何证券投资建议</b>。
+模型量化判断非投资保证，存在失效可能（历史胜率波动区间0%~49%）。股市有风险，盈亏自负。
+</div>
+<div class="footer">寒洛系统</div>
+</body>
+</html>

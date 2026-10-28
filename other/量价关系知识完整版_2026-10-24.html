@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>量价关系知识完整版 · 2026-10-24</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --amber: #d29922;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+    line-height: 1.7;
+    padding: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header { text-align: center; padding: 20px 8px 8px; }
+  .header h1 { font-size: 22px; letter-spacing: 1px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; background: rgba(210,153,34,.15); color: var(--amber); border: 1px solid rgba(210,153,34,.4); margin: 2px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+  .card h2 { font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:8px; background:rgba(88,166,255,.15); color:var(--blue); font-weight:700; font-size:14px; }
+  .code { color: var(--blue); font-weight: 600; font-family: monospace; }
+  .up { color: var(--red); font-weight: 700; }
+  .down { color: var(--green); font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+  .cell { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .cell .k { font-size: 11px; color: var(--muted); }
+  .cell .v { font-size: 16px; font-weight: 600; margin-top: 2px; font-family: monospace; }
+  .divider { border-top: 1px dashed var(--border); margin: 14px 0; }
+  .sec-title { font-size: 13px; color: var(--purple); font-weight: 700; margin: 16px 0 6px; letter-spacing: 1px; }
+  ul { padding-left: 18px; }
+  li { margin: 6px 0; font-size: 14px; }
+  p { font-size: 14px; margin: 6px 0; }
+  .judge { background: rgba(88,166,255,.08); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .danger { background: rgba(248,81,73,.08); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .good { background: rgba(63,185,80,.08); border-left: 3px solid var(--green); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .warn { background: rgba(210,153,34,.08); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin: 18px 0 6px; }
+  .chip { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-left:4px; }
+  .chip.red { background:rgba(248,81,73,.15); color:var(--red); }
+  .chip.green { background:rgba(63,185,80,.15); color:var(--green); }
+  .chip.grey { background:rgba(139,148,158,.15); color:var(--muted); }
+  .chip.blue { background:rgba(88,166,255,.15); color:var(--blue); }
+  .chip.amber { background:rgba(210,153,34,.15); color:var(--amber); }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+  th, td { padding: 8px 10px; border: 1px solid var(--border); text-align: left; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; white-space: nowrap; }
+  td { font-family: monospace; }
+  td.wrap { font-family: inherit; white-space: normal; line-height: 1.6; }
+  .toc { line-height: 2.1; font-size: 14px; }
+  .toc a { color: var(--blue); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    body { padding: 10px; font-size: 13px; }
+    .header h1 { font-size: 18px; }
+    .card { padding: 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    li, p, td.wrap { font-size: 13px; }
+    .cell .v { font-size: 14px; }
+    table { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>📊 量价关系知识完整版</h1>
+    <div class="sub">技术分析 · 量 / 价 / 时 / 空 四大要素之首 · 2026-10-24 深度学习沉淀</div>
+    <div style="margin-top:8px;">
+      <span class="tag">四象限</span>
+      <span class="tag">量价八法</span>
+      <span class="tag">背离</span>
+      <span class="tag">主力行为</span>
+      <span class="tag">六大抄底信号</span>
+      <span class="tag">六大逃顶信号</span>
+      <span class="tag">分时量价</span>
+      <span class="tag">实战口诀</span>
+    </div>
+  </div>
+
+  <!-- 目录 -->
+  <div class="card">
+    <h2><span class="num">☰</span> 目录</h2>
+    <div class="toc">
+      <a href="#s1">一、量价关系总纲（本质）</a> ·
+      <a href="#s2">二、量价四象限（地基）</a> ·
+      <a href="#s3">三、量价八法（完整组合）</a> ·
+      <a href="#s4">四、量价背离（拐点预警）</a> ·
+      <a href="#s5">五、主力行为识别（核心）</a> ·
+      <a href="#s6">六、六大抄底信号</a> ·
+      <a href="#s7">七、六大逃顶信号</a> ·
+      <a href="#s8">八、量价黄金法则</a> ·
+      <a href="#s9">九、量价必须结合位置</a> ·
+      <a href="#s10">十、关键量价形态汇总表</a> ·
+      <a href="#s11">十一、分时量价</a> ·
+      <a href="#s12">十二、换手率与量能潮汐</a> ·
+      <a href="#s13">十三、辅助指标验证</a> ·
+      <a href="#s14">十四、实战口诀大全</a> ·
+      <a href="#s15">十五、实战纪律</a> ·
+      <a href="#s16">十六、经典案例</a> ·
+      <a href="#s17">十七、回测我自己的亏损</a>
+    </div>
+  </div>
+
+  <!-- 一、总纲 -->
+  <div class="card" id="s1">
+    <h2><span class="num">1</span> 量价关系总纲（本质）</h2>
+    <p>在技术分析四大要素 <b>量、价、时、空</b> 中，<b>成交量和股价排最前面</b>。量价关系研究的是成交量与股价之间的相互作用关系，通过观察量价变化，可以理解市场情绪、识别资金动向、把握趋势拐点。</p>
+    <div class="judge"><b>一句话本质：</b>量是价的"资金燃料"。价格告诉你去哪，成交量告诉你"谁在真的去"。<b>价格会说谎，量很少说谎</b>——因为成交量是真金白银堆出来的，没法像价格一样被几笔对倒轻松伪装。</div>
+    <p>量价关系是市场行为的直接体现，铁律是——<b>"资金在哪里，趋势就在哪里"</b>。掌握量价，就是读懂市场里"谁在买、谁在卖、谁在骗"。</p>
+  </div>
+
+  <!-- 二、四象限 -->
+  <div class="card" id="s2">
+    <h2><span class="num">2</span> 量价四象限（最底层地基）</h2>
+    <p>所有量价判断的起点。先把价格涨跌 × 成交量放缩，切成四个格子，这是地基，记不住别的都白搭。</p>
+    <div class="tablewrap"><table>
+      <tr><th></th><th>放量</th><th>缩量</th></tr>
+      <tr><td><b>价涨</b></td><td class="wrap">✅ <b>健康上涨</b>——真金白银进场，趋势可持续</td><td class="wrap">⚠️ <b>背离</b>——上攻乏力，无人跟风，警惕诱多</td></tr>
+      <tr><td><b>价跌</b></td><td class="wrap">🔴 <b>危险</b>——主力出货 / 恐慌抛售，逃</td><td class="wrap">🟢 <b>见底迹象</b>——抛压衰竭 / 洗盘，观察低吸</td></tr>
+    </table></div>
+    <div class="danger"><b>核心警告：</b>同样是涨，放量和缩量是两种完全相反的意义；同样是跌，放量和缩量也是两种相反意义。<b>看不懂这四格，追高杀跌全是自找的。</b></div>
+    <ul>
+      <li><b>价涨量增</b>：资金真实进场，健康，顺势持有/介入。</li>
+      <li><b>价涨量缩</b>：上攻乏力，动能不足，警惕背离诱多。</li>
+      <li><b>价跌量增</b>：主力出货或恐慌抛售，危险，止损离场。</li>
+      <li><b>价跌量缩</b>：抛压衰竭，可能是洗盘（主力没跑），见底迹象。</li>
+    </ul>
+  </div>
+
+  <!-- 三、量价八法 -->
+  <div class="card" id="s3">
+    <h2><span class="num">3</span> 量价八法（完整八种组合）</h2>
+    <p>四象限只分"放/缩"两极，实战中还要引入"量平"，共八种经典组合（量价八法）。</p>
+    <div class="tablewrap"><table>
+      <tr><th>组合</th><th>资金含义</th><th>操作</th></tr>
+      <tr><td>价涨量增</td><td class="wrap">多头主动，资金持续流入</td><td class="wrap">🟢 顺势持有/买入</td></tr>
+      <tr><td>价涨量平</td><td class="wrap">温和推升，主力控盘</td><td class="wrap">🟢 可持有</td></tr>
+      <tr><td>价涨量缩</td><td class="wrap">上攻乏力，动能衰竭</td><td class="wrap">⚠️ 背离，减仓</td></tr>
+      <tr><td>价平量增</td><td class="wrap"><b>放量滞涨</b>，主力借机出货</td><td class="wrap">🔴 危险，逃</td></tr>
+      <tr><td>价平量缩</td><td class="wrap">观望，交投清淡</td><td class="wrap">⚪ 观望</td></tr>
+      <tr><td>价跌量增</td><td class="wrap">主力出逃 / 恐慌抛售</td><td class="wrap">🔴 止损</td></tr>
+      <tr><td>价跌量平</td><td class="wrap">阴跌，抛压持续</td><td class="wrap">🔴 观望/减仓</td></tr>
+      <tr><td>价跌量缩</td><td class="wrap">抛压枯竭，洗盘尾声</td><td class="wrap">🟢 见底，观察</td></tr>
+    </table></div>
+    <div class="warn"><b>特别注意"价平量增"（放量滞涨）：</b>这是八法里最危险的一种——成交量放大但价格不动，说明有人在大量卖出、又有人在对倒接盘，<b>典型的主力出货信号</b>。高位出现放量滞涨，基本是顶。</div>
+  </div>
+
+  <!-- 四、背离 -->
+  <div class="card" id="s4">
+    <h2><span class="num">4</span> 量价背离（趋势拐点的最早预警）</h2>
+    <p>价格和成交量"各走各的"，是最早出现的拐点信号，比均线、MACD 都更提前。</p>
+    <div class="sec-title">顶背离（见顶预警）</div>
+    <ul>
+      <li><b>特征</b>：股价一波比一波高、创新高，但成交量一波比一波小（+ MACD 顶背离）。</li>
+      <li><b>逻辑</b>：越涨越没人跟，上涨动能衰竭，聪明钱已经不再接力。</li>
+      <li><b>操作</b>：<b>二次背离时减仓</b>（第一次背离可能是假摔，二次确认更可靠）。</li>
+    </ul>
+    <div class="sec-title">底背离（见底预警）</div>
+    <ul>
+      <li><b>特征</b>：股价一波比一波低、创新低，但成交量萎缩到极致（+ MACD 底背离）。</li>
+      <li><b>逻辑</b>：越跌越没人卖，抛压枯竭，卖盘已经出尽。</li>
+      <li><b>操作</b>：配合放量反弹确认后，低吸。</li>
+    </ul>
+    <div class="judge"><b>案例：</b>2024-11-12 隆基绿能 30 分钟图出现量价顶背离 + MACD 顶背离双背离，随后进入长期下跌通道。背离不是立刻反转的信号，而是"动能耗尽"的预警，需要后续跌破/突破确认。</div>
+  </div>
+
+  <!-- 五、主力行为 -->
+  <div class="card" id="s5">
+    <h2><span class="num">5</span> 主力行为识别（"大部分亏损都是自找的"就藏在这）</h2>
+    <p>量价关系的终极用途，是识别主力在干什么：<b>吸筹、洗盘、拉升、出货</b>四个阶段，每个阶段的量价特征截然不同。</p>
+    <div class="tablewrap"><table>
+      <tr><th>行为</th><th>量价特征</th><th>散户常犯的错误</th></tr>
+      <tr><td><b>吸筹</b></td><td class="wrap">底部缩量阴跌 → 突然放量长阳（量 3 倍+）</td><td class="wrap">以为是反弹，不敢进</td></tr>
+      <tr><td><b>洗盘</b></td><td class="wrap">上涨途中<b>缩量</b>回调（量萎缩=主力没跑）</td><td class="wrap">误当出货，割在地板</td></tr>
+      <tr><td><b>拉升</b></td><td class="wrap">价涨量增，量价齐升</td><td class="wrap">不敢追，错失主升</td></tr>
+      <tr><td><b>出货</b></td><td class="wrap">高位<b>放量滞涨</b> / 放量下跌（换手 &gt;20%，长上影）</td><td class="wrap">误当洗盘，追在山顶</td></tr>
+      <tr><td><b>对倒</b></td><td class="wrap">放量但价格不涨不跌</td><td class="wrap">误当放量突破，被骗进场</td></tr>
+    </table></div>
+
+    <div class="sec-title">缩量 vs 放量，定生死</div>
+    <div class="tablewrap"><table>
+      <tr><th>量价信号</th><th>真相</th><th>结论</th></tr>
+      <tr><td>缩量下跌</td><td class="wrap">散户恐慌抛售，<b>主力没走</b></td><td class="wrap">🟢 洗盘不是出货</td></tr>
+      <tr><td>放量下跌</td><td class="wrap">主力在出逃</td><td class="wrap">🔴 真出货，跑</td></tr>
+      <tr><td>放量滞涨</td><td class="wrap">主力借利好出货</td><td class="wrap">🔴 危险</td></tr>
+      <tr><td>缩量回调</td><td class="wrap">主力惜筹，健康洗盘</td><td class="wrap">🟢 可低吸</td></tr>
+    </table></div>
+
+    <div class="good"><b>关键判据：</b>下跌时看量——<b>缩量下跌是洗盘（主力没跑），放量下跌是出货（主力在逃）</b>。这一条就能避开 80% 的"割在地板"和"追在山顶"。</div>
+  </div>
+
+  <!-- 六、六大抄底信号 -->
+  <div class="card" id="s6">
+    <h2><span class="num">6</span> 六大抄底信号（底部反转）</h2>
+    <div class="tablewrap"><table>
+      <tr><th>#</th><th>信号</th><th>特征</th><th>逻辑</th></tr>
+      <tr><td>1</td><td><b>地量见地价</b></td><td class="wrap">长期下跌后量萎缩至近期最低，K线实体变小（十字星）</td><td class="wrap">卖盘枯竭，空头衰竭</td></tr>
+      <tr><td>2</td><td><b>放量突破下降趋势线</b></td><td class="wrap">突破长期下降趋势线，量较前 5 日均量增 50%+</td><td class="wrap">资金入场推动反转</td></tr>
+      <tr><td>3</td><td><b>底部巨量长阳</b></td><td class="wrap">单日涨幅 &gt;5%，量达近期 3 倍+</td><td class="wrap">主力进场扫货</td></tr>
+      <tr><td>4</td><td><b>底背离</b></td><td class="wrap">价创新低但量萎缩到极致 + MACD 底背离</td><td class="wrap">抛压枯竭</td></tr>
+      <tr><td>5</td><td><b>缩量回调企稳</b></td><td class="wrap">上涨途中缩量回调，缩量十字星企稳</td><td class="wrap">洗盘结束，主力惜筹</td></tr>
+      <tr><td>6</td><td><b>W 底放量突破颈线</b></td><td class="wrap">二次探底不破前低，放量突破颈线</td><td class="wrap">底部结构确认</td></tr>
+    </table></div>
+    <div class="judge"><b>案例：</b>① 2023 年贵州茅台 1600 元附近成交量创 3 年新低（地量见地价），随后反弹。② 2024-09-26 永辉超市放量涨停突破长期下跌趋势线，开启五浪上涨，2 个月近 3 倍。③ 2022-03-09 永辉超市底部高开高走巨量涨停（底部巨量长阳），开启一波 50% 反弹。</div>
+  </div>
+
+  <!-- 七、六大逃顶信号 -->
+  <div class="card" id="s7">
+    <h2><span class="num">7</span> 六大逃顶信号（顶部反转）</h2>
+    <div class="tablewrap"><table>
+      <tr><th>#</th><th>信号</th><th>特征</th><th>逻辑</th></tr>
+      <tr><td>1</td><td><b>天量见天价</b></td><td class="wrap">高位单日巨量（历史前 10%），但价格滞涨/长上影</td><td class="wrap">主力借利好出货</td></tr>
+      <tr><td>2</td><td><b>量价背离（顶背离）</b></td><td class="wrap">价创新高但量逐波下降</td><td class="wrap">上涨动力不足</td></tr>
+      <tr><td>3</td><td><b>高位缩量滞涨</b></td><td class="wrap">高位横盘，量持续低于 20 日均量</td><td class="wrap">无新买盘，破位风险</td></tr>
+      <tr><td>4</td><td><b>放量滞涨</b></td><td class="wrap">高位放量但价格不涨，换手 &gt;20%</td><td class="wrap">主力对倒出货</td></tr>
+      <tr><td>5</td><td><b>高位长上影</b></td><td class="wrap">冲高回落留长上影，放量</td><td class="wrap">上方抛压沉重</td></tr>
+      <tr><td>6</td><td><b>跌破关键平台 3 日未收回</b></td><td class="wrap">放量跌破平台，3 日无法收回</td><td class="wrap">趋势破坏确认</td></tr>
+    </table></div>
+    <div class="judge"><b>案例：</b>① 2022-12-07 永辉超市单日天量滞涨，随后见顶回落。② 2025 年 2-3 月隆基绿能高位缩量横盘 1 个月后破位下跌。</div>
+  </div>
+
+  <!-- 八、黄金法则 -->
+  <div class="card" id="s8">
+    <h2><span class="num">8</span> 量价黄金法则</h2>
+    <div class="sec-title">上涨趋势中</div>
+    <ul>
+      <li>🟢 <b>健康信号</b>：价涨量增、价跌量缩（放量涨、缩量跌）。</li>
+      <li>🔴 <b>危险信号</b>：价涨量缩（背离）。</li>
+    </ul>
+    <div class="sec-title">下跌趋势中</div>
+    <ul>
+      <li>🟢 <b>见底信号</b>：价跌量缩至极致后放量反弹。</li>
+      <li>🔴 <b>下跌中继</b>：反弹无量，继续观望（无量反弹 = 下跌中继）。</li>
+    </ul>
+    <div class="sec-title">震荡市中</div>
+    <ul>
+      <li>结合支撑/阻力位，<b>放量突破时跟随方向</b>；无量突破视为假突破。</li>
+    </ul>
+  </div>
+
+  <!-- 九、位置 -->
+  <div class="card" id="s9">
+    <h2><span class="num">9</span> 量价必须结合位置（最容易被忽略）</h2>
+    <p><b>同一个量价信号，在低位和高位含义完全相反。</b>这是量价分析最容易犯的错——孤立看信号，不看位置。</p>
+    <div class="tablewrap"><table>
+      <tr><th>信号</th><th>低位（跌透后）</th><th>高位（大涨后）</th></tr>
+      <tr><td><b>放量</b></td><td class="wrap">🟢 吸筹 / 见底</td><td class="wrap">🔴 出货 / 见顶</td></tr>
+      <tr><td><b>缩量</b></td><td class="wrap">🟢 惜售，抛压枯竭</td><td class="wrap">🔴 观望，滞涨破位风险</td></tr>
+    </table></div>
+    <div class="warn"><b>任何量价判断第一步先问：</b>"现在处于什么位置 / 周期阶段？"——反弹期、景气期、泡沫期，同一个信号的处理方式完全不同。这是"先判断周期阶段再定策略"教训在量价上的直接应用。</div>
+  </div>
+
+  <!-- 十、形态汇总表 -->
+  <div class="card" id="s10">
+    <h2><span class="num">10</span> 关键量价形态汇总表</h2>
+    <div class="tablewrap"><table>
+      <tr><th>形态</th><th>量价特征</th><th>含义</th><th>操作</th></tr>
+      <tr><td>天量天价</td><td class="wrap">高位天量 + 滞涨/长上影</td><td class="wrap">见顶</td><td class="wrap">🔴 逃</td></tr>
+      <tr><td>地量地价</td><td class="wrap">低位地量 + 十字星</td><td class="wrap">见底</td><td class="wrap">🟢 观察</td></tr>
+      <tr><td>放量突破</td><td class="wrap">突破关键位 + 量增 50%+</td><td class="wrap">有效突破</td><td class="wrap">🟢 跟进</td></tr>
+      <tr><td>缩量回调</td><td class="wrap">上涨途中缩量回踩</td><td class="wrap">健康洗盘</td><td class="wrap">🟢 低吸</td></tr>
+      <tr><td>量价齐升</td><td class="wrap">价涨量增，同步放大</td><td class="wrap">主升浪</td><td class="wrap">🟢 持有</td></tr>
+      <tr><td>量价背离</td><td class="wrap">价创新高/低但量萎缩</td><td class="wrap">拐点预警</td><td class="wrap">⚠️ 减仓/观察</td></tr>
+      <tr><td>放量滞涨</td><td class="wrap">高位放量价格不动</td><td class="wrap">出货</td><td class="wrap">🔴 逃</td></tr>
+      <tr><td>缩量滞涨</td><td class="wrap">高位横盘缩量</td><td class="wrap">无买盘，破位</td><td class="wrap">🔴 减仓</td></tr>
+    </table></div>
+  </div>
+
+  <!-- 十一、分时量价 -->
+  <div class="card" id="s11">
+    <h2><span class="num">11</span> 分时量价（日内量能分布）</h2>
+    <p>日线看趋势，分时看意图。分时量能分布能识别主力当天的动作。</p>
+    <div class="tablewrap"><table>
+      <tr><th>时段</th><th>说明</th><th>放量信号</th></tr>
+      <tr><td>早盘 30 分 (9:30-10:00)</td><td class="wrap">主力早盘动作</td><td class="wrap">&gt;30% 抢筹，&gt;40% 强势介入</td></tr>
+      <tr><td>上午中段 (10:00-11:30)</td><td class="wrap">正常交易</td><td class="wrap">—</td></tr>
+      <tr><td>下午中段 (13:00-14:30)</td><td class="wrap">正常交易</td><td class="wrap">—</td></tr>
+      <tr><td>尾盘 30 分 (14:30-15:00)</td><td class="wrap">尾盘异动</td><td class="wrap">&gt;25% 抢筹或出货</td></tr>
+    </table></div>
+    <ul>
+      <li><b>早盘放量 &gt;30%</b>：主力早盘抢筹；<b>&gt;40%</b>：主力强势介入。</li>
+      <li><b>尾盘放量 &gt;25%</b>：可能是主力抢筹（为次日做准备）或出货（借尾盘流动性离场）。</li>
+      <li><b>涨停封单</b>：封单量巨大且不撤 = 强；封单反复开板 = 分歧大，警惕次日走弱。</li>
+    </ul>
+  </div>
+
+  <!-- 十二、换手率 -->
+  <div class="card" id="s12">
+    <h2><span class="num">12</span> 换手率与量能潮汐</h2>
+    <p>换手率是量价的另一把尺子，衡量筹码换手速度。</p>
+    <div class="tablewrap"><table>
+      <tr><th>换手率区间</th><th>含义</th></tr>
+      <tr><td>&lt; 3%</td><td class="wrap">交投清淡，无人关注</td></tr>
+      <tr><td>3% - 7%</td><td class="wrap">正常交易，活跃度一般</td></tr>
+      <tr><td>7% - 15%</td><td class="wrap">活跃，资金明显进场</td></tr>
+      <tr><td>15% - 20%</td><td class="wrap">高度活跃，警惕短线过热</td></tr>
+      <tr><td>&gt; 20%</td><td class="wrap">🔥 极端换手，<b>高位放量 &gt;20% = 出货警戒线</b></td></tr>
+    </table></div>
+    <div class="warn"><b>量能潮汐：</b>量能呈"潮涨潮落"周期——地量区（退潮）→ 温和放量（涨潮）→ 天量区（满潮）→ 缩量（退潮）。<b>判断量能处于潮汐的哪个阶段，比看单日量更重要。</b></div>
+  </div>
+
+  <!-- 十三、辅助指标 -->
+  <div class="card" id="s13">
+    <h2><span class="num">13</span> 辅助指标验证（量价 + 指标共振，胜率才高）</h2>
+    <div class="tablewrap"><table>
+      <tr><th>指标</th><th>用法</th></tr>
+      <tr><td>MACD</td><td class="wrap">顶背离逃顶，底背离抄底</td></tr>
+      <tr><td>RSI</td><td class="wrap">超卖 (&lt;30) 抄底，超买 (&gt;70) 逃顶</td></tr>
+      <tr><td>OBV 能量潮</td><td class="wrap">累计量能，常领先价格突破</td></tr>
+      <tr><td>换手率</td><td class="wrap">&gt;20% 高位放量 = 出货警戒线</td></tr>
+      <tr><td>量比</td><td class="wrap">今日量/5日均量，&gt;2 显著放量，&lt;0.5 显著缩量</td></tr>
+    </table></div>
+  </div>
+
+  <!-- 十四、口诀大全 -->
+  <div class="card" id="s14">
+    <h2><span class="num">14</span> 实战口诀大全</h2>
+    <ul>
+      <li><b>涨停回调量过三，上涨很简单</b>：放量涨停（主力进场）→ 缩量回调 ≤3 天 → 再放量突破前高，买点在突破。</li>
+      <li><b>放量滞涨 = 出货，缩量回调 = 洗盘。</b></li>
+      <li><b>低位放量 = 吸筹，高位放量 = 出货。</b></li>
+      <li><b>天量之后有天价要警惕</b>：天量可能是顶，也可能还有新高，但天量滞涨（长上影/十字星）基本是顶。</li>
+      <li><b>价跌量缩到极致，放量反弹是见底</b>。</li>
+      <li><b>无量反弹是下跌中继</b>，别抢。</li>
+      <li><b>缩量下跌是散户恐慌（主力没走），放量下跌是主力出逃</b>。</li>
+      <li><b>地量见地价，天量见天价</b>。</li>
+      <li><b>空中加油</b>：第一波急涨后巨量阴线回调 → 缩量十字星企稳 → 放量突破前高，买点在十字星后放量突破阴线高点。</li>
+    </ul>
+  </div>
+
+  <!-- 十五、纪律 -->
+  <div class="card" id="s15">
+    <h2><span class="num">15</span> 实战纪律</h2>
+    <ul>
+      <li><b>禁止单一信号</b>：量价必须结合趋势 + 位置 + 基本面综合判断。</li>
+      <li><b>止损/回补纪律</b>：抄底失败跌破前低 3% 止损；逃顶错误突破前高 3% 回补。</li>
+      <li><b>周期选择</b>：短线看 5/30 分钟量价；中长线看日线/周线量价。</li>
+      <li><b>仓位管理比精准买卖点更重要</b>——没有 100% 准确的指标。</li>
+      <li><b>警惕假洗盘真出货</b>：高位放量滞涨 + 换手 &gt;20% + 跌破关键平台 3 日未收回 = 出货。</li>
+    </ul>
+  </div>
+
+  <!-- 十六、案例 -->
+  <div class="card" id="s16">
+    <h2><span class="num">16</span> 经典案例</h2>
+    <div class="tablewrap"><table>
+      <tr><th>标的</th><th>时间</th><th>量价信号</th><th>结果</th></tr>
+      <tr><td>贵州茅台</td><td class="wrap">2023 年 1600 元</td><td class="wrap">成交量创 3 年新低（地量见地价）</td><td class="wrap">🟢 反弹</td></tr>
+      <tr><td>永辉超市</td><td class="wrap">2022-03-09</td><td class="wrap">底部高开高走巨量涨停（底部巨量长阳）</td><td class="wrap">🟢 50% 反弹</td></tr>
+      <tr><td>永辉超市</td><td class="wrap">2022-12-07</td><td class="wrap">单日天量滞涨（天量见天价）</td><td class="wrap">🔴 见顶回落</td></tr>
+      <tr><td>永辉超市</td><td class="wrap">2024-09-26</td><td class="wrap">放量涨停突破长期下降趋势线</td><td class="wrap">🟢 2 个月近 3 倍</td></tr>
+      <tr><td>隆基绿能</td><td class="wrap">2024-11-12</td><td class="wrap">30 分钟量价顶背离 + MACD 顶背离</td><td class="wrap">🔴 长期下跌</td></tr>
+      <tr><td>隆基绿能</td><td class="wrap">2025-02~03</td><td class="wrap">高位缩量横盘 1 个月（高位缩量滞涨）</td><td class="wrap">🔴 破位下跌</td></tr>
+    </table></div>
+    <p style="font-size:12px; color:var(--muted);">注：以上案例为教学演示，不构成投资建议。</p>
+  </div>
+
+  <!-- 十七、回测自己 -->
+  <div class="card" id="s17">
+    <h2><span class="num">17</span> 回测我自己的亏损（本次学习的真正价值）</h2>
+    <p>标题"大部分亏损都是自找的"不是贩卖焦虑，是陈述事实。拿我最近的亏损对号入座：</p>
+    <div class="tablewrap"><table>
+      <tr><th>持仓</th><th>当时犯的量价错误</th><th>正确读法</th></tr>
+      <tr><td><b>宏昌电子</b>（10-22 建仓 600股@14.55）</td><td class="wrap">7天5涨停 + 风险提示 + 龙虎榜卖出3.2亿&gt;买入1.8亿之后<b>追高建仓</b></td><td class="wrap">高位放量滞涨/出货教科书特征，题材退潮期建仓=接盘</td></tr>
+      <tr><td><b>生益科技</b>（127.81 一路摊低）</td><td class="wrap">筹码出清下跌途中<b>无放量止跌确认逆势加仓</b></td><td class="wrap">应等"缩量到极致+放量反弹"确认，而非越跌越买</td></tr>
+    </table></div>
+    <div class="danger"><b>核心结论：</b>宏昌的 -7%、生益的 -13%，根子都不是"票不好"，而是我在<b>量价最明确的出货/下跌信号面前，用"摊薄成本"的执念代替了"读懂量价"的纪律</b>。10-22 那天的建仓决策，量价四象限里明明白白写着"跌+放量=危险"，我视而不见。</div>
+    <div class="sec-title">落地规则（写进分析流程）</div>
+    <ul>
+      <li>① 任何买入建议前，先过量价四象限 + 位置（低位/高位）。</li>
+      <li>② 连板票：放量滞涨 + 风险提示 + 龙虎榜卖出 &gt; 买入 = 出货，<b>禁止建仓</b>。</li>
+      <li>③ 下跌趋势票：禁止"无放量止跌确认"的逆势加仓。</li>
+      <li>④ 持仓复盘/操盘建议中，<b>强制带一句量价结论</b>（放量/缩量 × 涨/跌 × 位置）。</li>
+    </ul>
+  </div>
+
+  <div class="foot">寒洛 · 量价关系知识完整版 · 2026-10-24 · 数据源：新浪财经《量价识顶底》+ 经典量价理论 + 实盘回测</div>
+</body>
+</html>

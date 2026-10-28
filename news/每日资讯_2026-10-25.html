@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日资讯 - 2026-10-25</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f5f5f5; padding: 16px; color: #333; line-height: 1.6; }
+
+.header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 24px; border-radius: 16px; margin-bottom: 16px; }
+.header h1 { font-size: 24px; margin-bottom: 8px; }
+.header .date { opacity: 0.8; font-size: 14px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.kpi-card { background: white; padding: 16px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.kpi-value { font-size: 24px; font-weight: 700; }
+.kpi-value.up { color: #e53935; }
+.kpi-value.down { color: #43a047; }
+.kpi-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+.section { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.section-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #f0f0f0; }
+
+.news-item { padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+.news-item:last-child { border-bottom: none; }
+.news-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.news-title { font-weight: 600; font-size: 15px; color: #1a1a2e; text-decoration: none; }
+.news-title:hover { color: #2196f3; }
+.news-source { font-size: 11px; color: #888; margin-left: auto; }
+.news-content { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+.news-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.tag { padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #e3f2fd; color: #1565c0; }
+.news-comment { font-size: 13px; color: #666; padding: 8px 10px; background: #fff9e6; border-radius: 6px; border-left: 3px solid #ffc107; line-height: 1.5; }
+
+.us-market { background: #f8f9fa; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.us-title { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 12px; }
+.us-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.us-item { background: white; padding: 14px; border-radius: 8px; text-align: center; }
+.us-name { font-size: 12px; color: #666; margin-bottom: 6px; }
+.us-price { font-size: 18px; font-weight: 600; color: #1a1a2e; }
+.us-pct { font-size: 14px; font-weight: 500; margin-top: 4px; }
+.us-pct.up { color: #e53935; }
+.us-pct.down { color: #43a047; }
+
+.analysis-box { background: #fafafa; padding: 16px; border-radius: 10px; border-left: 4px solid #2196f3; }
+.analysis-box h4 { font-size: 14px; color: #1a1a2e; margin-bottom: 10px; margin-top: 16px; font-weight: 600; }
+.analysis-box h4:first-child { margin-top: 0; }
+.analysis-box p { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 12px; }
+.analysis-box ul { padding-left: 20px; margin-bottom: 14px; }
+.analysis-box li { font-size: 14px; color: #555; margin-bottom: 8px; line-height: 1.7; }
+
+.risk-box { background: #fff3e0; padding: 14px; border-radius: 10px; border-left: 4px solid #ff9800; margin-top: 16px; }
+.risk-box h4 { font-size: 13px; color: #e65100; margin-bottom: 8px; }
+.risk-box li { font-size: 12px; color: #555; margin-bottom: 4px; }
+
+.footer { text-align: center; color: #888; font-size: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+
+@media(max-width:768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .us-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📰 每日资讯</h1>
+  <div class="date">2026-10-25 07:30 生成</div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-value up">+0.89%</div><div class="kpi-label">上证指数</div></div>
+  <div class="kpi-card"><div class="kpi-value up">+4.16%</div><div class="kpi-label">创业板指</div></div>
+  <div class="kpi-card"><div class="kpi-value up">8</div><div class="kpi-label">涨停数</div></div>
+  <div class="kpi-card"><div class="kpi-value up">—</div><div class="kpi-label">北向资金</div></div>
+</div>
+
+<div class="us-market">
+  <div class="us-title">🇺🇸 美股隔夜收盘</div>
+  <div class="us-grid">
+    <div class="us-item"><div class="us-name">纳斯达克</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+    <div class="us-item"><div class="us-name">标普500</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+    <div class="us-item"><div class="us-name">道琼斯</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+    <div class="us-item"><div class="us-name">费城半导体</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📰 市场快讯（20条含寒洛点评）</div>
+  <div class="news-item"><div class="news-title">[美股,港股,A股] 美司法部要求加州官员核查选民身份，不配合者或将遭审查</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 西藏巴青地震已发生余震949次</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 西藏巴青震区电力供应全面恢复</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 也门官员称亚丁遭导弹袭击</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 胡塞武装称沙特袭击也门一水泥厂 已致8死10伤</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 华福证券陈兴：A股估值已充分消化谨慎预期 权益资产配置价值逐步凸显</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 苏州出台商品住房销售实施意见：新出让土地项目优先现房销售</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 下周44股面临解禁 合计解禁市值超1060亿元</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 8次应急成像 "吉林一号"系列卫星为西藏巴青震区救援提供支撑</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] AIGC时代互联网广告治理蓝皮书发布 提出全链路治理框架</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 强生公司宣布手术前后使用阿帕他胺可降低62%的复发或死亡风险</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 泽连斯基：星链和星盾服务已恢复至此前速度</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 中国国际广告节开幕 8家企业签署互联网营销宣传自律公约</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 商务部回应美发布新版对外投资限制拟议规则</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] “重大转变”！英媒爆料：内塔尼亚胡下令以色列调整马岛问题立场，“转而支持阿根廷”</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 商务部新闻发言人就美发布新版对外投资限制拟议规则答记者问</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 青海省玉树州杂多县发生5.3级地震，水利部启动水利抗震救灾调度指挥机制</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 乌克兰对俄导弹及军工供应链实施新一轮制裁</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 日本防相再称讨论引进核潜艇</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 王沪宁陪同朝鲜最高领导人金正恩访问丹东</div><div class="news-content">💬 关注相关板块机会</div></div>
+
+</div>
+
+<div class="section">
+  <div class="section-title">📊 寒洛分析</div>
+  <div class="analysis-box">
+    <div class="analysis-block"><p><strong>📊 大盘：</strong>上证+0.89%(3690点) 偏强，创业板+4.16%。</p><p><strong>🔥 TOP5机会：</strong>暂无</p><p><strong>📈 操作：</strong>不追高，关注回调到布林中轨的强势股。</p></div>
+  </div>
+</div>
+
+<div class="footer">
+  寒洛每日资讯 | 数据来源：Tushare/东方财富/财联社
+</div>
+
+</body>
+</html>

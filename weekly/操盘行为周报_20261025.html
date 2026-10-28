@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘行为周报 2026-10-25</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+         max-width: 1000px; margin: 0 auto; padding: 20px;
+         background: #f1f5f9; color: #1e293b; font-size: 13px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%);
+             color: white; padding: 24px 28px; border-radius: 14px;
+             margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 22px; margin-bottom: 4px; }
+  .header .meta { opacity: 0.85; font-size: 13px; }
+  .header .badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+  .card { background: white; border-radius: 12px; padding: 20px 22px;
+           margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px;
+                 padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; color: #1e3a5f;
+                 display: flex; align-items: center; gap: 8px; }
+  .card-title .icon { font-size: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f8fafc; text-align: left; padding: 9px 12px; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .footer { text-align: center; color: #94a3b8; font-size: 12px; margin-top: 24px; padding: 16px; }
+  @media (max-width: 768px) { body { padding: 12px; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>📊 操盘行为周报</h1>
+    <div class="meta">指标独立回测 → 动态组合预测</div>
+  </div>
+  <div class="badge">2026-10-25</div>
+</div>
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+  <div style="background:white;border-radius:12px;padding:16px;min-width:120px;flex:1;
+                          box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">📊</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">总交易次数</div>
+          <div style="font-size:18px;font-weight:700;color:#1e293b">42笔</div>
+        </div><div style="background:white;border-radius:12px;padding:16px;min-width:120px;flex:1;
+                          box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">🛒</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">买入次数</div>
+          <div style="font-size:18px;font-weight:700;color:#1e293b">24笔</div>
+        </div><div style="background:white;border-radius:12px;padding:16px;min-width:120px;flex:1;
+                          box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">💰</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">卖出次数</div>
+          <div style="font-size:18px;font-weight:700;color:#1e293b">18笔</div>
+        </div><div style="background:white;border-radius:12px;padding:16px;min-width:120px;flex:1;
+                          box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">💵</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">总交易金额</div>
+          <div style="font-size:18px;font-weight:700;color:#1e293b">¥2,109,737</div>
+        </div><div style="background:white;border-radius:12px;padding:16px;min-width:120px;flex:1;
+                          box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">📈</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">平均买入价</div>
+          <div style="font-size:18px;font-weight:700;color:#1e293b">¥119.10</div>
+        </div><div style="background:white;border-radius:12px;padding:16px;min-width:120px;flex:1;
+                          box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center">
+          <div style="font-size:22px;margin-bottom:6px">📉</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">平均卖出价</div>
+          <div style="font-size:18px;font-weight:700;color:#1e293b">¥125.58</div>
+        </div>
+  <div style="background:white;border-radius:12px;padding:20px;flex:2;
+                     box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center;border:2px solid #b91c1c20">
+      <div style="font-size:13px;color:#64748b;margin-bottom:6px">💎 累计已实现盈亏</div>
+      <div style="font-size:26px;font-weight:800;color:#b91c1c">¥-25,800.00</div>
+    </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📊</span> 行为分析</div>
+  <table><thead><tr><th>维度</th><th>数值</th><th>判断</th></tr></thead><tbody><tr><td style="font-weight:600">买卖比</td><td style="color:#1d4ed8">24/18 = 1.33</td><td>偏激进（买入多于卖出）</td></tr><tr><td style="font-weight:600">平均买入价</td><td style="color:#1d4ed8">¥119.10</td><td>正常</td></tr><tr><td style="font-weight:600">平均卖出价</td><td style="color:#1d4ed8">¥125.58</td><td>卖出均价高于买入（盈利模式）</td></tr><tr><td style="font-weight:600">交易频率</td><td style="color:#1d4ed8">2.8笔/天</td><td>正常</td></tr></tbody></table>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">💡</span> 改进建议</div>
+  <ul style="padding-left:20px;line-height:2.2"><li><strong style="color:#1e3a5f">买卖比调整</strong>：建议调整买卖比例，避免单边操作</li><li><strong style="color:#1e3a5f">止损纪律</strong>：设置明确止损线，建议每笔交易预设止损位</li><li><strong style="color:#1e3a5f">追高风险</strong>：避免在RSI>70时追高买入</li></ul>
+</div>
+
+<div class="card">
+  <div class="card-title"><span class="icon">📅</span> 交易日历（共15天有交易）</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px"><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-18</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">2笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-21</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">1笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-22</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">2笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-23</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">3笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-24</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">2笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-28</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">4笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-09-29</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">4笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-09</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">4笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-12</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">4笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-13</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">3笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-14</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">1笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-15</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">1笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-19</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">5笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-21</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">3笔</div>
+        </div><div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;
+                          padding:8px 14px;text-align:center;min-width:90px">
+          <div style="font-size:12px;color:#64748b">2026-10-22</div>
+          <div style="font-size:18px;font-weight:700;color:#1d4ed8">3笔</div>
+        </div></div>
+</div>
+<div class="disclaimer-box">
+⚠️ <b>风险提示与免责声明</b>：本报告由「寒洛」个人辅助决策系统自动生成，
+<b>仅供系统所有者本人内部参考，不构成任何证券投资建议</b>。
+模型量化判断非投资保证，存在失效可能（历史胜率波动区间0%~49%）。股市有风险，盈亏自负。
+</div>
+<div class="footer">寒洛系统</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V7 周迭代报告 2026-10-19 ~ 2026-10-23</title>
+<style>
+body { font-family: -apple-system, sans-serif; background: #f8fafc; color: #1e293b; margin: 0; padding: 20px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.card-title { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #0f172a; }
+.kpis { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.kpi { flex: 1; min-width: 120px; background: white; border-radius: 10px; padding: 18px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.kpi-value { font-size: 28px; font-weight: 800; }
+.kpi-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f1f5f9; padding: 8px 12px; text-align: left; font-weight: 600; color: #475569; }
+td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
+.green { color: #16a34a; }
+.red { color: #dc2626; }
+.purple { color: #7c3aed; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1 style="font-size: 24px; margin-bottom: 4px;">📊 V7 周迭代报告</h1>
+<p style="color: #64748b; margin-top: 0;">2026-10-19 ~ 2026-10-23 | 覆盖 5 个交易日 | 1340 条验证记录</p>
+
+<div class="kpis">
+  <div class="kpi">
+    <div class="kpi-value green">386</div>
+    <div class="kpi-label">✅ 真胜</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value red">954</div>
+    <div class="kpi-label">❌ 败</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-value purple">28.8%</div>
+    <div class="kpi-label">胜率</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📈 按 z_score 档位</div>
+  <table><thead><tr><th>档位</th><th>✅胜</th><th>❌败</th><th>胜率</th></tr></thead>
+  <tbody><tr><td>z≥8</td><td>0</td><td>0</td><td>0.0%</td></tr><tr><td>z6-7</td><td>0</td><td>0</td><td>0.0%</td></tr><tr><td>z4-5</td><td>0</td><td>0</td><td>0.0%</td></tr><tr><td>z<4</td><td>386</td><td>954</td><td>28.8%</td></tr></tbody></table>
+</div>
+
+<div class="card">
+  <div class="card-title">🏭 按板块（TOP10）</div>
+  <table><thead><tr><th>板块</th><th>✅胜</th><th>❌败</th><th>胜率</th></tr></thead>
+  <tbody><tr><td></td><td>386</td><td>954</td><td>28.8%</td></tr></tbody></table>
+</div>
+
+<div class="card">
+  <div class="card-title">🔍 败因分布</div>
+  <table><thead><tr><th>败因</th><th>次数</th></tr></thead>
+  <tbody><tr><td>涨幅不足</td><td>594</td></tr><tr><td>买不到</td><td>245</td></tr><tr><td>触发止损</td><td>115</td></tr></tbody></table>
+</div>
+
+<div class="card">
+  <div class="card-title">🔧 参数自动调整</div>
+  <p style="color:#64748b;font-size:13px;">涨幅不足占比44%>30% → z_range_widen: 0.5→0.6</p>
+  <table><thead><tr><th>参数</th><th>新值</th></tr></thead>
+  <tbody><tr><td>z_range_widen</td><td>0.6</td></tr></tbody></table>
+</div>
+
+<div class="card">
+  <div class="card-title">🔄 闭环状态</div>
+  <p style="font-size:13px;">
+    ✅ 本周验证数据已汇总 → ✅ 败因已归因 → ✅ 参数已自动调整 → ⏳ 下周按新参数继续
+  </p>
+</div>
+
+<p style="text-align:center;color:#94a3b8;font-size:12px;margin-top:40px;">
+  V7 周迭代系统自动生成 | 2026-10-24 20:30
+</p>
+</div>
+</body>
+</html>

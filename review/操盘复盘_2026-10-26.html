@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘复盘 2026-10-26</title>
+<style>
+  :root{
+    --bg:#0b0f14; --card:#151b23; --card2:#1a222c; --line:#2a3542;
+    --txt:#e6edf3; --sub:#8b98a5; --dim:#5c6b7a;
+    --red:#ef4444; --green:#22c55e; --blue:#3b82f6; --yellow:#eab308;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--txt); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; font-size:15px;}
+  .wrap{max-width:960px; margin:0 auto; padding:24px 16px 60px;}
+  header{padding:12px 0 20px; border-bottom:1px solid var(--line); margin-bottom:24px;}
+  h1{font-size:24px; font-weight:700;}
+  .subtitle{color:var(--sub); margin-top:6px; font-size:14px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .chip{background:var(--card2); border:1px solid var(--line); border-radius:20px; padding:3px 12px; font-size:12px; color:var(--sub);}
+  .chip.up{color:#ff6b6b; border-color:#ff6b6b33;} .chip.down{color:#4ade80; border-color:#4ade8033;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px; margin-bottom:18px;}
+  .card h2{font-size:19px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .card h2 .code{font-family:monospace; color:var(--dim); font-size:14px;}
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .cell{background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:12px;}
+  .cell .k{color:var(--dim); font-size:11px; margin-bottom:4px;}
+  .cell .v{font-family:monospace; font-size:17px; font-weight:700;}
+  .up{color:var(--red);} .down{color:var(--green);}
+  .sec{margin-top:16px;}
+  .sec h3{font-size:14px; color:var(--sub); margin-bottom:6px; font-weight:600;}
+  ul{margin-left:18px;} li{margin:4px 0; font-size:14px;}
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:10px;}
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th,td{padding:8px 12px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap;}
+  th{background:var(--card2); color:var(--sub); font-weight:600; font-size:12px;}
+  .judge{background:#0f1b2d; border:1px solid #1e3a5f; border-left:4px solid var(--blue); border-radius:12px; padding:16px 18px; margin-top:14px;}
+  .judge .tag{color:var(--blue); font-weight:700; font-size:13px;}
+  .danger{background:#1a1216; border:1px solid #3f1f2a; border-left:4px solid var(--red); border-radius:12px; padding:16px 18px; margin-top:12px;}
+  .danger .tag{color:var(--red); font-weight:700; font-size:13px;}
+  .strategy{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--yellow); border-radius:14px; padding:20px;}
+  .strategy h2{color:var(--yellow); font-size:18px; margin-bottom:12px;}
+  .warn{background:#1a1a10; border:1px solid #3f3f1f; border-left:4px solid var(--yellow); border-radius:12px; padding:14px 18px; margin-top:18px; font-size:13px; color:var(--sub);}
+  footer{margin-top:32px; padding-top:16px; border-top:1px solid var(--line); color:var(--dim); font-size:12px; text-align:center;}
+  @media(max-width:640px){
+    body{font-size:13px;} h1{font-size:20px;}
+    .grid{grid-template-columns:repeat(2,1fr);} .cell .v{font-size:15px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>操盘复盘 · 2026-10-26（周一收盘）</h1>
+  <div class="subtitle">持仓 2 只 | 仓位 69.22% | 可用 ¥70,401 | 今日持仓股同步大跌</div>
+  <div class="chips">
+    <span class="chip">生益科技 1500股</span>
+    <span class="chip">宏昌电子 600股</span>
+    <span class="chip">新增转入 ¥70,000</span>
+  </div>
+</header>
+
+<!-- 生益科技 -->
+<div class="card">
+  <h2>生益科技 <span class="code">600183</span>
+    <span class="chip">1500股</span><span class="chip">成本 127.81</span>
+    <span class="chip down">现价 100.26 · -9.52%</span><span class="chip down">浮亏 -21.55%</span>
+  </h2>
+  <div class="grid">
+    <div class="cell"><div class="k">今日收盘</div><div class="v down">100.26</div></div>
+    <div class="cell"><div class="k">涨跌幅</div><div class="v down">-9.52%</div></div>
+    <div class="cell"><div class="k">今日最低</div><div class="v">99.73</div></div>
+    <div class="cell"><div class="k">今日最高</div><div class="v">109.49</div></div>
+    <div class="cell"><div class="k">MA5</div><div class="v">111.51</div></div>
+    <div class="cell"><div class="k">MA10</div><div class="v">114.66</div></div>
+    <div class="cell"><div class="k">MA20</div><div class="v">124.40</div></div>
+    <div class="cell"><div class="k">布林下轨</div><div class="v">100.22</div></div>
+  </div>
+  <div class="sec">
+    <h3>今日走势</h3>
+    <ul><li>低开 109.00 → 单边下杀 → 盘中最低 <b>99.73（-9.99%，逼近跌停）</b> → 收 100.26（-9.52%），收盘价贴着布林下轨 100.22，<b>实质破位</b>。</li></ul>
+  </div>
+  <div class="sec">
+    <h3>技术面</h3>
+    <ul>
+      <li>均线完全空头排列：MA5(111.51) &lt; MA10(114.66) &lt; MA20(124.40)，现价 100.26 远低于所有均线。</li>
+      <li>收盘价 100.26 已跌破布林下轨 100.22（微幅），布林开口向下，趋势转空。</li>
+      <li>今日放量下跌（成交额 72.2 亿），-9.52% 是大阴线破位形态。</li>
+    </ul>
+  </div>
+  <div class="sec">
+    <h3>支撑 / 压力</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>支撑位</th><th>价格</th><th>依据</th></tr>
+      <tr><td>强支撑</td><td>99.73</td><td>今日最低（逼近跌停价 99.73）</td></tr>
+      <tr><td>整数关</td><td>100.00</td><td>心理关口，破位后成反压</td></tr>
+      <tr><td>压力位</td><td>110.81</td><td>昨收 / 缺口上沿</td></tr>
+      <tr><td>强压力</td><td>111.51</td><td>MA5，反弹第一压力</td></tr>
+    </table></div>
+  </div>
+  <div class="judge">
+    <div class="tag">我的判断</div>
+    <p style="margin-top:6px;">生益今天接近跌停，是<b>明确的破位信号</b>，不是普通回调。10-22 你加仓的位置（117.19、114.72）现在已经套得更深了。均线全空、布林破位、放量下跌，三重确认趋势向下。<b>反弹到 MA5（111.51）是减仓机会，不是加仓机会</b>。</p>
+  </div>
+  <div class="danger">
+    <div class="tag">风险直说</div>
+    <p style="margin-top:6px;">成本 127.81、现价 100.26，浮亏 -21.55%。若明日继续跌破 99.73（今日低点）且收不回，破位将确认，技术面看更下方无明确支撑。<b>不要在破位下跌途中加仓摊薄</b>——这会用新增的 7 万弹药去接下跌的刀。</p>
+  </div>
+</div>
+
+<!-- 宏昌电子 -->
+<div class="card">
+  <h2>宏昌电子 <span class="code">603002</span>
+    <span class="chip">600股</span><span class="chip">成本 14.55</span>
+    <span class="chip down">现价 13.20 · -6.05%</span><span class="chip down">浮亏 -9.28%</span>
+  </h2>
+  <div class="grid">
+    <div class="cell"><div class="k">今日收盘</div><div class="v down">13.20</div></div>
+    <div class="cell"><div class="k">涨跌幅</div><div class="v down">-6.05%</div></div>
+    <div class="cell"><div class="k">今日最低</div><div class="v">13.11</div></div>
+    <div class="cell"><div class="k">今日最高</div><div class="v">13.82</div></div>
+    <div class="cell"><div class="k">MA5</div><div class="v">14.32</div></div>
+    <div class="cell"><div class="k">MA10</div><div class="v">15.11</div></div>
+    <div class="cell"><div class="k">MA20</div><div class="v">16.72</div></div>
+    <div class="cell"><div class="k">布林下轨</div><div class="v">12.73</div></div>
+  </div>
+  <div class="sec">
+    <h3>今日走势</h3>
+    <ul><li>低开 13.77 → 下探 13.11 → 收 13.20（-6.05%），跌破 MA5 与 MA10，但仍在布林下轨 12.73 上方。</li></ul>
+  </div>
+  <div class="sec">
+    <h3>技术面</h3>
+    <ul>
+      <li>均线空头排列：MA5(14.32) &lt; MA10(15.11) &lt; MA20(16.72)，现价 13.20 在 MA20 下方。</li>
+      <li>未破布林下轨（12.73），比生益略强，但跌破短期均线，弱势延续。</li>
+      <li>600 股仓位小，绝对亏损 -810 元，风险敞口可控。</li>
+    </ul>
+  </div>
+  <div class="sec">
+    <h3>支撑 / 压力</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>支撑位</th><th>价格</th><th>依据</th></tr>
+      <tr><td>强支撑</td><td>12.73</td><td>布林下轨</td></tr>
+      <tr><td>今日低点</td><td>13.11</td><td>盘中承接位</td></tr>
+      <tr><td>压力位</td><td>14.05</td><td>昨收</td></tr>
+      <tr><td>强压力</td><td>14.32</td><td>MA5</td></tr>
+    </table></div>
+  </div>
+  <div class="judge">
+    <div class="tag">我的判断</div>
+    <p style="margin-top:6px;">宏昌今天 -6.05%，跌破短期均线但守住布林下轨 12.73，比生益抗跌。仓位小（600股），是观察仓，不必恐慌。关键看 12.73 能否守住——守住就是震荡，跌破则趋势转空。</p>
+  </div>
+</div>
+
+<!-- 明日策略 -->
+<div class="strategy">
+  <h2>明日策略（10-27）</h2>
+  <ul>
+    <li><b>生益科技</b>：破位已确认，明日关键看 <b>100 整数关 + 99.73（今日低点）</b>。反弹到 MA5（111.51）附近是<b>减仓/降成本</b>的机会，不是加仓。破位途中不接刀，先把 7 万新弹药守住。</li>
+    <li><b>宏昌电子</b>：观察 <b>12.73（布林下轨）</b>能否守住，600 股仓位小，跌破止损出局、守住继续持有。</li>
+    <li><b>仓位约束</b>：当前仓位 69.22%，新转入 7 万现金是唯一弹药，不要在两只破位股上消耗。</li>
+  </ul>
+</div>
+
+<div class="warn">
+  <b>数据说明</b>：收盘价取自 Tushare realtime_quote（10-26 15:00 后 PRICE 字段），MA/布林由日线序列并入今日收盘重算（非延迟的 daily 旧值）。成本为券商摊薄口径，浮盈亏按现价×持仓−成本×持仓计算。A股红涨绿跌。
+</div>
+
+<footer>寒洛 · 操盘复盘 · 2026-10-26 · 仅供研究，不构成投资建议</footer>
+</div>
+</body>
+</html>

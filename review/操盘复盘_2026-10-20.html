@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘复盘 2026-10-20</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --amber: #d29922;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.65;
+    padding: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header { text-align: center; padding: 20px 8px 8px; }
+  .header h1 { font-size: 22px; letter-spacing: 1px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; background: rgba(210,153,34,.15); color: var(--amber); border: 1px solid rgba(210,153,34,.4); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+  .card h2 { font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .code { color: var(--blue); font-weight: 600; font-family: monospace; }
+  .up { color: var(--red); font-weight: 700; }
+  .down { color: var(--green); font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+  .cell { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .cell .k { font-size: 11px; color: var(--muted); }
+  .cell .v { font-size: 16px; font-weight: 600; margin-top: 2px; font-family: monospace; }
+  .divider { border-top: 1px dashed var(--border); margin: 14px 0; }
+  .sec-title { font-size: 13px; color: var(--purple); font-weight: 700; margin: 14px 0 6px; letter-spacing: 1px; }
+  ul { padding-left: 18px; }
+  li { margin: 6px 0; font-size: 14px; }
+  .judge { background: rgba(88,166,255,.08); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .warn { background: rgba(210,153,34,.08); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .danger { background: rgba(248,81,73,.08); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin: 18px 0 6px; }
+  .chip { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-left:4px; }
+  .chip.red { background:rgba(248,81,73,.15); color:var(--red); }
+  .chip.green { background:rgba(63,185,80,.15); color:var(--green); }
+  .chip.grey { background:rgba(139,148,158,.15); color:var(--muted); }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+  th, td { padding: 7px 10px; border: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; }
+  td { font-family: monospace; }
+  @media (max-width: 640px) {
+    body { padding: 10px; font-size: 13px; }
+    .header h1 { font-size: 18px; }
+    .card { padding: 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    li { font-size: 13px; }
+    .cell .v { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>📋 操盘复盘 · 2026-10-20</h1>
+    <div class="sub">生益冲高回落十字星 -0.34% · 宏昌收复布林下轨 +0.27% · 仓位 99.13%</div>
+    <span class="tag">⚠️ 空头排列未改 · 弹药见底</span>
+  </div>
+
+  <!-- 生益科技 -->
+  <div class="card">
+    <h2>生益科技 <span class="code">600183</span> <span class="chip grey">900股</span> <span class="chip grey">成本136.95</span> <span class="chip green">现价117.23 -0.34%</span> <span class="chip green">浮亏-14.40%</span></h2>
+    <div class="grid">
+      <div class="cell"><div class="k">今日收盘</div><div class="v down">117.23</div></div>
+      <div class="cell"><div class="k">涨跌幅</div><div class="v down">-0.34%</div></div>
+      <div class="cell"><div class="k">今日最低</div><div class="v">113.63</div></div>
+      <div class="cell"><div class="k">今日最高</div><div class="v">121.00</div></div>
+      <div class="cell"><div class="k">MA5</div><div class="v">116.74</div></div>
+      <div class="cell"><div class="k">MA10</div><div class="v">121.22</div></div>
+      <div class="cell"><div class="k">MA20</div><div class="v">132.12</div></div>
+      <div class="cell"><div class="k">布林下轨</div><div class="v">106.99</div></div>
+    </div>
+
+    <div class="sec-title">今日走势</div>
+    <p style="font-size:14px;">低开 <b>117.30</b>（-0.28%）→ 冲高 <b>121.00</b>（+2.87%，<b>恰卡在 MA10 121.22 下方被压回</b>）→ 回落杀至 <b>113.63</b>（-3.40%）→ 尾盘收回 <b>117.23</b>（-0.34%）。一根<b>长上下影十字星</b>，全天振幅 6.27%。高点 121 破了 10-19 的高点 120.18，低点 113.63 高于 10-19 的低点 111.20——<b>重心在缓慢上移，未创新低</b>。</p>
+
+    <div class="sec-title">技术面</div>
+    <ul>
+      <li>收盘 <b>117.23 重新站上 MA5（116.74）</b>，连续第二天收回 MA5 附近，止跌确认比 10-19 更扎实。</li>
+      <li>但 <b>冲高 121.00 被 MA10（121.22）精确压制回落</b>，这是本轮下跌以来第一次"摸到 MA10 就回"——MA10 是反弹的第一道硬压力，没过之前谈不上反转。</li>
+      <li>仍在 MA10（121.22）/ MA20（132.12）下方，<b>空头排列未改</b>；布林下轨 106.99 在下方兜底，未破位。</li>
+      <li>低点 113.63 &gt; 10-19 低点 111.20，<b>重心上移 + 长下影</b>，短线"跌不动"得到第二次确认，但还只是止跌，不是反转。</li>
+    </ul>
+
+    <div class="sec-title">支撑 / 压力</div>
+    <div class="tablewrap"><table>
+      <tr><th>支撑</th><th>压力</th></tr>
+      <tr><td>113.63（今日低点）</td><td>117.63（昨收）</td></tr>
+      <tr><td>111.20（10-19低点）</td><td>121.00（今日高点）</td></tr>
+      <tr><td>106.99（布林下轨）</td><td>121.22（MA10）</td></tr>
+      <tr><td>—</td><td>132.12（MA20）</td></tr>
+    </table></div>
+
+    <div class="judge"><b>我的判断：</b>今天这根十字星，比 10-19 那根长下影更"健康"——因为它同时告诉你两件事：<b>下方 113.63 有承接（没创新低），上方 121 有重压（MA10 压回）</b>。这就是典型的多空拉锯，止跌延续，但反转没到。你今天没动手，是对的——比 10-19 尾盘低位割肉强。我的结论：<b>止跌确认，反转还早</b>。真正的信号是"放量站上 121.22（MA10）"，站上才算反弹升级；在那之前，冲 121 站不稳就是减仓做 T 的机会，<b>不是加仓</b>。你现在浮亏 14.4%，成本 136.95 悬在 MA20（132.12）之上，这票要解套，路还很长。</div>
+
+    <div class="danger"><b>⚠️ 风险直说：</b>弹药依旧见底。可用资金 <b>1,508.33</b>，生益一手 <b>11,723</b>，<b>补不进去</b>；宏昌一手 1,482 勉强够但买完归零。<b>99.13% 仓位 + 两票全在空头排列</b>，事实锁仓。今天的十字星是多空分歧点，<b>明天要么放量上攻 121，要么重新回踩 111-113 一带</b>——你没有子弹去接第二次回踩，所以核心还是<b>留活口，别把最后一点可用资金赌进去</b>。</div>
+  </div>
+
+  <!-- 宏昌电子 -->
+  <div class="card">
+    <h2>宏昌电子 <span class="code">603002</span> <span class="chip grey">4500股</span> <span class="chip grey">成本14.56</span> <span class="chip red">现价14.82 +0.27%</span> <span class="chip red">浮盈+1.79%</span></h2>
+    <div class="grid">
+      <div class="cell"><div class="k">今日收盘</div><div class="v up">14.82</div></div>
+      <div class="cell"><div class="k">涨跌幅</div><div class="v up">+0.27%</div></div>
+      <div class="cell"><div class="k">今日最低</div><div class="v">14.50</div></div>
+      <div class="cell"><div class="k">今日最高</div><div class="v">15.37</div></div>
+      <div class="cell"><div class="k">MA5</div><div class="v">15.54</div></div>
+      <div class="cell"><div class="k">MA10</div><div class="v">16.40</div></div>
+      <div class="cell"><div class="k">MA20</div><div class="v">17.71</div></div>
+      <div class="cell"><div class="k">布林下轨</div><div class="v">14.36</div></div>
+    </div>
+
+    <div class="sec-title">今日走势</div>
+    <p style="font-size:14px;">低开 <b>14.60</b>（-1.22%）→ 冲高 <b>15.37</b>（+3.99%，<b>被 MA5 15.54 压制回落</b>）→ 回落 <b>14.50</b>（-1.89%）→ 尾盘收 <b>14.82</b>（+0.27%）。<b>收复布林下轨 14.36</b>，收盘重回下轨上方。低点 14.50 高于 10-19 的低点 13.85，重心上移。</p>
+
+    <div class="sec-title">技术面</div>
+    <ul>
+      <li>空头排列未改：MA5（15.54）&lt; MA10（16.40）&lt; MA20（17.71），趋势向下。</li>
+      <li>收盘 <b>14.82 收复布林下轨 14.36</b>——10-19 收盘 14.78 还在下轨 14.81 下方破位，今天重回下轨上方，<b>破位嫌疑转为"假破位"</b>，是个积极信号。</li>
+      <li>但反弹 <b>冲高 15.37 被 MA5（15.54）压回</b>，说明上方套牢盘重，反抽力度有限。</li>
+      <li>低点 14.50 &gt; 10-19 低点 13.85，<b>重心上移 + 收复下轨</b>，短线止跌迹象初现，但右侧反转结构未形成。</li>
+    </ul>
+
+    <div class="sec-title">支撑 / 压力</div>
+    <div class="tablewrap"><table>
+      <tr><th>支撑</th><th>压力</th></tr>
+      <tr><td>14.50（今日低点）</td><td>15.37（今日高点）</td></tr>
+      <tr><td>14.36（布林下轨）</td><td>15.54（MA5）</td></tr>
+      <tr><td>13.85（10-19低点）</td><td>16.40（MA10）</td></tr>
+    </table></div>
+
+    <div class="judge"><b>我的判断：</b>今天宏昌收复布林下轨，从 10-19 的"破位接飞刀"变成了<b>"假破位嫌疑"</b>，这是好事——说明 14.36 下方有承接，10-19 那根长下影不是虚的。但别高兴太早：反弹 <b>15.37 被 MA5（15.54）挡回来</b>，说明这波只是反抽，不是反转。你 14.56 的成本，+1.79% 的浮盈依然薄，盘中一度回踩 14.50（浮盈归零边缘），安全垫不够。我的结论：<b>下轨收复是积极信号，但反转要等站上 MA5（15.54）</b>；站不上，14.36 下轨还会再测。这票波动大，别因为 +1.79% 就放松警惕。</div>
+
+    <div class="danger"><b>⚠️ 新仓风险：</b>刚建仓浮盈 +1.79%，非常脆弱。盘中最低 14.50，距离你 14.56 成本只差 0.06，<b>随时会翻绿</b>。跌破 14.36（布林下轨）就要警惕二次破位，跌破 13.85（10-19 低点）无条件止损——左侧票最忌讳"再等等看"。这票没有安全垫，纪律比判断重要。</div>
+  </div>
+
+  <!-- 明日策略 -->
+  <div class="card">
+    <h2>🎯 明日策略要点</h2>
+    <ul>
+      <li><b>生益</b>：核心看 <b>121.22（MA10）</b>。放量站上 → 反弹升级，上看 132（MA20）；冲 121 站不稳 → 是<b>减仓/做 T 的机会，不是加仓</b>。下方 <b>113.63 / 111.20</b> 是支撑，跌破 111.20 下看 106.99（布林下轨）。</li>
+      <li><b>宏昌</b>：看能否站上 <b>15.54（MA5）</b>。站上 → 反抽转反弹；站不上 → 回测 <b>14.36</b> 下轨，再破 <b>13.85</b> 止损离场。新仓别恋战，纪律优先。</li>
+      <li><b>仓位 99.13% 是硬约束</b>：可用资金 1,508.33，还是"先卖后买"一条路。两票都在空头排列里，明天的主题是<b>防守 + 等反转信号</b>，不是进攻。<b>留活口，别把最后一点子弹赌进去</b>。</li>
+    </ul>
+    <div class="warn"><b>数据说明：</b>MA5/10/20、布林轨已用 realtime_quote 当日收盘价（生益 117.23、宏昌 14.82）并入日线序列重新计算，非"截至昨收"的旧值。今日无交易，持仓与 10-19 一致。</div>
+  </div>
+
+  <div class="foot">寒洛 · 操盘复盘 · 数据源 Tushare VIP（realtime_quote 当日收盘）</div>
+</body>
+</html>

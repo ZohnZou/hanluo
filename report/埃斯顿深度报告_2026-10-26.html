@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>埃斯顿(002747) 深度报告 · 物理AI全生命周期覆盖之王</title>
+<style>
+  :root{
+    --bg:#0b0f14; --card:#151b23; --card2:#1a222c; --line:#2a3542;
+    --txt:#e6edf3; --sub:#8b98a5; --dim:#5c6b7a;
+    --blue:#3b82f6; --green:#22c55e; --red:#ef4444; --yellow:#eab308; --purple:#a855f7;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;
+    line-height:1.7; font-size:15px;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:24px 16px 60px;}
+  header{padding:12px 0 20px; border-bottom:1px solid var(--line); margin-bottom:24px;}
+  h1{font-size:26px; font-weight:700; letter-spacing:.5px;}
+  .subtitle{color:var(--sub); margin-top:8px; font-size:14px;}
+  .chips{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{background:var(--card2); border:1px solid var(--line); border-radius:20px;
+        padding:3px 12px; font-size:12px; color:var(--sub);}
+  .chip.hot{color:#fbbf24; border-color:#fbbf2433; background:#fbbf2410;}
+  h2{font-size:19px; margin:32px 0 14px; padding-left:10px; border-left:3px solid var(--blue);}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:14px;}
+  .judge{background:#0f1b2d; border:1px solid #1e3a5f; border-left:4px solid var(--blue);
+         border-radius:12px; padding:18px 20px; margin:16px 0;}
+  .judge .tag{color:var(--blue); font-weight:700; font-size:13px; letter-spacing:1px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px;}
+  .cell{background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:14px;}
+  .cell .k{color:var(--dim); font-size:12px; margin-bottom:6px;}
+  .cell .v{font-size:20px; font-weight:700;}
+  .cell .v.up{color:var(--green);} .cell .v.down{color:var(--red);} .cell .v.warn{color:var(--yellow);}
+  .timeline{position:relative; padding-left:24px;}
+  .timeline::before{content:''; position:absolute; left:6px; top:4px; bottom:4px; width:2px; background:var(--line);}
+  .t-item{position:relative; margin-bottom:18px;}
+  .t-item::before{content:''; position:absolute; left:-24px; top:6px; width:10px; height:10px;
+    border-radius:50%; background:var(--blue); border:2px solid var(--bg);}
+  .t-item .yr{color:var(--blue); font-weight:700; font-size:14px;}
+  .t-item .ev{color:var(--txt); font-size:14px;}
+  .t-item .dt{color:var(--dim); font-size:12px; margin-top:2px;}
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:10px;}
+  th,td{padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap;}
+  th{background:var(--card2); color:var(--sub); font-weight:600; font-size:12px;}
+  td:first-child, th:first-child{white-space:nowrap;}
+  .pos{color:var(--green);} .neg{color:var(--red);}
+  .bar-wrap{display:flex; align-items:center; gap:10px; margin:6px 0;}
+  .bar-label{width:200px; font-size:13px; color:var(--sub); flex-shrink:0;}
+  .bar-track{flex:1; height:20px; background:var(--card2); border-radius:10px; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:10px; background:linear-gradient(90deg,var(--blue),var(--purple));}
+  .bar-val{width:70px; text-align:right; font-size:13px; font-weight:700; flex-shrink:0;}
+  .cols2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .risk{background:#1a1216; border:1px solid #3f1f2a; border-left:4px solid var(--red); border-radius:12px; padding:16px 18px;}
+  .opp{background:#101a12; border:1px solid #1f3f2a; border-left:4px solid var(--green); border-radius:12px; padding:16px 18px;}
+  .risk .h{color:var(--red); font-weight:700; margin-bottom:8px;}
+  .opp .h{color:var(--green); font-weight:700; margin-bottom:8px;}
+  ul{margin:8px 0 0 18px;} li{margin:6px 0; font-size:14px;}
+  .fact{color:var(--green);} .judg{color:var(--yellow);}
+  .legend{font-size:12px; color:var(--dim); margin-top:8px;}
+  .note{background:#1a1a10; border:1px solid #3f3f1f; border-left:4px solid var(--yellow); border-radius:12px; padding:14px 18px; margin:16px 0; font-size:13px; color:var(--sub);}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--dim); font-size:12px; text-align:center;}
+  @media(max-width:640px){
+    body{font-size:13px;} h1{font-size:21px;}
+    .cols2{grid-template-columns:1fr;} .bar-label{width:130px;}
+    .grid{grid-template-columns:repeat(2,1fr);} .cell .v{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>埃斯顿（002747.SZ）深度报告</h1>
+  <div class="subtitle">物理AI全生命周期覆盖之王 · 从核心部件到整机到应用的一条龙</div>
+  <div class="chips">
+    <span class="chip hot">物理AI · 机器人</span>
+    <span class="chip">工业机器人国产第一</span>
+    <span class="chip">A+H 冲刺中</span>
+    <span class="chip">2026-10-26</span>
+  </div>
+</header>
+
+<div class="judge">
+  <div class="tag">核心结论</div>
+  <p style="margin-top:8px;">埃斯顿是 A 股物理AI「全生命周期」覆盖度最高的标的——<b>身体（自研伺服/减速器/灵巧手）+ 小脑（TRIO运动控制）+ 整机（六轴/协作/SCARA）+ 应用（焊接/锂电/光伏）</b>四环自己全做，没有第二只。但「覆盖度 ≠ 确定性」：它是典型的<b>增收不增利</b>，2025 全年净利率仅 0.93%（净利 4500 万），靠 2026H1 回升到 6.17%。<b>买它买的是「垂直整合 + 人形机器人」的期权，不是已兑现的业绩。</b></p>
+</div>
+
+<h2>一、并购史（事实，公告/媒体交叉验证）</h2>
+<div class="card">
+  <div class="timeline">
+    <div class="t-item"><div class="yr">2015.03.20</div><div class="ev">A股上市（002747.SZ）</div><div class="dt">工业机器人国产第一梯队，靠自主伺服起家</div></div>
+    <div class="t-item"><div class="yr">2017</div><div class="ev">收购英国翠欧 TRIO</div><div class="dt">运动控制核心 —— 补上「小脑」层</div></div>
+    <div class="t-item"><div class="yr">2017</div><div class="ev">收购增资美国 Barrett Technology，<b>持股 30%</b></div><div class="dt">灵巧手/医用机器人技术（注意：少数股权，非全资）</div></div>
+    <div class="t-item"><div class="yr">2019</div><div class="ev">收购德国克鲁斯 CLOOS（百年焊接机器人企业）</div><div class="dt">补上焊接应用 + 海外渠道</div></div>
+    <div class="t-item"><div class="yr">2019</div><div class="ev">与 Barrett 合资成立埃斯顿医疗</div><div class="dt">医用/养老照护机器人</div></div>
+    <div class="t-item"><div class="yr">—</div><div class="ev">并购德国 M.A.i（自动化）</div><div class="dt">形成 Estun / Cloos / Trio / M.A.i 四大品牌矩阵</div></div>
+    <div class="t-item"><div class="yr">2026.01</div><div class="ev">重启港股 IPO</div><div class="dt">冲刺「工业机器人第一股」（A+H），剑指全球高端</div></div>
+  </div>
+</div>
+
+<h2>二、业务拆解（事实，2025年报）</h2>
+<div class="card">
+  <div class="bar-wrap"><div class="bar-label">工业机器人及智能制造系统</div><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><div class="bar-val">39.97亿 · 82%</div></div>
+  <div class="bar-wrap"><div class="bar-label">自动化核心部件及运动控制</div><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><div class="bar-val">8.91亿 · 18%</div></div>
+  <p class="legend">总营收 48.88 亿（2025）。区域分化：<b>国内 -8.82% vs 海外 +25.06%</b>（2026H1）——海外靠 CLOOS/TRIO 渠道放量，对冲国内内卷。</p>
+</div>
+
+<h2>三、基本面（事实，Tushare）</h2>
+<div class="grid" style="margin-bottom:14px;">
+  <div class="cell"><div class="k">总市值</div><div class="v">282.7亿</div></div>
+  <div class="cell"><div class="k">收盘价(10-23)</div><div class="v">29.18</div></div>
+  <div class="cell"><div class="k">PE(TTM)</div><div class="v warn">141.6</div></div>
+  <div class="cell"><div class="k">PB</div><div class="v warn">8.62</div></div>
+  <div class="cell"><div class="k">换手率</div><div class="v">10.5%</div></div>
+  <div class="cell"><div class="k">资产负债率</div><div class="v down">68.2%</div></div>
+</div>
+<div class="tbl-wrap">
+<table>
+  <tr><th>报告期</th><th>营收(亿)</th><th>净利(亿)</th><th>净利率</th><th>毛利率</th><th>ROE</th><th>净利YoY</th></tr>
+  <tr><td>2026H1</td><td>25.78</td><td>1.61</td><td class="pos">6.17%</td><td>31.81%</td><td>6.16%</td><td class="pos">+2314%</td></tr>
+  <tr><td>2026Q1</td><td>12.17</td><td>0.98</td><td class="pos">7.96%</td><td>30.39%</td><td>3.76%</td><td class="pos">+675%</td></tr>
+  <tr><td>2025全年</td><td>48.88</td><td>0.45</td><td class="neg">0.93%</td><td>29.45%</td><td>2.40%</td><td class="pos">+106%</td></tr>
+  <tr><td>2025H1</td><td>25.49</td><td>0.07</td><td class="neg">0.50%</td><td>27.64%</td><td>0.36%</td><td>—</td></tr>
+</table>
+</div>
+<div class="note">
+  ⚠️ <b>+2314% 是低基数幻觉</b>：2025H1 净利只有 700 万，2026H1 做到 1.61 亿，增速自然爆炸。真正的成色看绝对数——<b>半年净利 1.61 亿对应 282.7 亿市值，PE 141 倍仍然很贵</b>。且资产负债率 68%（2025 年底曾到 78.6%），是多年并购的代价。
+</div>
+
+<h2>四、物理AI全生命周期卡位（判断）</h2>
+<div class="card">
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>环节</th><th>埃斯顿能力</th><th>覆盖</th><th>说明</th></tr>
+    <tr><td>① 数据/感知</td><td>视觉子公司布局，弱</td><td class="neg">✗</td><td>非主业，感知层不强</td></tr>
+    <tr><td>② 大脑(世界模型)</td><td>无</td><td class="neg">✗</td><td>A股空白，英伟达垄断层</td></tr>
+    <tr><td>③ 小脑(运动控制)</td><td>TRIO + 自研伺服</td><td class="pos">✓</td><td>毫秒级执行，落地命门</td></tr>
+    <tr><td>④ 身体(零部件)</td><td>自研伺服/减速器 + Barrett灵巧手(30%)</td><td class="pos">✓</td><td>垂直整合核心</td></tr>
+    <tr><td>⑤ 整机</td><td>六轴/协作/SCARA 全系列</td><td class="pos">✓</td><td>工业机器人国产第一</td></tr>
+    <tr><td>⑥ 应用</td><td>CLOOS焊接 + 锂电/光伏/汽车</td><td class="pos">✓</td><td>真实订单，非纯题材</td></tr>
+  </table>
+  </div>
+  <p style="margin-top:12px; font-size:14px;"><b>覆盖度 4/6</b> —— 缺「数据/感知」和「大脑」两层。但大脑层 A 股谁都覆盖不了（英伟达垄断），所以埃斯顿覆盖的「身体+小脑+整机+应用」已经是 A 股物理AI的<b>极限覆盖</b>。</p>
+</div>
+
+<h2>五、独立判断</h2>
+<div class="cols2">
+  <div class="opp">
+    <div class="h">机会</div>
+    <ul>
+      <li><b>垂直整合唯一性</b>：从伺服/减速器到整机到应用的国产唯一，机器人「身体+小脑」全自研。</li>
+      <li><b>工业机器人国产第一</b>：2025 市占率 10.3% 登顶，有真实份额锚。</li>
+      <li><b>人形机器人期权</b>：Barrett 灵巧手 + 运动控制技术储备，若人形放量是最大弹性。</li>
+      <li><b>海外第二曲线</b>：CLOOS/TRIO 渠道带来海外 +25% 增长，对冲国内内卷。</li>
+    </ul>
+  </div>
+  <div class="risk">
+    <div class="h">风险</div>
+    <ul>
+      <li><b>增收不增利</b>：2025 净利率 0.93%，规模换不来利润，是最大软肋。</li>
+      <li><b>高负债</b>：资产负债率 68-82%，并购后遗症，财务弹性差。</li>
+      <li><b>估值贵</b>：PE 141 倍，即便 2026H1 利润回升，也是「预期价」非「价值价」。</li>
+      <li><b>大脑层缺位</b>：物理AI最卡脖子的「理解物理规律」它没有，靠英伟达生态。</li>
+      <li><b>国内需求弱</b>：国内营收 -8.82%，工业机器人景气度未反转。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="judge" style="border-left-color:var(--yellow); background:#1a1710;">
+  <div class="tag" style="color:var(--yellow);">一句话结论</div>
+  <p style="margin-top:8px;">要「叙事完整度」选它没错——A股没有第二只能把物理AI从零件讲到产线。但要认清：<b>它现在是「整合完成、利润未兑现」的阶段</b>。真正的买点是「2026 净利率能否持续站稳 6%+」和「人形机器人订单落地」两个信号，不是 PE141 的当下。</p>
+</div>
+
+<div class="note">
+  <b>数据说明</b>：估值/财务数据来自 Tushare（截至 2026-10-23 收盘 + 最新报告期）；并购史经 Forbes/雪球/网易/21世纪经济报道交叉验证。<span class="fact">绿色=事实（财报/公告）</span>，<span class="judg">黄色=判断</span>。Barrett 为持股 30% 少数股权（非全资收购），M.A.i 收购时间未在公开源确认，均如实标注。
+</div>
+
+<footer>寒洛 · 埃斯顿深度报告 · 2026-10-26 · 仅供研究，不构成投资建议</footer>
+</div>
+</body>
+</html>

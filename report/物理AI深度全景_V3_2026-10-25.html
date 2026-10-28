@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物理AI深度全景 V2 · 具身智能 · 感官辨析 · 产业链 · 股票基本面</title>
+<style>
+:root{--bg:#0b0f17;--surface:#111827;--surface2:#0e1420;--border:#273247;--text:#e6eaf2;--mute:#7f8b9b;--dim:#a6b0bf;--red:#ff4040;--green:#22d18a;--gold:#f5b942;--blue:#58a6ff;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Microsoft YaHei','PingFang SC',sans-serif;padding:18px;max-width:1000px;margin:0 auto;font-size:15px;line-height:1.75}
+h1{font-size:25px;color:#f0f6fc;margin-bottom:6px;letter-spacing:.5px}
+.sub{font-size:12px;color:var(--mute);margin-bottom:18px}
+h2{font-size:19px;color:#f0f6fc;margin:30px 0 12px;padding-left:11px;border-left:4px solid var(--blue)}
+h3{font-size:15px;color:var(--gold);margin:18px 0 8px}
+h4{font-size:14px;color:var(--blue);margin:14px 0 6px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.hl{background:linear-gradient(135deg,#141d2e,#0e1420);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px}
+.hl .big{font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;line-height:1.5}
+.hl p{color:var(--dim);font-size:14px}
+.tag{display:inline-block;font-size:10px;padding:1px 8px;border-radius:10px;margin:1px 3px 1px 0;font-weight:600;white-space:nowrap}
+.tag.blue{background:rgba(88,166,255,.15);color:var(--blue)}
+.tag.gold{background:rgba(245,185,66,.15);color:var(--gold)}
+.tag.red{background:rgba(255,64,64,.15);color:var(--red)}
+.tag.green{background:rgba(34,209,138,.15);color:var(--green)}
+.tag.purple{background:rgba(188,140,255,.15);color:var(--purple)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.mini{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px}
+.mini .t{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px}
+.mini .d{font-size:13px;color:var(--dim)}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12.5px}
+th{background:var(--surface2);color:var(--gold);font-weight:600;text-align:left;padding:8px 9px;border:1px solid var(--border);white-space:nowrap}
+td{padding:7px 9px;border:1px solid var(--border);color:var(--dim);vertical-align:top}
+td b,td strong{color:var(--text)}
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.judge{background:rgba(88,166,255,.06);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0}
+.judge .t{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px}
+.judge p,.judge li{font-size:13px;color:var(--dim);margin:4px 0}
+.judge ul{padding-left:18px}
+.warn{background:rgba(255,64,64,.06);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:var(--dim)}
+.good{background:rgba(34,209,138,.06);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:var(--dim)}
+.muted{color:var(--mute);font-size:12px}
+.foot{text-align:center;color:#484f58;font-size:11px;margin-top:28px;padding-top:14px;border-top:1px solid var(--border)}
+.us{color:#58a6ff}.cn{color:#f5b942}.hk{color:#22d18a}
+.chain{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.chain .lv{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+.chain .lv .box{flex:1;min-width:200px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 13px}
+.chain .lv .box .h{font-size:12px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.chain .lv .box .c{font-size:12px;color:var(--dim)}
+.arrow{text-align:center;color:var(--mute);font-size:15px;line-height:1;margin:1px 0}
+.three-layer{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.three-layer .box{flex:1;min-width:180px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px}
+.three-layer .box .h{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:5px}
+.three-layer .box .c{font-size:12px;color:var(--dim)}
+.three-layer .box .key{font-size:11px;color:var(--red);margin-top:4px}
+@media(max-width:640px){body{padding:12px;font-size:14px}h1{font-size:20px}h2{font-size:16px}.grid2{grid-template-columns:1fr}table{font-size:11px}td,th{padding:5px 5px}}
+</style>
+</head>
+<body>
+
+<h1>🤖 物理AI深度全景 <span class="tag purple">V3</span></h1>
+<div class="sub">具身智能与物理AI · 机器人的感官辨析 · 仿真平台 · 产业链上下游 · 股票业务与基本面 · <b style="color:#f5b942">物理AI vs 机器人的两层区分</b> · 寒洛整理 2026-10-25 · 数据源：NVIDIA GTC柏林官方 / Tushare实时核验 / 高盛全球物理AI报告 / 集微网 / 韭研公社10.23涨停复盘</div>
+
+<!-- ============ 第一部分：核心概念（V2 重做） ============ -->
+<h2>一、核心概念一次说清（V2 重做 · 定义层）</h2>
+
+<div class="hl">
+  <div class="big">一句话：物理AI 是「能力」，具身智能 是「有身体的智能」，机器人 是「载体」，仿真平台 是「工厂」</div>
+  <p><strong style="color:#f0f6fc">物理AI 与 具身智能 基本是同一件事的两个叫法</strong>——具身智能（Embodied AI，学术/中文圈）强调「智能依赖身体」，物理AI（Physical AI，英伟达黄仁勋主推）强调「AI 要理解物理世界规律」。机器人是这种能力的载体，仿真平台是批量「生产」这种能力的工厂。</p>
+</div>
+
+<div class="card">
+  <h3>1. 什么是物理AI（Physical AI）—— 三层结构，不是一层</h3>
+  <p>过去三年我们熟悉的 AI——聊天、写代码、画图——都活在<strong style="color:#f0f6fc">数字世界</strong>。物理AI则是让 AI 拥有感知、理解并<strong style="color:#f0f6fc">作用于真实世界</strong>的能力。<strong style="color:#f0f6fc">它分三层，缺一不可：</strong></p>
+  <div class="three-layer">
+    <div class="box"><div class="h">① 感知（输入）</div><div class="c">通过传感器「看/听/摸」——视觉、触觉/力觉、本体感觉。这是入口，但<strong style="color:#f0f6fc">只是第一层</strong>。</div></div>
+    <div class="box"><div class="h">② 理解物理规律（大脑）</div><div class="c">惯性、摩擦、重力、因果推理。要懂「杯子会碎、水会洒、球滚进车底从哪边出来」。</div><div class="key">★ 最难、最卡脖子</div></div>
+    <div class="box"><div class="h">③ 控制执行（小脑）</div><div class="c">毫秒级运动控制——抓鸡蛋不捏碎、放杯子不碰倒、长程稳定行走。</div><div class="key">★ 落地能力的命门</div></div>
+  </div>
+  <p class="muted">关键认知：<b style="color:var(--text)">「感知」只是入口，灵魂在「理解物理规律 + 连续稳定执行」</b>。给机器人堆满传感器，不等于它是物理AI——展台机器人「感官齐全」会表演，进车间一碰到摩擦、形变、公差就掉链子，那是后两层没到位。黄仁勋 CES 2025 原话：AI 要能预测「一个球滚进车底后，从哪个方向、以什么速度滚出来」——这是物理理解，不是文本统计。</p>
+</div>
+
+<div class="card">
+  <h3>2. 什么是具身智能（Embodied AI）—— 有身体的智能</h3>
+  <p><strong style="color:#f0f6fc">定义</strong>：具身智能 = 让人工智能与物理实体深度融合，<strong style="color:#f0f6fc">赋予 AI 一个物理身体</strong>，让智能体通过这个身体（机器人、汽车、机械臂）去感知世界、理解世界、改造世界。</p>
+  <p style="margin-top:8px"><strong style="color:#f0f6fc">它和传统 AI 的根本区别（离身 vs 具身）：</strong></p>
+  <ul style="padding-left:20px;color:var(--dim);font-size:14px">
+    <li><b style="color:var(--text)">传统 AI（ChatGPT / AlphaGo）是「离身」的</b>——活在数字世界，处理文本、图像、棋盘符号，没有身体。</li>
+    <li><b style="color:var(--text)">具身智能是「有身体」的</b>——智能必须靠身体与环境互动才能产生。背后的思想是「具身认知」：认知不能脱离身体和环境。</li>
+  </ul>
+  <p style="margin-top:8px"><strong style="color:#f0f6fc">最直白的例子</strong>：你问 ChatGPT「杯子多重、怎么抓才不掉」——它只能从文本猜，没抓过一次杯子；具身智能的机器人真的伸手去抓，在「抓」这个动作里学会「玻璃杯会碎、水会洒、力度要刚好」。<strong style="color:var(--gold)">这份「身体的记忆」，互联网文本里永远学不到。</strong></p>
+
+  <div class="good"><b>莫拉维克悖论（为什么这事难）：</b>对人类<b>难</b>的事（下棋、算数、写代码）对 AI <b>容易</b>；对人类<b>容易</b>的事（抓杯子、走路、叠衣服、开门）对 AI <b>极难</b>。传统 AI 几十年干的是前半句；具身智能要攻克的是后半句——那些「3岁小孩都会、机器人却做不好」的动作。</div>
+
+  <p style="margin-top:8px"><strong style="color:#f0f6fc">三要素闭环（感知 → 认知 → 行动）：</strong></p>
+  <p class="muted">机器人抓杯子：眼睛看（感知）→ 判断怎么抓（认知）→ 机械臂动（行动）→ 感受到杯子滑了/碎了（反馈）→ 下次调整。这个闭环一旦形成，机器人就能「越用越聪明」。</p>
+
+  <p style="margin-top:8px"><strong style="color:#f0f6fc">载体不只有人形机器人：</strong>人形机器人（通用性最强、最难）、四足机器人（机器狗）、机械臂（工业/物流，最成熟）、<b style="color:var(--text)">智能汽车（自动驾驶本质也是一种具身智能——四个轮子的身体）</b>、无人机。</p>
+</div>
+
+<div class="card">
+  <h3>3. 物理AI 与 机器人 是什么关系</h3>
+  <p><strong style="color:#f0f6fc">机器人是物理AI的载体，但不是唯一载体。</strong>物理AI的载体有三类：</p>
+  <ul style="padding-left:20px;color:var(--dim);font-size:14px">
+    <li><b style="color:var(--text)">人形机器人</b>（通用载体，最受资本追捧）：特斯拉 Optimus、Figure、宇树、智元、Agile Robots。</li>
+    <li><b style="color:var(--text)">自动驾驶汽车</b>（最早成熟形态）：Waymo、特斯拉 FSD，本质就是「在物理世界行动的AI」。</li>
+    <li><b style="color:var(--text)">工业机械臂 / 特种机器人</b>（落地最确定）：分拣、搬运、装配、医疗手术。</li>
+  </ul>
+  <p style="margin-top:6px" class="muted">关键区分：机器人是「身体」，物理AI是「大脑 + 小脑」——大脑（大模型）做决策规划，小脑（运动控制）做毫秒级执行。A股炒的零部件对应「身体 + 小脑」；英伟达卖的是「大脑 + 工厂」。</p>
+
+  <h4 style="margin-top:14px">⚠️ 但「物理AI」和「机器人」有两张脸——概念层 vs 市场情绪层（别用错）</h4>
+  <div class="tbl-wrap"><table>
+  <tr><th>层面</th><th>「物理AI」和「机器人」的关系</th><th>证据</th></tr>
+  <tr><td><b>概念层</b><br><span class="muted">（谁包含谁）</span></td><td><b style="color:var(--text)">物理AI ⊃ 机器人</b>。机器人只是物理AI的一个「载体环节」，物理AI还包含自动驾驶、工业AI、感知数据、控制通信等。是<b>包含关系</b>，不是并列。</td><td>产业链表把物理AI拆成 7 个环节：感知与数据 / 控制与通信 / 执行 / AI终端 / 自动驾驶 / <b>机器人</b> / 工业AI——机器人只是其一。</td></tr>
+  <tr><td><b>市场情绪层</b><br><span class="muted">（资金怎么炒）</span></td><td><b style="color:var(--text)">机器人和物理AI是两个并列题材</b>，分开统计、分开炒作。资金认的是「机器人=硬件执行层」「物理AI=软件数据认知层」两个不同逻辑。</td><td>10.23 涨停复盘：<b>机器人 27 家</b> vs <b>物理AI 14 家</b>，并列成两个板块。</td></tr>
+  </table></div>
+  <div class="judge"><div class="t">🧭 「两张脸」怎么用</div><ul>
+    <li>跟人<b>讲概念 / 写报告</b>用「概念层」：物理AI 是能力，机器人是载体，物理AI 大于机器人。</li>
+    <li>跟人<b>聊行情 / 选标的</b>用「市场情绪层」：机器人和物理AI 是两条不同的炒作线——<b>机器人炒身体（减速器/电机/灵巧手），物理AI 炒大脑（数据采集/世界模型/空间智能）</b>。</li>
+    <li>两层不矛盾、反而互相印证：<b>市场先把「身体」炒热（27家），「大脑」还偏冷（14家）——资金先为确定性的硬件买单，软件兑现预期更靠后。</b></li>
+  </ul></div>
+</div>
+
+<div class="card">
+  <h3>4. 什么是仿真平台（Simulation Platform）—— 工厂</h3>
+  <p><strong style="color:#f0f6fc">定义</strong>：用物理引擎在虚拟世界「1:1 复刻真实物理环境」的软件系统，让机器人模型在虚拟世界训练、测试、验证，再迁移现实（Sim2Real）。</p>
+  <p style="margin-top:8px"><strong style="color:#f0f6fc">它做三件事</strong>：①<b>造数据</b>（Cosmos 世界模型批量生成物理数据）②<b>训模型</b>（Isaac Lab 千万次并行试错）③<b>验安全</b>（把摔倒留在虚拟世界）。</p>
+  <p style="margin-top:8px" class="muted">为什么必须仿真：真实试错贵（摔一下就是钱）、物理数据稀缺（互联网没有「怎么抓杯子」的数据）、安全、可规模化并行。</p>
+</div>
+
+<!-- ============ 第二部分：感官辨析（V2 新增） ============ -->
+<h2>二、机器人的「感官」辨析（V2 新增 · 破除五感误区）</h2>
+<div class="card">
+  <p>常见误区：把物理AI理解成「给机器人补上视觉、味觉、嗅觉、触觉等五感」。<strong style="color:#f0f6fc">错在两处：①感官只是第一层（感知），不是物理AI的全部；②五感照搬人类，有两样对机器人几乎没用。</strong></p>
+  <div class="tbl-wrap"><table>
+  <tr><th>感官</th><th>对机器人的真实地位</th><th>说明</th></tr>
+  <tr><td><b>视觉</b></td><td><span class="tag green">第一感知 · 最重要</span></td><td>3D视觉、深度相机，机器人「长眼睛」看物理世界</td></tr>
+  <tr><td><b>触觉 / 力觉</b></td><td><span class="tag green">真卡脖子 · 命门</span></td><td>六维力/力矩、电子皮肤——决定「抓取不碎」，是「连续运转」的关键</td></tr>
+  <tr><td><b>本体感觉</b></td><td><span class="tag green">必需</span></td><td>关节角度/力/位置（proprioception），机器人「知道自己在哪」</td></tr>
+  <tr><td>听觉</td><td><span class="tag gold">次要</span></td><td>语音交互用，不是核心</td></tr>
+  <tr><td><b>味觉</b></td><td><span class="tag red">基本没用</span></td><td>仅食品质检等特殊场景</td></tr>
+  <tr><td><b>嗅觉</b></td><td><span class="tag red">基本没用</span></td><td>仅气味检测小众场景</td></tr>
+  </table></div>
+  <div class="judge"><div class="t">🧭 关键判断</div><ul>
+    <li>机器人要的不是「人的五感」，而是「<b>看得准 + 摸得准（力觉）+ 动得稳</b>」。把五感照搬人类，恰恰暴露了「把人复制进机器」的误区。</li>
+    <li>真卡「连续运转」的感知是<b>视觉 + 触觉/力觉</b>，对应A股传感器环节：柯力传感（六维力）、汉威科技（柔性触觉/电子皮肤）——但触觉目前「题材强于业绩」，逻辑性感、财报没跟上。</li>
+  </ul></div>
+</div>
+
+<!-- ============ 第三部分：仿真工厂 ============ -->
+<h2>三、英伟达的「机器人模型仿真工厂」（GTC柏林 2026 最新）</h2>
+<div class="card">
+  <p>黄仁勋在 GTC 柏林（2026-10-20~22）说「<strong style="color:#f0f6fc">机器人的 ChatGPT 时刻正在逼近</strong>」。这轮重点不是又一款新机器人，而是把仿真工厂补齐——「用仿真批量生产机器人模型」的完整工具链：</p>
+  <div class="tbl-wrap"><table>
+  <tr><th>模块</th><th>是什么</th><th>解决什么问题</th></tr>
+  <tr><td><b>SimReady Central Library</b></td><td>2000+ 仿真就绪的机器人与工厂资产库（Comau/FANUC/Franka/LG等，上架Hugging Face）</td><td>「没有仿真素材」——拿来即用</td></tr>
+  <tr><td><b>Isaac Lab 3.0</b>（GA）</td><td>开源 agent-ready 机器人学习框架，多GPU，Newton+PhysX物理引擎</td><td>「训练」——RL/模仿学习批量训练</td></tr>
+  <tr><td><b>Cosmos 世界模型</b></td><td>物理世界基础模型，理解物理规律、生成合成数据</td><td>「数据稀缺」——造训练数据</td></tr>
+  <tr><td><b>Isaac OS</b></td><td>开源运行时（基于Holoscan），确定性实时</td><td>「部署」——仿真到真机迁移</td></tr>
+  <tr><td><b>Human 1M Dataset</b></td><td>人类活动数据集，三视角视频+3D手部追踪</td><td>「模仿学习」——学人的动作</td></tr>
+  <tr><td><b>三个DGX Station工作流</b></td><td>GR00T 1.7 RL微调 / Isaac Lab灵巧操作 / Cosmos后训练</td><td>「开箱即用」</td></tr>
+  <tr><td><b>NVIDIA Halos</b></td><td>全栈安全平台（IGX Thor）</td><td>「安全」——安全商用部署</td></tr>
+  </table></div>
+  <p class="muted">配套参考人形平台：<b style="color:var(--text)">Agile ONE SN</b>（Agile Robots出品，基于Isaac GR00T+Jetson Thor，1.4米/40kg/31自由度，双WUJI Hand 2灵巧手，2027初可用）。价值在于把仿真→训练→部署统一到一个平台。</p>
+</div>
+
+<!-- ============ 第四部分：产业链 ============ -->
+<h2>四、产业链上下游图谱（五层结构）</h2>
+<div class="card">
+  <div class="hl" style="margin-bottom:12px">
+    <div class="big">一条价值链：钱自下而上「拉」，技术自上而下「灌」</div>
+    <p>物理AI要从实验室走进车间，靠五层接力——<b>芯片（算力地基）→ 软件（把算力变成能力）→ 零部件（把能力装进身体）→ 整机（组装成产品）→ 应用（产品落地赚钱）</b>。理解这五层，先看懂两条相反的流：</p>
+    <p style="margin-top:8px"><b style="color:#22d18a">① 钱流（自下而上）</b>：钱只在「应用」层产生（工厂买机器人、医院买手术机、物流买分拣机），再像漏斗往下分——应用给整机厂订单 → 整机厂采购零部件 → 零部件厂买芯片+软件。谁的议价权强，谁分得多。</p>
+    <p style="margin-top:6px"><b style="color:#58a6ff">② 技术流（自上而下）</b>：英伟达的芯片+软件往下「赋能」——没有 Jetson Thor 的算力、没有 Cosmos 的仿真，下游整机就是一堆铁。所以<b>最上游（芯片+软件）是卡脖子的，最下游（应用）是买单的，中间（零部件+整机）是组装集成的</b>。</p>
+  </div>
+
+  <div class="chain">
+    <div class="lv"><div class="box"><div class="h">第0层 · 底层算力（芯片）</div><div class="c">Jetson Thor/Orin（端侧）、DGX/H100-B（训练）。<b>英伟达垄断，A股纯正标的几乎空白</b>（国内映射：地平线/寒武纪）。</div></div></div>
+    <div class="arrow">▼ 技术赋能</div>
+    <div class="lv"><div class="box"><div class="h">第1层 · 软件平台（模型+仿真+OS）</div><div class="c">GR00T / Cosmos / Omniverse / Isaac Sim+Lab+SimReady / Isaac OS。就是「仿真工厂」本体。<b>英伟达垄断，国内几乎空白，最被卡脖子。</b></div></div></div>
+    <div class="arrow">▼ 技术赋能</div>
+    <div class="lv"><div class="box"><div class="h">第2层 · 核心零部件（A股主战场）</div><div class="c">减速器 / 丝杠 / 电机 / 传感器 / 执行器总成 / 电控 / 结构件。<b>机器人的「身体+小脑」硬件，A股唯一能打的一层。</b></div></div></div>
+    <div class="arrow">▼ 采购组装</div>
+    <div class="lv"><div class="box"><div class="h">第3层 · 本体整机 + 系统集成</div><div class="c">人形整机：宇树/智元（未上市）、优必选(09880.HK)、特斯拉Optimus、Figure、Agile Robots。工业集成：埃斯顿、拓斯达。<b>稀缺但烧钱。</b></div></div></div>
+    <div class="arrow">▼ 交付使用</div>
+    <div class="lv"><div class="box"><div class="h">第4层 · 下游应用（落地场景）</div><div class="c">工业制造/物流仓储（率先规模化）、医疗手术（ISRG/天智航）、自动驾驶（特斯拉/Waymo）、家庭服务。<b>需求的源头，钱在这里产生。</b></div></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>五层「讲透」—— 每层谁在玩、怎么赚钱、A股有没有机会</h3>
+  <div class="tbl-wrap"><table>
+  <tr><th>层级</th><th>定位</th><th>代表玩家</th><th>赚钱逻辑</th><th>竞争格局</th><th>A股机会</th></tr>
+  <tr><td><b>第0层</b><br>芯片</td><td>算力地基</td><td>英伟达（垄断）；地平线/寒武纪（映射）</td><td>卖芯片+授权，赚「技术税」</td><td>英伟达一家独大</td><td><b style="color:var(--red)">基本没有</b>，别硬套</td></tr>
+  <tr><td><b>第1层</b><br>软件</td><td>仿真+模型+OS</td><td>英伟达（GR00T/Cosmos/Isaac）</td><td>平台+生态，赚「平台税」</td><td>英伟达垄断，国内空白</td><td><b style="color:var(--red)">没有</b>，最卡脖子</td></tr>
+  <tr><td><b>第2层</b><br>零部件</td><td>身体+小脑</td><td>绿的谐波、双环传动、鸣志、恒立液压、柯力传感…</td><td>国产替代+规模制造，赚「制造钱」</td><td>分散，但头部有壁垒（谐波/RV减速器）</td><td><b style="color:var(--green)">主战场</b>，唯一能打</td></tr>
+  <tr><td><b>第3层</b><br>整机</td><td>组装集成</td><td>宇树/智元（未上市）、优必选(港股)、特斯拉、Figure</td><td>卖整机，但前期烧钱补贴</td><td>优必选/宇树领先，特斯拉追赶</td><td><b style="color:var(--gold)">稀缺</b>，但整机厂多在港股/未上市</td></tr>
+  <tr><td><b>第4层</b><br>应用</td><td>落地场景</td><td>工业(埃斯顿)、物流(SYM/亚马逊)、医疗(ISRG)、车(特斯拉)</td><td>买机器人降本增效，赚「省下的成本」</td><td>工业/物流率先规模化</td><td><b style="color:var(--blue)">间接</b>，A股主要是集成商</td></tr>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>两张图的对应关系（五层 vs 七环节，别混）</h3>
+  <p>券商产业链表把物理AI切成<b>7个功能环节</b>（感知与数据/控制与通信/执行/AI终端/自动驾驶/机器人/工业AI），那是<b>「机器人身上有什么」的产品视角</b>；本图的五层是<b>「怎么造出机器人」的供应链视角</b>。<strong style="color:var(--gold)">两套分类不冲突，是横切和纵切的关系：</strong></p>
+  <div class="tbl-wrap"><table>
+  <tr><th>七环节（功能·横切）</th><th>落到五层的哪一层</th><th>说明</th></tr>
+  <tr><td>感知与数据</td><td>第2层（传感器）+ 第0层（算力）</td><td>奥比中光/汉威科技的传感器是「身体」，背后要芯片算力</td></tr>
+  <tr><td>控制与通信</td><td>第2层（电控/运动控制）+ 第1层（模型）</td><td>雷赛智能/维宏的「小脑」+ 英伟达的「大脑」</td></tr>
+  <tr><td><b>执行</b></td><td><b>第2层（减速器/丝杠/电机）</b></td><td><b>执行 = 核心零部件，这就是 A股主战场的由来</b></td></tr>
+  <tr><td>AI终端</td><td>第3层（整机/终端）</td><td>华勤技术/龙旗科技做的终端产品</td></tr>
+  <tr><td>自动驾驶 / 工业AI</td><td>第4层（下游应用）</td><td>中科创达/中控技术是「应用落地」</td></tr>
+  <tr><td>机器人</td><td>第3层（整机）+ 第4层（应用）</td><td>宇树/埃斯顿既是整机又是应用</td></tr>
+  </table></div>
+  <p class="muted">看懂这张对应表就明白：为什么「执行」环节的减速器/丝杠/电机是A股核心战场——因为「执行」落到供应链上，就是第2层核心零部件，而第2层是A股唯一有真壁垒、有订单、有国产替代逻辑的一层。</p>
+</div>
+
+<div class="judge"><div class="t">🧭 投资含义（排除法推导，不是拍脑袋）</div><ul>
+  <li><b>为什么A股只能买第2层？排除法：</b>第0-1层（芯片+软件）被英伟达垄断，A股没有纯正标的，硬套就是伪概念；第3层整机稀缺但烧钱（优必选还没盈利），且宇树/智元没上市，A股只有埃斯顿（PE 566 极贵）；第4层应用的大头在海外（特斯拉/亚马逊/ISRG），A股主要是低壁垒集成商。所以资金自然扎堆第2层零部件。</li>
+  <li><b>美股买「源头」</b>（第0-1层）：NVDA 吃技术税、ISRG 吃医疗应用、SYM 吃物流应用——都是「卖水人+操盘手」，吃物理AI技术本身红利。</li>
+  <li><b>A股买「零部件」</b>（第2层）：吃机器人量产的国产替代，是「供应链贝塔」。但注意——只有「真壁垒」（谐波减速器/RV减速器/空心杯电机/六维力传感器）才卡得住「连续运转」，结构件/轴承/算力模组是配角。</li>
+  <li><b>港股买「稀缺整机」</b>（第3层）：优必选是全球少数上市的人形整机，稀缺性溢价，但商业化节奏是命门。</li>
+</ul></div>
+
+<!-- ============ 第五部分：股票 ============ -->
+<h2>五、产业链对应股票 · 业务 + 基本面</h2>
+
+<h3 class="us">🇺🇸 美股（第0-1层「源头」+ 第4层「应用」）</h3>
+<div class="tbl-wrap"><table>
+<tr><th>公司</th><th>代码</th><th>环节</th><th>主营业务</th><th>物理AI卡位</th></tr>
+<tr><td><b>英伟达</b></td><td class="us">NVDA</td><td>全栈卖水人</td><td>GPU/AI芯片 + CUDA软件生态</td><td>Jetson Thor + GR00T + Cosmos + Omniverse = 物理AI底层操作系统，<b>最纯正、确定性最高</b></td></tr>
+<tr><td><b>特斯拉</b></td><td class="us">TSLA</td><td>本体+自动驾驶</td><td>电动车 + 能源 + AI</td><td>Optimus人形 + FSD，物理AI两条主线（机器+车）全占，自研本体+数据闭环</td></tr>
+<tr><td><b>Alphabet</b></td><td class="us">GOOGL</td><td>自动驾驶</td><td>搜索/云/AI</td><td>Waymo L4商业化领先，真实世界数据积累最厚</td></tr>
+<tr><td><b>直觉外科</b></td><td class="us">ISRG</td><td>医疗机器人</td><td>达芬奇手术机器人系统</td><td>医疗物理AI，高壁垒高毛利（65%+），护城河深</td></tr>
+<tr><td><b>Symbotic</b></td><td class="us">SYM</td><td>物流仓储机器人</td><td>仓储自动化机器人系统</td><td>高盛点名「物流率先规模化」的直接标的，沃尔玛/软银背书</td></tr>
+<tr><td><b>亚马逊</b></td><td class="us">AMZN</td><td>物流机器人用户</td><td>电商 + 云</td><td>全球最大物流机器人用户（Kiva收购），需求侧龙头</td></tr>
+</table></div>
+
+<h3 class="cn">🇨🇳 A股（第2层「零部件」+ 第3层「整机」）</h3>
+<p class="muted">A股没有纯物理AI「原厂」，全是零部件映射。机器人硬件三大件 = 减速器 / 丝杠 / 电机，外加传感器、执行器总成、电控。<b style="color:var(--gold)">真壁垒 =「国产独一档、别人做不出来」，订单金额/市占率必须落在公告财报里，财富号吹的「替代XX」不可信。</b></p>
+
+<h4>① 减速器（关节精密传动）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>股票</th><th>主营业务</th><th>物理AI卡位</th><th>市值</th><th>PE</th><th>ROE</th><th>营收增速</th><th>净利增速</th><th>评级</th></tr>
+<tr><td><b>绿的谐波</b><br><span class="muted">688017</span></td><td>谐波减速器</td><td>谐波减速器国产一档，打破日本哈默纳科垄断，人形机器人关节用量大</td><td>492亿</td><td>395</td><td>1.96%</td><td style="color:var(--green)">+38.6%</td><td style="color:var(--green)">+31.3%</td><td><span class="tag green">真壁垒·贵</span></td></tr>
+<tr><td><b>双环传动</b><br><span class="muted">002472</span></td><td>齿轮 + RV减速器</td><td>RV减速器+齿轮龙头，特斯拉供应链，齿轮精度硬门槛</td><td>331亿</td><td>26.3</td><td>5.75%</td><td style="color:var(--green)">+7.8%</td><td style="color:var(--green)">+1.7%</td><td><span class="tag green">真壁垒·性价比最高</span></td></tr>
+<tr><td><b>中大力德</b><br><span class="muted">002896</span></td><td>减速器+电机一体</td><td>中小型减速器，壁垒弱于前两家</td><td>111亿</td><td>177</td><td>2.32%</td><td style="color:var(--green)">+15.6%</td><td style="color:var(--red)">-40.1%</td><td><span class="tag gold">题材</span></td></tr>
+<tr><td><b>夏厦精密</b><br><span class="muted">001306</span></td><td>精密减速器</td><td>概念最纯正，但已连续亏损</td><td>36亿</td><td>亏损</td><td>-4.2%</td><td style="color:var(--green)">+10.1%</td><td style="color:var(--red)">-359%</td><td><span class="tag red">亏损·纯情绪</span></td></tr>
+</table></div>
+
+<h4>② 丝杠（线性执行器）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>股票</th><th>主营业务</th><th>物理AI卡位</th><th>市值</th><th>PE</th><th>ROE</th><th>营收增速</th><th>净利增速</th><th>评级</th></tr>
+<tr><td><b>恒立液压</b><br><span class="muted">601100</span></td><td>液压件龙头</td><td>液压延伸行星滚柱丝杠，精密制造能力复用，国产一档</td><td>1123亿</td><td>41.1</td><td>8.16%</td><td style="color:var(--green)">+32.1%</td><td style="color:var(--green)">+0.5%</td><td><span class="tag green">真壁垒</span></td></tr>
+<tr><td><b>恒工精密</b><br><span class="muted">301261</span></td><td>精密连铸件</td><td>切入丝杠/减速器，8只小票里唯一业绩配得上故事</td><td>54亿</td><td>60.6</td><td>6.51%</td><td style="color:var(--green)">+37.4%</td><td style="color:var(--green)">+57.0%</td><td><span class="tag green">业绩硬</span></td></tr>
+<tr><td><b>五洲新春</b><br><span class="muted">603667</span></td><td>轴承 + 丝杠</td><td>行星滚柱丝杠进展快，特斯拉链，但营收净利双降</td><td>174亿</td><td>190</td><td>1.75%</td><td style="color:var(--red)">-19.0%</td><td style="color:var(--red)">-19.1%</td><td><span class="tag red">双降</span></td></tr>
+<tr><td><b>北特科技</b><br><span class="muted">603009</span></td><td>转向器齿条</td><td>转向器切入丝杠，订单未充分落地，需看公告</td><td>164亿</td><td>137</td><td>3.34%</td><td style="color:var(--green)">+8.2%</td><td style="color:var(--green)">+14.8%</td><td><span class="tag gold">题材</span></td></tr>
+<tr><td><b>贝斯特</b><br><span class="muted">300580</span></td><td>精密零部件（涡轮增压器）</td><td>精密零件延伸丝杠，特斯拉链，量产节奏待验证</td><td>85亿</td><td>30.4</td><td>4.41%</td><td style="color:var(--green)">+10.6%</td><td style="color:var(--red)">-1.5%</td><td><span class="tag gold">平稳</span></td></tr>
+</table></div>
+
+<h4>③ 电机（灵巧手 / 关节动力）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>股票</th><th>主营业务</th><th>物理AI卡位</th><th>市值</th><th>PE</th><th>ROE</th><th>营收增速</th><th>净利增速</th><th>评级</th></tr>
+<tr><td><b>鸣志电器</b><br><span class="muted">603728</span></td><td>步进/空心杯电机</td><td>空心杯电机——灵巧手核心，精度高、国产稀缺</td><td>208亿</td><td>341</td><td>1.25%</td><td style="color:var(--green)">+19.2%</td><td style="color:var(--green)">+38.0%</td><td><span class="tag green">真壁垒·贵</span></td></tr>
+<tr><td><b>步科股份</b><br><span class="muted">688160</span></td><td>低压伺服/无框力矩电机</td><td>无框力矩电机，机器人关节电机，格局分散</td><td>84亿</td><td>116</td><td>2.76%</td><td style="color:var(--green)">+44.0%</td><td style="color:var(--green)">+39.2%</td><td><span class="tag green">业绩硬</span></td></tr>
+<tr><td><b>雷赛智能</b><br><span class="muted">002979</span></td><td>运动控制卡/步进/伺服</td><td>运动控制=机器人「小脑」，ROE全场最高</td><td>162亿</td><td>71.7</td><td>10.16%</td><td style="color:var(--green)">+39.9%</td><td style="color:var(--green)">+62.8%</td><td><span class="tag green">业绩硬</span></td></tr>
+<tr><td><b>汇川技术</b><br><span class="muted">300124</span></td><td>伺服/电控/工控龙头</td><td>伺服+电控平台，机器人动力底层</td><td>1377亿</td><td>27.3</td><td>7.79%</td><td style="color:var(--green)">+20.3%</td><td style="color:var(--red)">-5.4%</td><td><span class="tag green">真壁垒</span></td></tr>
+<tr><td><b>伟创电气</b><br><span class="muted">688698</span></td><td>伺服（二线）</td><td>工控二线，弹性标的</td><td>80亿</td><td>30.4</td><td>4.63%</td><td style="color:var(--green)">+18.8%</td><td style="color:var(--red)">-21.8%</td><td><span class="tag blue">外围</span></td></tr>
+</table></div>
+
+<h4>④ 传感器（机器人的「手感」）</h4>
+<div class="tbl-wrap"><table>
+<tr><th>股票</th><th>主营业务</th><th>物理AI卡位</th><th>市值</th><th>PE</th><th>ROE</th><th>营收增速</th><th>净利增速</th><th>评级</th></tr>
+<tr><td><b>柯力传感</b><br><span class="muted">603662</span></td><td>称重/力传感器</td><td>六维力/力矩传感器——灵巧手力控核心，国产稀缺</td><td>128亿</td><td>37.6</td><td>4.64%</td><td style="color:var(--green)">+22.3%</td><td style="color:var(--red)">-24.4%</td><td><span class="tag green">真壁垒</span></td></tr>
+<tr><td><b>汉威科技</b><br><span class="muted">300007</span></td><td>气体传感器+柔性触觉</td><td>柔性触觉=电子皮肤，逻辑最性感，但题材强于业绩</td><td>102亿</td><td>64.3</td><td>2.3%</td><td style="color:var(--red)">-9.4%</td><td style="color:var(--green)">+15.2%</td><td><span class="tag gold">题材</span></td></tr>
+<tr><td><b>安培龙</b><br><span class="muted">301413</span></td><td>热敏电阻/压力传感器</td><td>力矩传感器想象力有，但净利暴跌</td><td>72亿</td><td>79.2</td><td>0.28%</td><td style="color:var(--green)">+7.1%</td><td style="color:var(--red)">-91.7%</td><td><span class="tag red">暴跌</span></td></tr>
+<tr><td><b>东华测试</b><br><span class="muted">300354</span></td><td>力学测试设备</td><td>机器人研发测试「卖水人」，毛利率65%最高，但双降</td><td>41亿</td><td>29.6</td><td>4.5%</td><td style="color:var(--red)">-21.0%</td><td style="color:var(--red)">-49.1%</td><td><span class="tag gold">卖水人·弱</span></td></tr>
+</table></div>
+
+<h4>⑤ 执行器总成 / 整机 / 电控 / 结构件</h4>
+<div class="tbl-wrap"><table>
+<tr><th>股票</th><th>主营业务</th><th>物理AI卡位</th><th>市值</th><th>PE</th><th>ROE</th><th>营收增速</th><th>净利增速</th><th>评级</th></tr>
+<tr><td><b>拓普集团</b><br><span class="muted">601689</span></td><td>汽车零部件平台</td><td>特斯拉核心供应商，机器人执行器总成，平台化能力</td><td>733亿</td><td>26.4</td><td>4.23%</td><td style="color:var(--green)">+9.8%</td><td style="color:var(--red)">-21.0%</td><td><span class="tag green">真壁垒</span></td></tr>
+<tr><td><b>三花智控</b><br><span class="muted">002050</span></td><td>制冷控制+汽车热管理</td><td>机电执行器，特斯拉链，热管理龙头延伸</td><td>1390亿</td><td>34.2</td><td>6.36%</td><td style="color:var(--green)">+3.9%</td><td style="color:var(--red)">-3.1%</td><td><span class="tag green">真壁垒</span></td></tr>
+<tr><td><b>埃斯顿</b><br><span class="muted">002747</span></td><td>工业机器人本体+集成</td><td>国产工业机器人本体龙头，稀缺「整机」标的，但PE566极贵</td><td>255亿</td><td>566</td><td>6.16%</td><td style="color:var(--green)">+1.1%</td><td style="color:var(--green)">+2314%</td><td><span class="tag gold">题材·贵</span></td></tr>
+<tr><td><b>拓斯达</b><br><span class="muted">300607</span></td><td>机器人系统集成</td><td>集成，壁垒低、弹性高</td><td>138亿</td><td>186</td><td>3.58%</td><td style="color:var(--green)">+18.6%</td><td style="color:var(--green)">+263%</td><td><span class="tag gold">题材</span></td></tr>
+<tr><td><b>维宏股份</b><br><span class="muted">300508</span></td><td>运动控制系统</td><td>运动控制=「小脑」，逻辑正但净利暴跌</td><td>37亿</td><td>42.5</td><td>0.7%</td><td style="color:var(--green)">+10.1%</td><td style="color:var(--red)">-79.4%</td><td><span class="tag red">暴跌</span></td></tr>
+<tr><td><b>长盛轴承</b><br><span class="muted">300718</span></td><td>滑动轴承</td><td>关节轴承，非核心减速器环节，弹性有限</td><td>146亿</td><td>57.5</td><td>7.22%</td><td style="color:var(--green)">+22.1%</td><td style="color:var(--green)">+1.3%</td><td><span class="tag blue">外围·贵</span></td></tr>
+<tr><td><b>蓝思科技</b><br><span class="muted">300433</span></td><td>消费电子结构件</td><td>关节模组/灵巧手有实锤，但1426亿大盘+主业净利-49%，机器人占比小</td><td>1426亿</td><td>35.5</td><td>1.07%</td><td style="color:var(--red)">-12.4%</td><td style="color:var(--red)">-49.5%</td><td><span class="tag blue">外围</span></td></tr>
+<tr><td><b>横河精密</b><br><span class="muted">300539</span></td><td>精密结构件（塑料）</td><td>机器人是延伸，基本面最弱、估值最贵</td><td>44亿</td><td>84.2</td><td>1.73%</td><td style="color:var(--red)">-3.2%</td><td style="color:var(--red)">-25.4%</td><td><span class="tag red">最弱</span></td></tr>
+<tr><td><b>美格智能</b><br><span class="muted">002881</span></td><td>无线通信模组</td><td>算力模组，物理AI是延伸，非核心</td><td>116亿</td><td>81.6</td><td>4.72%</td><td style="color:var(--green)">+7.3%</td><td style="color:var(--green)">+25.9%</td><td><span class="tag blue">外围</span></td></tr>
+</table></div>
+
+<h3 class="hk">🇭🇰 港股（第3层「整机」稀缺标的）</h3>
+<div class="tbl-wrap"><table>
+<tr><th>公司</th><th>代码</th><th>主营业务</th><th>物理AI卡位</th></tr>
+<tr><td><b>优必选</b></td><td class="hk">09880.HK</td><td>人形机器人整机</td><td>全球少数上市的人形机器人整机标的，「本体」稀缺性，但尚未盈利、商业化节奏是关键变量</td></tr>
+</table></div>
+
+<!-- ============ 第六部分：市场情绪切片（V3 新增） ============ -->
+<h2>六、市场情绪切片：10.23 涨停复盘（机器人 27 家 vs 物理AI 14 家）</h2>
+<div class="card">
+  <p>2026-10-23 全天涨停复盘里，市场把「机器人」和「物理AI」<strong style="color:#f0f6fc">拆成两个并列题材分别统计</strong>，机器人涨停家数是物理AI的近 2 倍。这张表把「两层区分」从抽象概念变成了真金白银的投票结果：</p>
+
+  <h3>题材涨停家数全景（10.23）</h3>
+  <div class="tbl-wrap"><table>
+  <tr><th>题材</th><th>涨停家数</th><th>龙头（板数）</th><th>资金在买什么</th></tr>
+  <tr><td><b>机器人</b></td><td><b style="color:var(--gold)">27 家</b>（全场第一）</td><td>大业股份 6天6板（人形机器人+金属线缆）；兆威机电 5天3板（灵巧手+减速器）</td><td><b>身体</b>：减速器 / 电机 / 灵巧手 / 伺服 / 机器视觉 / 关节</td></tr>
+  <tr><td><b>物理AI</b></td><td><b style="color:var(--blue)">14 家</b></td><td>凡拓数创 5天3板（物理AI数据采集+机器人）；福莱新材 5天3板（灵巧手+消费电子）</td><td><b>大脑</b>：数据采集 / 多模态 / 数字人 / 空间智能</td></tr>
+  <tr><td>AI应用</td><td>7 家</td><td>慈文传媒 11天7板（短剧+影视IP）</td><td>AI 影视/办公/医疗/安全</td></tr>
+  <tr><td>大消费</td><td>6 家</td><td>上海九百 3天3板</td><td>百货/预制菜/母婴</td></tr>
+  <tr><td>半导体</td><td>4 家</td><td>睿能科技 2天2板（存储+机器人）</td><td>存储/封测/光模块</td></tr>
+  <tr><td>端侧AI</td><td>3 家</td><td>豪鹏科技 4天2板（端侧AI+机器人）</td><td>AI眼镜/手机</td></tr>
+  <tr><td>金融 / 公告 / 其他</td><td>3 + 7 + 11 家</td><td>海洋王 6天6板（军工）</td><td>证券 / 业绩公告 / 零散</td></tr>
+  </table></div>
+  <p class="muted">当日全市场：涨停 82 家、跌停 0 家、连板 12 家、破板率 12.77%（不含 ST / 未开板新股）。数据源：韭研公社简图（人工统计）。</p>
+
+  <h3>🤖 机器人板块 · 核心名单（身体层，仅留 6 只实锤票）</h3>
+  <p class="muted">筛选标准：照片点名 / 产业链表明确列出 / 第五章已有评级，三重实锤才留。已剔除林州重机、华阳智能、华依科技、天奇股份、山东威达、锋龙股份、洛轴股份、派斯林、永创智能、慈星股份等「题材模糊、涨停原因存疑」的跟风票。</p>
+  <div class="tbl-wrap"><table>
+  <tr><th>代码</th><th>名称</th><th>板数</th><th>业务卡位（身体哪个部件）</th><th>实锤来源</th><th>评级</th></tr>
+  <tr><td>603278</td><td><b>大业股份</b></td><td><b style="color:var(--gold)">6天6板</b></td><td>金属线缆 + 人形机器人（情绪总龙头）</td><td>照片点名</td><td><span class="tag gold">题材·龙头</span></td></tr>
+  <tr><td>003021</td><td><b>兆威机电</b></td><td>5天3板</td><td>灵巧手 + 微型传动 + 减速器</td><td>照片 + 产业链执行</td><td><span class="tag gold">题材</span></td></tr>
+  <tr><td>603728</td><td><b>鸣志电器</b></td><td>2板</td><td>空心杯电机（灵巧手关节动力）</td><td>产业链执行</td><td><span class="tag green">真壁垒·贵</span></td></tr>
+  <tr><td>002979</td><td><b>雷赛智能</b></td><td>首板</td><td>运动控制卡/伺服（机器人小脑）</td><td>第五章</td><td><span class="tag green">业绩硬</span></td></tr>
+  <tr><td>002747</td><td><b>埃斯顿</b></td><td>首板</td><td>工业机器人本体</td><td>产业链机器人</td><td><span class="tag gold">题材·贵(PE566)</span></td></tr>
+  <tr><td>688836</td><td><b>宇树科技</b></td><td>首板</td><td>人形机器人整机（20cm）</td><td>产业链机器人</td><td><span class="tag gold">题材·稀缺整机</span></td></tr>
+  </table></div>
+
+  <h3>🧠 物理AI板块 · 核心名单（大脑层，仅留 5 只实锤票）</h3>
+  <p class="muted">已剔除利亚德、风语筑、天娱数科、科远智慧、达实智能、世纪恒通、多伦科技等「LED/游戏/智慧城市等主业，AI 只是沾边」的票——它们涨停未必是物理AI驱动。</p>
+  <div class="tbl-wrap"><table>
+  <tr><th>代码</th><th>名称</th><th>板数</th><th>业务卡位（大脑哪个环节）</th><th>实锤来源</th><th>评级</th></tr>
+  <tr><td>301313</td><td><b>凡拓数创</b></td><td><b style="color:var(--blue)">5天3板</b></td><td>物理AI数据采集 + AI-3D + 数字人（最接近「纯软」）</td><td>照片 + 产业链工业AI</td><td><span class="tag gold">题材</span></td></tr>
+  <tr><td>605488</td><td><b>福莱新材</b></td><td>5天3板</td><td>灵巧手 + 消费电子 + 散热（塑料主业）</td><td>照片 + 产业链感知</td><td><span class="tag gold">题材</span></td></tr>
+  <tr><td>603721</td><td><b>中广天择</b></td><td>3天2板</td><td>AI + 影视 + 短剧</td><td>照片点名</td><td><span class="tag gold">题材</span></td></tr>
+  <tr><td>688787</td><td><b>海天瑞声</b></td><td>首板</td><td>AI 训练数据采集（感知层，20cm）</td><td>产业链感知与数据</td><td><span class="tag gold">题材</span></td></tr>
+  <tr><td>603859</td><td><b>能科科技</b></td><td>首板</td><td>工业AI + PLM</td><td>产业链工业AI</td><td><span class="tag gold">题材</span></td></tr>
+  </table></div>
+  <p class="muted">板数口径：大业/兆威/凡拓/福莱/中广天择用韭研「X天Y板」（非连续），其余为连续涨停天数。数据源：ZTAPI 涨停股池(2026-10-23) + Tushare 连板核验。评级「题材」= 当天涨停为题材驱动、无业绩实锤，「真壁垒/业绩硬」= 第五章已核验。</p>
+
+  <div class="judge"><div class="t">🧭 独立判断（这张切片说明什么）</div><ul>
+    <li><b>连板梯队：机器人更高、更厚</b>——大业 6天6板（真连板妖股）＞兆威 5天3板；物理AI 最高只有凡拓/福莱 5天3板（非连续）。机器人有「情绪总龙头」打高度，物理AI 没有能打高度的纯软龙头。</li>
+    <li><b>最关键发现：机器人有「业绩锚」，物理AI 全是「题材」</b>——机器人核心 6 只里，鸣志（真壁垒）、雷赛（业绩硬）有硬业绩撑腰；物理AI 5 只里<b>没有一只有硬业绩</b>，清一色题材。这彻底解释了 27 vs 14 的差距：资金不是瞎炒，<b>身体有订单、有业绩可锚，大脑纯靠预期</b>。</li>
+    <li><b>「物理AI纯软」是稀缺预期差，但还没到买点</b>：凡拓数创（数据采集+AI-3D）是唯一最接近「纯软」的，海天瑞声（数据采集）也沾边，但都还在题材期、没业绩兑现。这条线被激活了，但属于「小仓位跟踪、等业绩」的类型，不是当下主力仓。</li>
+    <li><b>别被题材名称骗</b>：福莱新材挂着「物理AI」涨停，实际主业是塑料散热，灵巧手只是延伸概念——本质还是题材。买之前先问：它的业务是「身体」（硬件零部件）还是「大脑」（软件/数据）？两者估值逻辑、兑现节奏完全不同。</li>
+  </ul></div>
+</div>
+
+<!-- ============ 第七部分：易混淆标的（V2 新增） ============ -->
+<h2>七、易混淆标的排除（V2 新增 · 活案例）</h2>
+<div class="card">
+  <p>市场常把「有 AI/视觉概念」的公司包装成物理AI，实则差着两层。最新活案例：</p>
+  <h3>创维数字（000810.SZ）—— 有 CV，但不是物理AI</h3>
+  <div class="tbl-wrap"><table>
+  <tr><th>维度</th><th>市场包装的说法</th><th>真相</th></tr>
+  <tr><td>「视觉采集」</td><td>物理AI视觉采集标的</td><td>原文是「<b>计算机视觉（CV）算法</b>」——机顶盒/投影/VR 用的手势识别、AI画质增强、人脸识别，<b>消费电子交互级别，不是机器人视觉采集</b></td></tr>
+  <tr><td>「具身智能/机器人」</td><td>布局具身智能</td><td>董事长黄宏生亲口<b>否认人形机器人</b>；2023年投资者互动回复被问「AI及人形机器人」，回复全程<b>只字不提机器人</b>，只谈 CV/NLP/AIGC/虚拟数字人</td></tr>
+  <tr><td>基本面</td><td>AI科技股</td><td>ROE 3.70%、毛利率 14.98%——家电/代工级别，不是科技股成色；净利+184%是低基数反弹（2025全年-28%）</td></tr>
+  </table></div>
+  <div class="warn">⚠️ 判定逻辑：创维的「视觉」停在「<b>看到</b>」这一层（图像处理），物理AI要的是「<b>看到→理解三维物理世界→指导抓取</b>」——中间隔着「理解物理规律」和「控制执行」两层。创维没有后面两层，所以<b>不是物理AI</b>。它 10-23 涨停（+9.99%）是「AI+视觉」概念溢价，不是基本面驱动。</div>
+</div>
+
+<!-- ============ 第八部分：独立判断 ============ -->
+<h2>八、寒洛的独立判断（不讨好）</h2>
+<div class="judge"><div class="t">🧭 结论先行</div><ul>
+  <li><b>① 这是一条真实的技术主线，不是纯题材</b>——AI从「处理信息」进化到「作用于物理世界」，是确定性方向，英伟达/特斯拉/宇树/高盛全在重注。但「技术是真的」≠「A股这些票都值得买」。</li>
+  <li><b>② 落地能力才是真标尺</b>：物理AI最大的毛病是「太会表演」——展台叠衣服翻跟头，进真实车间就因摩擦、形变、公差掉链子。真卡「连续运转不出错」的是核心部件：<b>减速器（关节精度）、力控/触觉传感器（抓取不碎）、运动控制（长程稳定）、丝杠（线性精度）、电机（关节动力）</b>；结构件/算力模组/轴承是配角。</li>
+  <li><b>③ 感官视角（V2 新增）</b>：机器人要的不是「人的五感」，是「看得准 + 摸得准（力觉）+ 动得稳」。味觉/嗅觉对机器人几乎没用；真正卡脖子的是<b>视觉 + 触觉/力觉</b>。别被「给机器人加感官」的叙事带偏。</li>
+  <li><b>④ 性价比之王是双环传动</b>：RV减速器+齿轮真壁垒，PE 26 全板块最合理，营收+7.8%稳。想配物理AI「底仓」，它是唯一「壁垒+估值」双优的。</li>
+  <li><b>⑤ 想搏弹性看业绩小票</b>：雷赛智能（ROE 10.16%全场最高）、恒工精密（营收+37%净利+57%）、步科股份（营收+44%）——基本面真硬，但估值不便宜，等回调+资金确认。</li>
+  <li><b>⑥ 别碰亏损暴跌的</b>：夏厦精密（亏损）、安培龙（-92%）、维宏（-79%）、五洲新春（双降）、横河精密（最弱）——纯情绪票，财报全是窟窿。</li>
+  <li><b>⑦ 节奏</b>：板块刚从高位回调，龙头估值还贵（PE 300-500一堆），不是无脑抄底的时候。等「量产订单落地」催化，或回调企稳+资金重新集中到业绩股。</li>
+  <li><b>⑧ 上游映射（韬定律/供应链瓶颈）</b>：物理AI落地加速，最受益的是上游——<b>半导体设备/材料 > 先进封装 > 晶圆代工</b>。机器人的「ChatGPT时刻」越近，对算力、传感器、关节电机的上游需求越刚性。</li>
+  <li><b>⑨ 市场情绪视角（V3 新增）</b>：10.23 复盘里机器人 27 家涨停 vs 物理AI 14 家——资金<b>先炒「身体」（硬件）后炒「大脑」（软件）</b>。两层含义：①当下抓确定性，还是买「身体层」真壁垒零部件（双环/绿的谐波/鸣志）；②真正的「物理AI纯软」（数据采集/世界模型/空间智能）是稀缺预期差，凡拓数创这类标的一旦兑现，弹性可能更大——但兑现慢、波动大，只适合小仓位跟踪，别当主力仓。</li>
+</ul></div>
+
+<div class="warn">⚠️ 数据说明：股票基本面为寒洛基于财报的独立判断，非投资评级。财报期 20260630，估值/行情/资金截至 2026-10-20 收盘（Tushare 付费API实时核验）；10.23 涨停复盘数据来自韭研公社简图（人工统计，仅作参考）。核心逻辑——<b>概念标签≠壁垒</b>，订单金额/市占率须落公告财报。本文为知识梳理，不构成投资建议。</div>
+
+<div class="foot">寒洛 自动生成 · 物理AI深度全景 V3 · 2026-10-25 · V3 新增：物理AI vs 机器人的两层区分（概念层⊃ vs 市场情绪层并列）· 10.23 涨停复盘情绪切片</div>
+
+</body>
+</html>

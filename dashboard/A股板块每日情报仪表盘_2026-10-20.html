@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股板块每日情报仪表盘 — 2026-10-20</title>
+<style>
+:root{--bg:#0b0f17;--surface:#111827;--border:#273247;--text:#e6eaf2;--mute:#7f8b9b;--dim:#a6b0bf;--red:#ff4040;--green:#22d18a;--gold:#f5b942}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;padding:16px;max-width:960px;margin:0 auto;font-size:14px;line-height:1.6}
+.header{padding:4px 0 12px}
+.header h1{font-size:19px;color:#f0f6fc;margin-bottom:2px}
+.header .sub{font-size:11px;color:var(--mute)}
+.mconcl{background:linear-gradient(135deg,#141d2e,#0e1420);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:14px}
+.mconcl .lbl{color:var(--gold);font-weight:700;margin-right:8px}
+.mconcl b{color:var(--gold)}
+.kpi{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:14px}
+.kpi .c{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 6px;text-align:center}
+.kpi .l{font-size:11px;color:var(--mute);margin-bottom:2px}
+.kpi .v{font-size:18px;font-weight:700;color:var(--text)}
+.kpi .v.up{color:var(--red)}
+.kpi .v.down{color:var(--green)}
+.kpi .v.gold{color:var(--gold)}
+.movers{display:grid;gap:6px;margin-bottom:14px;font-size:13px}
+.movers .row{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 12px}
+.movers .tag{font-weight:700;margin-right:6px}
+.movers .tag.up{color:var(--red)}
+.movers .tag.down{color:var(--green)}
+.section{color:#f0f6fc;font-size:14px;font-weight:700;margin:16px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.sname{font-size:14px;font-weight:600;color:#58a6ff}
+.spct{font-size:14px;font-weight:700}
+.smeta{font-size:10px;color:var(--mute);margin-bottom:6px}
+.wlbar{margin-bottom:6px}
+.snews a{color:var(--text);text-decoration:none}
+.snews a:hover{color:#58a6ff}
+.footer{text-align:center;color:#484f58;font-size:10px;margin-top:20px}
+.dim{color:var(--dim)}
+.ladder{display:grid;gap:10px;margin-bottom:14px}
+.lg{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.lgh{font-size:12px;font-weight:700;color:#58a6ff;margin-bottom:6px}
+.lgh.num{color:var(--gold)}
+.ladder-sub{font-size:12px;font-weight:700;color:var(--dim);margin:4px 0 2px}
+.lgs{display:flex;flex-wrap:wrap;gap:6px}
+.ls{font-size:12px;padding:2px 8px;border-radius:6px;background:rgba(127,139,155,.12);color:var(--text);border:1px solid transparent}
+.ls em{font-style:normal;font-size:10px;color:var(--mute);margin-left:4px}
+.ls.hot{background:rgba(255,64,64,.12);color:#ff4040;border-color:rgba(255,64,64,.3)}
+.ls.hot em{color:#ff4040}
+@media(max-width:640px){body{padding:10px}.kpi{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📊 A股板块每日情报仪表盘</h1>
+  <div class="sub">2026-10-20 · 23/31板块有情报 · 68条新闻 · 2026-10-20 07:30</div>
+</div>
+
+<div class="mconcl"><span class="lbl">今日结论</span><b>发酵期</b> 46° · 涨停 <b>46</b> · 最高 <b>3板</b> · 主线 <b>汽车零部件、塑料、家居用品</b></div>
+
+<div class="kpi">
+  <div class="c"><div class="l">涨停</div><div class="v up">46</div></div>
+  <div class="c"><div class="l">最高板</div><div class="v">3板</div></div>
+  <div class="c"><div class="l">连板</div><div class="v">11家</div></div>
+  <div class="c"><div class="l">跌停</div><div class="v down">22</div></div>
+  <div class="c"><div class="l">情绪温度</div><div class="v gold">46°</div></div>
+  <div class="c"><div class="l">昨涨停今</div><div class="v ">—</div></div>
+  <div class="c"><div class="l">利好</div><div class="v up">38</div></div>
+  <div class="c"><div class="l">利空</div><div class="v down">10</div></div>
+</div>
+
+<div class="movers">
+  <div class="row"><span class="tag up">🔴 领涨</span><span>家用电器 <b style="color:#ff4040">+1.77%</b></span> · <span>银行 <b style="color:#ff4040">+1.59%</b></span> · <span>国防军工 <b style="color:#ff4040">+1.52%</b></span></div>
+  <div class="row"><span class="tag down">🟢 领跌</span><span>综合 <b style="color:#22d18a">-1.94%</b></span> · <span>房地产 <b style="color:#22d18a">-1.57%</b></span> · <span>电子 <b style="color:#22d18a">-1.25%</b></span></div>
+</div>
+
+<div class="section">🧗 连板天梯（主线题材 × 涨停梯队）</div>
+<div class="ladder"><div class="lg"><div class="lgh">🏭 汽车零部件 · 10家</div><div class="lgs"><span class="ls hot">万丰奥威<em>2板</em></span><span class="ls hot">长春一东<em>2板</em></span><span class="ls hot">东安动力<em>2板</em></span><span class="ls hot">保隆科技<em>2板</em></span><span class="ls hot">文灿股份<em>2板</em></span><span class="ls">正强股份<em>1板</em></span><span class="ls">新坐标<em>1板</em></span><span class="ls">浙江荣泰<em>1板</em></span><span class="ls">日盈电子<em>1板</em></span><span class="ls">天普股份<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 塑料 · 4家</div><div class="lgs"><span class="ls">沃特股份<em>1板</em></span><span class="ls">肯特股份<em>1板</em></span><span class="ls">天洋新材<em>1板</em></span><span class="ls">福莱新材<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 家居用品 · 3家</div><div class="lgs"><span class="ls">双枪科技<em>1板</em></span><span class="ls">华瓷股份<em>1板</em></span><span class="ls">慕思股份<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 通用设备 · 3家</div><div class="lgs"><span class="ls hot">京城股份<em>2板</em></span><span class="ls hot">大业股份<em>2板</em></span><span class="ls">宁波东力<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 元件 · 3家</div><div class="lgs"><span class="ls">四会富仕<em>1板</em></span><span class="ls">澳弘电子<em>1板</em></span><span class="ls">协和电子<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 电力 · 3家</div><div class="lgs"><span class="ls">浙江新能<em>1板</em></span><span class="ls">晶科科技<em>1板</em></span><span class="ls">江苏新能<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 IT服务Ⅱ · 2家</div><div class="lgs"><span class="ls">太极股份<em>1板</em></span><span class="ls">能科科技<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 软件开发 · 2家</div><div class="lgs"><span class="ls hot">吉大正元<em>3板</em></span><span class="ls">索辰科技<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 化学制品 · 2家</div><div class="lgs"><span class="ls">锦鸡股份<em>1板</em></span><span class="ls">亚邦股份<em>1板</em></span></div></div><div class="lg"><div class="lgh">🏭 地面兵装 · 1家</div><div class="lgs"><span class="ls hot">甘化科工<em>2板</em></span></div></div><div class="ladder-sub">🔢 连板梯队（N板 → 1板）</div><div class="lg"><div class="lgh num">3板 · 2家</div><div class="lgs"><span class="ls hot">东方嘉盛<em>物流</em></span><span class="ls hot">吉大正元<em>软件开发</em></span></div></div><div class="lg"><div class="lgh num">2板 · 9家</div><div class="lgs"><span class="ls hot">甘化科工<em>地面兵装</em></span><span class="ls hot">万丰奥威<em>汽车零部件</em></span><span class="ls hot">海洋王<em>照明设备</em></span><span class="ls hot">长春一东<em>汽车零部件</em></span><span class="ls hot">东安动力<em>汽车零部件</em></span><span class="ls hot">京城股份<em>通用设备</em></span><span class="ls hot">保隆科技<em>汽车零部件</em></span><span class="ls hot">大业股份<em>通用设备</em></span><span class="ls hot">文灿股份<em>汽车零部件</em></span></div></div><div class="lg"><div class="lgh num">1板 · 35家</div><div class="lgs"><span class="ls">双枪科技<em>家居用品</em></span><span class="ls">华瓷股份<em>家居用品</em></span><span class="ls">慕思股份<em>家居用品</em></span><span class="ls">宁波东力<em>通用设备</em></span><span class="ls">慈文传媒<em>影视院线</em></span><span class="ls">太极股份<em>IT服务Ⅱ</em></span><span class="ls">金达威<em>食品加工</em></span><span class="ls">沃特股份<em>塑料</em></span><span class="ls">润建股份<em>通信服务</em></span><span class="ls">兆威机电<em>电机Ⅱ</em></span><span class="ls">锦鸡股份<em>化学制品</em></span><span class="ls">四会富仕<em>元件</em></span><span class="ls">正强股份<em>汽车零部件</em></span><span class="ls">凡拓数创<em>数字媒体</em></span><span class="ls">肯特股份<em>塑料</em></span><span class="ls">大普微-UW<em>计算机设</em></span><span class="ls">浙江新能<em>电力</em></span><span class="ls">海正药业<em>化学制药</em></span><span class="ls">达仁堂<em>中药Ⅱ</em></span><span class="ls">亨通光电<em>通信设备</em></span><span class="ls">金龙汽车<em>商用车</em></span><span class="ls">晶科科技<em>电力</em></span><span class="ls">新坐标<em>汽车零部件</em></span><span class="ls">浙江荣泰<em>汽车零部件</em></span><span class="ls">亚邦股份<em>化学制品</em></span><span class="ls">日盈电子<em>汽车零部件</em></span><span class="ls">天洋新材<em>塑料</em></span><span class="ls">科森科技<em>消费电子</em></span><span class="ls">江苏新能<em>电力</em></span><span class="ls">能科科技<em>IT服务Ⅱ</em></span><span class="ls">澳弘电子<em>元件</em></span><span class="ls">天普股份<em>汽车零部件</em></span><span class="ls">协和电子<em>元件</em></span><span class="ls">福莱新材<em>塑料</em></span><span class="ls">索辰科技<em>软件开发</em></span></div></div></div>
+
+<div class="section">📌 板块情报（自选股板块优先）</div>
+<div class="grid">
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">电子</span>
+                <span class="spct" style="color:#22d18a">-1.25%</span>
+            </div>
+            <div class="smeta">PE 49.8 · PB 5.1 · 市值 1834亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐兆易创新<span style="color:#7f8b9b">603986</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐福晶科技<span style="color:#7f8b9b">002222</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐佰维存储<span style="color:#7f8b9b">688525</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐工业富联<span style="color:#7f8b9b">601138</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长电科技<span style="color:#7f8b9b">600584</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐紫光国微<span style="color:#7f8b9b">002049</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐红板科技<span style="color:#7f8b9b">603459</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐生益科技<span style="color:#7f8b9b">600183</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐可川科技<span style="color:#7f8b9b">603052</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐源杰科技<span style="color:#7f8b9b">688498</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐普冉股份<span style="color:#7f8b9b">688766</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐沪电股份<span style="color:#7f8b9b">002463</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐海光信息<span style="color:#7f8b9b">688041</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长光华芯<span style="color:#7f8b9b">688048</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐富信科技<span style="color:#7f8b9b">688662</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐东山精密<span style="color:#7f8b9b">002384</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐腾景科技<span style="color:#7f8b9b">688195</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐胜宏科技<span style="color:#7f8b9b">300476</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐乐鑫科技<span style="color:#7f8b9b">688018</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中芯国际<span style="color:#7f8b9b">688981</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐和林微纳<span style="color:#7f8b9b">688661</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐德明利<span style="color:#7f8b9b">001309</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐沃格光电<span style="color:#7f8b9b">603773</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐水晶光电<span style="color:#7f8b9b">002273</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐国科微<span style="color:#7f8b9b">300672</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐东田微<span style="color:#7f8b9b">301183</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐大普微<span style="color:#7f8b9b">301666</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐澜起科技<span style="color:#7f8b9b">688008</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐燕东微<span style="color:#7f8b9b">688172</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐深南电路<span style="color:#7f8b9b">002916</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐裕太微-U<span style="color:#7f8b9b">688515</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐京东方A<span style="color:#7f8b9b">000725</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐深科技<span style="color:#7f8b9b">000021</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐法拉电子<span style="color:#7f8b9b">600563</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐通富微电<span style="color:#7f8b9b">002156</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐拓荆科技<span style="color:#7f8b9b">688072</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长川科技<span style="color:#7f8b9b">300604</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐盛合晶微<span style="color:#7f8b9b">688820</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐凯盛科技<span style="color:#7f8b9b">600552</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐华天科技<span style="color:#7f8b9b">002185</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐宏昌电子<span style="color:#7f8b9b">603002</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐晶方科技<span style="color:#7f8b9b">603005</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐有研新材<span style="color:#7f8b9b">600206</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长鑫科技<span style="color:#7f8b9b">688825</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐雅克科技<span style="color:#7f8b9b">002409</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐宝鼎科技<span style="color:#7f8b9b">002552</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中石科技<span style="color:#7f8b9b">300684</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐先导基电<span style="color:#7f8b9b">600641</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐光智科技<span style="color:#7f8b9b">300489</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐天通股份<span style="color:#7f8b9b">600330</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐旭光电子<span style="color:#7f8b9b">600353</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐景旺电子<span style="color:#7f8b9b">603228</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐泰晶科技<span style="color:#7f8b9b">603738</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐致尚科技<span style="color:#7f8b9b">301486</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐顺络电子<span style="color:#7f8b9b">002138</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐风华高科<span style="color:#7f8b9b">000636</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐飞荣达<span style="color:#7f8b9b">300602</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐盛科通信-U<span style="color:#7f8b9b">688702</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中京电子<span style="color:#7f8b9b">002579</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中英科技<span style="color:#7f8b9b">300936</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐兴森科技<span style="color:#7f8b9b">002436</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐华正新材<span style="color:#7f8b9b">603186</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐金安国纪<span style="color:#7f8b9b">002636</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐五方光电<span style="color:#7f8b9b">002962</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐彩虹股份<span style="color:#7f8b9b">600707</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐富乐德<span style="color:#7f8b9b">301297</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐思泉新材<span style="color:#7f8b9b">301489</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐春秋电子<span style="color:#7f8b9b">603890</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐领益智造<span style="color:#7f8b9b">002600</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐三环集团<span style="color:#7f8b9b">300408</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐国瓷材料<span style="color:#7f8b9b">300285</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐洁美科技<span style="color:#7f8b9b">002859</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐三安光电<span style="color:#7f8b9b">600703</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐华微电子<span style="color:#7f8b9b">600360</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐士兰微<span style="color:#7f8b9b">600460</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐天岳先进<span style="color:#7f8b9b">688234</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐康强电子<span style="color:#7f8b9b">002119</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐新洁能<span style="color:#7f8b9b">605111</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐沪硅产业<span style="color:#7f8b9b">688126</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐立昂微<span style="color:#7f8b9b">605358</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐奥比中光<span style="color:#7f8b9b">688322</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐蓝思科技<span style="color:#7f8b9b">300433</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐弘信电子<span style="color:#7f8b9b">300657</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐信维通信<span style="color:#7f8b9b">300136</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐立讯精密<span style="color:#7f8b9b">002475</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐博敏电子<span style="color:#7f8b9b">603936</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐麦捷科技<span style="color:#7f8b9b">300319</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855792.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">国产存储板块结构分化 板块定价逻辑从价格普涨预期转向业绩验证</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855857.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">134家A股公司前三季度业绩预告预喜</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855556.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">算力需求转化为经营增量 产业链盈利弹性增强</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680853630.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">安徽优旦科技股份有限公司启动上市辅导</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680853629.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">安徽华菱西厨装备股份有限公司启动上市辅导</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">通信</span>
+                <span class="spct" style="color:#ff4040">+0.16%</span>
+            </div>
+            <div class="smeta">PE 41.5 · PB 4.81 · 市值 416亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐光环新网<span style="color:#7f8b9b">300383</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐天孚通信<span style="color:#7f8b9b">300394</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐永鼎股份<span style="color:#7f8b9b">600105</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐仕佳光子<span style="color:#7f8b9b">688313</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐润泽科技<span style="color:#7f8b9b">300442</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐德科立<span style="color:#7f8b9b">688205</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐汇绿生态<span style="color:#7f8b9b">001267</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐鼎通科技<span style="color:#7f8b9b">688668</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐太辰光<span style="color:#7f8b9b">300570</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐新易盛<span style="color:#7f8b9b">300502</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长盈通<span style="color:#7f8b9b">688143</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长进光子<span style="color:#7f8b9b">688635</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐线上线下<span style="color:#7f8b9b">300959</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐长飞光纤<span style="color:#7f8b9b">601869</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐亨通光电<span style="color:#7f8b9b">600487</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐锐捷网络<span style="color:#7f8b9b">301165</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐恒宝股份<span style="color:#7f8b9b">002104</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐楚天龙<span style="color:#7f8b9b">003040</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中瓷电子<span style="color:#7f8b9b">003031</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐光库科技<span style="color:#7f8b9b">300620</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐光迅科技<span style="color:#7f8b9b">002281</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐特发信息<span style="color:#7f8b9b">000070</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐通鼎互联<span style="color:#7f8b9b">002491</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐阿莱德<span style="color:#7f8b9b">301419</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐共进股份<span style="color:#7f8b9b">603118</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐意华股份<span style="color:#7f8b9b">002897</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐星网锐捷<span style="color:#7f8b9b">002396</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中天科技<span style="color:#7f8b9b">600522</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐润建股份<span style="color:#7f8b9b">002929</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐通宇通讯<span style="color:#7f8b9b">002792</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中际旭创<span style="color:#7f8b9b">300308</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐铭普光磁<span style="color:#7f8b9b">002902</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855556.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">算力需求转化为经营增量 产业链盈利弹性增强</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261020/c680855045.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">乌总统称乌方再次没有收到来自西方国家的袭击预警</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680849199.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">引望与宁德时代、时代电服达成战略合作</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">有色金属</span>
+                <span class="spct" style="color:#22d18a">-0.13%</span>
+            </div>
+            <div class="smeta">PE 15.5 · PB 2.63 · 市值 439亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐盛达资源<span style="color:#7f8b9b">000603</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐融捷股份<span style="color:#7f8b9b">002192</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐天齐锂业<span style="color:#7f8b9b">002466</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐华钰矿业<span style="color:#7f8b9b">601020</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐锡业股份<span style="color:#7f8b9b">000960</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐兴业银锡<span style="color:#7f8b9b">000426</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐云南锗业<span style="color:#7f8b9b">002428</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐金钼股份<span style="color:#7f8b9b">601958</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中国稀土<span style="color:#7f8b9b">000831</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中金岭南<span style="color:#7f8b9b">000060</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中钨高新<span style="color:#7f8b9b">000657</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐招金黄金<span style="color:#7f8b9b">000506</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐株冶集团<span style="color:#7f8b9b">600961</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐白银有色<span style="color:#7f8b9b">601212</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐盛和资源<span style="color:#7f8b9b">600392</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐贵研铂业<span style="color:#7f8b9b">600459</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐楚江新材<span style="color:#7f8b9b">002171</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐东方钽业<span style="color:#7f8b9b">000962</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐博迁新材<span style="color:#7f8b9b">605376</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐安泰科技<span style="color:#7f8b9b">000969</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐有研粉材<span style="color:#7f8b9b">688456</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐西部材料<span style="color:#7f8b9b">002149</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐铂科新材<span style="color:#7f8b9b">300811</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855573.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">锂电产业链龙头企业欧洲项目推进节奏提速</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855556.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">算力需求转化为经营增量 产业链盈利弹性增强</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261019/c680848548.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">高盛警告市场将面临更高波动性</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680852532.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">现货黄金失守4150美元/盎司</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680846844.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">湖南裕能：拟投不超过20亿元建设六期磷酸铁锂项目</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">基础化工</span>
+                <span class="spct" style="color:#ff4040">+0.11%</span>
+            </div>
+            <div class="smeta">PE 23.7 · PB 1.99 · 市值 409亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐唯科科技<span style="color:#7f8b9b">301196</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐联瑞新材<span style="color:#7f8b9b">688300</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐东材科技<span style="color:#7f8b9b">601208</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中欣氟材<span style="color:#7f8b9b">002915</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐圣泉集团<span style="color:#7f8b9b">605589</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐多氟多<span style="color:#7f8b9b">002407</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐巨化股份<span style="color:#7f8b9b">600160</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐昊华科技<span style="color:#7f8b9b">600378</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐沃特股份<span style="color:#7f8b9b">002886</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐肯特股份<span style="color:#7f8b9b">301591</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐金博股份<span style="color:#7f8b9b">688598</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐三孚股份<span style="color:#7f8b9b">603938</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐宏柏新材<span style="color:#7f8b9b">605366</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐新安股份<span style="color:#7f8b9b">600596</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐江瀚新材<span style="color:#7f8b9b">603281</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐石英股份<span style="color:#7f8b9b">603688</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐三祥新材<span style="color:#7f8b9b">603663</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐双星新材<span style="color:#7f8b9b">002585</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐国泰集团<span style="color:#7f8b9b">603977</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐斯迪克<span style="color:#7f8b9b">300806</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐红星发展<span style="color:#7f8b9b">600367</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐力量钻石<span style="color:#7f8b9b">301071</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261019/c680853417.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">巴斯夫：若气价维持高位，欧洲工厂今冬天然气用量还可进一步削减</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">电力设备</span>
+                <span class="spct" style="color:#22d18a">-0.69%</span>
+            </div>
+            <div class="smeta">PE 25.2 · PB 2.4 · 市值 628亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐天华新能<span style="color:#7f8b9b">300390</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐安靠智电<span style="color:#7f8b9b">300617</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐天赐材料<span style="color:#7f8b9b">002709</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐晶盛机电<span style="color:#7f8b9b">300316</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中恒电气<span style="color:#7f8b9b">002364</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐先导智能<span style="color:#7f8b9b">300450</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐东方电气<span style="color:#7f8b9b">600875</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐壹石通<span style="color:#7f8b9b">688733</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐德福科技<span style="color:#7f8b9b">301511</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐诺德股份<span style="color:#7f8b9b">600110</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐铜冠铜箔<span style="color:#7f8b9b">301217</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐TCL中环<span style="color:#7f8b9b">002129</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐欧晶科技<span style="color:#7f8b9b">001269</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐麦格米特<span style="color:#7f8b9b">002851</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855857.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">134家A股公司前三季度业绩预告预喜</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855849.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">从拼硬件到经营资产 风电蓄智奔赴价值赛道</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855573.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">锂电产业链龙头企业欧洲项目推进节奏提速</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680849199.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">引望与宁德时代、时代电服达成战略合作</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680848011.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">深圳市远信储能技术股份有限公司通过港交所上市聆讯</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">计算机</span>
+                <span class="spct" style="color:#ff4040">+0.87%</span>
+            </div>
+            <div class="smeta">PE 57.4 · PB 3.37 · 市值 375亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐每日互动<span style="color:#7f8b9b">300766</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐鸿博股份<span style="color:#7f8b9b">002229</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐浪潮信息<span style="color:#7f8b9b">000977</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐东方国信<span style="color:#7f8b9b">300166</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐首都在线<span style="color:#7f8b9b">300846</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐万兴科技<span style="color:#7f8b9b">300624</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中科曙光<span style="color:#7f8b9b">603019</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐京北方<span style="color:#7f8b9b">002987</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐紫光股份<span style="color:#7f8b9b">000938</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐依米康<span style="color:#7f8b9b">300249</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐常山北明<span style="color:#7f8b9b">000158</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐拓维信息<span style="color:#7f8b9b">002261</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855913.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">《北京科学宣言》发布 形成面向2030年后全球科学发展共同主张</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855556.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">算力需求转化为经营增量 产业链盈利弹性增强</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680853221.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">保加利亚总统约托娃会见王毅</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680849086.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">中国首个生成式AI-LNP平台战略合作落定 总额最高11亿美元</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680848985.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">国发股份：拟定增募资不超过1.2亿元用于滴眼剂及AI实验室项目</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">国防军工</span>
+                <span class="spct" style="color:#ff4040">+1.52%</span>
+            </div>
+            <div class="smeta">PE 56.3 · PB 3.03 · 市值 280亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐博云新材<span style="color:#7f8b9b">002297</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐航发动力<span style="color:#7f8b9b">600893</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中航光电<span style="color:#7f8b9b">002179</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐华丰科技<span style="color:#7f8b9b">688629</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中光学<span style="color:#7f8b9b">002189</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐光电股份<span style="color:#7f8b9b">600184</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中国卫通<span style="color:#7f8b9b">601698</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐航天电器<span style="color:#7f8b9b">002025</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261020/c680855045.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">乌总统称乌方再次没有收到来自西方国家的袭击预警</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680854838.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">俄称打击无人机工厂 乌称袭击俄关键目标</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680854786.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">以军袭击加沙城和约旦河西岸的巴民众</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680853859.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">泽连斯基称俄无人机袭击哈尔科夫州一公园致6死14伤</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680853690.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">胡塞武装称过去48小时对沙特实施六次军事行动</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">医药生物</span>
+                <span class="spct" style="color:#ff4040">+0.38%</span>
+            </div>
+            <div class="smeta">PE 31.5 · PB 2.5 · 市值 577亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐万泽股份<span style="color:#7f8b9b">000534</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐哈药股份<span style="color:#7f8b9b">600664</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐开开实业<span style="color:#7f8b9b">600272</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐汉森制药<span style="color:#7f8b9b">002412</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐百花医药<span style="color:#7f8b9b">600721</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐神奇制药<span style="color:#7f8b9b">600613</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855857.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">134家A股公司前三季度业绩预告预喜</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">汽车</span>
+                <span class="spct" style="color:#ff4040">+1.14%</span>
+            </div>
+            <div class="smeta">PE 24.0 · PB 2.02 · 市值 352亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐华懋科技<span style="color:#7f8b9b">603306</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐兴瑞科技<span style="color:#7f8b9b">002937</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐拓普集团<span style="color:#7f8b9b">601689</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐飞龙股份<span style="color:#7f8b9b">002536</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐阿尔特<span style="color:#7f8b9b">300825</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐溯联股份<span style="color:#7f8b9b">301397</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680847988.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">马斯克去年1小时赚1.2亿元</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680854054.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">美股收评：美股三大指数收盘涨跌不一</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">非银金融</span>
+                <span class="spct" style="color:#ff4040">+0.07%</span>
+            </div>
+            <div class="smeta">PE 8.8 · PB 1.05 · 市值 520亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐中银证券<span style="color:#7f8b9b">601696</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐南华期货<span style="color:#7f8b9b">603093</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680855857.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">134家A股公司前三季度业绩预告预喜</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680853630.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">安徽优旦科技股份有限公司启动上市辅导</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680853629.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">安徽华菱西厨装备股份有限公司启动上市辅导</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261020/c680853628.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">深圳微见先进封装技术股份有限公司启动上市辅导</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261019/c680853238.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">期市夜盘收盘，国内期货主力合约多数下跌，乙二醇跌超3%</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">家用电器</span>
+                <span class="spct" style="color:#ff4040">+1.77%</span>
+            </div>
+            <div class="smeta">PE 14.8 · PB 2.28 · 市值 176亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐三花智控<span style="color:#7f8b9b">002050</span></span><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐康盛股份<span style="color:#7f8b9b">002418</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://ent.sina.com.cn/m/c/2026-06-21/doc-iniecwht3035063.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">2026希腊“中国电影节”在雅典开幕</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px">新浪财经</span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">传媒</span>
+                <span class="spct" style="color:#ff4040">+0.10%</span>
+            </div>
+            <div class="smeta">PE 34.6 · PB 2.56 · 市值 147亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐易点天下<span style="color:#7f8b9b">301171</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://ent.sina.com.cn/zz/2026-06-25/doc-inieqsme2547018.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">电影《四渡》观影交流会举办 重现长征军事奇迹</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px">新浪财经</span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">建筑装饰</span>
+                <span class="spct" style="color:#22d18a">-0.63%</span>
+            </div>
+            <div class="smeta">PE 14.1 · PB 0.69 · 市值 155亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐太极实业<span style="color:#7f8b9b">600667</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680853279.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">重仅1克 我国科学家研制世界最轻无线介观显微镜</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680846844.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">湖南裕能：拟投不超过20亿元建设六期磷酸铁锂项目</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">综合</span>
+                <span class="spct" style="color:#22d18a">-1.94%</span>
+            </div>
+            <div class="smeta">PE 72.3 · PB 2.43 · 市值 17亿</div>
+            <div class="wlbar"><span style="display:inline-block;font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(255,64,64,.12);color:#ff4040;margin:2px">⭐粤桂股份<span style="color:#7f8b9b">000833</span></span></div>
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680851614.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">长鑫科技：合肥、北京两地晶圆厂保持高产能利用率运转 订单饱满</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680847791.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">润泽科技：控股股东京津冀润泽已增持149.41万股，占总股本0.09%</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680848039.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">中国银行发布《金融支持基础研究主体综合服务方案》</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680847592.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">鹏鼎控股：拟以3亿元-5亿元回购公司股份</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680847287.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">深交所首批9只主动ETF正式获中国证监会批复</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">银行</span>
+                <span class="spct" style="color:#ff4040">+1.59%</span>
+            </div>
+            <div class="smeta">PE 6.6 · PB 0.55 · 市值 1189亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680853198.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">工商银行发布中非人民币跨境使用十大举措</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680851403.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">李家超与亚投行行长会面 支持亚投行在港设办事处</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680848039.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">中国银行发布《金融支持基础研究主体综合服务方案》</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680853194.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">前三季度邮政行业寄递业务量超1640亿件</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">食品饮料</span>
+                <span class="spct" style="color:#22d18a">-0.31%</span>
+            </div>
+            <div class="smeta">PE 21.1 · PB 3.36 · 市值 370亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680851716.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">汇源集团回应：与“汇源”商标全面切割 启用新品牌“咱家果源”</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">石油石化</span>
+                <span class="spct" style="color:#ff4040">+0.20%</span>
+            </div>
+            <div class="smeta">PE 16.6 · PB 1.39 · 市值 351亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261020/c680854102.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">古巴石油和天然气新规正式生效 扩大私营企业和外国投资者参与范围</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261019/c680853417.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">巴斯夫：若气价维持高位，欧洲工厂今冬天然气用量还可进一步削减</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680853722.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">布伦特原油站上110美元/桶</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">煤炭</span>
+                <span class="spct" style="color:#ff4040">+0.82%</span>
+            </div>
+            <div class="smeta">PE 19.0 · PB 1.59 · 市值 201亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261019/c680853238.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">期市夜盘收盘，国内期货主力合约多数下跌，乙二醇跌超3%</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://news.10jqka.com.cn/20261019/c680851641.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">期市夜盘开盘，国内期货主力合约多数下跌，乙二醇跌超2%</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">钢铁</span>
+                <span class="spct" style="color:#ff4040">+0.21%</span>
+            </div>
+            <div class="smeta">PE 29.5 · PB 0.95 · 市值 82亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680847646.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">工信部公开征求《钢铁行业 质量大数据分析系统技术要求》等69项行业标准计划项目意见</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">交通运输</span>
+                <span class="spct" style="color:#ff4040">+0.08%</span>
+            </div>
+            <div class="smeta">PE 16.7 · PB 1.19 · 市值 294亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680849621.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">肯尼亚出现埃博拉输入性疫情，我驻肯使馆发布提醒</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680848466.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">法国总统马克龙访问科威特 两国领导人举行会谈并签署合作文件</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680854057.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">秘鲁一客机起飞时引擎起火</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680853194.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">前三季度邮政行业寄递业务量超1640亿件</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680846846.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">韵达股份：2026年9月快递服务业务收入45.87亿元，同比增长7.88%</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">环保</span>
+                <span class="spct" style="color:#22d18a">-0.20%</span>
+            </div>
+            <div class="smeta">PE 23.4 · PB 1.46 · 市值 76亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261019/c680848194.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">中赋科技：公司完成固废股权预挂牌，底价8.99亿元</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">农林牧渔</span>
+                <span class="spct" style="color:#22d18a">-0.74%</span>
+            </div>
+            <div class="smeta">PE 78.6 · PB 2.36 · 市值 119亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://news.10jqka.com.cn/20261020/c680855800.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">上市险企三季报下周集中披露，研报前瞻：部分险企或将出现亏损</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div></div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <span class="sname">社会服务</span>
+                <span class="spct" style="color:#22d18a">-0.81%</span>
+            </div>
+            <div class="smeta">PE 39.6 · PB 2.42 · 市值 44亿</div>
+            
+            <div class="snews"><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680851375.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">桂林旅游：公司转让桂圳公司100%股权暨债权获批</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#ff4040">🔴利好</span> <a href="https://news.10jqka.com.cn/20261019/c680847480.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">昂立教育：2026年第三季度净利润6864.64万元，同比增长59.48%</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px"></span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="color:#22d18a">🟢利空</span> <a href="https://ent.sina.com.cn/m/c/2026-09-07/doc-iniqyriy6413115.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">暑期档满意度85.9分 多元精品为市场注入强劲动能</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px">新浪财经</span></div><div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"> <a href="https://ent.sina.com.cn/zz/2026-06-26/doc-inierihu5681890.shtml" target="_blank" style="color:#e6eaf2;text-decoration:none">电影《四渡》北京首映“点燃”暑期档</a><span style="color:#7f8b9b;font-size:10px;margin-left:6px">新浪财经</span></div></div>
+        </div></div>
+
+<div class="footer">寒洛 自动生成 · 数据源：东方财富+财联社+新浪财经+Tavily</div>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;padding:32px 40px;max-width:900px;margin:0 auto;font-size:13px;line-height:1.6}
+h1{font-size:20px;color:#f0f6fc;font-weight:600;margin-bottom:4px}
+.date-line{font-size:11px;color:#8b949e;margin-bottom:20px}
+.sep{color:#30363d;font-size:12px;margin:14px 0;text-align:center}
+.section{margin-bottom:22px}
+.section h2{font-size:15px;font-weight:600;margin-bottom:10px;color:#58a6ff}
+.row{display:flex;justify-content:space-between;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,.04)}
+.row .l{color:#8b949e;flex:0 0 180px}
+.row .v{font-weight:600;text-align:right}
+.row .v.red{color:#f85149}
+.row .v.orange{color:#d2991d}
+.row .v.green{color:#3fb950}
+.data-grid{display:flex;flex-wrap:wrap;margin:8px 0}
+.data-item{flex:0 0 33.3%;padding:5px 0;font-size:13px}
+.data-item .l{color:#8b949e;font-size:11px}
+.data-item .v{font-weight:600;margin-left:4px}
+.data-item .v.red{color:#f85149}
+.data-item .v.green{color:#3fb950}
+.summary-line{color:#8b949e;font-size:13px;padding:4px 0;margin-top:8px}
+.sub-title{font-size:13px;font-weight:600;color:#c9d1d9;margin:10px 0 4px}
+.conclusion-box{margin-top:16px;background:rgba(248,81,73,.06);border-left:3px solid #f85149;padding:12px 16px;border-radius:0 4px 4px 0}
+.conclusion-box p{font-size:13px;padding:3px 0;color:#c9d1d9}
+.conclusion-box p.warn{color:#f85149;font-weight:600;font-size:14px}
+.conclusion-box p.alert{color:#f85149;font-size:13px;font-weight:600}
+.industry-row{display:flex;justify-content:space-between;padding:3px 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,.04)}
+.industry-row .name{flex:0 0 130px}
+.industry-row .risk{flex:1;text-align:left}
+.industry-row .cri-val{flex:0 0 80px;text-align:right;color:#8b949e}
+.industry-row.extreme{background:rgba(248,81,73,.08)}
+.industry-row.extreme .name,.industry-row.extreme .risk{color:#f85149;font-weight:600}
+.warn-icon{color:#f85149;font-weight:700}
+.arrow-up{color:#f85149}
+.arrow-down{color:#3fb950}
+.arrow-flat{color:#8b949e}
+.footer{margin-top:28px;padding-top:14px;display:flex;justify-content:space-between;color:#484f58;font-size:11px;border-top:1px solid #21262d}
+.footer .pg{color:#484f58}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;padding:32px 40px;max-width:900px;margin:0 auto;font-size:13px;line-height:1.6}
+h1{font-size:20px;color:#f0f6fc;font-weight:600;margin-bottom:4px}
+.date-line{font-size:11px;color:#8b949e;margin-bottom:20px}
+.sep{color:#30363d;font-size:12px;margin:14px 0;text-align:center}
+.section{margin-bottom:22px}
+.section h2{font-size:15px;font-weight:600;margin-bottom:10px;color:#58a6ff}
+.data-grid{display:flex;flex-wrap:wrap;margin:8px 0}
+.data-item{flex:0 0 33.3%;padding:5px 0;font-size:13px}
+.data-item .l{color:#8b949e;font-size:11px}
+.data-item .v{font-weight:600;margin-left:4px}
+.data-item .v .prev{color:#8b949e;font-weight:400;font-size:11px}
+.arrow-up{color:#3fb950}
+.arrow-down{color:#f85149}
+.arrow-flat{color:#8b949e}
+.conclusion-box{margin-top:14px;background:rgba(248,81,73,.06);border-left:3px solid #f85149;padding:12px 16px;border-radius:0 4px 4px 0}
+.conclusion-box p{font-size:13px;padding:3px 0;color:#c9d1d9}
+.asset-box{margin-top:14px;background:rgba(88,166,255,.06);border-left:3px solid #58a6ff;padding:12px 16px;border-radius:0 4px 4px 0}
+.asset-box p{font-size:13px;padding:3px 0;color:#c9d1d9}
+.footer{margin-top:28px;padding-top:14px;display:flex;justify-content:space-between;color:#484f58;font-size:11px;border-top:1px solid #21262d}
+.footer .pg{color:#484f58}
+</style>
+<hr style="border-color:#21262d;margin:20px 0">
+<div style="text-align:center;margin:16px 0">
+  <span style="color:#8b949e;font-size:13px;font-weight:600">── 信用风险每日简报 ──</span>
+</div>
+
+<h1>信用风险每日简报</h1>
+<div class="date-line">日期: 20261020 2026-10-20 04:01</div>
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+<div class="section">
+<h2>[截面评分] 5575只股票</h2>
+<div class="row"><span class="l">极高风险</span><span class="v red">22只 (0.4%)</span></div>
+<div class="row"><span class="l">高风险</span><span class="v">15只 (0.3%)</span></div>
+<div class="row"><span class="l">关注</span><span class="v orange">85只 (1.5%)</span></div>
+<div class="row"><span class="l">偏低</span><span class="v">520只 (9.3%)</span></div>
+<div class="row"><span class="l">良好</span><span class="v">575只 (10.3%)</span></div>
+<div class="row"><span class="l">优质</span><span class="v green">4295只 (77.0%)</span></div>
+<div class="summary-line">综合均分: 86.0  |  中位数: 100.0</div>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+<div class="section">
+<h2>[CRI指数] 2779天, 20261020</h2>
+<div class="data-grid">
+<div class="data-item"><span class="l">CRI综合</span><span class="v">97.2</span></div>
+<div class="data-item"><span class="l">z-score</span><span class="v">+9.97σ</span></div>
+<div class="data-item"><span class="l">近20天趋势</span><span class="v" style="color:#8b949e">-0.8点 → 持平</span></div>
+<div class="data-item"><span class="l">DD均值</span><span class="v">14.55</span></div>
+<div class="data-item"><span class="l">DD&lt;1.5高危</span><span class="v red">0.4%</span></div>
+<div class="data-item"><span class="l">DD&lt;2.0警戒</span><span class="v">0.7%</span></div>
+<div class="data-item"><span class="l">CRI(含宏观)</span><span class="v">98.0</span></div>
+<div class="data-item"><span class="l">宏观压力</span><span class="v" style="color:#f85149">+0.15</span></div>
+</div>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+<div class="footer"><span>信用风险系统 · 每日自动生成 · 仅供参考</span><span class="pg">1/3</span></div>
+
+
+<div class="section">
+<h2>[UCRI五因子] 2779天, 20261020</h2>
+<div class="data-grid">
+<div class="data-item"><span class="l">UCRI</span><span class="v">80.0</span></div>
+<div class="data-item"><span class="l">z-score</span><span class="v">+9.97σ</span></div>
+<div class="data-item"><span class="l">UCRI(含EPU)</span><span class="v">80.7</span></div>
+<div class="data-item"><span class="l">宏观</span><span class="v green">低压力</span></div>
+<div class="data-item"><span class="l">高风险占比</span><span class="v">0.7%</span></div>
+<div class="data-item"><span class="l">极端风险</span><span class="v red">0.4%</span></div>
+</div>
+<div class="summary-line">因子: DD=100.0  Z2=78.6  国有=24.4  质押罚=2.1</div>
+<div class="summary-line">国有持股>10%: 5.0%  |  高质押>20%: 2.1%</div>
+<div class="summary-line">近20天趋势: +0.5点 → 持平</div>
+</div>
+
+<div class="section">
+<h2>[宏观资金面] 2779天</h2>
+<div class="data-grid">
+<div class="data-item"><span class="l">宏观指数</span><span class="v">+0.22</span></div>
+<div class="data-item"><span class="l">z-score</span><span class="v">+0.27σ (分位61%)</span></div>
+<div class="data-item"><span class="l">状态</span><span class="v" style="color:#d2991d">中性</span></div>
+<div class="data-item"><span class="l">SHIBOR 3M</span><span class="v">1.41% (z:-1.5σ)</span></div>
+<div class="data-item"><span class="l">LPR 1Y</span><span class="v">3.00%</span></div>
+<div class="data-item"><span class="l">PMI</span><span class="v">50.5 扩张</span></div>
+<div class="data-item"><span class="l">PPI</span><span class="v">+2.8%</span></div>
+<div class="data-item"><span class="l">CPI</span><span class="v">1.2%</span></div>
+<div class="data-item"><span class="l">M2</span><span class="v">8.6%</span></div>
+<div class="data-item"><span class="l">社融存量</span><span class="v">7.8%</span></div>
+<div class="data-item"><span class="l">M2-社融差</span><span class="v">+0.8pp</span></div>
+</div>
+<div class="summary-line" style="color:#3fb950;font-weight:600">宏观×信用: 金发女孩 — 资金宽+信用好 → 利差有压缩空间</div>
+<div class="summary-line">参考: 3年前 +0.63  |  1年前 -0.09  |  现在 +0.22</div>
+</div>
+
+<div class="section">
+<h2>[行业动态] 2025-12-01 → 2026-06-12 (6个月)</h2>
+<div class="sub-title">尾部风险上升 (恶化):</div><div class="row"><span class="l">空运</span><span class="v red">尾险 10.0→12.5% (+2.5%), CRI: 75.0</span></div><div class="row"><span class="l">造纸</span><span class="v red">尾险 10.0→5.7% (+-4.3%), CRI: 88.6</span></div><div class="row"><span class="l">路桥</span><span class="v red">尾险 10.0→5.3% (+-4.7%), CRI: 89.4</span></div><div class="row"><span class="l">区域地产</span><span class="v red">尾险 10.0→4.7% (+-5.3%), CRI: 90.6</span></div><div class="row"><span class="l">乳制品</span><span class="v red">尾险 10.0→4.5% (+-5.5%), CRI: 91.0</span></div><div class="sub-title">尾部风险下降 (改善):</div><div class="row"><span class="l">银行</span><span class="v green">尾险 25.0→0.0% (+15.0%), CRI: 100.0</span></div><div class="row"><span class="l">陶瓷</span><span class="v green">尾险 25.0→0.0% (+15.0%), CRI: 100.0</span></div><div class="row"><span class="l">食品</span><span class="v green">尾险 25.0→0.0% (+15.0%), CRI: 100.0</span></div><div class="row"><span class="l">饲料</span><span class="v green">尾险 25.0→0.0% (+15.0%), CRI: 100.0</span></div><div class="row"><span class="l">黄金</span><span class="v green">尾险 25.0→0.0% (+15.0%), CRI: 100.0</span></div></div>
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+<div class="footer"><span>信用风险系统 · 每日自动生成 · 仅供参考</span><span class="pg">2/3</span></div>
+
+
+<div class="section">
+<h2>当前高危行业 (尾险>15%)</h2>
+<div style="color:#8b949e">无尾险>15%的行业</div>
+</div>
+
+<div style="border-top:1px solid #21262d;margin:18px 0;padding-top:14px">
+<div style="color:#8b949e;font-size:13px;padding:2px 0">信用基本面: 正常 — UCRI z=+10.0σ, 处于历史正常区间</div>
+<div style="color:#8b949e;font-size:13px;padding:2px 0">DD违约距离: 正常 — CRI z=+10.0σ, 违约风险正常</div>
+<div style="color:#8b949e;font-size:13px;padding:2px 0">宏观资金面: 中性 — 宏观 z=+0.3σ, 资金面中性</div>
+</div>
+
+<div class="conclusion-box">
+<h2 style="color:#f85149;margin-bottom:8px">[综合结论]</h2>
+<p>📊 信用市场整体平稳, 结构性分化为主, 关注行业层面分化</p>
+<p class="warn">⚠️ 高风险占比 0.7%, 处于正常区间</p>
+<p>📈 信用利差预计窄幅震荡, 个券选择重于久期方向</p>
+<p class="alert">🚨 高危行业预警: 无(0%)</p>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+<div class="footer"><span>信用风险系统 · 每日自动生成 · 仅供参考</span><span class="pg">3/3</span></div>
+
+
+<hr style="border-color:#21262d;margin:20px 0">
+<div style="text-align:center;margin:16px 0">
+  <span style="color:#8b949e;font-size:13px;font-weight:600">── 美国宏观经济日报 ──</span>
+</div>
+
+<h1>美国宏观经济日报</h1>
+<div class="date-line">报告日期: 20261020  |  数据截至上月/最新</div>
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+<div class="section">
+<h2>[通胀全景]</h2>
+<div class="data-item"><span class="l">CPI同比</span><span class="v">4.17% <span class="arrow-up">↑</span><span class="prev">前月:3.78%</span></span></div>
+<div class="data-item"><span class="l">核心CPI</span><span class="v">2.82% <span class="arrow-up">↑</span><span class="prev">前月:2.74%</span></span></div>
+<div class="data-item"><span class="l">核心PCE</span><span class="v">3.29% <span class="arrow-up">↑</span><span class="prev">前月:3.24%</span></span></div>
+<div class="data-item"><span class="l">PCE同比</span><span class="v">3.77% <span class="arrow-up">↑</span><span class="prev">前月:3.53%</span></span></div>
+<div class="data-item"><span class="l">PPI同比</span><span class="v">13.08% <span class="arrow-up">↑</span><span class="prev">前月:9.82%</span></span></div>
+<div class="data-item"><span class="l">5Y通胀预期</span><span class="v">2.40% <span class="arrow-flat">→</span><span class="prev">前月:2.52%</span></span></div>
+</div>
+
+<div class="section">
+<h2>[就业市场]</h2>
+<div class="data-item"><span class="l">非农就业</span><span class="v">159,001K <span class="arrow-flat">→</span><span class="prev">前月:158,829K</span></span></div>
+<div class="data-item"><span class="l">失业率</span><span class="v">4.30% <span class="arrow-flat">→</span><span class="prev">前月:4.30%</span></span></div>
+<div class="data-item"><span class="l">劳动参与率</span><span class="v">61.80% <span class="arrow-flat">→</span><span class="prev">前月:61.80%</span></span></div>
+<div class="data-item"><span class="l">时薪同比</span><span class="v">3.56% <span class="arrow-down">↓</span><span class="prev">前月:3.67%</span></span></div>
+<div class="data-item"><span class="l">初请失业金</span><span class="v">229,000 <span class="arrow-flat">→</span><span class="prev">前月:225,000</span></span></div>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+<div class="section">
+<h2>[经济增长]</h2>
+<div class="data-item"><span class="l">GDP同比</span><span class="v">5.20% <span class="arrow-up">↑</span><span class="prev">前月:5.00%</span></span></div>
+<div class="data-item"><span class="l">工业产出同比</span><span class="v">1.35% <span class="arrow-down">↓</span><span class="prev">前月:0.76%</span></span></div>
+<div class="data-item"><span class="l">零售同比</span><span class="v">4.87% <span class="arrow-up">↑</span><span class="prev">前月:4.15%</span></span></div>
+<div class="data-item"><span class="l">产能利用率</span><span class="v">76.12% <span class="arrow-flat">→</span><span class="prev">前月:75.67%</span></span></div>
+<div class="data-item"><span class="l">耐用品订单</span><span class="v">17.26% <span class="arrow-down">↓</span><span class="prev">前月:1.35%</span></span></div>
+<div class="data-item"><span class="l">汽车销售</span><span class="v">16.48M <span class="arrow-up">↑</span><span class="prev">前月:16.39M</span></span></div>
+</div>
+
+<div class="section">
+<h2>[房地产]</h2>
+<div class="data-item"><span class="l">新屋开工</span><span class="v">1,465K <span class="arrow-up">↑</span><span class="prev">前月:1,507K</span></span></div>
+<div class="data-item"><span class="l">新屋销售</span><span class="v">622K <span class="arrow-down">↓</span><span class="prev">前月:663K</span></span></div>
+<div class="data-item"><span class="l">营建许可</span><span class="v">1,423K <span class="arrow-flat">→</span><span class="prev">前月:1,363K</span></span></div>
+<div class="data-item"><span class="l">房价中位数</span><span class="v">$403,200 <span class="arrow-flat">→</span><span class="prev">前月:$412,300</span></span></div>
+</div>
+
+<div class="section">
+<h2>[利率与金融]</h2>
+<div class="data-item"><span class="l">联邦利率</span><span class="v">3.66% <span class="arrow-flat">→</span></span></div>
+<div class="data-item"><span class="l">10Y国债</span><span class="v"><span style="color:#8b949e">更新中</span>% <span class="arrow-up">↑</span></span></div>
+<div class="data-item"><span class="l">5Y国债</span><span class="v"><span style="color:#8b949e">更新中</span>% <span class="arrow-up">↑</span></span></div>
+<div class="data-item"><span class="l">10Y-2Y利差</span><span class="v">0.40% <span class="arrow-down">↓</span><span class="prev">前月:0.47%</span></span></div>
+<div class="data-item"><span class="l">消费者信心</span><span class="v">49.80 <span class="arrow-flat">→</span><span class="prev">前月:53.30</span></span></div>
+</div>
+
+<div class="section">
+<h2>[贸易与储蓄]</h2>
+<div class="data-item"><span class="l">贸易差额</span><span class="v">-$55,881M <span class="arrow-up">↑</span><span class="prev">前月:-$56,585M</span></span></div>
+<div class="data-item"><span class="l">个人储蓄率</span><span class="v">2.60% <span class="arrow-down">↓</span><span class="prev">前月:3.20%</span></span></div>
+<div class="data-item"><span class="l">个人收入同比</span><span class="v">2.54% <span class="arrow-down">↓</span><span class="prev">前月:3.27%</span></span></div>
+<div class="data-item"><span class="l">可支配收入同比</span><span class="v">2.62% <span class="arrow-down">↓</span><span class="prev">前月:3.47%</span></span></div>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+<div class="section">
+<h2>[中国速览]</h2>
+<div class="data-item"><span class="l">CPI同比</span><span class="v">1.20% <span class="arrow-flat">→</span><span class="prev">前月:1.20%</span></span></div>
+<div class="data-item"><span class="l">PPI同比</span><span class="v">2.80% <span class="arrow-down">↓</span><span class="prev">前月:3.90%</span></span></div>
+<div class="data-item"><span class="l">制造业PMI</span><span class="v">50.0 <span class="arrow-flat">→</span><span class="prev">前月:50.3</span></span></div>
+<div class="data-item"><span class="l">GDP同比</span><span class="v">5.20% <span class="arrow-up">↑</span><span class="prev">前月:5.00%</span></span></div>
+<div class="data-item"><span class="l">M2同比</span><span class="v">8.6% <span class="arrow-up">↑</span><span class="prev">前月:8.5%</span></span></div>
+<div class="data-item"><span class="l">LPR(1Y)</span><span class="v">3.00% <span class="arrow-flat">→</span></span></div>
+<div class="data-item"><span class="l">SHIBOR 3M</span><span class="v">1.43%</span></div>
+<div class="data-item"><span class="l">人民币汇率</span><span class="v">6.77 <span class="arrow-flat">→</span></span></div>
+<div class="data-item"><span class="l">外汇储备</span><span class="v">7,496亿$ <span class="arrow-flat">→</span></span></div>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+<div class="section">
+<h2 style="color:#f85149">[综合研判]</h2>
+<div class="conclusion-box">
+<p>📊 通胀仍处高位 (CPI 4.17%)，核心通胀粘性明显，美联储降息窗口未打开</p>
+<p>📊 失业率 4.3%，劳动力市场仍偏紧</p>
+<p>📊 GDP 增速 5.20%，经济韧性超预期</p>
+<p>📊 收益率曲线转正 (0.4%)，衰退概率下降</p>
+<p>📊 联邦利率 3.66%，高利率压制资产估值与信贷需求</p>
+</div>
+</div>
+
+<div class="section">
+<h2 style="color:#f85149">[资产含义]</h2>
+<div class="asset-box">
+<p>📌 债市: 通胀粘性 → 长端利率高位震荡，短债优于长债</p>
+<p>📌 美股: 估值偏高 + 利率压制，防御型板块优先</p>
+<p>📌 美元: 利差优势维持，新兴市场货币承压</p>
+<p>📌 商品: 黄金受益于降息预期 + 地缘风险，工业品关注中国需求</p>
+</div>
+</div>
+
+<div class="sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+<div class="footer"><span>美国宏观经济日报 · 自动生成 · 仅供参考</span></div>
+
+
+<hr style="border-color:#21262d;margin:20px 0">
+
+</body>
+</html>
