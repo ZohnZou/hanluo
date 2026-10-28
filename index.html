@@ -17,10 +17,15 @@
   .new-badge { background:var(--red); color:#fff; font-size:10px; padding:1px 7px; border-radius:8px; margin-left:8px; flex-shrink:0; font-weight:700; }
   .new-dot { display:inline-block; background:var(--red); color:#fff; font-size:11px; min-width:18px; height:18px; line-height:18px; text-align:center; border-radius:9px; padding:0 5px; }
 
+  .hint { text-align:center; color:var(--muted); font-size:12px; margin:4px 0 10px; }
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:16px 0; }
-  .cat { position:relative; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; }
+  .cat { position:relative; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; cursor:pointer; }
   .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
-  .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .cat.pinned { border-color:var(--amber); background:rgba(210,153,34,.10); box-shadow:0 0 0 1px var(--amber) inset; }
+  .cat.dragging { opacity:.5; }
+  .pin-btn { position:absolute; top:8px; left:8px; background:transparent; border:none; color:var(--muted); font-size:16px; cursor:pointer; line-height:1; padding:2px 4px; }
+  .pin-btn.active { color:var(--amber); }
+  .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; padding-left:20px; }
   .cat-name { font-size:15px; font-weight:700; overflow-wrap:anywhere; }
   .cnt { font-family:monospace; font-size:12px; color:var(--muted); background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:1px 8px; }
   .cat-desc { font-size:12px; color:var(--muted); overflow-wrap:anywhere; }
@@ -31,7 +36,8 @@
 <body>
   <div class="header">
     <h1>📊 寒洛 · HTML 交付中心</h1>
-    <div class="sub">总目录 · 13 类 · 共 95 份 · <span style="color:var(--red)">●</span> 红点=有新增未读</div>
+    <div class="sub">总目录 · 13 类 · 共 95 份 · <span style="color:var(--red)">●</span> 红点=未读</div>
+    <div class="hint">⭐ 点星标置顶重点 · 拖拽方块排序（PC）· 设置存本浏览器</div>
   </div>
   <div class="grid" id="grid"></div>
   <div class="foot">寒洛 · 数据源 Tushare VIP · 自动更新</div>
@@ -54,24 +60,60 @@ function isNew(date, url) {
 }
 
 const TYPE_DESC = {"操盘复盘": "每日持仓技术面复盘", "建仓预测": "自选股建仓建议", "板块仪表盘": "A股板块每日情报", "深度报告": "个股深度研究", "早报": "每日盘前早报", "收盘验证": "预测验证闭环", "每日资讯": "每日新闻汇总", "今日财报": "财报数据", "AI闭环诊断": "AI诊断", "DeepSeek分析": "DeepSeek深度分析", "ATR止损": "动态止损", "周迭代/诊断": "周报与诊断", "其他": "其他材料"};
+const TYPE_DIR = {"操盘复盘": "review", "建仓预测": "prediction", "板块仪表盘": "dashboard", "早报": "brief", "每日资讯": "news", "收盘验证": "verify", "今日财报": "earnings", "AI闭环诊断": "diagnosis", "DeepSeek分析": "deepseek", "ATR止损": "atr", "周迭代/诊断": "weekly", "深度报告": "report", "其他": "other"};
+const DEFAULT_ORDER = ["操盘复盘", "建仓预测", "板块仪表盘", "深度报告", "早报", "收盘验证", "每日资讯", "今日财报", "AI闭环诊断", "DeepSeek分析", "ATR止损", "周迭代/诊断", "其他"];
+function getPinned() { try { return new Set(JSON.parse(localStorage.getItem('hanluo_pinned') || '[]')); } catch(e) { return new Set(); } }
+function getOrder() { try { const o = JSON.parse(localStorage.getItem('hanluo_order') || 'null'); return Array.isArray(o) ? o : null; } catch(e) { return null; } }
+function togglePin(t) { const p = getPinned(); if (p.has(t)) p.delete(t); else p.add(t); localStorage.setItem('hanluo_pinned', JSON.stringify([...p])); render(); }
+let dragType = null;
+
 fetch('index.json').then(r=>r.json()).then(data => {
-  const items = data.items || [];
-  const grid = document.getElementById('grid');
   const byType = {};
-  items.forEach(i => { (byType[i.type] = byType[i.type] || []).push(i); });
-  const order = ['操盘复盘','建仓预测','板块仪表盘','深度报告','早报','收盘验证','每日资讯','今日财报','AI闭环诊断','DeepSeek分析','ATR止损','周迭代/诊断','其他'];
-  order.forEach(t => {
-    const arr = byType[t];
-    if (!arr) return;
-    const unread = arr.filter(i => isNew(i.date, i.url)).length;
-    const dirn = {"操盘复盘": "review", "建仓预测": "prediction", "板块仪表盘": "dashboard", "早报": "brief", "每日资讯": "news", "收盘验证": "verify", "今日财报": "earnings", "AI闭环诊断": "diagnosis", "DeepSeek分析": "deepseek", "ATR止损": "atr", "周迭代/诊断": "weekly", "深度报告": "report", "其他": "other"}[t];
-    const a = document.createElement('a');
-    a.className = 'cat';
-    a.href = dirn + '/';
-    a.innerHTML = '<div class="cat-head"><span class="cat-name">'+t+'</span><span class="cnt">'+arr.length+'</span></div><div class="cat-desc">'+(TYPE_DESC[t]||'')+'</div>';
-    if (unread > 0) a.innerHTML += '<span class="new-dot" style="position:absolute;top:-7px;right:-7px;">'+unread+'</span>';
-    grid.appendChild(a);
-  });
+  data.items.forEach(i => { (byType[i.type] = byType[i.type] || []).push(i); });
+  const grid = document.getElementById('grid');
+
+  function render() {
+    const pinned = getPinned();
+    let order = getOrder() || DEFAULT_ORDER;
+    // 补齐 order 里可能缺失的类型 + 追加新类型
+    Object.keys(byType).forEach(t => { if (!order.includes(t)) order.push(t); });
+    // 重点置顶
+    order = [...order].sort((a,b) => (pinned.has(b)?1:0) - (pinned.has(a)?1:0));
+    grid.innerHTML = '';
+    order.forEach(t => {
+      const arr = byType[t];
+      if (!arr) return;
+      const unread = arr.filter(i => isNew(i.date, i.url)).length;
+      const isPinned = pinned.has(t);
+      const dirn = TYPE_DIR[t];
+      const c = document.createElement('div');
+      c.className = 'cat' + (isPinned ? ' pinned' : '');
+      c.draggable = true;
+      c.innerHTML = '<button class="pin-btn' + (isPinned?' active':'') + '" title="置顶/取消重点">' + (isPinned?'★':'☆') + '</button>' +
+        '<div class="cat-head"><span class="cat-name">'+t+'</span><span class="cnt">'+arr.length+'</span></div>' +
+        '<div class="cat-desc">'+(TYPE_DESC[t]||'')+'</div>';
+      if (unread > 0) c.innerHTML += '<span class="new-dot" style="position:absolute;top:-7px;right:-7px;">'+unread+'</span>';
+      // 点击跳转（点⭐不跳）
+      c.onclick = function(e) { if (e.target.tagName !== 'BUTTON') location.href = dirn + '/'; };
+      c.querySelector('.pin-btn').onclick = function(e) { e.stopPropagation(); togglePin(t); };
+      // 拖拽排序
+      c.addEventListener('dragstart', function() { dragType = t; c.classList.add('dragging'); });
+      c.addEventListener('dragend', function() { c.classList.remove('dragging'); });
+      c.addEventListener('dragover', function(e) { e.preventDefault(); });
+      c.addEventListener('drop', function(e) {
+        e.preventDefault();
+        if (!dragType || dragType === t) return;
+        const cur = getOrder() || DEFAULT_ORDER;
+        Object.keys(byType).forEach(x => { if (!cur.includes(x)) cur.push(x); });
+        const from = cur.indexOf(dragType), to = cur.indexOf(t);
+        cur.splice(from, 1); cur.splice(to, 0, dragType);
+        localStorage.setItem('hanluo_order', JSON.stringify(cur));
+        render();
+      });
+      grid.appendChild(c);
+    });
+  }
+  render();
 });
 </script>
 </body>
