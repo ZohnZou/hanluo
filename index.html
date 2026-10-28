@@ -21,10 +21,12 @@
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:16px 0; }
   .cat { position:relative; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; cursor:pointer; }
   .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
-  .cat.pinned { border-color:var(--amber); background:rgba(210,153,34,.10); box-shadow:0 0 0 1px var(--amber) inset; }
+  .cat.pinned { border-color:var(--amber); background:rgba(210,153,34,.14); box-shadow:0 0 0 1px var(--amber) inset; }
   .cat.dragging { opacity:.5; }
-  .pin-btn { position:absolute; top:8px; left:8px; background:transparent; border:none; color:var(--muted); font-size:16px; cursor:pointer; line-height:1; padding:2px 4px; }
+  .pin-btn { position:absolute; top:6px; left:8px; background:transparent; border:none; color:var(--muted); font-size:20px; cursor:pointer; line-height:1; padding:2px 4px; }
+  .pin-btn:hover { color:var(--amber); }
   .pin-btn.active { color:var(--amber); }
+  .pin-tag { font-size:10px; color:var(--amber); border:1px solid var(--amber); border-radius:6px; padding:0 5px; margin-left:5px; vertical-align:middle; font-weight:700; }
   .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; padding-left:20px; }
   .cat-name { font-size:15px; font-weight:700; overflow-wrap:anywhere; }
   .cnt { font-family:monospace; font-size:12px; color:var(--muted); background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:1px 8px; }
@@ -89,8 +91,8 @@ fetch('index.json').then(r=>r.json()).then(data => {
       const c = document.createElement('div');
       c.className = 'cat' + (isPinned ? ' pinned' : '');
       c.draggable = true;
-      c.innerHTML = '<button class="pin-btn' + (isPinned?' active':'') + '" title="置顶/取消重点">' + (isPinned?'★':'☆') + '</button>' +
-        '<div class="cat-head"><span class="cat-name">'+t+'</span><span class="cnt">'+arr.length+'</span></div>' +
+      c.innerHTML = '<button class="pin-btn' + (isPinned?' active':'') + '" title="标记/取消重点">' + (isPinned?'★':'☆') + '</button>' +
+        '<div class="cat-head"><span class="cat-name">'+t+(isPinned?'<span class="pin-tag">重点</span>':'')+'</span><span class="cnt">'+arr.length+'</span></div>' +
         '<div class="cat-desc">'+(TYPE_DESC[t]||'')+'</div>';
       if (unread > 0) c.innerHTML += '<span class="new-dot" style="position:absolute;top:-7px;right:-7px;">'+unread+'</span>';
       // 点击跳转（点⭐不跳）
