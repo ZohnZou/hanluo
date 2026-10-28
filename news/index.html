@@ -52,7 +52,7 @@ function isNew(date, url) {
 }
 
 const TYPE = "每日资讯";
-fetch('../index.json').then(r=>r.json()).then(data => {
+fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
   const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
   const list = document.getElementById('list');
   items.forEach(i => {

@@ -69,7 +69,7 @@ function getOrder() { try { const o = JSON.parse(localStorage.getItem('hanluo_or
 function togglePin(t) { const p = getPinned(); if (p.has(t)) p.delete(t); else p.add(t); localStorage.setItem('hanluo_pinned', JSON.stringify([...p])); render(); }
 let dragType = null;
 
-fetch('index.json').then(r=>r.json()).then(data => {
+fetch('index.json?v='+Date.now()).then(r=>r.json()).then(data => {
   const byType = {};
   data.items.forEach(i => { (byType[i.type] = byType[i.type] || []).push(i); });
   const grid = document.getElementById('grid');
