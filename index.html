@@ -5,112 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>寒洛 · HTML 交付中心</title>
 <style>
-  :root {
-    --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3;
-    --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff;
-    --amber:#d29922; --purple:#bc8cff;
-  }
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.6; padding:20px 16px; max-width:960px; margin:0 auto; }
+  a { color:var(--blue); text-decoration:none; }
   .header { text-align:center; padding:24px 0 16px; }
   .header h1 { font-size:24px; letter-spacing:2px; }
   .header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
-  .search { width:100%; max-width:560px; display:block; margin:8px auto 16px; padding:11px 16px; font-size:14px; background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:10px; outline:none; }
-  .search:focus { border-color:var(--blue); }
-  .filters { text-align:center; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
-  .fbtn { font-size:12px; padding:5px 14px; border-radius:14px; background:var(--card); color:var(--muted); border:1px solid var(--border); cursor:pointer; }
-  .fbtn.active { background:rgba(88,166,255,.15); color:var(--blue); border-color:var(--blue); }
-  .group { margin:22px 0; }
-  .group-title { font-size:13px; color:var(--purple); font-weight:700; letter-spacing:1px; margin-bottom:8px; }
-  .item { display:flex; align-items:center; gap:10px; padding:10px 14px; margin:6px 0; background:var(--card); border:1px solid var(--border); border-radius:10px; text-decoration:none; color:var(--text); }
-  .item:hover { border-color:var(--blue); }
-  .item .date { font-family:monospace; color:var(--muted); font-size:12px; white-space:nowrap; }
-  .item .t { flex:1; font-size:14px; }
-  .tag { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-right:6px; }
-  .tag.t1{background:rgba(88,166,255,.15);color:var(--blue);} .tag.t2{background:rgba(63,185,80,.15);color:var(--green);}
-  .tag.t3{background:rgba(248,81,73,.15);color:var(--red);} .tag.t4{background:rgba(210,153,34,.15);color:var(--amber);}
-  .tag.t5{background:rgba(188,140,255,.15);color:var(--purple);} .tag.t6{background:rgba(139,148,158,.2);color:var(--muted);}
-  .empty { text-align:center; color:var(--muted); padding:30px 0; font-size:14px; }
+  .back { display:inline-block; margin-bottom:14px; font-size:13px; color:var(--muted); }
+  .back:hover { color:var(--blue); }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:16px 0; }
+  .cat { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; }
+  .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
+  .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .cat-name { font-size:15px; font-weight:700; }
+  .cnt { font-family:monospace; font-size:12px; color:var(--muted); background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:1px 8px; }
+  .cat-desc { font-size:12px; color:var(--muted); }
   .foot { text-align:center; color:var(--muted); font-size:12px; margin:24px 0 8px; }
-  @media (max-width:640px){ .header h1{font-size:20px;} .item{padding:9px 12px;} .item .t{font-size:13px;} }
+  @media (max-width:640px) { .header h1{font-size:20px;} .grid{grid-template-columns:repeat(2,1fr);} }
 </style>
 </head>
 <body>
   <div class="header">
     <h1>📊 寒洛 · HTML 交付中心</h1>
-    <div class="sub">操盘复盘 / 建仓预测 / 深度报告 / 板块情报 · 全量归档 · 可查</div>
+    <div class="sub">总目录 · 13 类 · 共 95 份材料 · 点分类进入列表</div>
   </div>
-
-  <input class="search" id="search" placeholder="搜索股票名 / 日期 / 关键词...">
-
-  <div class="filters" id="filters"></div>
-  <div id="list"></div>
-
+  <div class="grid">
+<a class="cat" href="review/">
+  <div class="cat-head"><span class="cat-name">操盘复盘</span><span class="cnt">8</span></div>
+  <div class="cat-desc">每日持仓技术面复盘</div>
+</a><a class="cat" href="prediction/">
+  <div class="cat-head"><span class="cat-name">建仓预测</span><span class="cnt">8</span></div>
+  <div class="cat-desc">自选股建仓建议</div>
+</a><a class="cat" href="dashboard/">
+  <div class="cat-head"><span class="cat-name">板块仪表盘</span><span class="cnt">8</span></div>
+  <div class="cat-desc">A股板块每日情报</div>
+</a><a class="cat" href="brief/">
+  <div class="cat-head"><span class="cat-name">早报</span><span class="cnt">10</span></div>
+  <div class="cat-desc">每日盘前早报</div>
+</a><a class="cat" href="news/">
+  <div class="cat-head"><span class="cat-name">每日资讯</span><span class="cnt">10</span></div>
+  <div class="cat-desc">每日新闻汇总</div>
+</a><a class="cat" href="verify/">
+  <div class="cat-head"><span class="cat-name">收盘验证</span><span class="cnt">10</span></div>
+  <div class="cat-desc">预测验证闭环</div>
+</a><a class="cat" href="earnings/">
+  <div class="cat-head"><span class="cat-name">今日财报</span><span class="cnt">2</span></div>
+  <div class="cat-desc">财报数据</div>
+</a><a class="cat" href="diagnosis/">
+  <div class="cat-head"><span class="cat-name">AI闭环诊断</span><span class="cnt">7</span></div>
+  <div class="cat-desc">AI诊断</div>
+</a><a class="cat" href="deepseek/">
+  <div class="cat-head"><span class="cat-name">DeepSeek分析</span><span class="cnt">6</span></div>
+  <div class="cat-desc">DeepSeek深度分析</div>
+</a><a class="cat" href="atr/">
+  <div class="cat-head"><span class="cat-name">ATR止损</span><span class="cnt">7</span></div>
+  <div class="cat-desc">动态止损</div>
+</a><a class="cat" href="weekly/">
+  <div class="cat-head"><span class="cat-name">周迭代/诊断</span><span class="cnt">2</span></div>
+  <div class="cat-desc">周报与诊断</div>
+</a><a class="cat" href="report/">
+  <div class="cat-head"><span class="cat-name">深度报告</span><span class="cnt">15</span></div>
+  <div class="cat-desc">个股深度研究</div>
+</a><a class="cat" href="other/">
+  <div class="cat-head"><span class="cat-name">其他</span><span class="cnt">2</span></div>
+  <div class="cat-desc">其他材料</div>
+</a>
+  </div>
   <div class="foot">寒洛 · 数据源 Tushare VIP · 自动更新</div>
-
-<script>
-const TYPE_MAP = {
-  "操盘复盘": "t1", "建仓预测": "t2", "板块仪表盘": "t3", "深度报告": "t4",
-  "早报": "t5", "收盘验证": "t6", "每日资讯": "t6", "今日财报": "t6", "其他": "t6"
-};
-
-fetch('index.json').then(r=>r.json()).then(data => {
-  const items = data.items || [];
-  let activeType = '全部';
-  const types = ['全部', ...new Set(items.map(i=>i.type))];
-
-  // 渲染筛选按钮
-  const fdiv = document.getElementById('filters');
-  types.forEach(t => {
-    const b = document.createElement('span');
-    b.className = 'fbtn' + (t==='全部'?' active':'');
-    b.textContent = t;
-    b.onclick = () => { activeType = t; render(); };
-    fdiv.appendChild(b);
-  });
-
-  function render() {
-    const q = document.getElementById('search').value.trim().toLowerCase();
-    const filtered = items.filter(i => {
-      const okType = activeType==='全部' || i.type===activeType;
-      const hay = (i.title+' '+i.date+' '+i.type).toLowerCase();
-      return okType && (!q || hay.includes(q));
-    });
-    // 按日期倒序
-    filtered.sort((a,b)=> (b.date||'').localeCompare(a.date||''));
-
-    // 分组
-    const groups = {};
-    filtered.forEach(i => { (groups[i.type] = groups[i.type] || []).push(i); });
-
-    const list = document.getElementById('list');
-    list.innerHTML = '';
-    if (!filtered.length) { list.innerHTML = '<div class="empty">没有匹配的结果</div>'; return; }
-
-    Object.keys(groups).forEach(t => {
-      const g = document.createElement('div');
-      g.className = 'group';
-      const gt = document.createElement('div');
-      gt.className = 'group-title';
-      gt.textContent = t + ' (' + groups[t].length + ')';
-      g.appendChild(gt);
-      groups[t].forEach(i => {
-        const a = document.createElement('a');
-        a.className = 'item';
-        a.href = i.url;
-        a.target = '_blank';
-        a.innerHTML = '<span class="date">'+i.date+'</span><span class="t">'+i.title+'</span><span class="tag '+(TYPE_MAP[i.type]||'t6')+'">'+i.type+'</span>';
-        g.appendChild(a);
-      });
-      list.appendChild(g);
-    });
-  }
-
-  document.getElementById('search').addEventListener('input', render);
-  render();
-}).catch(e => {
-  document.getElementById('list').innerHTML = '<div class="empty">index.json 加载失败</div>';
-});
-</script>
 </body>
 </html>
