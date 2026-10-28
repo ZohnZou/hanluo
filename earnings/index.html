@@ -17,10 +17,10 @@
 
   .list-title { font-size:20px; font-weight:700; margin:8px 0 4px; }
   .list-sub { color:var(--muted); font-size:13px; margin-bottom:16px; }
-  .item { display:flex; align-items:center; gap:10px; padding:11px 14px; margin:6px 0; background:var(--card); border:1px solid var(--border); border-radius:10px; color:var(--text); }
+  .item { display:flex; align-items:center; min-width:0; gap:10px; padding:11px 14px; margin:6px 0; background:var(--card); border:1px solid var(--border); border-radius:10px; color:var(--text); }
   .item:hover { border-color:var(--blue); }
   .item .date { font-family:monospace; color:var(--muted); font-size:12px; white-space:nowrap; }
-  .item .t { flex:1; font-size:14px; }
+  .item .t { flex:1; font-size:14px; min-width:0; overflow-wrap:anywhere; word-break:break-word; }
   .foot { text-align:center; color:var(--muted); font-size:12px; margin:24px 0 8px; }
   @media (max-width:640px) { .list-title{font-size:18px;} .item .t{font-size:13px;} }
 </style>

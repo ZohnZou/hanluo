@@ -19,9 +19,9 @@
   .cat { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; }
   .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
   .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
-  .cat-name { font-size:15px; font-weight:700; }
+  .cat-name { font-size:15px; font-weight:700; overflow-wrap:anywhere; }
   .cnt { font-family:monospace; font-size:12px; color:var(--muted); background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:1px 8px; }
-  .cat-desc { font-size:12px; color:var(--muted); }
+  .cat-desc { font-size:12px; color:var(--muted); overflow-wrap:anywhere; }
   .foot { text-align:center; color:var(--muted); font-size:12px; margin:24px 0 8px; }
   @media (max-width:640px) { .header h1{font-size:20px;} .grid{grid-template-columns:repeat(2,1fr);} }
 </style>
