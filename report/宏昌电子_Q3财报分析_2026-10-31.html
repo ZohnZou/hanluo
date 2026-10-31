@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宏昌电子 Q3 财报 · 涨价周期红利能撑多久</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--red); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:24px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .verdict { background:linear-gradient(135deg, rgba(248,81,73,.12), rgba(210,153,34,.08)); border:1px solid var(--red); border-radius:12px; padding:18px; margin:16px 0; }
+  .verdict .t { color:var(--red); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .verdict p { font-size:14px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--red); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px,1fr)); gap:10px; margin:12px 0; }
+  .kpi { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .kpi .n { font-size:19px; font-weight:700; font-family:monospace; }
+  .kpi .n.up { color:var(--green); } .kpi .n.warn { color:var(--amber); } .kpi .n.down { color:var(--red); }
+  .kpi .l { font-size:12px; color:var(--muted); margin-top:3px; line-height:1.5; }
+  .hard { border-left:3px solid var(--amber); background:rgba(210,153,34,.06); padding:12px 16px; border-radius:0 8px 8px 0; margin:10px 0; }
+  .hard .ht { font-weight:700; font-size:14px; color:var(--amber); margin-bottom:4px; }
+  .hard p { font-size:13px; }
+  .timeline { position:relative; margin:16px 0; padding-left:24px; }
+  .timeline::before { content:''; position:absolute; left:8px; top:6px; bottom:6px; width:2px; background:var(--border); }
+  .tnode { position:relative; margin:0 0 22px; }
+  .tnode::before { content:''; position:absolute; left:-22px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--bg); border:3px solid var(--border); }
+  .tnode.now::before { border-color:var(--text); background:var(--text); }
+  .tnode.t1::before { border-color:var(--amber); background:var(--amber); }
+  .tnode.t2::before { border-color:var(--red); background:var(--red); }
+  .tnode.t3::before { border-color:var(--red); background:var(--red); box-shadow:0 0 0 3px rgba(248,81,73,.25); }
+  .tlabel { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
+  .tlabel .tt { font-size:15px; font-weight:700; }
+  .tlabel .tw { font-size:11px; color:var(--muted); font-family:monospace; border:1px solid var(--border); border-radius:10px; padding:1px 8px; }
+  .tag { font-size:10px; font-weight:700; border-radius:8px; padding:1px 7px; }
+  .tag.warn { color:var(--amber); border:1px solid var(--amber); }
+  .tag.danger { color:var(--red); border:1px solid var(--red); }
+  .tag.done { color:var(--text); border:1px solid var(--border); }
+  .tnode p { font-size:13px; }
+  .tnode .sig { font-size:12px; color:var(--blue); margin-top:4px; }
+  .tnode .px { display:inline-block; font-family:monospace; font-size:13px; font-weight:700; color:var(--amber); background:rgba(210,153,34,.10); border:1px solid var(--amber); border-radius:8px; padding:2px 10px; margin-top:6px; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:12px 16px; border-radius:0 8px 8px 0; margin:12px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:4px; }
+  ul { padding-left:20px; margin:4px 0; } li { font-size:14px; margin:3px 0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  @media (max-width:640px) { body { padding:14px 12px 30px; } .header h1 { font-size:20px; } h2.sec { font-size:16px; } .kpi .n { font-size:16px; } .tnode p, li, .judge, .verdict p { font-size:13px; } }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">Q3 财报 · 强周期小盘</div>
+    <h1>宏昌电子（603002）：涨价周期的红利能撑多久</h1>
+    <div class="sub">数据源 Tushare VIP + 公告检索 · 2026-10-31 · 环氧树脂 + 覆铜板双主业<br>核心问题：Q3 净利暴增 2544%，是能力提升还是周期红利？</div>
+  </div>
+
+  <div class="verdict">
+    <div class="t">一句话结论</div>
+    <p>宏昌电子的 Q3 暴增（单季净利同比 +2544%）是<strong>纯粹的周期红利，不是能力提升</strong>——环氧树脂是无壁垒大宗品，研发占比只有 1.7%，毛利率三个月从 4.87% 翻到 14.7%，全是涨价周期给的。它比生益科技更「纯周期」，当前 13.76 元偏高，<strong style="color:var(--amber)">合理中枢 8-10 元</strong>，且它的周期拐点会<strong>领先生益科技</strong>（上游先见顶）。</p>
+  </div>
+
+  <h2 class="sec">一、Q3 财报核心数据</h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="n up">+2544.8%</div><div class="l">Q3 单季净利同比（基数极低）</div></div>
+    <div class="kpi"><div class="n up">14.7%</div><div class="l">毛利率（Q1 仅 4.87%，三个月翻3倍）</div></div>
+    <div class="kpi"><div class="n">0.23 元</div><div class="l">前三季 EPS（Q3 单季 0.20）</div></div>
+    <div class="kpi"><div class="n warn">58.5 倍</div><div class="l">PE_ttm（滞后，动态约29-32倍）</div></div>
+    <div class="kpi"><div class="n warn">4.22 倍</div><div class="l">PB（历史中枢仅 1.5-2.5 倍）</div></div>
+    <div class="kpi"><div class="n down">-42%</div><div class="l">从7月高点23.8回撤到13.76</div></div>
+  </div>
+  <div class="card">
+    <ul>
+      <li><strong>业绩真相</strong>：2025 全年净利同比 -30%（微利），2026Q1 净利同比 -92.7% 触底，Q3 暴增 +2544% 是「极低基数 × 环氧树脂+覆铜板涨价」的结果。</li>
+      <li><strong>产业链地位</strong>：毛利率 14.7% 远低于生益科技的 35.4%——它是生益的<strong>上游（环氧树脂供应商）</strong>，议价能力弱，涨价的超额利润会被下游压制。</li>
+      <li><strong>研发 1.7%</strong>：几乎无技术壁垒，纯粹靠大宗品涨价吃饭。这是它和生益（有高端 CCL 壁垒）最本质的区别。</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、三道硬约束（比生益更脆弱）</h2>
+  <div class="hard"><div class="ht">约束 1 · 无壁垒，涨价的超额利润不可持续</div><p>研发占比 1.7%，环氧树脂是同质化大宗品。涨价周期一旦结束，毛利率会迅速跌回 5-6% 的常态（2025 年就是 5.7-6.6%），暴利无法维持。</p></div>
+  <div class="hard"><div class="ht">约束 2 · 垫付压力同样存在</div><p>应收 16.1 亿 + 存货 5.3 亿 = 21.4 亿（占总资产 31%），应收账款一年从 10 亿飙到 16.1 亿（+61%）。小市值公司（156 亿）的现金流被应收锁死更致命。</p></div>
+  <div class="hard"><div class="ht">约束 3 · 定增 18 亿扩产，供给再添一把火</div><p>2026 年 9 月公告拟增发募资不超过 18 亿扩产能。当前在建工程已 2.9 亿，叠加定增扩产，产能释放会进一步加剧供给过剩。</p></div>
+
+  <h2 class="sec">三、拐点时间线（上游先于生益见顶）</h2>
+  <div class="timeline">
+    <div class="tnode now">
+      <div class="tlabel"><span class="tt">T0 · 当前（2026-10）</span><span class="tw">毛利率 14.7% 峰值</span><span class="tag done">已发生</span></div>
+      <p>环氧树脂 + 覆铜板涨价周期顶部区域，毛利率三个月翻 3 倍到 14.7%。股价 13.76 元，已从 7 月高点 23.8 回撤 -42%。</p>
+    </div>
+    <div class="tnode t1">
+      <div class="tlabel"><span class="tt">拐点① 环氧树脂价格见顶 → 毛利率见顶</span><span class="tw">2026Q4-2027Q1</span><span class="tag warn">0-3 个月</span></div>
+      <p>环氧树脂是覆铜板成本大头，它先于生益的 CCL 价格见顶。宏昌毛利率从 14.7% 掉头，是第一信号。</p>
+      <p class="sig">验证信号：环氧树脂现货价、Q4 单季毛利率、铜价。</p>
+      <span class="px">股价预期：10-11 元</span>
+    </div>
+    <div class="tnode t2">
+      <div class="tlabel"><span class="tt">拐点② 业绩增速拐点 + 定增扩产</span><span class="tw">2027H1-H2</span><span class="tag danger">6-12 个月</span></div>
+      <p>覆铜板需求回落 + 18 亿定增扩产产能释放，双杀。单季净利同比从 +2544% 的高位断崖式回落。</p>
+      <p class="sig">验证信号：定增落地节奏、覆铜板价格、毛利率是否跌破 10%。</p>
+      <span class="px">股价预期：8-10 元</span>
+    </div>
+    <div class="tnode t3">
+      <div class="tlabel"><span class="tt">拐点③ 价格战 → 业绩重回亏损边缘</span><span class="tw">2028 年</span><span class="tag danger">18-24 个月</span></div>
+      <p>环氧树脂是无壁垒大宗品，供给过剩直接打价格战。毛利率跌回 5-6%，业绩重回 2025 年净利 -30% 的状态。</p>
+      <p class="sig">验证信号：行业是否价格战、毛利率是否跌破 7%。</p>
+      <span class="px">股价预期：6-8 元</span>
+    </div>
+  </div>
+
+  <h2 class="sec">四、我的独立判断</h2>
+  <div class="judge">
+    <div class="jt">寒洛判断</div>
+    <p>宏昌电子是<strong>这一轮覆铜板涨价里最脆弱的环节</strong>：无壁垒（研发 1.7%）、产业链地位弱（毛利率 14.7% vs 生益 35.4%）、小市值（156 亿）扛不住垫付压力。它的周期拐点会<strong>领先生益科技</strong>——环氧树脂先于 CCL 见顶。</p>
+    <p style="margin-top:8px;">合理中枢 8-10 元（PB 2.5-3 倍，或 PE 15-20 倍 × 全年预测 0.43-0.48 元），当前 13.76 元偏高约 30-40%。你成本 15.73 已套 12.5%，但我不给安慰：<strong>宏昌的暴增是周期顶部的回光返照，不是基本面反转</strong>。</p>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：财务/估值数据来自 Tushare VIP；扩产信息来自公告检索（21财经/财联社，2026-10 检索）。宏昌电子为强周期股，拐点时间线基于大宗品周期规律外推，仅供参考，不构成投资建议。</div>
+  <div class="foot">寒洛 · 宏昌电子 Q3 财报分析 · 2026-10-31 · 数据源 Tushare VIP + 公告检索</div>
+</body>
+</html>
