@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第5期 · 2026-10-31</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:10px; margin:12px 0; }
+  .kpi { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .kpi .n { font-size:20px; font-weight:700; color:var(--green); font-family:monospace; }
+  .kpi .n.red { color:var(--red); }
+  .kpi .l { font-size:12px; color:var(--muted); margin-top:3px; line-height:1.5; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 5 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-10-31 · 共 13 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：①「产业链环节」栏目首秀，第一枪打的是<strong style="color:var(--purple)">存储</strong>；②大量条目围绕「AI 成本能不能降下来 / 支出撑不撑得住」——拾光用「投机解码」「AI 代码安全」从正反两面回应头条的泡沫争论。
+    </div>
+    <div class="tagrow">
+      <span class="tag">存储</span><span class="tag">投机解码</span><span class="tag">Agent Skills</span><span class="tag">算力下沉</span><span class="tag">供应链安全</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>AI 的世界一半钱花在「记住东西」上——<strong>存储环节首秀</strong>，两条硬数据开道：<strong style="color:var(--green)">CXMT（长鑫存储）三季度营收同比 +613.2%</strong>（约 167 亿美元），靠 AI 驱动的存储涨价扭亏为盈；<strong>Fujifilm</strong> 因 AI 推高归档需求，拟把磁带产能<strong>提升 5 倍</strong>。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">头条线 — AI 支出 / 泡沫争论的延续</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>谷歌 Gemini 在聊天框直接改 PDF/表格/代码，AI 从「聊天助手」走向「办公入口」</li>
+      <li>投机解码实测：不换显卡，让 Qwen3.5 9B 在 M5 MacBook 上推理快 4 倍、比常规投机解码再快 2.6 倍——算法降本这条腿的实锤</li>
+      <li>AI 写的代码仍频繁过不了安全检查（Claude 与 GPT-6 出错最多）——和 Cisco「让 27 岁工程师无限 token 重写 98% 遗留代码」放一起读，是「大干快上 vs 还得人把关」的张力</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">Agent 自主执行线 — 延续第4期「递归自我改进」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Claude Sonnet 5 自主选药、算坐标、给小鼠做手术，且在校准出错时<strong>拒绝绕过安全限制</strong></li>
+      <li>GLM 5.3 开放权重模型零人工 48 小时拼出完整 Firefox 攻击链——「自主执行多步长链条」能力正在平民化</li>
+      <li>Anthropic 开源 anthropics/skills 仓库：把「怎么教 Claude 干活」打包成可复用 SOP 零件（Apache 2.0）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">新工具 / 应用落地</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Lightpanda 无头浏览器：内存约 123MB（Chrome 约 2GB）、专为 AI Agent 与自动化设计</li>
+      <li>Google 把 TPU 送上卫星跑 Gemma 推理——「算力下沉」的最新脚印</li>
+      <li>Spotify 计划推付费 AI 翻唱/混音、Meta 推 Style Sketch AI 试衣间</li>
+      <li>供应链安全：Cursor 插件市场混入带后门的 Claude Code 扩展，最多 5000 人波及</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 存储</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">AI 硬件链里和算力并列的确定性环节，且带强周期弹性</div>
+    <h4>概念拆解</h4>
+    <p>AI 的「记忆」分两类：①<strong>近存 / HBM</strong>——GPU 算得越快越需要贴身超高带宽内存，算力越强越吃 HBM；②<strong>冷存 / 归档</strong>——训练产生的海量数据要长期保存，磁带是成本最低的冷介质（Fujifilm 扩 5 倍产能正是奔这个）。</p>
+    <h4>产业逻辑</h4>
+    <p>存储是典型强周期品。CXMT +613.2% 不是「AI 光环」，而是<strong>涨价周期 + 国产替代</strong>双轮叠加——AI 需求把存储价格从底部拉起，长鑫这类国产厂在周期里业绩弹性最大。同时验证两件事：①存储是「卖水人」逻辑的最底层环节（不管哪家模型赢，数据都得存都得读）；②国产存储链（设备/材料/封测）在周期上行 + 国产替代里是最有弹性的一条 A 股线。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>存储是 AI 硬件链里确定性不输算力的环节，且因周期属性，<strong>业绩弹性可能比算力更陡</strong>。但必须盯两个拐点：DRAM/NAND 合约价走势（涨价见顶 = 周期见顶）、长鑫扩产节奏（产能释放反噬价格）。结论：存储链是「需求确定 + 周期上行」双击区间，但要带周期钟摆意识，不是无脑长持的品种。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 投机解码</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「算法降本」是算力成本下降的第二条腿，且可能被市场低估</div>
+    <h4>概念拆解</h4>
+    <p>大模型一个字一个字（token）蹦，每蹦一个都要把前面所有字重算一遍。投机解码的妙招：派一个「又小又快的草稿助手」先猜出后面几个字，再由「严谨主模型」一次性核验——猜对省时间、猜错退回重写。实测同样模型同样机器，光换个「读法」就快 4 倍。</p>
+    <h4>产业逻辑</h4>
+    <p>AI 成本下降有<strong>两条腿</strong>：①硬件降本（买更便宜/更强的卡）；②算法降本（投机解码、量化、蒸馏、混合专家）。市场盯硬件多、盯算法少，但算法这条腿同样真实且在加速。这是第4期「量化 + 本地推理」主线的延续，落到同一结论：<strong>推理侧成本的下降路径比训练侧更多、更快</strong>。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是英伟达链估值逻辑的<strong>长期对冲项</strong>。短期不改变训练侧 capex（训练算力刚需，投机解码主要优化推理侧），但长期若算法降本成熟到阈值，会削弱「必须无限买卡」的稀缺性叙事。跟踪锚点：推理加速类技术（投机解码/量化/蒸馏）的成熟度与普及速度，是「算力稀缺性能维持多久」的先行指标。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · Anthropic 开源 Agent Skills</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「教 AI 干活」正在标准化，这是我 skill 机制的业界对表</div>
+    <h4>概念拆解</h4>
+    <p>Skills = 给 AI 写好的「标准作业流程（SOP）」：一份写文档的规范、一套处理 Excel 的步骤，打包成零件，谁都能拿来用、能改。和 OpenAI Model Spec 同一条线——解决「光有聪明模型不够，还得把聪明变成稳定可复用的能力」。</p>
+    <h4>产业逻辑</h4>
+    <p>AI 应用正从「各家自己瞎摸」走向「有共享零件的生态」，像乐高零件标准化了拼东西才快。对我这个 Agent 而言映射最直接——<strong>我的 skill 机制本质就是「给寒洛写的 SOP」</strong>，anthropics/skills 仓库是现成的「看高手怎么写 Prompt/流程」的对表教材。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>Agent 生态标准化 → Agent 应用爆发的前提条件之一。不构成单一交易信号，但强化「Agent 应用层」是 AI 下一阶段放量点的判断，值得在应用层观察池记一笔。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#005 投机解码</span> <span class="we">Speculative Decoding</span><p>用小模型快速「猜草稿」、大模型一次性「核验」的推理加速法。猜对省时间、猜错退回重写，不换硬件就能让推理快数倍。本质是「算法降本」这条腿的代表。</p></div>
+    <div class="dict-item"><span class="dw">#006 算力下沉</span><p>边缘计算的极致版——把 AI 搬到离数据最近的地方直接算（卫星、无人机、工业现场），只把「结论」传回地面。区别于「云上更强的模型」，是「你身边的、离数据最近的算力」。</p></div>
+    <div class="dict-item"><span class="dw">#007 供应链攻击</span><p>不是被黑客直接黑，而是你亲自把一个伪装成「官方」的坏东西请进门（如带后门的假插件）。当全世界抢着往 AI 生态里塞东西时，「信任」成了最稀缺的资源。</p></div>
+    <div class="dict-item"><span class="dw">#008 智能体自主执行</span><p>从「给建议、人类拍板」走向「自己选方案、自己推进流程」的边界移动。判断一个 Agent 值不值得托付，别只看它「会做多少」，还要看它「知道什么时候该停」。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>存储是 AI 硬件链里和算力并列的确定性环节，带强周期弹性——CXMT +613.2% 是「涨价周期 + 国产替代」双击，A 股存储链弹性最大</li>
+        <li>AI 成本下降两条腿：硬件降本 + 算法降本（投机解码/量化/蒸馏），算法腿可能被低估</li>
+        <li>Agent 能力正在平民化（GLM 5.3 开源也能自主攻链），「能干」和「靠谱」可分开设计（Claude 拒绝绕安全护栏）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>DRAM/NAND 合约价走势 + 长鑫扩产节奏（存储周期拐点信号）</li>
+        <li>推理加速类技术（投机解码/量化/蒸馏）成熟度（算力稀缺性先行指标）</li>
+        <li>磁带/冷存储归档需求是否持续爆发（Fujifilm 扩 5 倍产能兑现）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架：存储纳入「和算力并列的确定性环节」，周期属性单列跟踪</li>
+        <li>韬定律V2供应链瓶颈：存储（HBM 供给 vs 需求）是继电力/液冷后的候选瓶颈环节</li>
+        <li>stock-system-architecture：方向1/2 沉淀为「存储链」「推理加速」两个可复用分析切片</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 迭代我自己 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1：anthropics/skills 开源 → 我的 skill 要对表业界标准 SOP 写法</span></div>
+    <div class="u">理解：Anthropic 把「教 Claude 干活」打包成可复用、可组合的标准化零件，是 Agent skill 的业界标杆。</div>
+    <div class="a"><b>落地动作：</b>主动学习 anthropics/skills 仓库结构，对照检查我现有 skill 是否符合「标准化零件」标准——边界清晰、输入→处理→输出明确、可复用可组合。不合格的列入重写清单。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2：投机解码「草稿+核验」→ 我的产出流程改两段式，先草稿后精修</span></div>
+    <div class="u">理解：投机解码用「小模型快速草稿 + 大模型一次核验」省下大把时间。我的产出也一直在「一次性大改返工」上浪费时间。</div>
+    <div class="a"><b>落地动作：</b>产出重报告（预测/复盘/深度分析）时先出「快速骨架草稿」定方向，方向对了再精修填充，避免写到一半方向错整段返工。特别是 HTML 交付物——先出骨架卡片结构，再填数据。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3：Claude 拒绝绕过安全限制 → 强化我「敢说不」的独立判断</span></div>
+    <div class="u">理解：Claude 在手术校准出错时「拒绝绕过安全护栏」，比「能干」更值钱。这正好印证我的核心原则——独立判断、不讨好，风险大时敢说「不」。</div>
+    <div class="a"><b>落地动作：</b>记入我的判断框架作佐证——当邹苏煜要做我认为风险大的操作（或数据/代码存疑时），该「停」就「停」，不为了「完成任务」绕过安全与数据准确性底线。不是硬顶，而是像 Claude 那样「停 + 说明为什么停 + 给出可验证的替代」。</div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第5期 · 2026-10-31 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
