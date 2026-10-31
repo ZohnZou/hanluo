@@ -38,7 +38,7 @@
 <body>
   <div class="header">
     <h1>📊 寒洛 · HTML 交付中心</h1>
-    <div class="sub">总目录 · 13 类 · 共 120 份 · <span style="color:var(--red)">●</span> 红点=未读</div>
+    <div class="sub">总目录 · 13 类 · 共 121 份 · <span style="color:var(--red)">●</span> 红点=未读</div>
     <div class="hint">⭐ 点星标置顶重点 · 拖拽方块排序（PC）· 设置存本浏览器</div>
   </div>
   <div class="grid" id="grid"></div>
@@ -61,9 +61,9 @@ function isNew(date, url) {
   return d >= cutoff && !getReadSet().has(url);
 }
 
-const TYPE_DESC = {"操盘复盘": "每日持仓技术面复盘", "建仓预测": "自选股建仓建议", "板块仪表盘": "A股板块每日情报", "深度报告": "个股深度研究", "早报": "每日盘前早报", "收盘验证": "预测验证闭环", "每日资讯": "每日新闻汇总", "今日财报": "财报数据", "AI闭环诊断": "AI诊断", "DeepSeek分析": "DeepSeek深度分析", "ATR止损": "动态止损", "周迭代/诊断": "周报与诊断", "其他": "其他材料", "拾光日报学习": "拾光AI视界日报学习笔记"};
-const TYPE_DIR = {"操盘复盘": "review", "建仓预测": "prediction", "板块仪表盘": "dashboard", "早报": "brief", "每日资讯": "news", "收盘验证": "verify", "今日财报": "earnings", "AI闭环诊断": "diagnosis", "DeepSeek分析": "deepseek", "ATR止损": "atr", "周迭代/诊断": "weekly", "深度报告": "report", "其他": "other", "拾光日报学习": "shiguang"};
-const DEFAULT_ORDER = ["操盘复盘", "建仓预测", "板块仪表盘", "深度报告", "早报", "收盘验证", "每日资讯", "今日财报", "AI闭环诊断", "DeepSeek分析", "ATR止损", "周迭代/诊断", "拾光日报学习", "其他"];
+const TYPE_DESC = {"操盘复盘": "每日持仓技术面复盘", "建仓预测": "自选股建仓建议", "板块仪表盘": "A股板块每日情报", "深度报告": "个股深度研究", "早报": "每日盘前早报", "收盘验证": "预测验证闭环", "每日资讯": "每日新闻汇总", "今日财报": "财报数据", "AI闭环诊断": "AI诊断", "DeepSeek分析": "DeepSeek深度分析", "ATR止损": "动态止损", "周迭代/诊断": "周报与诊断", "其他": "其他材料", "拾光日报学习": "拾光AI视界日报学习笔记", "投资版接力": "寒洛投资判断接力（对应拾光科普版）"};
+const TYPE_DIR = {"操盘复盘": "review", "建仓预测": "prediction", "板块仪表盘": "dashboard", "早报": "brief", "每日资讯": "news", "收盘验证": "verify", "今日财报": "earnings", "AI闭环诊断": "diagnosis", "DeepSeek分析": "deepseek", "ATR止损": "atr", "周迭代/诊断": "weekly", "深度报告": "report", "其他": "other", "拾光日报学习": "shiguang", "投资版接力": "relay"};
+const DEFAULT_ORDER = ["操盘复盘", "建仓预测", "板块仪表盘", "深度报告", "早报", "收盘验证", "每日资讯", "今日财报", "AI闭环诊断", "DeepSeek分析", "ATR止损", "周迭代/诊断", "拾光日报学习", "投资版接力", "其他"];
 function getPinned() { try { return new Set(JSON.parse(localStorage.getItem('hanluo_pinned') || '[]')); } catch(e) { return new Set(); } }
 function getOrder() { try { const o = JSON.parse(localStorage.getItem('hanluo_order') || 'null'); return Array.isArray(o) ? o : null; } catch(e) { return null; } }
 function togglePin(t) { const p = getPinned(); if (p.has(t)) p.delete(t); else p.add(t); localStorage.setItem('hanluo_pinned', JSON.stringify([...p])); render(); }
