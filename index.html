@@ -18,6 +18,8 @@
   .new-dot { display:inline-block; background:var(--red); color:#fff; font-size:11px; min-width:18px; height:18px; line-height:18px; text-align:center; border-radius:9px; padding:0 5px; }
 
   .hint { text-align:center; color:var(--muted); font-size:12px; margin:4px 0 10px; }
+  .readall-btn { background:var(--card); color:var(--blue); border:1px solid var(--blue); border-radius:14px; padding:4px 16px; font-size:13px; cursor:pointer; margin:2px 0 4px; transition:.15s; }
+  .readall-btn:hover { background:rgba(88,166,255,.14); }
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:16px 0; }
   .cat { position:relative; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; cursor:pointer; }
   .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
@@ -38,8 +40,9 @@
 <body>
   <div class="header">
     <h1>📊 寒洛 · HTML 交付中心</h1>
-    <div class="sub">总目录 · 13 类 · 共 121 份 · <span style="color:var(--red)">●</span> 红点=未读</div>
+    <div class="sub">总目录 · 15 类 · 共 121 份 · <span style="color:var(--red)">●</span> 红点=未读</div>
     <div class="hint">⭐ 点星标置顶重点 · 拖拽方块排序（PC）· 设置存本浏览器</div>
+    <button class="readall-btn" id="readAllBtn">✓ 一键全部已读</button>
   </div>
   <div class="grid" id="grid"></div>
   <div class="foot">寒洛 · 数据源 Tushare VIP · 自动更新</div>
@@ -115,6 +118,13 @@ fetch('index.json?v='+Date.now()).then(r=>r.json()).then(data => {
       grid.appendChild(c);
     });
   }
+  function markAllRead() {
+    const s = getReadSet();
+    data.items.forEach(i => s.add(i.url));
+    localStorage.setItem('hanluo_read', JSON.stringify([...s]));
+    render();
+  }
+  document.getElementById('readAllBtn').onclick = markAllRead;
   render();
 });
 </script>
