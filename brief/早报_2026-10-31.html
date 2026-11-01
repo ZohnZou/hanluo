@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寒洛早报 2026-10-31</title>
+<style>
+/* =============================================
+   寒洛 Design System v2 内联版
+   所有颜色/字体/间距统一从这里管理
+   ============================================= */
+:root{
+  --up:#dc2626;--up-bg:#fee2e2;--down:#16a34a;--down-bg:#dcfce7;
+  --primary:#1e3a5f;--accent:#0f766e;--score:#7c3aed;
+  --bg:#f8fafc;--bg-card:#ffffff;--text:#1e293b;
+  --text-muted:#64748b;--text-faint:#94a3b8;
+  --border:#e2e8f0;--border-light:#f1f5f9;
+  --shadow:0 1px 4px rgba(0,0,0,0.08);
+  --radius:12px;--font:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);max-width:900px;margin:0 auto;padding:20px;background:var(--bg);color:var(--text);font-size:13px;line-height:1.8}
+
+/* 头部 */
+.header{background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:20px 24px;border-radius:var(--radius);margin-bottom:16px}
+.header h1{font-size:22px;margin-bottom:4px}
+.header .sub{opacity:0.85;font-size:13px}
+
+/* 层级标题 */
+.section{background:var(--primary);color:white;padding:10px 16px;border-radius:8px;margin-bottom:14px;font-weight:600;font-size:14px}
+
+/* 卡片 */
+.card{background:var(--bg-card);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card-title{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+
+/* 表格 */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--bg);text-align:left;padding:7px 10px;font-weight:600;color:var(--text-muted);border-bottom:2px solid var(--border)}
+td{padding:7px 10px;border-bottom:1px solid var(--border-light);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.total-row td{font-weight:700;background:var(--bg)}
+
+/* 涨跌 */
+.tag-up{color:var(--up);font-weight:600}
+.tag-down{color:var(--down);font-weight:600}
+.tag-neutral{color:#f59e0b;font-weight:600}
+.win{color:var(--up);font-weight:700}
+.lose{color:var(--down);font-weight:700}
+.score{color:var(--score);font-weight:700}
+
+/* 热点标签 */
+.hot-tag{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:600}
+.hot-up{background:var(--up-bg);color:var(--up)}
+.hot-down{background:var(--down-bg);color:var(--down)}
+.hot-sector{background:#e0f2fe;color:#0369a1}
+
+/* 新闻 */
+.news-item{margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed var(--border)}
+.news-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.news-title{font-weight:600;color:var(--text);margin-bottom:4px;font-size:13px;line-height:1.5}
+.news-summary{color:var(--text-muted);font-size:12px;line-height:1.6;margin-bottom:4px}
+.news-tags{font-size:12px;color:#0891b2;margin-bottom:4px}
+.tag-pill{display:inline-block;background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:12px;margin-right:4px;font-size:11px}
+.tag-pill.pill-red{background:var(--up-bg);color:var(--up)}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.kpi-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center}
+.kpi-label{font-size:11px;color:var(--text-muted);margin-bottom:4px}
+.kpi-value{font-size:18px;font-weight:700;color:var(--text)}
+
+/* 进度条 */
+.bar-wrap{display:inline-block;width:120px;height:6px;background:var(--border);border-radius:3px;vertical-align:middle}
+.bar-fill{height:100%;background:var(--accent);border-radius:3px}
+
+/* SVG图表区 */
+.svg-section{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.svg-card{flex:1;min-width:280px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px}
+.svg-title{font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px}
+
+/* 悬停气泡 */
+.tooltip-wrap{position:relative;display:inline-flex;cursor:help;align-items:center}
+.tooltip-wrap .wrench{font-size:13px;opacity:.4;margin-left:3px;transition:opacity .15s}
+.tooltip-wrap:hover .wrench{opacity:1}
+.tooltip-card{display:none;position:absolute;bottom:calc(100%+6px);left:50%;transform:translateX(-50%);min-width:220px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.12);font-size:12px}
+.tooltip-wrap:hover .tooltip-card{display:block}
+.tooltip-card::before{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--border)}
+.tooltip-card::after{content:'';position:absolute;top:calc(100%-1px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--bg-card)}
+.tooltip-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--border-light);gap:12px}
+.tooltip-row:last-child{border-bottom:none}
+.tooltip-label{color:var(--text-muted);white-space:nowrap}
+.tooltip-value{font-weight:600;text-align:right}
+.tooltip-value.up{color:var(--up)}
+.tooltip-value.down{color:var(--down)}
+
+/* 折叠 */
+.fold-trigger{display:flex;align-items:center;padding:10px 0;cursor:pointer;font-size:13px;color:var(--text-muted);border-bottom:1px solid var(--border-light);user-select:none}
+.fold-trigger:hover{color:var(--primary)}
+.fold-body{padding:12px 0}
+.fold-body.collapsed{display:none}
+.fold-arrow{margin-right:6px;font-size:11px;transition:transform .15s}
+.fold-trigger.open .fold-arrow{transform:rotate(90deg)}
+
+/* 响应式 */
+@media(max-width:768px){body{padding:12px}.card{padding:14px}.svg-section{flex-direction:column}.kpi-grid{grid-template-columns:1fr 1fr}}
+
+/* 页脚 */
+.footer{text-align:center;color:var(--text-faint);font-size:11px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<!-- 头部 -->
+<div class="header">
+  <h1>🦞 寒洛早报</h1>
+  <div class="sub">2026-10-31 07:30 · 自动生成</div>
+</div>
+
+<!-- SVG图表区 -->
+<div class="svg-section">
+  <div class="svg-card">
+    <div class="svg-title">📊 大盘指数涨跌</div>
+    <svg width="300" height="90" xmlns="http://www.w3.org/2000/svg"><text x="4" y="20" font-size="11" fill="#1e293b">上证指数</text><rect x="80" y="8" width="200" height="16" fill="#f1f5f9" rx="3"/><rect x="80" y="8" width="17.226" height="16" fill="#16a34a" rx="3"/><text x="285" y="20" font-size="10" fill="#16a34a" text-anchor="end" font-weight="600">-1.44%</text><text x="4" y="54" font-size="11" fill="#1e293b">深证成指</text><rect x="80" y="42" width="200" height="16" fill="#f1f5f9" rx="3"/><rect x="80" y="42" width="32.7972" height="16" fill="#16a34a" rx="3"/><text x="285" y="54" font-size="10" fill="#16a34a" text-anchor="end" font-weight="600">-2.73%</text><text x="4" y="88" font-size="11" fill="#1e293b">创业板指</text><rect x="80" y="76" width="200" height="16" fill="#f1f5f9" rx="3"/><rect x="80" y="76" width="49.55159999999999" height="16" fill="#16a34a" rx="3"/><text x="285" y="88" font-size="10" fill="#16a34a" text-anchor="end" font-weight="600">-4.13%</text><text x="4" y="122" font-size="11" fill="#1e293b">科创50</text><rect x="80" y="110" width="200" height="16" fill="#f1f5f9" rx="3"/><rect x="80" y="110" width="65.71440000000001" height="16" fill="#16a34a" rx="3"/><text x="285" y="122" font-size="10" fill="#16a34a" text-anchor="end" font-weight="600">-5.48%</text></svg>
+  </div>
+  <div class="svg-card">
+    <div class="svg-title">💼 持仓盈亏分布</div>
+    <svg width="320" height="130" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="65" x2="320" y2="65" stroke="#e2e8f0" stroke-width="1"/><rect x="142" y="65" width="36" height="45.0" fill="#16a34a" rx="3"/><text x="160" y="126" text-anchor="middle" font-size="10" fill="#64748b">生益科</text><text x="160" y="122.0" text-anchor="middle" font-size="9" fill="#16a34a" font-weight="600">-25.9%</text></svg>
+  </div>
+</div>
+
+<!-- 第一层：今日必读 -->
+<div class="section">📊 今日必读</div>
+
+<div class="card">
+  <div class="card-title">大盘指数</div>
+  <table>
+    <tr><th>指数</th><th>收盘</th><th>涨跌</th></tr>
+    <tr><td>上证指数</td><td>3,599.02</td><td class="tag-down">▼ -1.44%</td></tr>
+<tr><td>深证成指</td><td>10,833.78</td><td class="tag-down">▼ -2.73%</td></tr>
+<tr><td>创业板指</td><td>2,413.63</td><td class="tag-down">▼ -4.13%</td></tr>
+<tr><td>科创50</td><td>1,160.84</td><td class="tag-down">▼ -5.48%</td></tr>
+
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">持仓盈亏</div>
+  <table>
+    <tr><th>股票</th><th>现价</th><th>成本</th><th>盈亏%</th><th>盈亏额</th></tr>
+    <tr><td>生益科技</td><td>87.00</td><td>117.47</td><td class="tag-down">▼ -25.94%</td><td>-70,081</td></tr>
+<tr class="total-row"><td colspan="2">合计</td><td>-</td><td class="tag-down">▼ -25.94%</td><td>-70,081</td></tr>
+
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title" style="display:flex;justify-content:space-between;align-items:center">
+    <span>建仓TOP10</span>
+    <button class="btn-copy" onclick="copyTop10(this)" style="font-size:11px;padding:4px 12px;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer">📋 复制建仓建议</button>
+  </div>
+  <table>
+    <tr><th>#</th><th>股票</th><th>信号</th><th>评分</th><th>买入区间</th><th>止损</th></tr>
+    
+  </table>
+</div>
+<div id="top10-copy-text" style="display:none">📋 寒洛建仓建议 2026-10-31
+</div>
+
+<!-- 热点监测 -->
+<div class="card"><div class="card-title">🔥 热点监测</div><table><tr><th>类型</th><th>股票/板块</th></tr><tr><td><span class="hot-tag " + cls + ">🔴涨幅</span></td><td>300030 +20.03%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🔴涨幅</span></td><td>301132 +20.01%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🔴涨幅</span></td><td>301187 +20.00%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🔴涨幅</span></td><td>301520 +20.00%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🔴涨幅</span></td><td>688045 +20.00%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🟢跌幅</span></td><td>300911 -19.33%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🟢跌幅</span></td><td>688308 -18.83%</td></tr>
+<tr><td><span class="hot-tag " + cls + ">🟢跌幅</span></td><td>300803 -18.37%</td></tr>
+</table></div>
+
+<!-- 第二层：市场情报 -->
+<div class="section">📰 市场情报</div>
+
+<div class="card">
+  <div class="card-title">重大公告（关联自选股）</div>
+  <div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 中金公司:中金公司关于投资银行业务主体变更的公告</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 华发股份:华发股份关于2026年三季度经营情况简报</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 华发股份:华发股份关于2026年第三季度担保情况的公告</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 华发股份:华发股份第十一届董事会第十六次会议决议公告</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 华发股份:华发股份关于2026年三季度计提资产减值准备的公告</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 华发股份:华发股份2026年第三季度报告</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 ST标准:标准股份关于收购西安昊友航天复合材料有限公司51%股权的公告</div></div>
+<div class="news-item"><div class="news-tags"><div class="news-title">2026-10-30 奥精医疗:关于收到上海证券交易所《关于公司无法按期披露2026年第三季度报告的监管工作函》的公告</div></div>
+
+</div>
+
+<div class="card">
+  <div class="card-title">快讯速递</div>
+  <div class="news-item"><div class="news-title">伊朗称4艘油轮在霍尔木兹海峡爆炸起火</div><div class="news-summary">伊朗伊斯兰革命卫队10月30日表示，在霍尔木兹海峡，当天有四艘“违规”油轮爆炸起火。伊朗伊斯兰革命卫队海军30日发表声明称，两艘“违规”油轮在试图经由霍尔木兹海峡未经授权的航道通行时发生意外，后在海峡以南海域被拦停。声明表示，这两艘油轮关闭了所有导航和定位系统，并在美军的支持下，试图通过未经授权的航道驶离霍尔木兹海峡。这两艘油轮多次无视伊朗的无线电警告后，进入了不安全区域，随后发生意外。(央视新闻)</div></div>
+<div class="news-item"><div class="news-title">苹果官宣：Apple智能接入阿里千问，11月4日开放测试</div><div class="news-summary">10月31日，苹果和阿里巴巴宣布达成合作，将千问集成至Apple智能，中国用户可在Siri、写作工具及视觉智能中直接调用千问的文本与图像理解、内容生成等能力。这些功能将于11月4日起随最新的iOS开发者Beta版开放测试，并将于12月iOS 27.3正式发布时面向中国用户推出。（每经）</div></div>
+<div class="news-item"><div class="news-title">谷歌母公司Alphabet拟参与美国1850亿美元“金穹”计划</div><div class="news-summary">谷歌母公司Alphabet正与五角大楼洽谈，拟参与特朗普规模达1850亿美元的“金穹”导弹防御计划，重点负责数据安全、存储、网络及网络安全能力，以确保军事指挥控制软件的数据传输不易受攻击。相关讨论仍处于早期阶段，谷歌旗下网络公司Aalyria也参与相关联盟筹备。五角大楼表示，尚未就成立新联盟或参与企业作出最终决定。</div></div>
+<div class="news-item"><div class="news-title">摩根大通将阳光电源评级下调至中性，目标价69元</div><div class="news-summary">摩根大通将阳光电源评级下调至中性，目标价69元。</div></div>
+<div class="news-item"><div class="news-title">日本经济专家：日本经济面临多重挑战</div><div class="news-summary">日本总务省10月30日数据显示，东京10月剔除生鲜食品后的核心CPI同比上涨2.6%，9月全国CPI同比上涨2.1%，呈加速上行态势。野村证券首席经济学家森田京平称，日本央行后续仍可能继续加息、逐步调整宽松货币政策，但加息目的为实现物价稳定，过快加息可能使企业和有住房贷款者负担加重。物价上涨挤压购买力、经营成本上升，日本经济政策面临“两难”：若继续收紧货币政策，日元贬值、进口成本上升推高物价的风险仍在；若加息过快或进一步抑制经济活动，经济将面临更严峻挑战。（央视新闻）</div></div>
+<div class="news-item"><div class="news-title">古巴常驻联合国代表团外交官遭美驱逐后回国</div><div class="news-summary">古巴外交部第一副部长赫拉尔多·佩尼亚尔韦尔29日表示，欢迎日前被美国驱逐出境的古巴常驻联合国代表团一等秘书理查德·图尔回到古巴。
+
+据联合国官网27日消息，美国常驻联合国代表迈克尔·华尔兹与古巴外长罗德里格斯在联合国大会审议“必须终止美国对古巴的经济、商业和金融封锁”决议草案时发生激烈言语交锋。随后，华尔兹在接受美国媒体采访时透露，美国国务卿鲁比奥当日签署文件，驱逐古巴常驻联合国代表团一等秘书，限其在24小时内离境。</div></div>
+<div class="news-item"><div class="news-title">英伟达拟为云服务商 450 亿美元 Anthropic 项目提供兜底支持</div><div class="news-summary">知情人士透露，英伟达正洽谈为新兴AI云服务商Nscale提供数十亿美元债务信贷担保，用于建设一座460兆瓦、供Anthropic使用的数据中心。该交易尚未签署，条款仍有可能变动。此事再次体现英伟达持续向Nscale、CoreWeave、Firmus等新兴云厂商提供资金支持，这类厂商为搭建AI专用数据中心已举债且仍需继续融资，承受来自投资方的压力。（新浪财经）</div></div>
+<div class="news-item"><div class="news-title">据三名海湾国家高级官员透露，特朗普政府已向海湾盟友通报情况，准备最早于11月4日发动短期而猛烈的空袭</div><div class="news-summary">据三名海湾国家高级官员透露，特朗普政府已向海湾盟友通报情况，准备最早于11月4日（中期选举后的第二天）发动短期而猛烈的空袭。</div></div>
+<div class="news-item"><div class="news-title">泽连斯基：将扩充乌远程打击部队并拓展远程打击范围</div><div class="news-summary">乌克兰总统泽连斯基30日晚在社交媒体发文称，乌方将扩充远程打击部队，已确定接下来远程打击的“关键优先目标”；俄方每次袭击乌城市和居民区都会遭到乌方回应，乌方正努力确保无人机和导弹打到俄罗斯更深处的领土。乌方将依托国家安全局、尤其是“阿尔法”特种作战中心及情报机构和国防军等力量提升远程打击能力。7月10日，泽连斯基称当天签署法令在乌武装部队内部成立远程打击司令部，以整合分散的远程打击力量。（新华社）</div></div>
+<div class="news-item"><div class="news-title">俄外长：日本停止对俄不友好方可恢复全面对话</div><div class="news-summary">俄外长拉夫罗夫30日应日方请求在美国亚特兰大出席二十国集团外长会期间同日本外务大臣茂木敏充简短交谈，谈及双边关系，强调日本停止对俄不友好做法是恢复俄日全面对话的必要条件。俄日上一次正式会谈是2021年9月。俄联邦安全局13日通报，在萨哈林州逮捕日本《北海道新闻》驻当地记者，称其涉嫌按日本情报机构指示收集、存储并传递与俄防务能力有关的信息；日本外务省14日召见俄驻日大使，俄方回应称日本情报部门拉拢包括在俄合法注册的日本记者在内的人员搜集涉密信息，不可接受，案件将依俄方法律侦办。（新华社）</div></div>
+<div class="news-item"><div class="news-title">富时中国A50指数期货夜盘收涨0.04%，报12814点</div><div class="news-summary">富时中国A50指数期货夜盘收涨0.04%，报12814点。</div></div>
+<div class="news-item"><div class="news-title">美国务院批准向乌克兰出售500枚“爱国者”导弹</div><div class="news-summary">美国国务院30日发表声明说，已决定批准向乌克兰出售500枚“爱国者”导弹及相关设备，价值总额达21亿美元，费用“完全由合作伙伴和盟友承担”。 声明说，乌克兰已提出采购500枚“爱国者先进能力-3”分段增强型导弹（PAC-3 MSE）及其各类备件和相关后勤支持服务。乌克兰将利用加拿大、德国和挪威提供的捐款以及欧盟相关贷款来支付此次费用，不涉及任何美国政府资金。 声明还说，此次军售将提升乌克兰的综合防空与反导能力，并将支持乌克兰现有的“爱国者”系统持续运行，以抵御持续存在的空中威胁。 乌克兰总统泽连斯基19日在社交媒体上发文称，乌方与伙伴的协议“尚未落实”，美国国防部“在某些关键补给的交付上也存在拖延”。他已向乌国防部、外交部、总统办公室下达“紧急任务”，将催促伙伴“尽快向乌方提供防空支持”。29日，泽连斯基又在社交媒体发文，呼吁相关方尽快提供“爱国者”防空导弹以加强乌防空能力和保护民众安全。(新华社)</div></div>
+<div class="news-item"><div class="news-title">标普：Meta Platforms Inc. 展望被下调至负面，因资本支出和自由运营现金流面临重大不确定性。</div><div class="news-summary">标普将Meta Platforms Inc.的展望下调至负面，原因是资本支出和自由运营现金流面临重大不确定性。</div></div>
+<div class="news-item"><div class="news-title">英国海上贸易行动办公室通报两起船舶遇袭事件</div><div class="news-summary">当地时间10月30日，英国海上贸易行动办公室通报两起船舶遇袭事件：伊朗拉万岛以南约40海里处，一船舶左舷遭不明抛射物击中致船只起火，船员已确认安全，暂无环境污染报告；另收到霍尔木兹海峡船只遇袭延迟报告，据经核实的消息来源，一油轮在驶离霍尔木兹海峡期间遭不明抛射物击中。（央视新闻）</div></div>
+<div class="news-item"><div class="news-title">安理会举行联合国秘书长遴选第七轮意向性投票</div><div class="news-summary">联合国安理会10月30日举行下一任联合国秘书长遴选第七轮意向性投票，采取闭门方式，结果不作官方记录、不对外公布，投票意向分别为“鼓励”“劝阻”“不发表意见”。候选人须获至少9票鼓励且五个常任理事国均不劝阻，方可获安理会推荐，经联合国大会任命。安理会轮值主席、希腊常驻联合国代表巴尔塔称，投票结果将通过候选人推举国通知各候选人。遴选去年11月启动，前六轮投票分别于7月30日、8月21日、9月18日、9月29日、10月7日、10月16日举行，目前共有7名候选人。现任秘书长古特雷斯2017年1月上任，2021年获连任，任期至今年12月31日。（央视新闻）</div></div>
+<div class="news-item"><div class="news-title">伊朗称当天第四艘违规航行油轮穿越霍尔木兹海峡时触雷爆炸</div><div class="news-summary">当地时间10月30日晚，伊朗伊斯兰革命卫队海军宣布，当天下午第四艘油轮在霍尔木兹海峡违规航行时发生触雷爆炸并起火。该油轮载有超过200万桶原油，无视革命卫队海军的无线电警告，试图驶离霍尔木兹海峡南部未经授权的航道。卫队表示，这是自当天凌晨以来于霍尔木兹海峡起火的第四艘油轮。（央视新闻）</div></div>
+<div class="news-item"><div class="news-title">美国总统特朗普：我们在伊朗投入的所有资金，早已通过在委内瑞拉的行动赚回，我们从中获取了数千亿美元，收益翻了很多倍</div><div class="news-summary">美国总统特朗普：我们在伊朗投入的所有资金，早已通过在委内瑞拉的行动赚回，我们从中获取了数千亿美元，收益翻了很多倍。</div></div>
+<div class="news-item"><div class="news-title">摩根大通：2027年美国国库券需求或跟不上供应</div><div class="news-summary">摩根大通策略师Jay Barry和Pankaj Vohra等在报告中表示，美国国库券发行规模预计将继续扩大，2027年市场还需吸收9910亿美元的国库券净供应，关键问题在于需求能否跟上供应，他们认为这方面面临一些阻力。他们预计，货币市场基金资产管理规模的增长步伐将与2024年或2025年较大规模资金流入时大致相当，除非出现类似2020年疫情冲击或2023年地区银行业压力那样的重大市场动荡。</div></div>
+<div class="news-item"><div class="news-title">英特尔股价暴跌近29%，创至少四十年来最糟糕单日表现</div><div class="news-summary">英特尔股价暴跌近29%，创至少四十年来最糟糕单日表现。</div></div>
+<div class="news-item"><div class="news-title">币安：计划在12小时内进行首次储备证明快照，并于周一前准备好结果</div><div class="news-summary">币安表示，计划在12小时内进行首次储备证明快照，并于周一前准备好结果。</div></div>
+
+</div>
+
+<!-- 页脚 -->
+<div class="footer">
+  寒洛早报 · 2026-10-31 · 数据来源：Tushare / 东方财富 / 同花顺
+</div>
+
+<script>
+function copyTop10(btn) {
+  var text = document.getElementById('top10-copy-text').textContent.trim();
+  if (!text) { alert('建仓建议数据未生成'); return; }
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent;
+    btn.textContent = '✅ 已复制';
+    btn.style.background = '#16a34a';
+    setTimeout(function() { btn.textContent = orig; btn.style.background = ''; }, 1500);
+  }).catch(function() {
+    // fallback
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✅ 已复制';
+    setTimeout(function() { btn.textContent = '📋 复制建仓建议'; }, 1500);
+  });
+}
+</script>
+
+</body>
+</html>
