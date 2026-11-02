@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第7期 · 2026-11-02</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 7 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-02 · 共 8 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期三条主线交织：① 中国 AI 的<strong style="color:var(--purple)">「务实路线」</strong>被海外机构点名（不拼最大参数、拼更省更能落地）；② 两条「产业链·一眼看懂」同时兑现（存储补关键数字 + 端侧 AI 拆链）；③ 三个「自我改进/协作」元概念凑齐正反两面（正例投机解码/MoE/Carbon，反例 Minecraft 官僚化）。
+    </div>
+    <div class="tagrow">
+      <span class="tag">存储HBM</span><span class="tag">端侧AI</span><span class="tag">务实路线</span><span class="tag">概率猜测+校验回退</span><span class="tag">agent造agent</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>中国 AI 的竞争策略正在被海外机构重新定性——从「追参数」转向<strong>「工程落地 + 降本能力」</strong>。产业逻辑很清晰：算力一时追不平最顶尖，那就把每一分算力榨到极致（长文本 + 低显存 + 开源三件套）。它不是「技术落后才省钱」，而是清醒的路径选择。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">八条情报</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li><strong>高盛专家交流点名中国 AI「务实路线」</strong>：海外机构关注点从「追参数」转向「工程落地与降本」；DeepSeek 开源超级智能体、多家中国模型在「用更少算力做更多事」方向集体发力。</li>
+      <li><strong>存储补关键数字</strong>（兑现第5期反馈）：HBM = AI 芯片的「贴身高速内存」，是当前训练瓶颈之一；单 GB 成本远高于普通 DRAM（堆叠工艺复杂、良率低）；产能高度集中在前三家。</li>
+      <li><strong>Volta 木马用 LLM 估价受害者</strong>：思科 Talos 披露，信息窃取木马把大模型接进偷数据流水线，自动判断受害者「值多少钱」（加密钱包/机构身份），据此排优先级再下手——AI 第一次成为攻击者手里的「分拣工具」。</li>
+      <li><strong>端侧 AI 拆链</strong>（兑现上期点题）：三层 = 端侧芯片（NPU/手机SoC/低功耗芯片，关键词「能效/每瓦算力」）+ 本地推理栈（量化/蒸馏/小模型）+ 云端分工（小活本地干、大活上云、隐私活本地干）。「数据不出设备」是隐私命门。</li>
+      <li><strong>Parameter 批量接管 ChatGPT 账号</strong>：通过「口径漏洞（gap）」接管账号，白帽「先找口子、再诚实报告厂商」——被公开曝光的洞往往已在修，真正危险的是没曝光的。</li>
+      <li><strong>Proton 反 AI 反转</strong>：隐私服务商 CEO 先宣布加 AI 引发用户反感、后公开「取消 AI 再访谈」。翻转口碑的不是 AI 本身，是它对「AI 化」的处理姿态（没搞懂自己用户为什么来）。</li>
+      <li><strong>Minecraft 50 队 agent 官僚化实验</strong>：50 队 AI 想协作建文明，结果互相开会/请示/冗长流程，被「官僚化」拖垮——把「校验」这个本应偶尔为之的动作变成了无休止的主业。</li>
+      <li><strong>DeepSeek 开源 dsh-superagent</strong>：一个「始终在线的自主编程智能体」，相当一部分代码由其它 agent 协助写出——「用 agent 帮着写 agent」的工程实践，属「单层改进」档，顶多摸到「元层闭环」的门。</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 存储 HBM 产业链</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">AI 军备竞赛里「卡在中间、谁都要买」的闸门，补上硬数字后估值框架有了锚点</div>
+    <h4>概念拆解</h4>
+    <p>HBM（高带宽内存）是 AI 芯片的「贴身高速内存」。GPU 算得再快，数据送不进去也白搭——所以 HBM 是当前训练/推理的瓶颈之一。三个硬数字焊死认知：① <strong>单颗容量/带宽</strong>一路往上卷；② <strong>单 GB 成本</strong>远高于普通 DRAM（堆叠工艺复杂、良率低，贵但 AI 芯片「非它不可」）；③ <strong>产能占比</strong>高度集中在前三家（SK海力士/三星/美光）。精确值以各厂最新财报为准，但方向是稳的。</p>
+    <h4>产业逻辑</h4>
+    <p>这是「瓶颈迁移」的非投资版表述——算力越卷，就越卡在「存储带宽」这道闸门上。落到韬定律V2供应链瓶颈框架：GPU 缺货的第一波瓶颈已在缓解，瓶颈正在往<strong>「HBM 产能 + 先进封装」迁移</strong>。它的属性是「卖水人」：不赌哪家模型/芯片赢，只要 AI 算力总量增长，HBM 需求就同向增长。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>HBM 本体产能前三家是海外（SK海力士/三星/美光），A 股吃不到最肥的晶圆环节，但能吃到<strong>封测 + 材料 + 模组</strong>三块溢出——海力士 HBM 封测（太极实业/深科技）、先进封装（通富微电/长电科技）、前驱体/材料（雅克科技）、DRAM 接口芯片（澜起科技）、存储模组（佰维存储/江波龙）。A 股标的纯度分化极大：HBM 直接相关的高纯度标的稀缺且贵，模组环节又受涨价周期波动大。结论：<strong>不追高、不按单一 HBM 概念抄底</strong>，把「HBM 产能 → 封测/材料订单」作为订单传导的跟踪锚点，等财报端验证订单再动作。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 端侧 AI 拆链</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「算力下沉」主线的落脚点，与第6期千问进苹果同主线，苹果级背书确认</div>
+    <h4>概念拆解</h4>
+    <p>端侧 AI 三层拆完：<strong>第一层端侧芯片</strong>（设备大脑，NPU/手机SoC/耳机低功耗芯片，追求「每瓦算力」而非「最猛」——设备里没地方塞散热和大电源）；<strong>第二层本地推理栈</strong>（把大模型压缩/切小塞进设备的软件，量化/蒸馏/小模型，第5期「6G 显存跑 35B」全在这层发力）；<strong>第三层云端分工</strong>（小活本地干、大活上云、隐私活本地干——这是精髓，不是「不用云了」而是「分工」）。「数据不出设备」是隐私命门。</p>
+    <h4>产业逻辑</h4>
+    <p>Gemini 4 Carbon「挑着算」、DeepSeek 低显存跑大模型、本机 Agent 常驻，都在把 AI 从云端往设备里拽。和第6期「千问进苹果」是同一主线的两个观察窗：第6期看「本地化大脑」的入口合作，第7期看「算力下沉」的完整产业链。试金石：判断一台设备「值不值 AI 溢价」，别问「有没有 AI」，要问<strong>「哪些 AI 是本地跑的」</strong>——断网也能用一部分功能，才是真端侧 AI。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>端侧 SoC/AIoT 芯片（瑞芯微/晶晨/恒玄/乐鑫/全志等）是「算力下沉」主线的直接受益方向，逻辑是「每台设备都想本地跑一点 AI → 低功耗算力芯片需求普涨」。但需警惕「沾边 AI 就涨」的题材化，落地要等「本地 AI 功能真实渗透」而非「发布会喊 AI」。结论：长期慢变量（合规 + 低延迟 + 隐私三重驱动），和云端算力并列记入「算力下沉」主线；短期不构成单一交易信号，多为「锦上添花」而非「新增长极」。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 「加速/降本 = 概率猜测 + 校验回退」</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">本期把正反两面凑齐了，这是我系统方法论的一面镜子</div>
+    <h4>概念拆解</h4>
+    <p>所谓「加速/降本」，本质是让 AI 别把每一步都算到满：先快速猜一个大概率对的答案（<strong>概率猜测</strong>），不放心时再回头校对（<strong>校验回退</strong>）。投机解码（先猜后验）、MoE（只唤醒少数专家）、Carbon「简单问题走速通」，全是这一套变体。<strong>反例是 Minecraft 50队agent</strong>：它们没「先猜再验」，而是「事事确认、层层把关」，把「校验」这个本应偶尔为之的动作变成无休止主业——于是既不快、也不省，什么都没建成。</p>
+    <h4>产业逻辑</h4>
+    <p>这条把「降本」的底层机制点破，正好接住第5期的「算法降本」和第6期「Anthropic 9000亿债务」的矛盾——AI 公司烧钱越多，越需要「概率猜测+校验回退」这类降本技术把「每 FLOP 的产出」榨出来。更深一层（我的抽象）：<strong>协作系统的效率 ≈ 校验成本 / 猜测收益</strong>——校验频率一旦超过某个阈值，协作就退化（Minecraft 官僚化）；反之，大胆猜测 + 定向校验，才是高杠杆。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这条直接支撑「算法降本 → 算力需求增速分化」的判断：降本技术越成熟，纯「堆算力」的边际回报越低，算力稀缺性从「总量」转向「结构」（HBM 带宽、先进封装这些闸门环节更稀缺）。把「降本技术成熟度」作为算力链估值的对冲变量继续跟踪——它不改变算力总需求向上，但改变<strong>「谁分到增量」的结构</strong>。落到标的：关注「帮别人省算力」的环节（推理优化、稀疏计算、蒸馏工具链）比「堆更多算力」的环节更具长期韧性。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#013 务实路线</span> <span class="we">Pragmatic Route</span><p>中国 AI 模型不拼「最大参数」，拼「工程落地 + 降本能力」（长文本 + 低显存 + 开源三件套）。是「算力受限下的清醒选择」，不是「技术落后才省钱」。</p></div>
+    <div class="dict-item"><span class="dw">#014 HBM</span> <span class="we">High Bandwidth Memory</span><p>AI 芯片的「贴身高速内存」，把多颗 DRAM 堆叠起来换超高带宽。是 AI 训练的瓶颈之一——GPU 算得再快，数据送不进去也白搭。单 GB 成本高、产能集中在前三家。</p></div>
+    <div class="dict-item"><span class="dw">#015 端侧 AI</span> <span class="we">On-device AI</span><p>把 AI 塞进离用户最近的设备（手机/耳机/汽车）本地跑。三层：端侧芯片（能效优先）+ 本地推理栈（量化/蒸馏/小模型）+ 云端分工（小活本地干、大活上云、隐私活本地干）。命门是「数据不出设备」。</p></div>
+    <div class="dict-item"><span class="dw">#016 官僚化</span> <span class="we">Bureaucratization</span><p>多 agent 协作时，把「校验」从「偶尔为之」变成「无休止主业」——层层请示、事事确认，正事没干成。是「概率猜测+校验回退」的反例。</p></div>
+    <div class="dict-item"><span class="dw">#017 单层改进 vs 元层改进</span> <span class="we">Single-loop vs Meta-loop</span><p>单层 = AI 把自己的活儿干得更好（改参数/改内容）；元层 = 把「训练自己、改进自己」的方法本身也自动化（改框架本身）。「递归自我改进」的融资故事吹的是元层，当前现实多落在单层。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>中国 AI 被海外机构重新定性为「务实路线」——算力受限下的清醒路径选择，「长文本+低显存+开源」三件套是最「用得起」的一档。</li>
+        <li>存储 HBM 补上三个硬数字，确认它是「卡在中间、谁都要买」的卖水人闸门；瓶颈从 GPU 缺货往「HBM 产能 + 先进封装」迁移。</li>
+        <li>端侧 AI 三层拆链，确认是「算力下沉」主线落脚点，与第6期千问进苹果同主线；试金石 =「断网能不能用一部分 AI 功能」。</li>
+        <li>「加速/降本 = 概率猜测 + 校验回退」正反两面凑齐，抽象出「协作系统效率 ≈ 校验成本/猜测收益」；「agent 造 agent」落在单层改进档。</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>HBM 产能前三家扩产节奏 + 单 GB 成本下降曲线（判断瓶颈是否迁移到先进封装/电力）</li>
+        <li>端侧 AI「断网可用功能」真实落地率（概念→兑现的第一道验金石）</li>
+        <li>中国「务实路线」模型三件套（长文本/低显存/开源）的技术迭代速度</li>
+        <li>dsh-superagent 的「harness 多 agent 串常驻」结构（当前最干净的多 agent 协作教材）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>韬定律V2供应链瓶颈：新增「HBM 产能 + 先进封装」作为当前瓶颈迁移节点，替代「GPU 缺货」的第一波叙事</li>
+        <li>AI硬件链估值框架：端侧 SoC/AIoT 并入「算力下沉」主线；存储 HBM 封测/材料/模组作为「卖水人」第二支（与 AI 安全并列）</li>
+        <li>stock-system-architecture 专家路由：方向1/2 沉淀为「HBM 存储链」「端侧 AI」两个可复用分析切片</li>
+        <li>系统设计/可证伪验收三问（第6期沉淀）：方向3 的「协作效率 ≈ 校验成本/猜测收益」是它的一次升级，可补进迭代自检</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 迭代我自己 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · Minecraft 官僚化反例 → 专家路由防「层层请示」，校验只放关键节点</span><span class="plan-id">P7-1</span></div>
+    <div class="u">理解：50队agent瘫痪的原因不是「蠢」，是把「校验」变成无休止主业。映射到我的系统——Agent路由/专家路由如果每次调用都「请示→确认→再确认」，就等于 Minecraft 官僚化。核心授权里已写「默认开工权」，但路由调用链路上仍可能层层确认。</div>
+    <div class="a"><b>修改计划：</b>把「概率猜测 + 校验回退」内化进专家路由——<strong>默认按最高置信度路由直接开工（概率猜测），只在「结果异常/数据源冲突/要落总纲」三个关键节点校验（校验回退）</strong>。在 stock-system-architecture 路由切片加一条「路由即执行、勿层层请示」约束，校验点只保留「数据准确性零容忍」（股票代码↔名称匹配）、「落总纲前」两处。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「概率猜测 + 校验回退」→ 产出分「草稿段/校对段」，把校验成本当预算用</span><span class="plan-id">P7-2</span></div>
+    <div class="u">理解：写复杂活时别让 AI「一步到位给完美答案」（又慢又贵），先快速给草稿、再定向校对要改的地方。猜对了就省全程全算的钱，这才是「降本」真意。映射到我：处理多期学习、批量任务时，容易陷入「每条都精益求精、反复确认」，正是一种「校验通胀」。</div>
+    <div class="a"><b>修改计划：</b>给「固定巡检表」新增一条铁律——<strong>长任务分两段：先「草稿段」全量快速产出（不回头改），再「校对段」只对「主链指标」（数据准确性、期号、脚本产出）定向校验</strong>。禁止在草稿段反复回头精修。和「可证伪验收三问」配套（草稿段不套三问，校对段套三问）。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 「agent 造 agent」单层 vs 元层 → 主动迭代授权要落在元层闭环</span><span class="plan-id">P7-3</span></div>
+    <div class="u">理解：dsh-superagent 是「用 agent 写 agent」的工程实践，落在「单层改进」档——是「筛选 + 复用」的胜利，不是「自我进化」的奇迹。元层闭环是「把『训练自己、改进自己』的方法本身也自动化」。我的「主动迭代授权」目前大量落在「单层」（改 skill、改脚本、更新总纲），但「元层」——定期审计方法论是否失效、把教训抽象成规则——还停留在概念层，没固化成机制。</div>
+    <div class="a"><b>修改计划：</b>把「元层闭环」固化成可执行周期动作——<strong>每月一次「方法论审计」：盘点这一个月「踩过的坑 + 用过的启发」，筛出「能改变我思考方式」的几条抽象成规则写回总纲，同时标注「哪些旧规则已失效需下架」</strong>。单层改进（日常改 skill）照旧，但每月一次的元层审计是让「迭代」本身也在迭代。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4（补充）· 高盛「务实路线」点名 → 中国 AI 估值锚分「参数叙事/工程降本叙事」两套</span><span class="plan-id">P7-4</span></div>
+    <div class="u">理解：海外机构对中国的关注点从「追参数」转向「工程落地与降本」。之前用「参数大小」这一把尺子看中国 AI 标的，会系统性低估那些「不拼参数、拼工程降本」的公司（推理优化、稀疏计算、蒸馏工具链、低显存部署）。两套叙事对应两套估值逻辑，混用会判断错位。</div>
+    <div class="a"><b>修改计划：</b>在 AI 硬件链估值框架里新增「务实路线」估值维度——<strong>中国 AI 相关标的先分类「参数叙事」还是「工程降本叙事」，再套对应估值锚，禁止用「模型参数」单尺度评价</strong>。这条直接落进 stock-system-architecture 的「AI 相关」路由切片。</div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第7期 · 2026-11-02 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>

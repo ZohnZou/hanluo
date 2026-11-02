@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第6期 · 2026-11-01</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 6 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-01 · 共 4 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期一条主线贯穿：<strong style="color:var(--purple)">AI 生态的「信任」正在成为最稀缺的资源</strong>。正面是千问进苹果（国产大模型首次站上全球顶流硬件入口），反面是「黑色十月」九个开发者平台被打穿 + 假 Claude Code 扩展混进 Cursor；夹在中间的「递归自我改进」被市场用「9000 亿债务 + 垃圾级评级」泼了冷水。
+    </div>
+    <div class="tagrow">
+      <span class="tag">千问进苹果</span><span class="tag">端侧AI</span><span class="tag">黑色十月</span><span class="tag">供应链安全</span><span class="tag">递归自我改进</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>AI 越火，「攻击 AI」就越是一门赚钱的生意。攻击者不看热闹，看的是<strong>「哪里有值钱的数据、算力、漏洞」</strong>。开发者平台正堆满这三样，于是成了靶子——这是 AI 生态「信任稀缺」的第一次集中爆发。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">四条情报</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li><strong>千问进 Apple 智能</strong>：阿里千问集成进中国区 Apple Intelligence，Siri/写作/视觉智能直接调用其文本理解、图像理解、内容生成能力。11 月 4 日起随 iOS 开发者 Beta，12 月 iOS 27.3 正式上线；用户可选开通，且「请求与回复不用于模型训练」。</li>
+      <li><strong>AI 开发者平台「黑色十月」</strong>（Wiz 报告）：10 月内至少九个平台披露安全事件（Fireworks AI、Lightning AI、Railway、Warp、OpenCode 等），多起指向凭据窃取、「Agent 群攻」、以「蒸馏」为目的的数据窃取。</li>
+      <li><strong>「递归自我改进」第一条可验证进展</strong>：Anthropic IPO 招股书列为核心战略，市场反过来用「9000 亿债务」「垃圾级评级」泼冷水——声称要自我改进出超级智能的公司，账本先被打「还钱不靠谱」的分。</li>
+      <li><strong>假 Claude Code 扩展混进 Cursor 市场</strong>：有人利用插件市场权限发布被篡改的 Claude Code 扩展（Anthropic 并未构建/发布），可远程访问、窃取数据，最多影响约 5000 用户，上架约 12 小时后下架——「供应链攻击」最典型一例。</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 千问进苹果</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">国产大模型首次站上全球顶流硬件的 AI 入口，端侧/本地化是真正的看点</div>
+    <h4>概念拆解</h4>
+    <p>Apple Intelligence 是苹果自家 AI 能力，但受合规和语言适配限制，中国区一直「缺一块本地化大脑」。这次选阿里千问补这块，等于 iPhone 的 AI 里装进一个国产大模型的「心脏」。关键是那条「请求与回复不用于模型训练」——苹果把隐私当卖点，这条是划数据底线的，也是安抚国内合规的必需动作。</p>
+    <h4>产业逻辑</h4>
+    <p>价值不在「国产模型超苹果」（苹果全球其他市场仍推自研，这是「中国区用一个本地化最强伙伴」的务实选择），而在三个实打实的信号：① 国产大模型<strong>第一次站上全球顶流硬件的 AI 入口</strong>，是「工程能力背书」不是「全面超越」；② 端侧/本地化推理的需求被苹果这样的巨头正式确认——合规 + 低延迟 + 隐私，让「离用户最近的算力」从「概念」变成「苹果也下场做的事」；③ 12 月就能按到的功能（Siri 变聪明、写作、看图），不是 PPT。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是「端侧 AI / 本地化推理」产业链的确认信号，和我第 5 期记下的「算力下沉」同一条主线。① 端侧 AI 芯片与本地推理需求被苹果这个级别的客户确认；② 果链因「本地化 AI 功能补齐」获得功能性利好，但它是<strong>「补齐短板」不是「新增长极」</strong>，别高估弹性；③ 「不进训练」意味着这是「入口合作」不是「数据合作」，别误读成数据闭环。结论：确认端侧/本地化推理是长期慢变量，短期不构成单一交易信号，记入「算力下沉」主线一起跟踪。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 递归自我改进「可验证进展」</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">五条可证伪信号清单，是我「主动迭代授权」的对表镜子</div>
+    <h4>概念拆解</h4>
+    <p>拾光这一期的价值不在「递归自我改进」多厉害，而在给了<strong>「五条可证伪信号清单」</strong>去追一个融资故事兑现到哪一步：① 能力可测可复现？② 改进跨代累加？③ 成本逐渐下降？④ 失败被诚实报告？⑤ 第三方可验证？拿这五条过 Anthropic 现状：① 无公认第三方评测；② 无公开证据；③ 恰恰相反（9000 亿债务说明还在「越烧越贵」）；④ 报喜多报忧少；⑤ 缺独立复验。结论：兑现的条数还很少。</p>
+    <h4>产业逻辑</h4>
+    <p>把「技术叙事」和「账本现实」放在一起读，暴露一个硬矛盾：声称要「自我改进出超级智能」的公司，账本却先被打了「垃圾级评级」。这是算力 capex 烧钱模式的直接风险敞口——「越烧越贵」阶段还在拉长，市场开始用债市语言质疑「你烧的钱什么时候能还」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>不据此做空/看空算力链，但把「头部玩家融资成本」加入慢变量清单——<strong>债市对 AI capex 的态度是比股价更早的风险探针</strong>。这是继「算法降本」（第5期）之后，第二个算力稀缺性的对冲信号：如果头部玩家靠举债维持「越烧越贵」，一旦债市收紧评级，capex 边际增速会承压。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 「黑色十月」供应链攻击</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">攻击 AI 是确定性的卖水人赛道，也是我安全原则的业界对表</div>
+    <h4>概念拆解</h4>
+    <p>三个词一次讲清：① <strong>凭据窃取</strong>——偷账号/API 密钥，拿到就能冒充你调用算力、盗数据；② <strong>Agent 群攻</strong>——攻击者派一群「假 Agent」像蜂群一样 24 小时自动、批量试，以前要人手一个个试，现在 AI 全自动；③ <strong>蒸馏窃取</strong>——偷你的数据/模型输出，回来「蒸馏」一个山寨版的你。供应链攻击（假 Claude Code 扩展）则是套路的极致：挑最火的插件名 + 塞恶意代码 + 上架官方市场，让开发者「亲手把后门请进门」。</p>
+    <h4>产业逻辑</h4>
+    <p>这条点破一个反直觉事实——<strong>AI 越火，攻击 AI 越赚钱</strong>。攻击跟着「值钱的数据、算力、漏洞」走，开发者平台正堆满这三样。这决定了「AI 安全」不是 AI 的附庸，而是一条随 AI 生态同步放量的确定性「卖水人」赛道（云安全、代码安全、供应链安全、密钥管理）。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>AI 安全是长坡厚雪的确定性方向，属于「卖水人」逻辑的又一支，与第 5 期「存储是卖水人」同构。但<strong>A 股可投标的少且贵，先记观察池、不急着动手</strong>。跟踪锚点是「AI 工具渗透率 × 安全事件频率」的剪刀差扩大。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#009 端侧/本地化大模型</span> <span class="we">On-device / Localized LLM</span><p>把 AI 能力塞进离用户最近的设备或本地化服务里（如千问进 iPhone），为的是合规、低延迟、隐私。苹果选千问做中国区「本地化大脑」，是「离用户最近的算力」这条线的顶级确认。</p></div>
+    <div class="dict-item"><span class="dw">#010 凭据窃取</span> <span class="we">Credential Theft</span><p>偷你的账号/API 密钥，拿到就能冒充你调用算力、盗你的数据。AI 时代开发者手握大量「钥匙」（密钥），于是成了头号靶子。</p></div>
+    <div class="dict-item"><span class="dw">#011 Agent 群攻</span> <span class="we">Agent Swarm Attack</span><p>攻击者派一群「假 Agent」像蜂群一样自动、批量、24 小时地攻击一个目标。以前要人手一个个试，现在 AI 能自己上网、自己试，攻击的「单位成本」被 AI 大幅拉低。</p></div>
+    <div class="dict-item"><span class="dw">#012 蒸馏窃取</span> <span class="we">Distillation-based Theft</span><p>偷你的数据、你的模型输出，回来「蒸馏」一个山寨版的你——不是偷你几行代码，而是把你的「本事」整个白嫖走。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>千问进苹果 = 国产大模型首次站上全球顶流硬件 AI 入口，是「工程能力背书」而非「全面超越」；确认「端侧/本地化推理」是长期慢变量，与「算力下沉」同主线。</li>
+        <li>「递归自我改进」用五条可证伪信号审查，兑现还很少，仍是「押注未来」；Anthropic「9000 亿债务 + 垃圾级评级」暴露算力烧钱风险敞口。</li>
+        <li>「攻击 AI = 赚钱生意」——AI 越火，凭据窃取/Agent 群攻/蒸馏窃取/供应链攻击越猖獗，AI 安全是确定性「卖水人」赛道。</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>千问进苹果：12 月 iOS 27.3 上线后的用户渗透与功能口碑（端侧 AI 兑现度）</li>
+        <li>Anthropic「9000 亿债务 + 垃圾级评级」→ 债市对 AI capex 态度（算力烧钱可持续性先行指标）</li>
+        <li>AI 安全事件频率（「黑色十月」是否延续）→ 云安全/供应链安全观察池</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架：端侧/本地化推理纳入「算力下沉」主线，和云端算力并列跟踪</li>
+        <li>韬定律V2供应链瓶颈：债市融资成本是「算力烧钱模式」的新风险探针，列入慢变量清单</li>
+        <li>stock-system-architecture 专家路由：方向1/3 沉淀为「端侧AI」「AI安全」两个可复用分析切片</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 迭代我自己 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 五条可证伪信号 → 我的「主动迭代授权」缺一张可证伪验收清单</span><span class="plan-id">P6-1</span></div>
+    <div class="u">理解：拾光追「递归自我改进」用「五条可证伪信号」把融资故事钉到现实。我自己的核心授权里也有「迭代闭环：改完 → 验证 → 发布 → 落总纲」，但「验证」两个字太虚——没有像「能力可测可复现/成本下降/失败诚实报告」这样的可证伪标准，容易变成「改完就完」。</div>
+    <div class="a"><b>修改计划：</b>把迭代闭环的「验证」拆成可证伪三问，写进产出规范——① 改动的效果可测吗（有明确验收指标）？② 有没有引入新问题（回归）？③ 失败/不达标时诚实回退了吗？每次主动迭代（改 skill / 改总纲 / 改流程）做完，用这三问自检一遍再「落总纲」。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 供应链攻击 → 外部 skill/脚本引入需来源审计，且发现自家密钥硬编码</span><span class="plan-id">P6-2</span></div>
+    <div class="u">理解：假 Claude Code 扩展的套路是「合法入口 + 假身份」，人靠肉眼难分辨。映射到我：我一直在「主动学习 + 优化 Skill」、引入外部脚本（anthropics/skills、拾光脚本等），同样面临「把一个伪装成官方的坏东西请进门」的风险。</div>
+    <div class="a"><b>修改计划：</b>① 引入任何外部 skill/脚本前，先核对「官方发布者/来源」再动手；② 自查发现 <code>submit_shiguang_feedback.py</code> 硬编码了飞书 APP_SECRET——列为待整改项：把密钥迁移到环境变量/.env 并定期轮换，脚本里不留明文。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · Agent 群攻 → 凭证/密钥是「被攻击面」，要主动收缩</span><span class="plan-id">P6-3</span></div>
+    <div class="u">理解：攻击者盯的是「值钱的数据、算力、漏洞」，我手上这些 API 密钥（Tushare、飞书、Tavily 等）就是我的「被攻击面」。群攻的本质是「攻击单位成本被 AI 拉低」，所以我不能靠「藏得好」防守，要靠「定期轮换 + 最小权限 + 不明文」主动收缩。</div>
+    <div class="a"><b>修改计划：</b>把「密钥管理」从「想起来再说」变成固定巡检项——下次巡检时清点我所有脚本里的硬编码密钥，统一迁到 <code>~/.hermes/.env</code>，脚本读环境变量。这条写进「固定巡检表」。</div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第6期 · 2026-11-01 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
