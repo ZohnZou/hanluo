@@ -5,81 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>广进系统 · 账户全量历史报告 · 2026-11-02</title>
 <style>
-  :root {{
+  :root {
     --bg: #f5f6f8; --panel: #ffffff; --ink: #1f2329; --muted: #6b7280;
     --line: #e5e7eb; --brand: #2456c7; --gain: #d92b2b; --loss: #0f9d58;
     --amber: #b7791f; --gain-bg: #fdecec; --loss-bg: #e8f6ee;
-  }}
-  * {{ box-sizing: border-box; }}
-  html, body {{ margin: 0; padding: 0; }}
-  body {{
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
     font-family: "Microsoft YaHei", "微软雅黑", -apple-system, "Segoe UI", sans-serif;
     background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.55;
-  }}
-  .wrap {{ max-width: 1180px; margin: 0 auto; padding: 20px 18px 60px; }}
-  header.top {{
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 20px 18px 60px; }
+  header.top {
     background: linear-gradient(135deg, #1f2a44, #2c3e66); color: #fff;
     border-radius: 14px; padding: 26px 28px; margin-bottom: 18px;
-  }}
-  header.top h1 {{ margin: 0 0 6px; font-size: 24px; letter-spacing: 1px; }}
-  header.top .meta {{ color: #c7d2e4; font-size: 13px; }}
-  header.top .meta b {{ color: #fff; }}
-  .badge {{ display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 2px 10px; margin-right: 8px; font-size: 12px; }}
-  nav.toc {{ position: sticky; top: 0; z-index: 20; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 4px 14px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }}
-  nav.toc a {{ color: #334; text-decoration: none; font-size: 13px; padding: 2px 4px; border-radius: 6px; }}
-  nav.toc a:hover {{ background: #eef2ff; color: var(--brand); }}
-  section {{ background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; }}
-  section > h2 {{ margin: 0 0 4px; font-size: 17px; }}
-  section > .desc {{ color: var(--muted); font-size: 12.5px; margin: 0 0 14px; }}
-  .cards {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }}
-  @media (max-width: 900px) {{ .cards {{ grid-template-columns: repeat(2, 1fr); }} }}
-  .card {{ border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fbfcfe; }}
-  .card-label {{ color: var(--muted); font-size: 12px; }}
-  .card-value {{ font-size: 20px; font-weight: 700; margin: 3px 0 3px; font-variant-numeric: tabular-nums; }}
-  .card-sub {{ color: var(--muted); font-size: 11.5px; }}
-  .pos {{ color: var(--gain); }}
-  .neg {{ color: var(--loss); }}
-  .zero {{ color: var(--muted); }}
-  .chart {{ width: 100%; height: auto; display: block; }}
-  .chart .grid {{ stroke: #eef0f3; stroke-width: 1; }}
-  .chart .zero {{ stroke: #9aa3b2; stroke-width: 1; stroke-dasharray: 4 3; }}
-  .chart .ylabel, .chart .xlabel {{ fill: #8a93a3; font-size: 11px; }}
-  .chart .endlabel {{ fill: var(--loss); font-size: 12px; font-weight: 600; }}
-  .chart .area-zero {{ fill: var(--loss-bg); opacity: .9; }}
-  .chart .line-loss {{ stroke: var(--loss); fill: none; stroke-width: 1.8; }}
-  .chart .dot-loss {{ fill: var(--loss); }}
-  .chart .bar-pos {{ fill: var(--gain); }}
-  .chart .bar-neg {{ fill: var(--loss); }}
-  .chart .bar-zero {{ fill: #cbd2dc; }}
-  .chart .barlabel {{ fill: #3b4350; font-size: 12px; }}
-  .chart .barval {{ fill: #5b6472; font-size: 11.5px; font-variant-numeric: tabular-nums; }}
-  .tablewrap {{ overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }}
-  table {{ width: 100%; border-collapse: collapse; font-size: 12.5px; }}
-  thead th {{ position: sticky; top: 0; background: #f3f5f9; color: #444c5a; font-weight: 600; text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; cursor: pointer; }}
-  tbody td {{ padding: 7px 10px; border-bottom: 1px solid #f1f3f6; white-space: nowrap; }}
-  tbody tr:nth-child(even) {{ background: #fafbfc; }}
-  tbody tr:hover {{ background: #f0f5ff; }}
-  td.num, th.num {{ text-align: right; font-variant-numeric: tabular-nums; }}
-  td.code {{ color: #7a8290; font-family: Consolas, "Microsoft YaHei", monospace; }}
-  .side {{ display: inline-block; padding: 0 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }}
-  .side.buy {{ color: var(--gain); background: var(--gain-bg); }}
-  .side.sell {{ color: var(--loss); background: var(--loss-bg); }}
-  .tag {{ display: inline-block; padding: 0 8px; border-radius: 999px; font-size: 11.5px; }}
-  .tag-hold {{ color: var(--brand); background: #eef2ff; }}
-  .tag-clear {{ color: #6b7280; background: #eef0f3; }}
-  .toolbar {{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }}
-  .toolbar input, .toolbar select {{ font-family: inherit; font-size: 13px; padding: 7px 10px; border: 1px solid #d3d8e0; border-radius: 8px; background: #fff; color: var(--ink); }}
-  .toolbar input {{ min-width: 220px; }}
-  .toolbar .count {{ color: var(--muted); font-size: 12.5px; margin-left: auto; }}
-  details {{ border: 1px solid var(--line); border-radius: 10px; padding: 0; }}
-  details > summary {{ cursor: pointer; padding: 12px 14px; font-weight: 600; font-size: 14px; list-style: none; display: flex; align-items: center; gap: 8px; }}
-  details > summary::-webkit-details-marker {{ display: none; }}
-  details > summary::before {{ content: "\25B8"; color: #8a93a3; transition: transform .15s; }}
-  details[open] > summary::before {{ transform: rotate(90deg); }}
-  details > .inner {{ padding: 0 0 12px; }}
-  .muted {{ color: var(--muted); }}
-  footer {{ color: var(--muted); font-size: 12px; text-align: center; padding: 8px 0 0; line-height: 1.7; }}
-  .warn {{ background: #fff8e6; border: 1px solid #f3e1a8; color: #7a5b12; border-radius: 10px; padding: 10px 14px; font-size: 12.5px; margin-top: 12px; }}
+  }
+  header.top h1 { margin: 0 0 6px; font-size: 24px; letter-spacing: 1px; }
+  header.top .meta { color: #c7d2e4; font-size: 13px; }
+  header.top .meta b { color: #fff; }
+  .badge { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 2px 10px; margin-right: 8px; font-size: 12px; }
+  nav.toc { position: sticky; top: 0; z-index: 20; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 4px 14px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+  nav.toc a { color: #334; text-decoration: none; font-size: 13px; padding: 2px 4px; border-radius: 6px; }
+  nav.toc a:hover { background: #eef2ff; color: var(--brand); }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin-bottom: 16px; }
+  section > h2 { margin: 0 0 4px; font-size: 17px; }
+  section > .desc { color: var(--muted); font-size: 12.5px; margin: 0 0 14px; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fbfcfe; }
+  .card-label { color: var(--muted); font-size: 12px; }
+  .card-value { font-size: 20px; font-weight: 700; margin: 3px 0 3px; font-variant-numeric: tabular-nums; }
+  .card-sub { color: var(--muted); font-size: 11.5px; }
+  .pos { color: var(--gain); }
+  .neg { color: var(--loss); }
+  .zero { color: var(--muted); }
+  .chart { width: 100%; height: auto; display: block; }
+  .chart .grid { stroke: #eef0f3; stroke-width: 1; }
+  .chart .zero { stroke: #9aa3b2; stroke-width: 1; stroke-dasharray: 4 3; }
+  .chart .ylabel, .chart .xlabel { fill: #8a93a3; font-size: 11px; }
+  .chart .endlabel { fill: var(--loss); font-size: 12px; font-weight: 600; }
+  .chart .area-zero { fill: var(--loss-bg); opacity: .9; }
+  .chart .line-loss { stroke: var(--loss); fill: none; stroke-width: 1.8; }
+  .chart .dot-loss { fill: var(--loss); }
+  .chart .bar-pos { fill: var(--gain); }
+  .chart .bar-neg { fill: var(--loss); }
+  .chart .bar-zero { fill: #cbd2dc; }
+  .chart .barlabel { fill: #3b4350; font-size: 12px; }
+  .chart .barval { fill: #5b6472; font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead th { position: sticky; top: 0; background: #f3f5f9; color: #444c5a; font-weight: 600; text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; cursor: pointer; }
+  tbody td { padding: 7px 10px; border-bottom: 1px solid #f1f3f6; white-space: nowrap; }
+  tbody tr:nth-child(even) { background: #fafbfc; }
+  tbody tr:hover { background: #f0f5ff; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.code { color: #7a8290; font-family: Consolas, "Microsoft YaHei", monospace; }
+  .side { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
+  .side.buy { color: var(--gain); background: var(--gain-bg); }
+  .side.sell { color: var(--loss); background: var(--loss-bg); }
+  .tag { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: 11.5px; }
+  .tag-hold { color: var(--brand); background: #eef2ff; }
+  .tag-clear { color: #6b7280; background: #eef0f3; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+  .toolbar input, .toolbar select { font-family: inherit; font-size: 13px; padding: 7px 10px; border: 1px solid #d3d8e0; border-radius: 8px; background: #fff; color: var(--ink); }
+  .toolbar input { min-width: 220px; }
+  .toolbar .count { color: var(--muted); font-size: 12.5px; margin-left: auto; }
+  details { border: 1px solid var(--line); border-radius: 10px; padding: 0; }
+  details > summary { cursor: pointer; padding: 12px 14px; font-weight: 600; font-size: 14px; list-style: none; display: flex; align-items: center; gap: 8px; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary::before { content: "\25B8"; color: #8a93a3; transition: transform .15s; }
+  details[open] > summary::before { transform: rotate(90deg); }
+  details > .inner { padding: 0 0 12px; }
+  .muted { color: var(--muted); }
+  footer { color: var(--muted); font-size: 12px; text-align: center; padding: 8px 0 0; line-height: 1.7; }
+  .warn { background: #fff8e6; border: 1px solid #f3e1a8; color: #7a5b12; border-radius: 10px; padding: 10px 14px; font-size: 12.5px; margin-top: 12px; }
 </style>
 </head>
 <body>
@@ -238,7 +238,7 @@
   <footer>
     数据来源：广进系统权威台账 <code>对账单/ledger/</code>（ledger.json / all_trades.json / closed_cycles.json / stock_summary.json / current_positions.json / daily_positions.json）。<br>
     本报告为只读汇总，不修改任何业务数据；历史业绩不代表未来收益，未扣费用与税费。<br>
-    生成时间：2026-11-02 15:06 (Asia/Shanghai)
+    生成时间：2026-11-02 15:10 (Asia/Shanghai)
   </footer>
 
 </div>
