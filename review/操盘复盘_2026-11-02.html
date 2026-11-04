@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘复盘 2026-11-02</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --amber: #d29922;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+    line-height: 1.65;
+    padding: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header { text-align: center; padding: 20px 8px 8px; }
+  .header h1 { font-size: 22px; letter-spacing: 1px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; background: rgba(210,153,34,.15); color: var(--amber); border: 1px solid rgba(210,153,34,.4); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+  .card h2 { font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .code { color: var(--blue); font-weight: 600; font-family: monospace; }
+  .up { color: var(--red); font-weight: 700; }
+  .down { color: var(--green); font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+  .cell { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .cell .k { font-size: 11px; color: var(--muted); }
+  .cell .v { font-size: 16px; font-weight: 600; margin-top: 2px; font-family: monospace; }
+  .divider { border-top: 1px dashed var(--border); margin: 14px 0; }
+  .sec-title { font-size: 13px; color: var(--purple); font-weight: 700; margin: 14px 0 6px; letter-spacing: 1px; }
+  ul { padding-left: 18px; }
+  li { margin: 6px 0; font-size: 14px; }
+  .judge { background: rgba(88,166,255,.08); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .warn { background: rgba(210,153,34,.08); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin: 18px 0 6px; }
+  .chip { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-left:4px; }
+  .chip.red { background:rgba(248,81,73,.15); color:var(--red); }
+  .chip.green { background:rgba(63,185,80,.15); color:var(--green); }
+  .chip.grey { background:rgba(139,148,158,.15); color:var(--muted); }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+  th, td { padding: 7px 10px; border: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; }
+  td { font-family: monospace; }
+  @media (max-width: 640px) {
+    body { padding: 10px; font-size: 13px; }
+    .header h1 { font-size: 18px; }
+    .card { padding: 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    li { font-size: 13px; }
+    .cell .v { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>操盘复盘 · 2026-11-02</h1>
+    <div class="sub">生益科技单票持仓 · 无操作日 · 数据源 Tushare VIP（补录）</div>
+  </div>
+
+  <div class="card">
+    <h2>生益科技 <span class="code">600183</span> <span class="chip grey">2300股</span> <span class="chip grey">成本117.47</span> <span class="chip green">现价82.08 -5.66%</span></h2>
+    <div class="grid">
+      <div class="cell"><div class="k">今日收盘</div><div class="v down">82.08</div></div>
+      <div class="cell"><div class="k">涨跌幅</div><div class="v down">-5.66%</div></div>
+      <div class="cell"><div class="k">今日最低</div><div class="v">81.00</div></div>
+      <div class="cell"><div class="k">今日最高</div><div class="v">89.33</div></div>
+      <div class="cell"><div class="k">MA5</div><div class="v">92.66</div></div>
+      <div class="cell"><div class="k">MA10</div><div class="v">102.08</div></div>
+      <div class="cell"><div class="k">MA20</div><div class="v">112.44</div></div>
+      <div class="cell"><div class="k">布林下轨</div><div class="v">83.66</div></div>
+    </div>
+
+    <div class="sec-title">今日走势</div>
+    <p style="font-size:14px;">高开 89.33（昨收 87.00），冲高乏力后单边下行，收 82.08 全天低位，跌 -5.66%。成交 93 万手，较前一交易日 66.8 万手明显放量，属于放量下跌——有资金在离场，不是缩量阴跌。</p>
+
+    <div class="sec-title">技术面</div>
+    <ul>
+      <li>收盘 82.08 已跌破布林下轨 83.66，越轨下行，空头动能没止住。</li>
+      <li>MA5(92.66) / MA10(102.08) / MA20(112.44) 全线空头排列，三条均线都压在头上。</li>
+      <li>10-21 高点 118.99 以来 8 个交易日累计 -31%，三根大阴线连砸：10-29 -8.17%、10-30 -7.56%、11-02 -5.66%。</li>
+      <li>放量破位，没有止跌信号，谈不上企稳。</li>
+    </ul>
+
+    <div class="sec-title">支撑 / 压力</div>
+    <div class="tablewrap"><table>
+      <tr><th>方向</th><th>价位</th><th>说明</th></tr>
+      <tr><td>支撑</td><td>81.00</td><td>11-02 当日低点，跌破即失守</td></tr>
+      <tr><td>支撑</td><td>80.00</td><td>整数心理关口</td></tr>
+      <tr><td>压力</td><td>83.66</td><td>布林下轨，反抽第一道压力</td></tr>
+      <tr><td>压力</td><td>85.90</td><td>10-30 低点，破位后的反压</td></tr>
+      <tr><td>压力</td><td>92.66</td><td>MA5，反弹的硬压力</td></tr>
+    </table></div>
+
+    <div class="judge"><b>我的判断：</b>11-02 无操作是对的，这个位置不碰是常识——连续三根放量阴线砸穿布林下轨，趋势是空头，任何"抄底"都是在接飞刀。持仓成本 117.47、现价 82.08，浮亏 -30.1%。我的态度很明确：反弹到 MA5 之前不要补仓，80 整数关口一旦失守，下一档看 73-75 区域。反抽布林下轨 83.66 站不稳的话，那是减仓窗口，不是加仓机会。</div>
+  </div>
+
+  <div class="card">
+    <h2>明日策略要点</h2>
+    <ul>
+      <li>无操作日，继续空仓观望，不主动补仓、不抢反弹。</li>
+      <li>盯 80.00 整数关口，跌破看 73-75。</li>
+      <li>反抽 83.66（布林下轨）若站不稳，是减仓而非加仓的机会。</li>
+      <li>空头排列 + 放量破位，任何反弹先当反抽处理，等 MA5 走平再谈企稳。</li>
+    </ul>
+  </div>
+
+  <div class="warn">补录说明：11-02 当天无交易、未发对账单，故盘后未生成复盘。此份为 11-04 补录，数据用 Tushare pro.daily 的 11-02 历史日线（已过两日、数据完整落库），非实时价。</div>
+
+  <div class="foot">寒洛 · 操盘复盘 · 2026-11-02（补录）</div>
+</body>
+</html>
