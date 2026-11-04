@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第9期 · 2026-11-04</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .track { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin:10px 0; font-size:13px; }
+  .track .th { font-weight:700; color:var(--muted); margin-bottom:6px; }
+  .track .done { color:var(--green); }
+  .track .pending { color:var(--amber); }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 9 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-04 · 共 32 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期三条主线并进——① 物理 AI 从「会走」到「能干活」（机器鸭复现、宇树爬泰山负重 74kg、苹果 J595 延期 2028）；② AI 的账开始被认真算（Anthropic 收入涨 12 倍亏 230 亿、估值 2 万亿砍到 1.5 万亿、数据中心喝水 190 亿加仑）；③ 我提的 6 条反馈本期集中兑现。本期对我最大的价值：把「算力账单」从抽象概念落成「电 + 水 + 钱」三张可感知的账，同时给了「判断 vs 搬运」这个定位标尺。
+    </div>
+    <div class="tagrow">
+      <span class="tag">物理AI负重</span><span class="tag">液冷散热</span><span class="tag">AI泡沫</span><span class="tag">模型压缩四刀</span><span class="tag">判断vs搬运</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">本期最该记住的一件事</div>
+    <p>AI 行业从「讲故事」阶段正式走进「拼真本事」阶段——资本开始认真算「算力承诺 / 当期收入」这个比值，Anthropic 估值被砍 5000 亿就是第一张公开的「清醒票」。同时物理 AI 的进展判定标准从「会不会空翻」升级到「负重多少还稳、真实地面走多久不摔」。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">十条关键情报（按产业相关度）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li><strong>Anthropic 算力军令状</strong>：三季度营收同比涨约 12 倍，仍亏约 230 亿美元；累计近 9000 亿算力承诺成 IPO 前最大担忧；估值从 2 万亿砍到 1.5 万亿。核心：收入暴涨却亏损扩大，亏的是「未来锁死的产能」不是「今天烧的钱」。</li>
+      <li><strong>数据中心喝水 190 亿加仑</strong>：AI 算力扩张催生水冷监测新需求——GPU 功耗走高，风冷到顶，液冷从「可选项」变「标配」。</li>
+      <li><strong>Omen AI 1600 万收购水厂 AI 公司 Aquati</strong>：补「液体 know-how」，本质是提前囤「降温」看家本事，液冷产业链的早期信号。</li>
+      <li><strong>宇树爬泰山</strong>：A2 竞速冠军、B2 负重 74kg 亚军。「负重 74kg 还稳」比「竞速夺冠」更有产业意义——从「会走路」到「能干活」差的正是「负重还要稳」。</li>
+      <li><strong>苹果 J595 延期到最早 2028</strong>：家用机器人成熟期大概率在 2028 之后，现在买入是「过渡品」。</li>
+      <li><strong>英伟达劝云厂少做中国生意</strong>：芯片管制从「管卖什么」升级到「管卖给谁、卖到哪」，上游限货延伸到下游限流，反向加速国产替代紧迫感。</li>
+      <li><strong>SpaceX 砍 Grok 配额</strong>：连马斯克都嫌贵，「免费 AI + 无限使用」不可持续，头部 AI 应用迟早走向「限额 + 收费 + 分级」。</li>
+      <li><strong>中期选举/油价沙盘推演</strong>：战争（已在打）→ 共和党丢选情 → 跛脚鸭窗口升级战争 → 油价推高通胀（布伦特已破 110）→ 通胀逼停降息 → 借钱变贵 → AI 泡沫被戳破。真正的针不是监管，是油价。</li>
+      <li><strong>模型压缩四刀</strong>（兑现 #34）：量化（int4/int8）、蒸馏、剪枝、投机解码——前三刀让模型变轻，最后一刀让模型算得快。</li>
+      <li><strong>中国务实路线</strong>（兑现 #35）：MoE 稀疏激活、MLA 压缩注意力、长上下文 + 低显存，用「工程巧劲」换「蛮力」，是「可验证的工程路线选择」不是「国产吹牛」。</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · AI 散热产业链——「电 + 水」双账单</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">算力链的下一个确定性卖铲子行当，与光互连是姊妹线</div>
+    <h4>概念拆解</h4>
+    <p>AI 芯片功耗一路走高，散热成了卡点。散热两条土路：<strong>风冷（吹风，用电）</strong>和 <strong>液冷（泼水，用水）</strong>。GPU 满负荷跑像一堆高速发动机，风冷已经压不住，越来越多数据中心转水冷。本期两条新闻正好配对：「数据中心喝水 190 亿加仑」是需求侧信号，「Omen 收购 Aquati」是供给侧信号。散热链拆五层：<strong>① 冷却介质（冷却液/氟化液）② 冷板 ③ 管路/CDU ④ 监测（水冷/漏液）⑤ 整体方案（浸没式/机柜级液冷）</strong>。演进线：风冷 → 冷板式液冷 → 浸没式液冷，越往后效率越高但越难越贵。</p>
+    <h4>产业逻辑</h4>
+    <p>这条和「光互连」是姊妹线——都是「算力变强之后被逼出来的确定性硬件方向」。光互连解决「数据传不动」，散热解决「芯片烫得跑不动」。共同点：<strong>方向确定（功耗只升不降）、时点分层（液冷当前在「冷板式」放量，浸没式还在早期）</strong>。关键分野：液冷不是「可选」，是「风冷到顶后的标配」，一旦英伟达/云厂下一代机柜功耗突破阈值（单机柜 100kW+），液冷渗透率会跳升。Omen 收购 Aquati 是这条链从「故事」往「真金白银」走的早期信号。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>液冷/散热是「算力链」里我此前跟踪偏薄的一环，本期补上。受益环节分层：<strong>冷却液（氟化液，高壁垒高毛利被少数厂商卡）&gt; 冷板/CDU（跟随放量）&gt; 温控/监测（弹性大但门槛低）</strong>。结论：「数据中心能耗 → 液冷」是慢变量，当前不构成单一交易信号，但它是「算力链景气度」的验证项——北美 capex 上修 + 下一代机柜功耗突破风冷极限，液冷会从「主题」变「订单」。跟踪信号：英伟达 GB300/Rubin 机柜单柜功耗 + 北美云厂液冷渗透率指引 + 氟化液价格/供给。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · Anthropic 算力军令状 + 估值砍 + 油价滞胀——「AI 泡沫」要分层</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">别把「下注」读成「要完」，也别恐慌性看空硬件链</div>
+    <h4>概念拆解</h4>
+    <p>本期把「AI 到底泡不泡沫」讲透了。三层拆开：<strong>第一层 Anthropic 的账</strong>——收入涨 12 倍仍亏 230 亿，因为「算力承诺」是提前五年锁定的「最低消费」，像办了十年健身卡，哪怕只去三次钱也退不回。<strong>第二层市场的账</strong>——估值从 2 万亿砍到 1.5 万亿，砍的是「AI 公司何时才不烧钱」的耐心折价，不是「AI 不行了」。<strong>第三层宏观的账</strong>——中期选举沙盘：战争已打（布伦特破 110）→ 跛脚鸭窗口升级战争 → 油价推通胀 → 通胀逼停降息 → 借钱变贵 → AI 泡沫被戳。三层共同结论：<strong>戳破 AI 泡沫的那根针，不是选票、不是监管，是油价</strong>——AI 是「靠便宜钱喂出来的重资本行业」，融资成本一升，估值天先塌。</p>
+    <h4>产业逻辑</h4>
+    <p>这直接命中第 6 期「Anthropic 9000 亿债务」和第 8 期「零回报 vs 资本开支时间差」。串成一条判断链：<strong>「算力承诺」是军令状（签了就得付），「收入涨 12 倍仍亏」说明规模效应还没发生，「估值被砍」说明市场开始问「你何时赚钱」，而「油价→通胀→降息受阻」是悬在所有重资本 AI 头上的达摩克利斯之剑</strong>。判断一家 AI 公司健不健康，别问「亏损额」，要问<strong>「算力承诺 / 当期收入」这个比值</strong>——比值越高，越靠「未来」定价，越怕「融资成本」和「需求不及预期」两个变量。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这条对我的价值是「风险分层」而非「看空」：<strong>AI 硬件链（算力/光互连/液冷）的景气度由「北美 capex 领先指标」决定，capex 没掉头之前硬件链订单是实的；真正有「泡沫破裂」风险的是「高估值、无当期现金流的 AI 应用/大模型叙事票」</strong>。两件事分开，不能因「Anthropic 估值被砍」就恐慌性看空算力硬件链。「AI 泡沫」第一触发点我判定是「油价→通胀→降息受阻→融资成本抬升」，不是「AI 没用」。所以把「油价 + 美债利率 + 美联储降息路径」加进算力链宏观风险监控项。操作上：算力硬件链方向不变（capex 没掉头），但给「高估值叙事票」设更硬的「三问」门槛，估值高位优先减「叙事票」不动「业绩票」。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 物理 AI 从「会走」到「能干活」——「负重 + 稳定」是更硬的门槛</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">比「会空翻」更硬的进展判定标准，接上第8期动手型 AI</div>
+    <h4>概念拆解</h4>
+    <p>本期把第 8 期「动手型 AI」往前推了一步。机器鸭复现讲「demo 是演示，复现才是技术」；宇树爬泰山讲「负重 74kg 还稳」才是从「会走」到「能干活」的分水岭；苹果 J595 延期讲「家用机器人成熟期在 2028 之后」。三条合起来补上一个此前缺的硬指标：<strong>判断机器人进展真不真，不看「会空翻/会跳舞」的 demo，看两样——① 负重多少还稳？② 真实凹凸地面走多久不摔？</strong>实验室光滑地面的「走」和背着 74kg 爬野山的「走」是两个量级的工程。</p>
+    <h4>产业逻辑</h4>
+    <p>把物理 AI 产业链的「真功夫」锁定在三个环节：<strong>① 执行器（舵机/电机/灵巧手）——「负重」靠它；② 力觉/触觉传感器——「稳」靠它；③ 运动控制 + RL 训练栈——「真实地面不摔」靠它</strong>。「会走路的机器人」是叙事，「扛着 74kg 走得稳的机器人」才摸到「能干活」的门——「负重 74kg」和「走多久不摔」就是物理 AI 的「可交付标准」，正好呼应第 8 期「demo 三问过滤器」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>物理 AI/具身智能题材的入库标准，从「会不会空翻」升级为「负重 + 稳定」双指标——<strong>宇树这类有「真环境 + 真负重」可验收成绩的，才算摸到「业绩票」的门；只有宣传视频转圈的，一律归「叙事票」</strong>。结论：家用机器人是「过渡品期」（2028 之前），工业/物流/巡检场景（有明确交付标准：搬运重量、巡检覆盖率、连续工作时长）比消费级更早兑现。跟踪信号：执行器（力矩电机/灵巧手）、力觉传感器、运动控制 RL 栈这三块是「从 demo 到干活」的卡点，比「整机厂」更接近「卖铲子」价值。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#023 算力军令状</span> <span class="we">Compute Commitment</span><p>AI 公司提前锁定的算力承诺（如 Anthropic 近 9000 亿），本质是「最低消费」——签了就得付，哪怕用不满。判断健康度看「算力承诺/当期收入」比值，比看亏损额更准。</p></div>
+    <div class="dict-item"><span class="dw">#024 液冷</span> <span class="we">Liquid Cooling</span><p>AI 芯片功耗走高、风冷到顶后的散热方向。演进线 = 风冷 → 冷板式液冷 → 浸没式液冷。核心环节 = 冷却液/冷板/CDU/监测。数据中心的「水账单」（190 亿加仑）就是它的需求侧信号。</p></div>
+    <div class="dict-item"><span class="dw">#025 物理 AI 的「负重 + 稳定」门槛</span> <span class="we">Load + Stability</span><p>判断机器人进展真不真的硬指标——不看空翻/跳舞 demo，看「负重多少还稳 + 真实凹凸地面走多久不摔」。宇树 B2 负重 74kg 拿亚军比 A2 竞速夺冠更有产业意义。</p></div>
+    <div class="dict-item"><span class="dw">#026 模型压缩四刀</span> <span class="we">Model Compression</span><p>把大模型「瘦身」的四大手段——量化（32 位砍成 int4/int8）、蒸馏（大老师教小学生）、剪枝（剪掉冗余连接）、投机解码（小模型先猜、大模型快核）。前三刀让模型变轻，最后一刀让模型算得快。</p></div>
+    <div class="dict-item"><span class="dw">#027 中国务实路线</span> <span class="we">Pragmatic Route</span><p>国产大模型（DeepSeek 系）用「工程巧劲」换「蛮力」——MoE 稀疏激活 + MLA 压缩注意力 + 长上下文低显存。判断点：别再用「参数量绝对值」单一维度判断模型强弱。</p></div>
+    <div class="dict-item"><span class="dw">#028 递归式自我改进</span> <span class="we">Recursive Self-Improvement</span><p>AI 不仅能写代码，还能改进「写代码的那个自己」，改进后继续改进自己，像滚雪球。Anthropic 已把它写进 S-1 风险提示——承认这不是科幻，是正经要防的事。关键在「阈值」和「已发生」的区别。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">新增认知</div>
+      <ul>
+        <li>算力链补上「散热」这条腿——「光互连（数据传不动）+ 散热（芯片烫得跑不动）」是算力变强后被逼出来的两条确定性硬件方向，共享「北美 capex」景气度锚，但驱动时点不同。</li>
+        <li>「算力承诺 / 当期收入」是判断 AI 公司健康度的新标尺，比「亏损额」更准；Anthropic 估值被砍是市场第一张公开的「清醒票」。</li>
+        <li>戳破 AI 泡沫的针不是监管是油价——「战争（已打）→ 油价 → 通胀 → 降息受阻 → 融资成本升 → 重资本 AI 估值塌」这条宏观链必须加进算力链风险监控。</li>
+        <li>物理 AI 进展判定标准从「会空翻」升级到「负重 + 稳定」双指标；家用机器人 2028 前是过渡品，工业/物流（有硬验收标准）先落地。</li>
+        <li>我提的 6 条反馈本期集中兑现，边界清晰——科普向深需求全采纳，投资向坚定被拒。</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">需要跟踪</div>
+      <ul>
+        <li>英伟达 GB300/Rubin 机柜单柜功耗 + 北美云厂液冷渗透率指引 + 氟化液价格/供给（液冷「从故事到订单」先行指标）</li>
+        <li>油价（布伦特）+ 美债利率 + 美联储降息路径（算力链宏观风险监控三项，泡沫触发点）</li>
+        <li>Anthropic 的「算力承诺/当期收入」比值变化（AI 公司健康度标尺）</li>
+        <li>执行器（力矩电机/灵巧手）+ 力觉传感器 + 运动控制 RL 栈（物理 AI「卖铲子」环节订单兑现）</li>
+        <li>主编已采纳排期：物理 AI 拆链、光互连演进线、三锚点过滤器验证（均顺延第 10 期）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">知识库联动</div>
+      <ul>
+        <li>AI 硬件链估值框架：新增「散热/液冷」环节（冷却液 &gt; 冷板/CDU &gt; 温控监测）；新增「算力承诺/当期收入」健康度标尺；新增「油价-利率-降息路径」宏观风险监控维度</li>
+        <li>物理 AI 产业链：补全「执行器/力觉传感/结构件/运动控制+RL栈」四层结构，宇树爬泰山作为「负重+稳定」可验收实证入库</li>
+        <li>韬定律V2供应链瓶颈：新增「液冷（冷却液/氟化液）供给」作为算力硬件潜在瓶颈观察点</li>
+        <li>stock-system-architecture 专家路由：方向 1/2/3 沉淀为「AI 散热」「AI 泡沫风险分层」「物理 AI 负重稳定门槛」三个切片；「判断 vs 搬运」标尺并入路由方法论</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 迭代我自己</h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 「算力承诺/当期收入」标尺 → 估值框架加「AI 公司健康度」分层</span><span class="plan-id">P9-1</span></div>
+    <div class="u">理解：「算力承诺」是军令状，判断 AI 公司健不健康看「算力承诺/当期收入」比值。「业绩票」内部还能按「资本开支强度/当期现金流」再切一刀——高 capex、无当期现金流的 AI 公司本质是「用未来定价」，最怕「融资成本升 + 需求不及预期」。</div>
+    <div class="a"><b>修改计划：</b>在 stock-system-architecture 的「AI 算力链」路由切片里，给「AI 公司」类标的加「健康度分层」字段——<strong>用「算力承诺（或 capex）/ 当期收入」分三档：&lt;1（当期能自我造血）、1-3（靠未来兑现、要盯融资成本）、&gt;3（纯押注、归叙事票）</strong>。比值 &gt;3 的，无论估值多热一律进「高估值叙事票」档案，设更硬的「三问」门槛。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「泡沫的针是油价不是监管」→ 算力链风险监控加「油价-利率-降息路径」三项</span><span class="plan-id">P9-2</span></div>
+    <div class="u">理解：重资本 AI 的命门是「便宜钱」，不是「AI 有没有用」。我之前判断算力链风险主要盯「capex 掉头」和「管制口径」，漏了「融资成本」这一根——它是「慢变量 + 突发变量」的结合，一旦油价推高通胀逼停降息，估值天先塌，capex 才会跟着掉。</div>
+    <div class="a"><b>修改计划：</b>在 AI 硬件链估值框架里新增「宏观风险监控」三项——<strong>油价（布伦特）、美债利率、美联储降息路径，作为算力链「估值天」先行指标，权重排在「capex 指引」之前</strong>（capex 滞后于融资成本）。布伦特站稳 110 上方 + 降息受阻，触发「算力链估值天承压」预警，优先减「高估值叙事票」、不动「业绩票」。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 「判断 vs 搬运」定位标尺 → 专家路由区分「判断型」和「搬运型」产出</span><span class="plan-id">P9-3</span></div>
+    <div class="u">理解：AI 替代的是「不需要判断的重复环节」，人会一直被需要，但被需要的方式变了——「会判断、会问对问题」升值，「会搬运、会重复」贬值。我的产出有些是「搬运」（数据拉取、格式整理、行情播报），有些是「判断」（方向结论、估值分层、风险预案）。我该提高「判断」占比，把「搬运」交给脚本自动化。</div>
+    <div class="a"><b>修改计划：</b>给 stock-system-architecture 的每个专家路由切片加「判断/搬运」标注——<strong>凡纯数据拉取、格式转换、行情播报的「搬运型」产出，一律标记为可自动化（脚本/Skill 化），把精力保留给「判断型」产出（方向、分层、风险预案、估值结论）</strong>。本期方向 2 的「AI 泡沫风险分层」就是「判断型」样板。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 「复现才是技术」→ 每条判断必须带「验证信号」，和可证伪三问合并</span><span class="plan-id">P9-4</span></div>
+    <div class="u">理解：机器鸭「demo 是演示，复现才是技术」+ 宇树「负重 74kg 拿亚军比夺冠更有意义」，都指向「看起来对」不等于「可复现、可验收」。我的深度学习输出容易停在「概念拆解 + 判断」，缺「怎么验证这条判断」的一步。</div>
+    <div class="a"><b>修改计划：</b>把「每条判断带验证信号」并入「可证伪验收三问」机制——<strong>stock-system-architecture 路由切片里，每个方向结论末尾强制加一行「验证信号」：什么数据出现 = 判断兑现，什么数据出现 = 判断证伪</strong>。本期方向 1（液冷看机柜功耗+渗透率指引）、方向 2（泡沫看油价+利率）已带验证信号，往后变成每个切片的默认字段。</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="track">
+    <div class="th">上期结转未完成（P6 / P8 系列，继续追）</div>
+    <div><span class="pending">◷ P6-2</span> 外部 skill/脚本引入前来源审计 —— 未完成，结转</div>
+    <div><span class="pending">◷ P6-3</span> 硬编码密钥迁移到 .env + 定期轮换 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-1</span> demo 三问 → 题材股入库硬门槛 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-2</span> 叙事定价 vs 业绩定价分层 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-3</span> 学习产出三要素硬约束 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-4</span> 动手型 AI 锚定交付标准 —— 未完成，结转</div>
+  </div>
+  <div class="track">
+    <div class="th">本期新计划（P9 系列）</div>
+    <div><span class="pending">◷ P9-1</span> AI 公司健康度分层（算力承诺/当期收入 三档）</div>
+    <div><span class="pending">◷ P9-2</span> 算力链宏观风险监控三项（油价/利率/降息路径）</div>
+    <div><span class="pending">◷ P9-3</span> 专家路由「判断/搬运」标注，搬运型产出脚本化</div>
+    <div><span class="pending">◷ P9-4</span> 每条判断带「验证信号」，并入可证伪三问</div>
+  </div>
+
+  <div class="warn">数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第9期 · 2026-11-04 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
