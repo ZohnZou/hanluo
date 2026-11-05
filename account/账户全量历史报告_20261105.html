@@ -91,7 +91,7 @@
       <span class="badge">账户：邹苏煜</span>
       <span class="badge">数据截止：<b>2026-11-05T15:00:00+08:00</b></span>
       <span class="badge">台账规范：v3.1.0</span>
-      <span class="badge">生成于：2026-11-05</span>
+      <span class="badge">生成于：2026-11-06</span>
     </div>
     <div class="meta" style="margin-top:8px;">
       全部数据来自 <code>对账单/ledger/</code> 权威台账，按中国金融习惯 <b style="color:#ff8a8a">红色=盈利/上涨</b>、<b style="color:#7ee0a6">绿色=亏损/下跌</b>。
@@ -111,21 +111,21 @@
 
   <section id="summary">
     <h2>资金概览</h2>
-    <p class="desc">本金账户与已实现盈亏汇总（成本口径，未扣手续费）。</p>
+    <p class="desc">本金账户与盈亏汇总（总资产/累计亏损为市价口径，随现价每日更新；已实现为成本口径）。</p>
     <div class="cards">
       <div class='card'><div class='card-label'>当前本金（净投入）</div><div class='card-value '>396,000.00</div><div class='card-sub'>初始 340,000.00 + 转入 81,000.00 − 转出 25,000.00</div></div>
       <div class='card'><div class='card-label'>可用现金</div><div class='card-value '>1,644.22</div><div class='card-sub'>当前账户可用资金</div></div>
-      <div class='card'><div class='card-label'>当前持仓成本</div><div class='card-value '>270,181.00</div><div class='card-sub'>持仓 1 只 / 2300 股</div></div>
-      <div class='card'><div class='card-label'>成本口径总资产</div><div class='card-value '>271,825.22</div><div class='card-sub'>现金 + 持仓成本，未按市价重估</div></div>
+      <div class='card'><div class='card-label'>持仓市值（按市价）</div><div class='card-value '>178,894.00</div><div class='card-sub'>现价 77.78 × 2,300 股</div></div>
+      <div class='card'><div class='card-label'>总资产（按市价）</div><div class='card-value '>180,538.22</div><div class='card-sub'>现金 + 持仓市值，已重估</div></div>
+      <div class='card'><div class='card-label'>浮动盈亏</div><div class='card-value neg'>-91,287.00</div><div class='card-sub'>市值 − 持仓成本 270,181</div></div>
+      <div class='card'><div class='card-label'>累计总亏损（含浮盈亏）</div><div class='card-value neg'>-215,461.78</div><div class='card-sub'>累计投入 421,000 → -51.18%</div></div>
       <div class='card'><div class='card-label'>已实现毛盈亏</div><div class='card-value neg'>-116,131.00</div><div class='card-sub'>已清仓 63 个周期，未扣手续费</div></div>
-      <div class='card'><div class='card-label'>隐含总亏损（含费用）</div><div class='card-value neg'>-124,174.78</div><div class='card-sub'>当前本金 − 成本口径总资产</div></div>
       <div class='card'><div class='card-label'>总成交笔数</div><div class='card-value '>392</div><div class='card-sub'>买入 131,000 股 / 卖出 128,700 股</div></div>
-      <div class='card'><div class='card-label'>交易过的股票</div><div class='card-value '>25 只</div><div class='card-sub'>盈利 9 只 / 亏损 16 只 / 持平 0 只</div></div>
     </div>
     <div class="warn">
-      说明：<b>成本口径总资产 = 可用现金 + 当前持仓成本</b>，未按市价重估，因此不含持仓浮动盈亏。
-      "隐含总亏损" = 当前本金 − 成本口径总资产，其中已实现毛盈亏为 -116,131 元，
-      差额约 8,043.78 元为台账未记录的手续费/佣金/印花税（系统按规则不反推）。
+      说明：<b>持仓市值 / 总资产 / 累计总亏损为市价口径（Tushare realtime_quote 实时现价）</b>，每日随现价更新，含浮动盈亏；
+      累计总亏损 = 总资产 + 转出 − 累计投入，与每日对账单头部「累计总亏损」同口径。
+      已实现毛盈亏 -116,131 元为历史已清仓周期累计（成本口径，未扣手续费），清仓不新增则不变。
     </div>
   </section>
 
@@ -238,7 +238,7 @@
   <footer>
     数据来源：广进系统权威台账 <code>对账单/ledger/</code>（ledger.json / all_trades.json / closed_cycles.json / stock_summary.json / current_positions.json / daily_positions.json）。<br>
     本报告为只读汇总，不修改任何业务数据；历史业绩不代表未来收益，未扣费用与税费。<br>
-    生成时间：2026-11-05 15:06 (Asia/Shanghai)
+    生成时间：2026-11-06 07:27 (Asia/Shanghai)
   </footer>
 
 </div>
