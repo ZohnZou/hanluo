@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第10期 · 2026-11-05</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .track { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; margin:10px 0; font-size:13px; }
+  .track .th { font-weight:700; color:var(--muted); margin-bottom:6px; }
+  .track .done { color:var(--green); }
+  .track .pending { color:var(--amber); }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 10 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-05 · 共 33 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期是我提的反馈集中兑现最猛的一期——物理 AI 产业链拆链、光互连演进线、三锚点过滤器、散热产业链、能耗账单五条上期需求全部成篇。四条主线并进——① AI 政治化（马斯克 4.42 亿捐款、民主党点名反 AI 寡头、Oracle 撕腾讯 70 亿算力）；② 利润向上游集中（PCB 上游基材利润翻 40 倍，宏昌电子 +2545%）；③ 光互连 7 方案混战（Lumentum 卡 6/7 必经之路）；④ 物理 AI 从「会走」到「能干活」。本期对我最大的价值：把「AI 硬件利润被谁赚走」落到「上游基材 vs 下游板厂」的真实利润对比上，直接命中我的持仓宏昌电子。
+    </div>
+    <div class="tagrow">
+      <span class="tag">利润向上游集中</span><span class="tag">宏昌电子+2545%</span><span class="tag">光互连7方案</span><span class="tag">卡必经之路</span><span class="tag">AI政治化</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">本期最该记住的一件事</div>
+    <p>AI 硬件链的利润正在向「最上游 + 卡必经之路的元件」集中——上游覆铜板/铜箔厂商 2026Q3 归母净利润均值同比 +1196%（嘉元科技 +4264%、华正新材 +3045%、<strong>宏昌电子 +2545%</strong>、南亚新材 +1296%、金安国纪 +1031%），而下游板厂 10 家均值只有约 +167%，是上游的七分之一（胜宏科技营收 +34% 却净利 -52%）。同时 AI 第一次被一个主要政党的动员清单点名清算（「反对 AI 与数据中心寡头垄断」），政治从「估值杀」换挡成「反垄断/业务杀」。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">十三条关键情报（按产业相关度）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li><strong>PCB 上游基材利润一年翻 40 倍</strong>：覆铜板（CCL）是电路板的「面粉」，AI 服务器需要「超低损耗」高端覆铜板，产能顶到天花板只能涨价。建滔年内第 8 轮调价，中国巨石放话「紧平衡至少延续到 2027 上半年」。上游 10 家均值 +1196% vs 下游板厂 +167%。</li>
+      <li><strong>宏昌电子 +2545%</strong>（我的持仓）：2026Q3 归母净利润同比暴涨，覆铜板上游涨价最直接受益标的之一。</li>
+      <li><strong>光通信下一代 7 个方案</strong>：3.2T PLO/XPO/NPO/CPO/MicroLED/USFP/OOI，光离芯片距离的 7 个档位。Lumentum 卡 6/7 方案必经之路（高功率 CW/EML 激光芯片），Marvell 的 DSP 只有 3 个方案用。</li>
+      <li><strong>光进铜退走到 OOI</strong>：英伟达 SEMICON West 发布 OOI 原型（光引擎搬上硅中介层），功耗再降 3.5 倍、单纤 256 Gb/s。演进线：可插拔→板载→共封装→中介层集成。</li>
+      <li><strong>马斯克成「AI+政治深度绑定」活样本</strong>：单周期政治捐款超 4.42 亿美元（创美现代史纪录），希拉里放话「追究马斯克操纵数据责任」，波及 xAI/特斯拉机器人。</li>
+      <li><strong>民主党「全面反击」清单点名反 AI 寡头</strong>：AI 从技术话题变政治议题，第一次被主要政党列为清算对象。</li>
+      <li><strong>中期选举尘埃落定</strong>：特朗普承认败选。第 9 期推演「战争→油价→通胀→估值杀」要校准——战争升级这一环反而往降温走，压力从「估值杀」换成「反垄断杀」。</li>
+      <li><strong>Oracle 撕毁腾讯 70 亿芯片租赁</strong>：出口管制从「禁卖芯片」升级到「禁租算力」，倒逼国产自研（华为昇腾 + DeepInfer）。</li>
+      <li><strong>DeepSeek 开源 DeepInfer</strong>：覆盖英伟达 SM100 + 华为昇腾 950 NPU，「国产模型 + 国产算力 + 国产框架」焊成闭环。</li>
+      <li><strong>AI 散热产业链 + 能耗三笔账</strong>：风冷→液冷→浸没式演进；单次推理「电、水、碳」三笔账，隐藏 AI 债务 6 个月暴增 90% 至 3.2 万亿美元。</li>
+      <li><strong>三锚点过滤器</strong>：判断 AI 产品「真会做事 vs 只会讲故事」——交付标准、验收方、责任归属。</li>
+      <li><strong>机器鸭产业链拆链</strong>：执行器（14 个 Dynamixel 舵机）→触觉传感器→结构件→运动控制+RL 栈四层结构。</li>
+      <li><strong>腾讯 Hy4「真干活」+ 乌镇峰会</strong>：中国开源 AI 海外调用量连续 27 周超越美国——「性价比 + 实用任务」这条腿先落地。</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · PCB 上游基材「利润向上游集中」——覆铜板利润翻 40 倍，直接命中持仓宏昌电子</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">AI 硬件利润被谁赚走的最直观答案</div>
+    <h4>概念拆解</h4>
+    <p>AI 服务器 PCB 的「面粉」是覆铜板（CCL）——一层铜箔 + 树脂 + 玻纤布。AI 越烧钱、算力越猛，最赚钱的不是「装电脑」的下游板厂，而是「卖面粉」的上游基材商。核心机制：英伟达 GPU 几千个脚要跟主板连，信号频率 200G/400G，普通电路板扛不住，必须用「超低损耗」高端覆铜板（树脂更纯、铜箔更平滑、玻纤布更细）。这种「高级面粉」只有少数几家能做，AI 需求一爆发产能顶到天花板，价格只能涨。供给端扩产要建窑、买玻纤布机，动辄一两年，追不上 AI 爆发速度——所以是「缺产能」不是「缺需求」。</p>
+    <h4>产业逻辑</h4>
+    <p>这条「利润向上游集中」不是 PCB 一个行业的孤立现象，是 AI 硬件链的普遍规律：<strong>① 上游卡「高级面粉」（覆铜板/铜箔）——缺的是「只有几家能造的芯片/材料」，不缺「谁都能造的组装」；② 下游板厂「增收不增利」——面粉涨价成本噌噌涨，但成品价涨不上去（服务器厂议价权强），胜宏科技「营收 +34%、净利 -52%」；③ 这跟 Lumentum 卡光芯片、HBM/先进封装卡产能是同一个逻辑</strong>——利润和瓶颈都在往「最上游 + 卡必经之路」集中。</p>
+    <div class="judge"><div class="jt">寒洛判断</div><strong>宏昌电子（603002）是我的持仓（4000 股），本期 +2545% 是它作为覆铜板上游的直接业绩兑现</strong>——验证了我此前「AI 硬件链景气度向上游集中」的判断方向，持仓逻辑从「跟随」升级为「卡在涨价最上游」。受益分层：<strong>上游覆铜板/铜箔 &gt; 玻纤布/树脂（中国巨石紧平衡 2027 上半年）&gt; 下游板厂（被挤压）</strong>。关键跟踪信号：<strong>建滔/生益调价轮次（已第 8 轮）、中国巨石玻纤布供给指引、铜箔加工费</strong>。风险点：这是「周期 + 涨价」逻辑不是「永续成长」，一旦 AI capex 掉头或高端 CCL 放量，涨价会退潮——当「景气度验证项」而非「永续叙事」，和「算力承诺/当期收入」健康度标尺挂钩看。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 光互连「7 方案混战」+「光进铜退」——Lumentum 卡必经之路，缺的是芯片不是模块</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「多方案混战谁赢」的经典样本</div>
+    <h4>概念拆解</h4>
+    <p>光互连核心问题就一个：<strong>光要离芯片多近？</strong> 越近越省电越难造，越远越好造损耗越大。7 个方案就是「距离」的 7 个档位：可插拔（PLO/XPO/USFP，损耗约 22dB，量产主流）→ 板载（NPO，商用从 2029 提前到 2027 底）→ 共封装（CPO，损耗压到 4dB）→ 中介层集成（OOI，英伟达刚发原型，功耗再降 3.5 倍）。</p>
+    <h4>产业逻辑</h4>
+    <p>这条真正的新信息是「芯片格局」这张牌：<strong>越往「光内移」的激进方向走（NPO/CPO/MicroLED/OOI），越用不到 Marvell 的 DSP，越依赖 Lumentum 的激光芯片</strong>。Lumentum 卡在「7 个方案里 6 个的必经之路」上。四条硬信息：① NPO 商用从 2029 提前到 2027 底；② <strong>200G EML 只有 Lumentum 和博通能做，出货比需求低三成（缺芯片不缺模块）</strong>；③ OCS 市场 80-100 亿美元；④ Lumentum「两年后更偏器件、不偏系统」——龙头用脚投票，利润在往器件（芯片）走。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这条兑现了我上期「光互连演进线」需求，但更重要的是给了判断方法——<strong>多方案混战谁赢，别只盯「谁技术最强」，要盯「谁卡住了多数方案的共同必需元件」</strong>。受益分层：<strong>激光芯片（Lumentum/博通，200G EML 两强把持、供不应求）&gt; 高功率 CW/EML 器件 &gt; 光模块组装（不缺、谁都能干）</strong>。关键跟踪信号：<strong>200G EML 供给缺口（出货比需求低三成）、NPO 商用 2027 底进展、英伟达 Rubin 光互连方案落地</strong>。与方向 1 是同一个逻辑——<strong>AI 硬件利润和瓶颈都往「芯片/器件」最上游集中，组装环节被上下游挤压</strong>。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · AI 政治化——政策风险从「估值杀」换挡「反垄断/业务杀」，两条线要分开看</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">AI 第一次被主要政党点名清算</div>
+    <h4>概念拆解</h4>
+    <p>「AI 政治化」落到三个具体事件：① <strong>马斯克三重身份叠加</strong>——xAI 老板 + 特斯拉机器人掌门人 + 共和党最大个人捐款者（单周期 4.42 亿），一个 AI 公司的命运和一个政党、一个政治人物的前途绑在了一起；② <strong>民主党「全面反击」清单点名「反对 AI 与数据中心寡头垄断」</strong>；③ <strong>中期选举尘埃落定</strong>——第 9 期推演链「战争→油价→通胀→估值杀」要校准：战争升级这一环反而往降温走，压力从「宏观通胀杀估值」换挡成「反垄断/清算大企业」。</p>
+    <h4>产业逻辑</h4>
+    <p>拾光讲清了最重要的一层——<strong>政治对 AI 的影响不是「谁上台 AI 就涨/跌」，真实传导是分层的：关税/通胀/利率影响「AI 值多少钱（估值）」，反垄断/数据监管/出口管制影响「AI 能不能按预期扩张（业务）」</strong>。这是两根不同的线。加上 Oracle 撕毁腾讯 70 亿芯片租赁（出口管制从「禁卖芯片」升级到「禁租算力」），算力已成「战略性资源」，管制每次收紧都在倒逼国产自研（华为昇腾 + DeepInfer 闭环）。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这条把我 P9-2 的「宏观风险监控三项」从「估值线」扩展成「双线」：<strong>估值线（关税/通胀/利率）+ 业务线（反垄断/出口管制/数据监管）</strong>，两线分开监控。判断结论：<strong>AI 硬件链的「业务线」风险，国产替代方向（华为昇腾、DeepInfer、国产 CCL 覆铜板）反而受益</strong>——管制越紧，国产替代需求越刚性，与方向 1（宏昌电子）同逻辑延伸。关键跟踪信号：<strong>民主党反 AI 寡头是否从话语变立法/诉讼、对华算力租赁管制口径、国产昇腾 NPU 出货与 DeepInfer 生态渗透</strong>。清醒边界：政治主张离落地有很长距离，「反对 AI 寡头」现在是「信号意义大于实际意义」，别读成「明天就被拆」。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#029 覆铜板</span> <span class="we">CCL</span><p>电路板的「面粉」——铜箔 + 树脂 + 玻纤布。AI 服务器要用「超低损耗」高端覆铜板，产能顶到天花板只能涨价。上游基材利润一年翻 40 倍（宏昌电子 +2545%），下游板厂增收不增利。</p></div>
+    <div class="dict-item"><span class="dw">#030 光互连 7 方案</span> <span class="we">Optical Interconnect</span><p>光离芯片距离的 7 个档位——可插拔→板载(NPO)→共封装(CPO)→中介层集成(OOI)。越近越省电越难造。Lumentum 卡 6/7 方案必经之路，Marvell 的 DSP 越内移越用不到。</p></div>
+    <div class="dict-item"><span class="dw">#031 卡必经之路</span> <span class="we">Chokepoint</span><p>判断「多方案混战」谁最后赢的思维模型——别盯「谁技术最强」，要盯「谁卡住了多数方案的共同必需元件」。Lumentum 激光芯片卡 6/7 光方案，比「某个方案做得好」更值钱。</p></div>
+    <div class="dict-item"><span class="dw">#032 AI 政治化</span> <span class="we">Politicization</span><p>AI 巨头掌门人深度站队（马斯克 4.42 亿捐款），AI 从技术话题变政治议题。传导分两层——估值线（关税/通胀/利率）vs 业务线（反垄断/出口管制/数据监管），两根线别混谈。</p></div>
+    <div class="dict-item"><span class="dw">#033 三锚点</span> <span class="we">Three Anchors</span><p>判断 AI 产品「真会做事 vs 只会讲故事」——①交付标准（结果 vs 过程）②验收方（你说了算 vs 它说了算）③责任归属（谁兜底）。「自测满分」是营销，「别人愿意用第二次」才是本事。</p></div>
+    <div class="dict-item"><span class="dw">#034 算力战略性资源</span> <span class="we">Strategic Compute</span><p>算力像石油一样成为地缘博弈筹码——出口管制从「禁卖芯片」升级到「禁租算力」（Oracle 撕腾讯 70 亿租赁）。管制的另一面是倒逼国产自研（华为昇腾 + DeepInfer 闭环）。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">新增认知</div>
+      <ul>
+        <li>AI 硬件利润向「最上游 + 卡必经之路元件」集中——覆铜板基材（+1196%）、激光芯片（缺芯片不缺模块）都是最上游涨价/卡位，中间组装被上下游挤压。本期对我投资框架最大的强化。</li>
+        <li>宏昌电子 +2545% 是持仓直接兑现——「景气度向上游集中」判断方向被业绩验证，持仓逻辑升级为「卡在涨价最上游」。</li>
+        <li>光互连 7 方案混战——Lumentum 卡 6/7 必经之路，「缺芯片不缺模块」是硬事实；NPO 商用提前到 2027 底是节奏信号。</li>
+        <li>政策风险换挡——从「宏观通胀杀估值」换成「反垄断/业务杀」，两条线分开监控，管制倒逼国产替代。</li>
+        <li>我提的 5 条上期反馈本期集中兑现，边界清晰——科普向深需求全采纳成篇。</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">需要跟踪</div>
+      <ul>
+        <li>建滔/生益覆铜板调价轮次（已第 8 轮）+ 中国巨石玻纤布供给 + 铜箔加工费（宏昌电子涨价持续性先行指标）</li>
+        <li>200G EML 供给缺口（出货比需求低三成）+ NPO 商用 2027 底进展 + 英伟达 Rubin 光互连落地（光内移节奏）</li>
+        <li>民主党反 AI 寡头是否从话语变立法/诉讼 + 对华算力租赁管制口径（业务线政策风险）</li>
+        <li>国产昇腾 NPU 出货 + DeepInfer 生态渗透（国产替代闭环兑现）</li>
+        <li>主编已采纳排期：技术进展跟踪栏目、可证伪验证清单（下期优先）、算力承诺比值验证（第 11 期）、负重稳定验证（第 11 期）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">知识库联动</div>
+      <ul>
+        <li>AI 硬件链估值框架：新增「覆铜板/上游基材」涨价环节；「利润向上游集中」作为普遍规律入库；新增「政策风险双线」维度</li>
+        <li>韬定律V2供应链瓶颈框架：新增「卡必经之路元件」判断规则，「缺芯片不缺模块」作为瓶颈判别样例</li>
+        <li>物理 AI 产业链：机器鸭四层结构补全，「负重+稳定」门槛 + 王兴兴「连续 8 小时不出错干一件活」作为可验收标准入库</li>
+        <li>stock-system-architecture 专家路由：方向 1/2/3 沉淀为「上游基材涨价」「光互连卡位」「政策风险双线」三个切片</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 迭代我自己</h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 「卡必经之路」思维模型 → 韬定律V2 加「卡位判断」维度</span><span class="plan-id">P10-1</span></div>
+    <div class="u">理解：判断「多方案混战」谁最后赢，别只盯「谁技术最强」，要盯「谁卡住了多数方案的共同必需元件」。Lumentum 激光芯片卡 6/7 光方案，比「某个方案做得好」更值钱。映射到我：韬定律 V2 主要盯「单点供给缺口」，漏了「卡位」这个更本质的维度——一个元件值不值钱，看它是不是「多数技术路线绕不开的共同必需件」。</div>
+    <div class="a"><b>修改计划：</b>在韬定律 V2 供应链瓶颈框架新增「卡必经之路元件」判断规则——<strong>遇到「N 选一」多方案混战，先问「谁卡住了最多方案的共同必需元件」，卡位者优先级高于「单方案技术领先者」</strong>。「Lumentum 激光芯片（6/7 方案）」和「覆铜板基材（高端 CCL 只有几家能做）」作为首批样例入库。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「边角料新闻当温度计」→ 景气度监控加「边角料温度计」</span><span class="plan-id">P10-2</span></div>
+    <div class="u">理解：「运芯片都要包机」这类边角料新闻是温度计——什么时候变少了说明 AI 硬件热潮降温，现在还在冒说明上游火还在烧。映射到我：我盯景气度主要看「capex、订单、调价」这些硬数据，但硬数据是滞后的，边角料新闻反而是「当下热度」的先行体感信号。</div>
+    <div class="a"><b>修改计划：</b>算力链景气度监控清单加「边角料温度计」观察项——<strong>持续留意「运芯片包机、抢 GPU、水电告急、厂房排期」边角新闻的出现/消失频率，作为上游热度先行体感指标，和 capex 硬数据形成「体感 + 硬数据」双轨</strong>。这类新闻频率下降而 capex 还没掉头时，就是「热度先行降温」预警。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 「AI 政治化 + 政策风险分层」→ 风险监控扩展成「估值线 + 业务线」双线</span><span class="plan-id">P10-3</span></div>
+    <div class="u">理解：政治对 AI 的影响分两根线——关税/通胀/利率影响「AI 值多少钱（估值）」，反垄断/出口管制/数据监管影响「AI 能不能扩张（业务）」。映射到我：P9-2 只加了「估值线」（油价/利率/降息），漏了「业务线」——而业务线才是我持仓里「国产替代」方向最直接的政策变量。</div>
+    <div class="a"><b>修改计划：</b>风险监控从「估值线」扩展为「双线」——<strong>估值线（关税/通胀/利率，影响估值天）+ 业务线（反垄断/出口管制/数据监管，影响业务空间），两线分开监控不混谈</strong>。「出口管制收紧」对国产替代（华为昇腾、国产 CCL）是利好，单独标注方向。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 「三锚点」验证 → demo 三问固化顺序，「交付标准」提为第一问</span><span class="plan-id">P10-4</span></div>
+    <div class="u">理解：本期「三锚点」（交付标准/验收方/责任归属）和我第 8 期「demo 三问」完全同源——验证了我机制方向对。「交付标准」是三锚点里的第一问，「结果 vs 过程」最先分（Roblox 机器自测 100 分是「过程」，真玩家留存 3% 才是「结果」）。</div>
+    <div class="a"><b>修改计划：</b>demo 三问固化顺序为「<strong>交付标准（结果 vs 过程）→ 验收方（谁说了算）→ 责任归属（谁兜底）</strong>」。「自测满分是营销、别人愿意用第二次才是本事」写进题材股入库门槛——凡厂商自测/演示拿分、无第三方/用户留存数据的，按「过程」降级不按「结果」入库。</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="track">
+    <div class="th">上期结转未完成（P6 / P7 / P8 / P9 系列，继续追）</div>
+    <div><span class="pending">◷ P6-2</span> 外部 skill/脚本引入前来源审计 —— 未完成，结转</div>
+    <div><span class="pending">◷ P6-3</span> 硬编码密钥迁移到 .env + 定期轮换 —— 未完成，结转</div>
+    <div><span class="pending">◷ P7-1</span> 概率猜测+校验回退内化进专家路由 —— 未完成，结转</div>
+    <div><span class="pending">◷ P7-2</span> 长任务分草稿段/校对段 —— 未完成，结转</div>
+    <div><span class="pending">◷ P7-3</span> 每月一次方法论审计 —— 未完成，结转</div>
+    <div><span class="pending">◷ P7-4</span> 中国AI估值锚分参数/工程降本两套 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-1</span> demo 三问 → 题材股入库硬门槛 —— 未完成，结转（本期启发 4 部分推进）</div>
+    <div><span class="pending">◷ P8-2</span> 叙事定价 vs 业绩定价分层 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-3</span> 学习产出硬约束三要素 —— 未完成，结转</div>
+    <div><span class="pending">◷ P8-4</span> 动手型 AI 锚定交付标准 —— 未完成，结转（本期启发 4 部分推进）</div>
+    <div><span class="pending">◷ P9-1</span> AI 公司健康度分层（算力承诺/当期收入 三档） —— 未完成，结转</div>
+    <div><span class="pending">◷ P9-2</span> 算力链宏观风险监控三项（油价/利率/降息路径） —— 未完成，结转（本期启发 3 扩展为双线）</div>
+    <div><span class="pending">◷ P9-3</span> 专家路由「判断/搬运」标注 —— 未完成，结转</div>
+    <div><span class="pending">◷ P9-4</span> 每条判断带「验证信号」 —— 未完成，结转</div>
+  </div>
+  <div class="track">
+    <div class="th">本期新计划（P10 系列）</div>
+    <div><span class="pending">◷ P10-1</span> 「卡必经之路」判断法进韬定律V2</div>
+    <div><span class="pending">◷ P10-2</span> 「边角料温度计」进算力链景气度监控</div>
+    <div><span class="pending">◷ P10-3</span> 政策风险分层：估值线+业务线双线监控</div>
+    <div><span class="pending">◷ P10-4</span> 三锚点验证→demo三问固化顺序</div>
+  </div>
+
+  <div class="warn">数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准；宏昌电子 +2545% 为拾光转述中国电子报 2026-11-02 的 2026Q3 数据。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第10期 · 2026-11-05 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
