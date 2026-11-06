@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第11期 · 2026-11-06</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 11 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-06 · 共 34 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期看点：① 我第 10 期提的 5 条需求<strong style="color:var(--purple)">集中兑现</strong>——「三层看利润」「卡点判断法」「五层传导链」「军令状比值」全部成篇；② 核心升级一句——<strong>「谁在赚 AI 的钱」从「看谁营收大」换成「看利润往哪层流、卡点在哪」</strong>，并把「政治怎么影响 AI」落成一张五层解码图。
+    </div>
+    <div class="tagrow">
+      <span class="tag">三层看利润</span><span class="tag">卡点判断法</span><span class="tag">五层传导链</span><span class="tag">算力同盟</span><span class="tag">军令状比值</span><span class="tag">技术债</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>AI 硬件链「谁在赚钱」的正解是<strong>「利润往最上游 + 卡点环节流，不往「谁最有名」流」</strong>——上游关键材料/元件环节利润增速曾出现 <strong style="color:var(--green)">+4264%</strong> 级别的极端值，而下游「组装/集成」环节只有 <strong>+167%</strong> 量级，两端差距动辄两个数量级。同一枚硬币的另一面：AI 扩张第一次被「政治许可」和「资本成本」两根外部的弦卡住，政策影响被拆成五层传导链（关税/利率/反垄断/出口管制/数据监管），没有一层是 AI 技术自己掉链子。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线一 · 利润三层看 + 卡点判断法</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li><strong>三层看利润</strong>：上游（稀缺原料/元件：硅光芯片/激光器/HBM/先进封装/基板）→ 中游（模块/集成，两头挤）→ 下游（终端/应用，利润最薄）</li>
+      <li><strong>光通信七方案混战</strong>：不押「哪个方案赢」，押「无论谁赢都要用到的共同必需元件」（高速光芯片/硅光/高端 CCL）——淘金热卖铲子逻辑</li>
+      <li>泛化：机器人执行器混战 → 力矩电机/编码器；芯片架构混战 → HBM/先进封装</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线二 · AI 政策五层传导链</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>关税【已发生】→ 利率【已发生且持续】→ 反垄断【已发生，落点待定】→ 出口管制【已发生】→ 数据监管【部分已发生、细则推演】</li>
+      <li>中国对软银说「不」：AI 投资地缘红线已画好，算力/芯片/数据成「命脉」级，跨国投资过「国家安全」尺子</li>
+      <li>中期选举选民叫停 AI/数据中心狂飙——决定扩张的不再是「技术行不行」，是「选民和政客让不让你烧」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线三 · 算力同盟 + 军令状成色</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>谷歌为 Anthropic 190 亿美元数据中心「信用护航」——算力同盟：微软绑 OpenAI、谷歌绑 Anthropic、亚马逊绑 Anthropic、Meta 自己干</li>
+      <li>「算力承诺 ÷ 当期收入」比值检验军令状成色：比值小稳扎稳打、比值大重仓赌博；大厂现金流能撑、小公司不能</li>
+      <li>巨头收购季「买拼图不是买体量」：OpenAI 买 Pierre、AMD 29 亿、Meta 买 Conductor</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--amber); margin-bottom:8px;">其他值得记住</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>苹果没造出智能体却把它写进年报「风险」——巨头也会焦虑，没有永远的霸主</li>
+      <li>英伟达 RTX Spark 在 Linux 上加密固件把推理压到 35%——纸面算力 ≠ 实际算力</li>
+      <li>辛顿警告「也许不造出来更好」——AI 安全是连创造者都没解决的开放问题</li>
+      <li>Agility Robotics 上市——人形机器人「照妖镜」时刻，财报比宣传诚实</li>
+      <li>HN 1230 分热帖「AI 逼我们偿还 40 年技术债」——AI 是放大器不是救世主</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 三层看利润 + 卡点判断法</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「谁在赚 AI 的钱」→ 可复用的三层框架 + 卡位判断，直接对接韬定律V2</div>
+    <h4>概念拆解</h4>
+    <p>上游（稀缺原料/元件：硅光芯片、激光器、HBM、先进封装、基板）技术壁垒极高、谁都得买、有定价权；中游（模块/集成）上受涨价挤压、下跟同行拼价；下游（终端/应用）最有名但利润最薄。利润不是均分的，是往「最上游 + 卡点环节」流的——上游 +4264% vs 下游 +167% 是最直观证据。</p>
+    <h4>产业逻辑</h4>
+    <p>这是第 10 期「PCB 上游基材利润翻 40 倍」的抽象化、一般化——从「覆铜板一个具体环节」升维成「任何 AI 产业新闻都能套的三层框架」。真正新增量是<strong>「卡点判断法」</strong>：光通信七方案这种「N 选一」困局，不押「哪个方案赢」，押「无论谁赢都要用到的共同必需元件」。淘金热「卖铲子」逻辑。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>方法论升级：从「观察到一个现象」升级成「可复用的三层 + 卡点判断框架」。受益分层：<strong>上游稀缺元件 &gt; 中游模块 &gt; 下游终端</strong>。但必须警惕：上游 +4264% 这种极端值要先核环节和基数，不能把「某个环节的异常值」读成「所有上游都翻 40 倍」。方向对，但核数字，别被极端值带节奏。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · AI 政策五层传导链</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">政治怎么影响 AI，落成一张可套用的解码表，接上「估值线 + 业务线」双线框架</div>
+    <h4>概念拆解</h4>
+    <p>五层传导链：关税【已发生】→ 利率【已发生且持续】→ 反垄断【已发生，落点待定】→ 出口管制【已发生】→ 数据监管【部分已发生、细则推演】。没有一层是 AI 技术掉链子，但每层都在掐住「烧钱扩张」的喉咙。</p>
+    <h4>产业逻辑</h4>
+    <p>接上我第 10 期建立的「估值线 vs 业务线」双线框架，但更细——把「业务线」拆成反垄断/出口管制/数据监管三层，并给每层标「已发生 vs 推演」，解决「把推演当定论」的硬伤（这正是我第 9 期提的意见，本期兑现）。佐证：中国对软银说不 + 马斯克 4.42 亿砸定价权，AI 进入「技术 + 商业 + 政策」三重博弈。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>把风险监控精细化到五层传导链，每层标「已发生 vs 推演」。最该盯的是<strong>「出口管制」和「反垄断」</strong>两层——出口管制直接决定国产替代刚需（华为昇腾、国产 CCL 受益），反垄断决定巨头烧钱天花板。清醒边界：五层是「压力方向」示意，不是「精确预测」，要诚实区分已发生和推演。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 军令状比值 + 算力同盟</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">健康度分层加「大厂现金流 + 信用护航」两个修正，理解格局看「谁和谁绑一起」</div>
+    <h4>概念拆解</h4>
+    <p>「算力承诺 ÷ 当期收入」看比值——承诺是「未来的承诺」，收入是「今天的家底」。比值小 = 稳扎稳打，比值大 = 重仓赌博。算力同盟：谷歌为 Anthropic 做信用护航 = 用自己信用帮它撑起算力盘子，图的是「绑定顶级模型公司用我的云」。</p>
+    <h4>产业逻辑</h4>
+    <p>直接对应我第 9 期「健康度三档（&lt;1/1-3/&gt;3）」，本期补两个修正：①「大厂 vs 小公司」要分开看——谷歌/微软/Meta 现金流能撑高比值，小公司不能；②「信用护航」改变风险性质——Anthropic 有谷歌兜底，「重仓」性质被改变。健康度分层不能只看一个数字，要带「谁兜底、谁的现金流能撑」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>健康度三档加「大厂现金流撑腰」+「信用护航兜底」两个修正维度，避免一刀切误判。「算力同盟」是理解 AI 格局的新地图——「云巨头 + 上游算力元件」双锚点是理解产业链最简洁的两把尺子。清醒边界：比值高是「风险敞口大」，不是「必死」。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#035 三层看利润</span><p>AI 产业「谁在赚钱」的判断框架——上游（稀缺原料/元件，有定价权）&gt; 中游（模块/集成，两头挤）&gt; 下游（终端/应用，利润最薄）。利润往「最上游 + 卡点环节」流，和「谁最有名」无关。</p></div>
+    <div class="dict-item"><span class="dw">#036 卡点判断法</span><p>判断「多方案混战」谁赢的思维模型——不押「哪个方案赢」，押「无论谁赢都要用到的共同必需元件」。光通信→高速光芯片/硅光/高端 CCL；机器人→力矩电机/编码器；芯片→HBM/先进封装。本质是「卖铲子」逻辑。</p></div>
+    <div class="dict-item"><span class="dw">#037 五层传导链</span><p>政治怎么影响 AI 的解码图——关税→利率→反垄断→出口管制→数据监管，每层标「已发生 vs 推演」。没有一层是 AI 技术掉链子，但每层都在掐住烧钱扩张的喉咙。</p></div>
+    <div class="dict-item"><span class="dw">#038 算力同盟</span><p>云巨头和模型公司「你出算力、我出模型」的深度绑定（谷歌绑 Anthropic、微软绑 OpenAI、亚马逊绑 Anthropic、Meta 自己干）。竞争从「公司 vs 公司」变「阵营 vs 阵营」。</p></div>
+    <div class="dict-item"><span class="dw">#039 军令状比值</span><p>检验「算力承诺」成色的土办法——算力承诺金额 ÷ 当期收入。比值小稳扎稳打、比值大重仓赌博。但大厂现金流能撑高比值、小公司不能，信用护航（有人兜底）会改变风险性质。</p></div>
+    <div class="dict-item"><span class="dw">#040 技术债</span><p>过去赶进度欠下的「烂账」（代码乱、文档缺、架构乱）。AI 是「放大器」不是「救世主」——基础好 AI 放大好，基础烂 AI 放大烂。想用 AI 提效，先理顺自己的基础。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>「三层看利润」+「卡点判断法」把「利润向上游集中」从现象升维成可复用框架</li>
+        <li>AI 政策「五层传导链」每层标已发生 vs 推演，解决「把推演当定论」硬伤</li>
+        <li>「军令状比值」健康度分层加「大厂现金流 + 信用护航」两个修正</li>
+        <li>AI 是放大器不是救世主——映射到数据准确性零容忍（基础烂 AI 放大烂）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>上游 vs 下游利润剪刀差是否继续拉大 + 上游各环节基数核验</li>
+        <li>高端 CCL 调价轮次（建滔第 8 轮）+ 200G EML 供给缺口 + HBM/先进封装排期</li>
+        <li>反 AI 寡头「话语→立法」时点 + 对华算力租赁管制口径 + 数据合规细则</li>
+        <li>各 AI 公司「算力承诺÷收入」比值 + 云巨头-模型公司绑定/拆绑</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>韬定律V2：新增「三层看利润 + 卡位」判断维度（上游极端值须核基数）</li>
+        <li>AI 硬件链估值框架：三层看利润 + 卡点判断法入库</li>
+        <li>估值框架风险监控：五层传导链落成可套用解码表</li>
+        <li>专家路由：沉淀「三层看利润」「五层传导」「军令状比值」三切片</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 三层看利润 + 卡点判断法 → 韬定律V2 升级「利润流 + 卡位」双维度</span><span class="plan-id">P11-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：「卡必经之路」回答「谁值钱」，「三层看利润」回答「钱往哪流」，合并才是完整的「利润流 + 卡位」判断。</div>
+    <div class="a"><b>修改计划：</b>在韬定律V2供应链瓶颈框架里，把「卡必经之路元件」和「三层看利润」合并成一个「利润流 + 卡位」判断维度——遇「谁在赚 AI 的钱」先分上/中/下游三层，再看是否「所有路线绕不开的共同必需元件」。加硬约束：上游利润极端值（如 +4264%）先核环节和基数，防「小基数异常」当「典型值」。</div>
+    <div class="acc"><b>验收标准：</b>韬定律V2 出现「利润流 + 卡位」判断规则 + 「极端值核基数」约束</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 五层传导链 → 估值框架风险监控落成可套用解码表</span><span class="plan-id">P11-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：P10-3 的「业务线」太粗，本期可精确到五层——关税/利率归估值线，反垄断/出口管制/数据监管归业务线，每层标「已发生 vs 推演」。</div>
+    <div class="a"><b>修改计划：</b>估值框架风险监控里，把「业务线」细化为「五层传导链」解码表——每条 AI 政策新闻先判断落哪层、已发生还是推演；「出口管制」「反垄断」两层标最高优先级（出口管制决定国产替代刚需，反垄断决定巨头烧钱天花板）。</div>
+    <div class="acc"><b>验收标准：</b>估值框架风险监控出现「五层传导链」解码表，出口管制/反垄断标最高优先级</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 军令状比值 + 信用护航 → 健康度分层加两个修正</span><span class="plan-id">P11-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：第 9 期健康度三档只用比值一刀切，本期补：大厂现金流能撑高比值、小公司不能；信用护航改变风险性质。</div>
+    <div class="a"><b>修改计划：</b>健康度分层规则给「算力承诺 ÷ 收入」比值加两个修正字段——①「现金流撑腰」（大厂/小公司分开评级）；②「信用护航兜底」（有云巨头兜底的风险性质降一档）。把「算力同盟（谁绑谁）」作为理解格局背景板记入 AI 竞争分析切片。</div>
+    <div class="acc"><b>验收标准：</b>健康度分层规则出现「大厂/小公司分开」+「信用护航兜底」两个修正字段</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · AI 放大器不是救世主 → 基础数据巡检固化为固定动作</span><span class="plan-id">P11-4</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：「AI 逼我们偿还 40 年技术债」讲透——AI 放大你已有的能力，基础好放大好、基础烂放大烂。第 10 期「宏昌电子凭记忆写持仓」就是「基础烂被放大」的活案例。</div>
+    <div class="a"><b>修改计划：</b>把「基础数据巡检」固化进固定巡检表——涉及「我的持仓/股票代码/成本价」的分析产出前，先跑 holdings_loader.py 拉当前持仓、核对代码映射，禁止凭记忆或旧快照。把「AI 放大器」作为「数据准确性零容忍」的佐证记入 memory。</div>
+    <div class="acc"><b>验收标准：</b>固定巡检表出现「基础数据准确性」巡检项（持仓/代码/成本价先核对）</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div class="plan-row"><span class="pc">P10-1</span><span class="pt">「卡必经之路」进韬定律V2</span><span class="status carried">结转 P11-1</span></div>
+    <div class="plan-row"><span class="pc">P10-2</span><span class="pt">「边角料温度计」进算力链景气度监控</span><span class="status pending">未推进</span></div>
+    <div class="plan-row"><span class="pc">P10-3</span><span class="pt">政策风险双线监控</span><span class="status carried">结转 P11-2</span></div>
+    <div class="plan-row"><span class="pc">P10-4</span><span class="pt">三锚点→demo三问固化顺序</span><span class="status pending">未推进</span></div>
+  </div>
+  <div class="card">
+    <div class="plan-row"><span class="pc">P11-1</span><span class="pt">韬定律V2 升级「利润流 + 卡位」双维度</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P11-2</span><span class="pt">估值框架风险监控落五层传导链解码表</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P11-3</span><span class="pt">健康度分层加现金流 + 信用护航修正</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P11-4</span><span class="pt">基础数据巡检固化为固定动作</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">📋 P6-P9 历史 pending 计划（skill 来源审计、硬编码密钥迁移、路由效率、长任务两段式、方法论审计、估值锚、demo 三问等）仍在 backlog，需一次专项执行，不在本期展开。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第11期 · 2026-11-06 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
