@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第12期 · 2026-11-07</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 12 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-07 · 共 37 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期是第 11 期「三层看利润 + 卡必经之路」的<strong style="color:var(--purple)">收敛与兑现</strong>：①「双锚点」把两把尺收敛成一句话，还主动划边界防「公式化懒惰」；②「利润向上游基材集中」补齐了完整证据链（HDI 工艺 + 建滔 8 轮调价 + 下游增收不增利），直接命中持仓<strong>生益科技</strong>；③光通信 7 方案 BOM 清单让「卡必经之路」可核对。
+    </div>
+    <div class="tagrow">
+      <span class="tag">双锚点</span><span class="tag">上游基材</span><span class="tag">HDI/覆铜板</span><span class="tag">光通信BOM</span><span class="tag">增收不增利</span><span class="tag">Agent基准</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>AI 硬件链的「钱被谁赚走」这一烧脑题，收敛成<strong>两句开场必问</strong>——<strong style="color:var(--purple)">硬件链看「上游谁稀缺」，算力赛看「谁和谁结盟」</strong>。但拾光本期最值钱的是主动划边界：第一锚点只对硬件链有效、第二锚点只对算力+模型对峙阵营有效，<strong>用错地方是哈哈镜</strong>，框架不能替你做判断。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线一 — 利润向上游基材集中（完整证据链）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>高端 PCB 为什么贵？「盲孔/埋孔/微孔」HDI 高阶工艺是真门槛——不是炒作，是良率低、产能有限、受深径比限制</li>
+      <li>建滔第 8 轮调价 + 巨石「紧平衡至少到 2027 上半年」——涨价是长周期，不是短炒</li>
+      <li>上游基材集体暴增：华正 +3045%、宏昌 +2545%、南亚 +1296%、金安 +1031%、<strong>生益 +238%</strong>；对照下游板厂「增收不增利」（胜宏营收 +34% 净利 -52%）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线二 — 光通信 7 方案必经元件 BOM + 商用节奏迁移</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>7 方案（3.2T PLO/XPO/NPO/CPO/MicroLED/USFP/OOI）本质是「光离芯片有多近」的搬家大赛</li>
+      <li>BOM 清单：Lumentum CW 激光器 6/7 必经、Marvell DSP 3/7 可绕开；EML/泵浦激光器出货比需求低三成（<strong>缺芯片不缺模块</strong>）</li>
+      <li>NPO 商用提前到 2027 底（可插拔「黄金期」被压缩）；Marvell 收购 Lumentum 拖到 2028 上半年（时间条款隐忧）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线三 — 对我系统的元层启发</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>SemiAnalysis 真实工作基准：没有一个 Agent 超过 12%——「考试高手、上班新手」，榜单刷分≠真实能干</li>
+      <li>DigitalOcean 给 Agent 提供「记忆 + 数据 + 学习」基础设施——Agent 价值从「一次多聪明」转向「越用越懂你」</li>
+      <li>Codex 单人 100% 重制叙事游戏：「AI 承担执行，人守住方向盘」——与我的独立判断原则同源</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 上游基材涨价长周期</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">直接映射持仓生益科技，是本期对我最有操作价值的方向</div>
+    <h4>概念拆解</h4>
+    <p>AI 服务器「用得起也造不出足够多的高端 PCB」，根因在 HDI 高密度互连——「盲孔（表面打到中间某层）、埋孔（内层连接）、激光微孔」这套高阶钻孔技术让线路密度大涨，但成本高、良率难、受「深径比」限制。所以「AI 要用高端板」=「要用 HDI」=「良率低、产能有限、价格贵」，上游涨价有真门槛。</p>
+    <h4>产业逻辑</h4>
+    <p>「上游集体涨」+「下游增收不增利」拼出「利润向上游集中」的完整证据：上游基材 10 家 Q3 归母净利同比集体暴增（均值约 1196%），下游板厂 10 家均值仅 +167%（上游七分之一）。建滔 8 轮调价 + 巨石紧平衡到 2027 上半年，是「需求端 AI 带动 + 供给端产能爬坡慢」两头夹出的长周期。上游是「卖面粉的」、下游是「开餐馆的」。</p>
+    <div class="judge"><div class="jt">寒洛判断（独立）</div>持仓<strong>生益科技（2300 股 @117.47）</strong>正处于「上游基材 + 利润向上游集中」受益位。关键区分：生益 +238% 是<strong>大基数真实弹性</strong>，不是华正/宏昌那种「小基数暴增 30 倍」的极端值——这正是第 11 期「极端值核基数」意见被拾光「别被 +4264% 唬住」兑现后的直接应用。利多：涨价长周期、超低损耗 CCL 国产龙头、AI 高端板需求爆发。风险：涨价见顶（玻纤/铜箔扩产释放）、下游被挤压反噬需求、CCL 涨价传导不畅。<strong>结论：持有为主，盯「扩产释放」这个钟摆信号。</strong></div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 光通信 7 方案 BOM + 商用节奏迁移</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「卡必经之路」从口号变可核对清单，且叠加三个节奏突变信号</div>
+    <h4>概念拆解</h4>
+    <p>7 个方案本质是「光离芯片有多近」的搬家大赛——越近越省电越快，但越难造、越难修、良率越低。别记缩写，记规律：<strong>光离芯片越近，绕开 DSP 越多、激光器越绕不开</strong>。</p>
+    <h4>产业逻辑</h4>
+    <p>BOM 清单：Lumentum 高功率 CW 激光器 6/7 方案都用（真·必经）、Marvell DSP 3/7 用（可绕开）。三个节奏突变：①NPO 商用从 2029 提前到 2027 底（可插拔模块「黄金期」被压缩）；②Marvell 收购 Lumentum 拖到 2028 上半年，远超当年 2~3 季度节奏（时间越长变量越多，Lumentum 手握最核心激光芯片、股东可能重新掂量价格）；③EML/泵浦激光器出货比需求低三成——缺芯片不缺模块，200G EML 只有 Lumentum 和博通能做。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>光通信利润继续往「独家芯片」环节集中（激光器 &gt; 模块），可插拔模块厂商窗口期被 NPO 提前挤压，是<strong>中期利空信号</strong>。跟踪锚点：NPO 商用是否兑现、Marvell-Lumentum 落地节奏、200G EML 是否出现第三家、OCS 光交换核心能力国产化进度。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 双锚点的边界</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">元层方法论映射——拾光主动划边界，戳中我所有框架的共性风险</div>
+    <h4>概念拆解</h4>
+    <p>双锚点好用，但拾光本期最值钱的是<strong>主动划边界</strong>：第一锚点「上游稀缺」是硬件链规律，换到软件/模型层就失灵（大模型拼数据和算力规模，没有「绕不开的物理元件」）；第二锚点「算力同盟」只对算力+模型对峙阵营有用。锚点脱离成立前提，就从「望远镜」变「哈哈镜」。</p>
+    <h4>产业逻辑（对我系统的映射）</h4>
+    <p>这段话戳中的是我所有判断框架的共性风险——<strong>「公式化懒惰」</strong>。框架是帮你少漏东西的，不是替你做判断的。双锚点该记成「开场必问」而不是「结论模板」：看完硬件新闻先问「上游还是下游」「单打还是结盟」，问完继续看具体事实。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>对我的「韬定律 V2 供应链瓶颈框架」是直接升级素材——已有「利润流 + 卡位」维度，但缺「适用边界」约束。没有边界的框架，用多了会退化成「拿着锤子看什么都是钉子」。落地：给框架加「先用开场必问、不套结论模板」的边界铁律。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">盲孔 / 埋孔 / 微孔</span><p>HDI 高密度互连的三类高阶钻孔：盲孔从表面打到中间某层（不透）、埋孔埋在内层（表面看不到）、微孔激光钻出的极小孔。这是「AI 高端 PCB 为什么贵」的技术根因。</p></div>
+    <div class="dict-item"><span class="dw">双锚点</span><p>AI 产业链两句「开场必问」——硬件链看「上游谁稀缺」，算力赛看「谁和谁结盟」。第 11 期「三层看利润 + 卡必经之路」的收敛版。</p></div>
+    <div class="dict-item"><span class="dw">EML（电吸收调制激光器）</span><p>能把电信号转成光信号、还转得特别快的激光器件，200G 即单通道每秒 200 吉比特。AI 服务器间海量数据传输靠它，目前只有 Lumentum、博通两家能做。</p></div>
+    <div class="dict-item"><span class="dw">OCS（光路交换）</span><p>光信号的「立交桥调度站」，用镜片直接切光路，省多次电光转换，AI 集群里越来越受重视，市场规模 80~100 亿美元。</p></div>
+    <div class="dict-item"><span class="dw">增收不增利</span><p>营收涨了、净利反而跌。翻译成人话——「活干了更多，钱没多赚」。看公司要「增收」和「增利」一起看，别被单一营收增长骗。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>「上游集体暴增 vs 下游增收不增利」是「利润向上游集中」的完整证据链，不是个别公司撑门面</li>
+        <li>涨价长周期判定有双指标：龙头调价轮次 + 上游扩产周期</li>
+        <li>光通信 7 方案本质是「光离芯片距离」搬家大赛，BOM 清单让「卡必经之路」可核对</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>建滔下一轮调价、玻纤/铜箔扩产节奏、生益 Q4 业绩兑现</li>
+        <li>NPO 商用进展、Marvell-Lumentum 收购落地、200G EML 是否出现第三家</li>
+        <li>OCS 光交换核心能力国产化进度</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架：生益科技所在「上游基材」纳入「涨价长周期 + 利润向上游集中」受益位</li>
+        <li>韬定律V2供应链瓶颈：「卡必经之路元件」从光通信延伸到 PCB 上游基材</li>
+        <li>stock-system-architecture：沉淀「上游基材涨价传导」「光通信商用节奏」两个分析切片</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">双锚点「用错地方是哈哈镜」→ 框架加适用边界</span><span class="plan-id">P12-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：拾光主动给双锚点划边界——「上游稀缺」只对硬件链有效、「算力同盟」只对算力+模型对峙阵营有效，锚点脱离前提就从望远镜变哈哈镜。</div>
+    <div class="a"><b>修改计划：</b>给「韬定律 V2 卡位判断法」加「适用边界」约束——遇分析先问「这个框架适用吗」，模型层/普通行业不套「上游稀缺」锚点，防公式化懒惰。</div>
+    <div class="acc"><b>验收标准：</b>卡位判断法出现「适用边界」条目，含「开场必问、不套结论模板」约束</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">「增收不增利」翻译法 → 财报分析加双看约束</span><span class="plan-id">P12-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：胜宏营收 +34% 净利 -52% 是反面教材——「增收看有没有活干、增利看活干得值不值」，两件事不能混。</div>
+    <div class="a"><b>修改计划：</b>财报分析切片加「增收 + 增利双看」判断规则，禁止被单一营收增长骗。</div>
+    <div class="acc"><b>验收标准：</b>财报分析切片出现「增收 + 增利双看」判断规则</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">「考试高手上班新手」→ 判断验收加真实任务检验</span><span class="plan-id">P12-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：SemiAnalysis 真实工作基准里没有一个 Agent 超 12%——榜单刷分≠真实能干，映射到我：分析判断不能只停在「看起来有道理」。</div>
+    <div class="a"><b>修改计划：</b>与 P9-4「每条判断带验证信号」合并强化——每条方向判断强制带可证伪的兑现/证伪信号，能被真实行情检验。</div>
+    <div class="acc"><b>验收标准：</b>判断产出规范出现「真实任务检验」约束，与验证信号字段合并</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">建滔 8 轮调价 + 巨石紧平衡 → 涨价长周期判定双指标</span><span class="plan-id">P12-4</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：判断涨价是「炒一把就跑」还是「长周期」，看两个东西——龙头调价了几轮 + 上游扩产要多久。</div>
+    <div class="a"><b>修改计划：</b>景气度监控加「涨价长周期判定」双指标（调价轮次 + 扩产周期），套到覆铜板/铜箔/玻纤等任何涨价环节。</div>
+    <div class="acc"><b>验收标准：</b>景气度监控清单出现「涨价长周期判定」双指标观察项</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--red); margin-bottom:8px;">⏳ 上期结转（未完成，继续追踪）</div>
+    <div class="plan-row"><span class="pc">P11-1</span><span class="pt">韬定律V2 升级「利润流+卡位」双维度 + 极端值核基数</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P11-2</span><span class="pt">估值框架风险监控落五层传导链解码表</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P11-3</span><span class="pt">健康度分层加现金流+信用护航修正</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P11-4</span><span class="pt">基础数据巡检固化为固定动作（持仓/代码/成本先核对）</span><span class="status carried">结转</span></div>
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin:14px 0 8px;">🆕 本期新计划</div>
+    <div class="plan-row"><span class="pc">P12-1</span><span class="pt">卡位判断法加适用边界约束（防公式化懒惰）</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P12-2</span><span class="pt">财报分析加「增收+增利双看」约束</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P12-3</span><span class="pt">判断验收加「真实任务检验」（与P9-4合并）</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P12-4</span><span class="pt">景气度监控加「涨价长周期判定」双指标</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">⚠️ 诚实自评：P6~P11 累计结转的迭代计划已堆积较多，多数停留在「pending」未真正落文件。这不是「计划制定」问题，是「计划执行」问题——启发不能停在纸面。下一步应集中清账，把已结转的框架类计划（韬定律V2/估值框架/景气度监控）真正 patch 进对应文件，而不是每期继续叠新计划。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。持仓数据来自 holdings_loader.py 实时解析（生益科技 2300 股 @117.47；宏昌电子已于 10-27 清仓，本期「宏昌 +2545%」仅为上游基材市场数据、非寒洛持仓）。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第12期 · 2026-11-07 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
