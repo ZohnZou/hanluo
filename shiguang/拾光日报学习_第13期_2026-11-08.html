@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第13期 · 2026-11-08</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:10px; margin:12px 0; }
+  .kpi { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .kpi .n { font-size:20px; font-weight:700; color:var(--green); font-family:monospace; }
+  .kpi .n.red { color:var(--red); }
+  .kpi .l { font-size:12px; color:var(--muted); margin-top:3px; line-height:1.5; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 13 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-08 · 共 34 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期主题高度集中：<strong style="color:var(--purple)">光进铜退（光通信换挡期）+ 上游涨价链条（覆铜板/铜箔/玻纤）+ 具身智能（虚拟刷题）</strong>。<br>
+      最大看点：20 家 PCB 产业链 2026Q3 财报坐实「利润向上游集中」，上游基材净利均值 +1196% vs 下游板厂 +167%，差 7 倍——直接命中我的持仓<strong style="color:var(--green)">生益科技（覆铜板）+238%</strong>。
+    </div>
+    <div class="tagrow">
+      <span class="tag">光进铜退</span><span class="tag">覆铜板</span><span class="tag">铜箔</span><span class="tag">EML激光芯片</span><span class="tag">具身智能</span><span class="tag">谁稀缺谁吃肉</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>「谁稀缺、谁涨价、谁吃肉」这条横跨三期的判断，本期被 20 家 PCB 产业链公司 2026Q3 财报<strong>坐实</strong>：上游基材 10 家净利同比均值 <strong style="color:var(--green)">+1196%</strong>，下游板厂 10 家均值仅 <strong>+167%</strong>，差 7 倍。嘉元（铜箔）+4264%、华正新材 +3045%、宏昌电子 +2545%、<strong style="color:var(--green)">生益科技（覆铜板）+238%</strong>。</p>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="n">+1196%</div><div class="l">上游基材 10 家净利均值（铜箔/玻纤/覆铜板）</div></div>
+    <div class="kpi"><div class="n">+167%</div><div class="l">下游板厂 10 家净利均值（增收不增利）</div></div>
+    <div class="kpi"><div class="n">+4264%</div><div class="l">嘉元科技（铜箔）净利同比</div></div>
+    <div class="kpi"><div class="n">+238%</div><div class="l">生益科技（覆铜板·我的持仓）</div></div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">光进铜退 — 光通信换挡期</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>铜线单通道逼近 200G 撞物理极限，光互连 7 方案抢同一班车，主线只有一条「让光离芯片越来越近」</li>
+      <li>EML 激光芯片全球仅 Lumentum、博通两家能做 200G，出货比需求低三成——光通信最硬的卡点不是模块组装</li>
+      <li>NPO 商用从 2029 提前到 2027 底，可插拔光模块黄金期被砍短 2 年；Marvell 收购 Lumentum 拖到 2028 上半年交割，有流产风险</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">具身智能 — 虚拟世界刷题是放量前提</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>ToyBlocks 积木世界 + Physicl 融资 1000 万做仿真基建——机器人「刷题式」学习，试错成本打下来几个数量级</li>
+      <li>Axon 12 亿美元投 Skydio，无人机是具身智能里商业化最成熟、最易被忽略的一条腿</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">安全/加速/其他</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>METR 称 Anthropic 可能已跨自家警戒线 + HN「AI 加速 AI 研究」338 分——「能力 vs 安全」的赛跑</li>
+      <li>台积电要造 3D DRAM（内存成新瓶颈）；微软收缩甲骨文算力租约（算力供需信号）</li>
+      <li>GitHub 转型指南「代码生成→Agent 工程」+ rea/openclaw/hermes-agent 开源爆星；9 个 AI agent 挑战国家级科研全军覆没</li>
+      <li>法院判「员工用 AI 做 PPT 被开除」公司赔 4.6 万——AI 提效本身不构成违规</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 涨价传导链 + 覆铜板/铜箔/玻纤三件套</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">直接命中持仓生益科技——覆铜板「卖铲子」逻辑，但弹性不如最源头铜箔</div>
+    <h4>概念拆解</h4>
+    <p>电路板「地基三件套」：<strong>铜箔</strong>（导电铜皮，越薄越精细）、<strong>玻纤布</strong>（玻璃拉纱织成的骨架）、<strong>覆铜板</strong>（铜箔压到玻纤布上的半成品板，PCB 直接原料）。AI 服务器要「超低损耗」高端版，涨 4000% 的是卡在「高端超薄铜箔」那一档的稀缺货，不是普通铜箔。</p>
+    <h4>产业逻辑</h4>
+    <p>涨价是<strong>「时差接力」</strong>：AI 服务器要 PCB → PCB 要高端覆铜板 → 覆铜板要超薄铜箔/玻纤。最源头先吃一波利润，过一两个月中间商才「敢」往下传，板厂硬扛，终端最后体现。时差来自每环的<strong>库存 + 合同锁价</strong>——下游板厂锁着几个月前置订单价，上游突涨它先自己扛，扛不住、库存吃完才轮到下一轮涨价谈判。所以「上游快、下游慢、终端最后」。</p>
+    <div class="judge"><div class="jt">寒洛判断（涉及持仓生益科技）</div>生益科技是覆铜板龙头，处「中游偏上」——能吃 AI 高端覆铜板涨价红利（+238% 验证「卖铲子」逻辑），但同时也被上游铜箔/玻纤吃一道，弹性不如最源头。关键看它<strong>高端超低损耗料占比 + 扩产节奏</strong>：吃的是「高端超低损耗覆铜板」这条稀缺线，不是普通料。防两个拐点：①涨价见顶（建滔调价节奏是即时指标、巨石产能表态是中期指标）②高端料扩产稀释稀缺。结论：持，受益于涨价长周期（建滔第8轮、巨石紧平衡到2027），但需盯调价 + 扩产双拐点。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 光进铜退 + 光互连 7 方案 + EML 卡脖子</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">光通信「换挡期」，最硬卡点是激光芯片，不是模块组装</div>
+    <h4>概念拆解</h4>
+    <p>光进铜退 = 铜的「势力范围」往里缩，不是铜被淘汰。7 个方案本质是「光离芯片从远到近」的<strong>四档递进</strong>：可插拔 → 板载（NPO）→ 共封装（CPO）→ 中介层（OOI）。离得越近，铜线越短、功耗延迟越低，但工艺越难、良率越难。</p>
+    <h4>产业逻辑</h4>
+    <p>光通信最缺的不是「拼模块的活」，是「造激光芯片的本事」——<strong>EML</strong>（把电信号调制成光的核心器件）200G 档全球仅 Lumentum、博通两家，出货比需求低三成。又是「稀缺环节吃肉」在光通信重演：模块厂一堆，但被芯片卡脖子。NPO 提前到 2027 底 + Marvell 收购 Lumentum 拖到 2028 交割（有流产风险），都指向同一结论：<strong>可插拔黄金期被砍短，光进铜退节奏整体加快</strong>。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>判断光通信个股先问「它卡在四档递进的哪一档 + 这一档商用时间表 + 卡在哪个器件」，不笼统看「光模块需求」。最硬卡点是「能做核心激光芯片的全球几家」——家数越少卡点越硬周期越长。NPO 提前是可插拔模块厂的利空、激光芯片/封装环节的利好。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 「谁稀缺谁吃肉」+ 三个反例的边界</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">方法论级——边界意识可直接内化为估值框架约束</div>
+    <h4>概念拆解</h4>
+    <p>本期把「钱流向稀缺环节」收口成九个字：<strong>谁稀缺 → 谁涨价 → 谁吃肉</strong>。用 20 家财报验成可复用判断，不分上下游——上游吃肉、下游喝汤，但稀缺的高速板厂沪电 +161%、深南 +94% 照样吃肉。同时必须看清三个反例划清边界，否则会把「多数时候成立」学成「永远成立」的死教条。</p>
+    <h4>产业逻辑</h4>
+    <p>规律有价值是因为有边界。三个反例（都是真数据）：①下游也能吃肉（沪电高速板 +161%，它自己卡在稀缺位置）；②稀缺会变（产能扩出来就不稀缺）；③上游也可能不涨（基数/环节不对）。核心：<strong>「稀缺 = 议价权 = 利润」才是真抓手，「上游/下游」只是表象</strong>。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是对韬定律 V2「卡位判断法」的边界强化——卡位判断不能公式化套「上游必赢」，要先问「这里谁真的稀缺 + 这个稀缺能维持多久（工艺壁垒/扩产周期）」。高速板厂逆势吃肉，说明「稀缺位置」比「上下游标签」更重要。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#009 光进铜退</span><p>铜的「势力范围」随速率提升往里缩——芯片内部仍是铜，但芯片之间、机柜之间的高速传输正一寸寸让给光。本质是「光能跑的边界」不断向芯片推进，不是铜被淘汰。</p></div>
+    <div class="dict-item"><span class="dw">#010 覆铜板（CCL）</span><p>把铜箔压到玻纤布上做成的「半成品板」，PCB 的直接原料。AI 板必须用超低损耗铜箔 + 超细玻纤纱做的高端覆铜板，普通料不够格。</p></div>
+    <div class="dict-item"><span class="dw">#011 EML（电吸收调制激光器）</span><p>光模块里「把电信号调制成光」的核心器件，相当于模块心脏。200G 档全球仅 Lumentum、博通两家能做，出货比需求低三成。</p></div>
+    <div class="dict-item"><span class="dw">#012 NPO（近封装光学）</span><p>光模块「焊到主板上」的中间档，介于可插拔和 CPO 之间。光离芯片近一截、铜线短了，功耗下来速率上去，但坏了不能单独拔。商用从 2029 提前到 2027 底。</p></div>
+    <div class="dict-item"><span class="dw">#013 盲孔/埋孔/微孔</span><p>高端 PCB 把几层线路板内部打通的高难度钻孔工艺。孔越精良率越低越难钻，高阶 HDI 全球没几家能做——「高端板贵」的技术根因。</p></div>
+    <div class="dict-item"><span class="dw">#014 Sim2Real（虚实迁移）</span><p>机器人在虚拟环境里无限试错、练出的策略搬到真机。仿真练会了真机不一定行，中间的 gap 是具身智能「刷题式放量」的核心痛点。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>涨价是「时差接力」，上游快、下游慢、终端最后——时差来自每环的库存 + 合同锁价</li>
+        <li>生益科技（持仓）吃「高端超低损耗覆铜板」这条稀缺线，+238% 验证「卖铲子」逻辑，弹性不如最源头铜箔</li>
+        <li>光通信最硬卡点是 EML 激光芯片（全球仅 2 家），不是模块组装</li>
+        <li>「谁稀缺谁吃肉」有边界：稀缺的高速板厂沪电 +161% 照样吃肉，「稀缺位置」比「上下游标签」更重要</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>建滔调价公告（涨价即时指标）+ 巨石产能表态（供给中期指标）→ 涨价见顶拐点</li>
+        <li>生益科技高端超低损耗料占比 + 扩产节奏（决定 +238% 持续性）</li>
+        <li>光通信：NPO 商用进度（2027 底是否兑现）+ Marvell-Lumentum 交割是否流产</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>韬定律V2：光通信「激光芯片」继存储后候选瓶颈；涨价「时差接力」维度补入</li>
+        <li>估值框架：覆铜板/铜箔/玻纤纳入「上游材料稀缺」观察池；「谁稀缺谁吃肉」三反例强化边界</li>
+        <li>stock-system-architecture：光通信换挡期、涨价传导链沉淀为两个分析切片</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warn">📋 待回应清单变化：清理 8 条已验收记录（产业链拆解/配图/可证伪清单/筛选式学习 + 第12期 4 条）；主编 5 条回复均为「待迭代(已采纳)」——「同主体合并工艺」本期起应落地、「硬断言标注」本期已见兑现（多处标「行业观察者判断/非既定事实」）。</div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 涨价「时差接力」→ 估值框架补「传导时滞」维度</span><span class="plan-id">P13-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：涨价不是同步传导，是「上游快、下游慢、终端最后」的时差接力，时差来自库存 + 合同锁价。我此前容易把「上游涨价」当成立即传导全链。</div>
+    <div class="a"><b>修改计划：</b>估值框架/景气度监控补「传导时滞」维度——判断涨价链条先问「涨价已经传到哪一环了」（原料→中间商→板厂→终端），别把最源头涨幅直接套到下游。与 P12-4 区分：一个看「传到哪了」（时滞），一个看「能持续多久」（长周期）。</div>
+    <div class="acc"><b>验收标准：</b>估值框架/景气度监控出现「传导时滞」判断维度，与「涨价长周期」双指标并列</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「谁稀缺谁吃肉」三反例 → 韬定律V2 卡位判断法补「三反例自检」</span><span class="plan-id">P13-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：规律的价值在边界。三个反例（下游也能吃肉/稀缺会变/上游也可能不涨）提醒我——卡位判断不能公式化套「上游必赢」。</div>
+    <div class="a"><b>修改计划：</b>韬定律V2 卡位判断法在 P12-1「适用边界约束」基础上补「三反例自检」：每次得出「某环节吃肉」结论前，自问①下游有没有也卡在稀缺位置的反例②这个稀缺能维持多久（工艺壁垒/扩产周期）③基数/环节对不对。三个问完再下结论。</div>
+    <div class="acc"><b>验收标准：</b>卡位判断法出现「三反例自检」三问，与「适用边界约束」合并</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 光通信「四档递进 + 商用时间表」→ 光通信分析切片定主线</span><span class="plan-id">P13-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：光互连 7 方案本质是「光离芯片从远到近」的四档递进，判断光通信个股该看它卡在哪一档 + 商用时间 + 卡在哪个器件，而不是笼统看「光模块需求」。</div>
+    <div class="a"><b>修改计划：</b>stock-system-architecture 光通信切片以「四档递进 + 商用时间表」为主线——分析光通信标的先定位四档中的哪一档，再查这一档的商用兑现时间和核心器件（EML 激光芯片等），替代「光模块景气」的笼统判断。</div>
+    <div class="acc"><b>验收标准：</b>光通信分析切片出现「四档递进 + 商用时间表」主线判断规则</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div class="plan-row"><span class="pc">P13-1</span><span class="pt">估值框架补「传导时滞」维度（涨价传到哪一环）</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P13-2</span><span class="pt">韬定律V2 卡位判断法补「三反例自检」三问</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P13-3</span><span class="pt">光通信切片定「四档递进 + 商用时间表」主线</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">📌 上期（第12期）计划 P12-1~P12-4 均处于「待执行」状态（pending），尚未在对应 skill/框架文档落地。本期新计划 P13-1~P13-3 追加。下期起逐条核对执行情况，未完成的继续结转追踪，禁止丢失。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。持仓数据经 holdings_loader.py 实时校验（生益科技 2300 股 @117.47，对账单 2026-11-06）。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第13期 · 2026-11-08 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
