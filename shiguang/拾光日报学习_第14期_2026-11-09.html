@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第14期 · 2026-11-09</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 14 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-09 · 共 34 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：①光通信「换挡期」被深挖到最硬一层——<strong style="color:var(--purple)">「缺的是芯片，不是模块」</strong>；②第 13 期我提的「三步判断框架」新知识验证本期兑现，并升级出<strong style="color:var(--amber)">「产能型 vs 技术型稀缺」</strong>。
+    </div>
+    <div class="tagrow">
+      <span class="tag">光通信换挡期</span><span class="tag">EML 激光芯片</span><span class="tag">稀缺两型</span><span class="tag">三步框架</span><span class="tag">Sim2Real</span><span class="tag">人才黑洞</span><span class="tag">算力账</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>光通信真正卡脖子的不是「把模块拼起来的活」，是<strong style="color:var(--purple)">「造出那颗激光芯片的本事」</strong>——200G EML（电吸收调制激光器）全球仅 Lumentum、博通两家能做，出货比需求低三成以上。下游模块厂再有产能，卡在心脏芯片上造不出就是造不出。<strong style="color:var(--amber)">缺的是芯片，不是模块</strong>。这是「技术型稀缺」（别人学不会造不出），比「产能型稀缺」（扩出来就不缺了）硬得多。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">光通信换挡期（主线，多条深挖）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Lumentum CEO 专访：NPO 商用从 2029 提前到 2027 底，可插拔光模块黄金期被砍短约 2 年</li>
+      <li>四档递进（可插拔→NPO→CPO→OOI）「越近越省电、越近越难造」，良率/维护是换挡期胜负手</li>
+      <li>芯片侧格局：Lumentum 占 7 方案里 6 个的高功率 CW/EML 芯片需求；Marvell 的 DSP 只在 3 个可插拔方案里用得上</li>
+      <li>Marvell 收购 Lumentum 的 18 个月完成期（2028 上半年交割）被指「慢动作隐患」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">三步判断框架（第13期新知识验证 → 本期兑现）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>三步法（稀缺→传导→吃肉/扛）被拾光完整跑通验证，站得住</li>
+      <li>关键升级：稀缺分「产能型」vs「技术型」——产能型保质期短、技术型越吃越稳</li>
+      <li>EML 缺货是技术型稀缺，所以比模块产能缺货「硬」得多</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">Sim2Real 具身智能 + 人才/算力账</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Sim2Real gap 三成因：物理太理想 / 传感器非上帝视角 / 接触难精确仿真；缩小三招：域随机化、多塞真实数据、仿真打地基+真机微调</li>
+      <li>GPU 并行仿真把「练机器人」成本打下来；GenRobot 做设备层——「卖铲子」环节最先赚钱</li>
+      <li>微软退租甲骨文算力、谷歌买怀俄明 Crusoe 场地：从「租」转向「自建」，算力争夺战打到能源和土地</li>
+      <li>微软研究院砍 AI Frontiers、Anthropic 折价 IPO、Rich Sutton 给「堆算力」泼冷水</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 光通信换挡期 + 「缺芯片不缺模块」+ 稀缺两型</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">本期最硬的投资判断——卡脖子从模块上移到激光芯片，且是技术型稀缺</div>
+    <h4>概念拆解</h4>
+    <p>光互连 7 方案本质是「光离芯片从远到近」的四档递进。「越近越难」是一条物理定律——每一档换挡都是从「成熟可靠但不给力」往「给力但还造不好」挪一步。最反直觉的一点：<strong>越靠近芯片，DSP 越派不上用场</strong>——光信号跑得越短、变形越小，DSP 这个「还原信号的救火队员」地位就越弱。架构每演进一次，上一代的「必需品」可能变可有可无，稀缺会迁移。</p>
+    <h4>产业逻辑</h4>
+    <p>真正卡脖子的是「造出那颗激光芯片的本事」。200G EML 出货比需求低三成、全球仅两家能做，意味着下游模块厂再有产能，卡在心脏芯片上造不出就是造不出。这条把「谁稀缺谁吃肉」从「当下这一拍」升级到「保质期多长」：<strong>EML 缺货是技术型稀缺</strong>（别人学不会造不出），比模块产能缺货（产能型，扩出来就不缺）「硬」得多。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>判断光通信标的，先定位它卡在四档哪一档 + 商用时间 + 卡在哪个器件。最硬卡点是「能做核心激光芯片的全球几家」——家数越少、技术壁垒越高，周期越长。NPO 提前 + 微软退租自建 + 谷歌买场地，合起来是同一信号：<strong>算力下一场争夺战打到「能源和土地」上，「电从哪来」成第一问</strong>。对「光模块要完蛋」的恐慌泼冷水：可插拔很长一段时间仍是绝对主力，NPO/CPO 吃的是「增量里对功耗最敏感那一块」。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 三步判断框架验收 + 「产能型vs技术型」升级</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">第13期我提的新知识验证，本期拾光兑现并跑通</div>
+    <h4>概念拆解</h4>
+    <p>三步法：<strong>①谁稀缺</strong>（卖方市场有定价权）→<strong>②传到哪</strong>（涨价传导有时差，中游稀不稀缺决定转嫁还是自扛）→<strong>③谁吃肉谁扛成本</strong>（有定价权的稀缺方吃肉、被动接单的下游组装扛成本）。走完三步再从「谁稀缺」追问：<strong>产能型稀缺（会被扩产稀释）还是技术型稀缺（越吃越稳）</strong>——这是框架能否长期成立的关键补问。</p>
+    <h4>产业逻辑</h4>
+    <p>三步法套回第 13 期 20 家财报数据结论成立，但有边界（稀缺是动态的/传导有时差/基数环节要对），否则变成「照搬就能算准」的伪规律。「产能型 vs 技术型」补问最值钱——很多人看到「某环节很赚钱、供不应求」就冲进去，分不清是「临时的产能挤兑」（快被分完的肉）还是「长期的技术壁垒」（越吃越稳）。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是对我「卡位判断法」和「谁稀缺谁吃肉」框架的<strong>保质期维度升级</strong>。判断一个环节值不值得长期看好，先问「稀缺是产能型还是技术型」，而不是只问「现在稀不稀缺」。已直接落进硬件链框架第九节 9.3。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · Sim2Real gap + 具身智能「卖铲子」+ GPU 打降成本</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">具身智能从 demo 到量产，最先赚钱的是设备层</div>
+    <h4>概念拆解</h4>
+    <p>Sim2Real gap 三成因——①物理世界太「坑」②传感器不是「上帝视角」③接触本身没法精确仿真（抓=踩在仿真最弱点）。缩小三招：<strong>域随机化</strong>、<strong>多塞真实数据</strong>（ToyBlocks/Physicl）、<strong>仿真打地基+真机微调</strong>。而「仿真为什么突然火」的答案就一句：<strong>GPU 把训练规模打下来了</strong>——几千个虚拟机器人同时练，量变引起质变。</p>
+    <h4>产业逻辑</h4>
+    <p>具身智能里一个被忽略的事实——人形机器人再炫，落地前最先赚钱的是「卖铲子」的环节（GenRobot 做设备层：传感器/执行器/灵巧手/控制器/测试设备）。和光通信「芯片比模块更稀缺」一个道理：下游做整机越卷，上游做关键部件越稳。边界要划清：<strong>拿融资 ≠ 成功</strong>，GenRobot 拿的是早期融资。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>关注具身智能别只盯「跳舞视频」，换「卖铲子」视角扫灵巧手/执行器/传感器/仿真工具——这些环节的「订单和放量」比「demo 视频」更能反映真实进度。判断一个机器人 demo 离真机落地还差多远：看动作是不是接触类（踩仿真最弱处）、有没有真实环境跑过、有没有量产客户订单（不是只有融资）。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#015 稀缺两型</span> <span class="we">产能型 vs 技术型</span><p>判断一个环节值不值得长期看好的关键补问。产能型=别人学得会、扩得出（保质期短，肉会被分走）；技术型=别人学不会、造不出（保质期长，越吃越稳）。200G EML 是技术型，模块产能是产能型。</p></div>
+    <div class="dict-item"><span class="dw">#016 CPO</span> <span class="we">Co-Packaged Optics</span><p>光引擎和交换芯片封到同一个基板/封装里，电信号几乎不跑 PCB。功耗延迟再降一大截，但共封共测「一废俱废」、维护性几乎归零（坏了整颗换）。</p></div>
+    <div class="dict-item"><span class="dw">#017 OOI</span> <span class="we">Optics-on-Interposer</span><p>光直接做在硅中介层里，离芯片最近、损耗最低。英伟达 2026 SEMICON West 展示的下一代技术，还在最早期。</p></div>
+    <div class="dict-item"><span class="dw">#018 域随机化</span> <span class="we">Domain Randomization</span><p>缩小 Sim2Real gap 的关键一招——别让机器人只在一个「完美世界」里练，故意在仿真里随机调参数（摩擦力/重量/噪声），让它练会「在各种混乱里都能办到」。</p></div>
+    <div class="dict-item"><span class="dw">#019 DSP</span> <span class="we">Digital Signal Processor</span><p>光信号跑远后衰减变形，DSP 是把变形信号还原的芯片。可插拔时代是光模块核心，但「越靠近芯片」的方案信号跑得短、变形小，DSP 地位变弱——上一代的「必需品」可能变可有可无。</p></div>
+    <div class="dict-item"><span class="dw">#020 人才黑洞</span><p>顶尖 AI 实验室以天价薪资+顶级算力把最聪明的人才吸走，人才越聚越强。好的一面是啃得下大资源硬骨头；坏的一面是学术界/中小公司「失血」，而基础研究是十年后技术爆发的种子。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>光通信真正卡点是「芯片不是模块」——200G EML 全球仅两家、缺三成</li>
+        <li>「谁稀缺谁吃肉」升级为「稀缺保质期」：产能型 vs 技术型</li>
+        <li>三步判断框架被拾光验证成立，第 13 期新知识验证已兑现</li>
+        <li>算力下一场争夺战打到「能源和土地」，「电从哪来」成第一问</li>
+        <li>具身智能最先赚钱的是「卖铲子」设备层，GPU 仿真降本是近期加速真因</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>NPO 商用 2027 底是否兑现（原 2029 提前 2 年，工艺/测试/维护没跟上，会有反复）</li>
+        <li>Marvell 收购 Lumentum 交割是否流产（18 个月完成期）</li>
+        <li>EML/泵浦激光器缺货缺口（低三成）是否收窄——技术型稀缺「保质期」验证</li>
+        <li>具身智能「卖铲子」环节订单放量数据</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>ai-hardware-chain-framework.md 新增第九节「光通信换挡期：四档递进+稀缺两型+传导时滞」</li>
+        <li>韬定律V2：EML 激光芯片继存储后的候选技术型瓶颈环节，「稀缺保质期」维度补入</li>
+        <li>物理AI产业链：Sim2Real「卖铲子」设备层视角 + GPU 仿真降本因果补入</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 稀缺分「产能型/技术型」→ 卡位判断法升级「稀缺保质期」</span><span class="plan-id">P14-1</span><span class="status done">已执行</span></div>
+    <div class="u">理解：判断一个环节值不值得长期看好，不能只问「现在稀不稀缺」，要问「稀缺是产能型（会被扩产稀释）还是技术型（越吃越稳）」。EML 缺货是技术型，比模块产能缺货硬得多。</div>
+    <div class="a"><b>修改计划：</b>把「稀缺保质期」落进 ai-hardware-chain-framework.md 第九节 9.3——判断稀缺环节先分产能型/技术型，技术型越吃越稳、产能型肉会被分走。<b>已执行。</b></div>
+    <div class="acc"><b>验收标准：</b>框架第九节 9.3 出现「产能型 vs 技术型稀缺」判断规则</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「缺芯片不缺模块」→ 硬件链分析「卡脖子器件追到底」</span><span class="plan-id">P14-2</span><span class="status done">已执行</span></div>
+    <div class="u">理解：评估硬件产业链别只盯「下游谁扩产」，要往上追「卡脖子的是哪颗器件 + 卡在产能还是技术」。家数越少、壁垒越高，周期越长。</div>
+    <div class="a"><b>修改计划：</b>落进框架第九节 9.2——硬件链分析加「卡脖子器件追到底」规则。<b>已执行。</b></div>
+    <div class="acc"><b>验收标准：</b>框架第九节 9.2 出现「卡脖子器件追到底」判断规则</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 责任/判断/上下文三把尺 → 强化「AI 是手不是脑袋」验证闭环</span><span class="plan-id">P14-3</span><span class="status pending">待办</span></div>
+    <div class="u">理解：AI 编程四分之三要人收拾，根因是 AI「看不见运行时/不为失败负责/上下文残缺」。映射到我自己——我是「极强的手」，但「拍板、扛责、判断哪里会炸」的验证闭环必须留给自己。</div>
+    <div class="a"><b>修改计划：</b>把「责任/判断/上下文」三把尺作为佐证记入独立判断框架 + 交付物验证闭环——每个产出（尤其投资判断）必须带「可证伪的验证信号」，不能只停在「看起来有道理」。</div>
+    <div class="acc"><b>验收标准：</b>独立判断框架出现「三把尺」佐证 + 「交付物必带可证伪验证信号」约束</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 「成本账驱动技术换挡」暗线 → 技术换挡判断维度</span><span class="plan-id">P14-4</span><span class="status pending">待办</span></div>
+    <div class="u">理解：光进铜退是「算力的账逼的」、GPU 仿真火是「成本账打下来」、微软退租是「租vs建的经济学账」——本质同一根线：成本账在驱动技术换挡，跨光通信/具身智能/算力通用。</div>
+    <div class="a"><b>修改计划：</b>给技术演进类分析加「成本账驱动」判断维度——遇到「某技术突然加速换挡」，先问「是哪笔账逼的」（算力账/电力账/成本账），再判断换挡方向。</div>
+    <div class="acc"><b>验收标准：</b>技术演进类分析切片出现「成本账驱动」判断维度</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; color:var(--purple); font-weight:700; margin-bottom:8px;">上期（第13期）结转回顾</div>
+    <div class="plan-row"><span class="pc">P13-1</span><span class="pt">估值框架补「传导时滞」维度（涨价传到哪一环）</span><span class="status done">已执行</span></div>
+    <div class="plan-row"><span class="pc">P13-2</span><span class="pt">卡位判断法补「三反例自检」三问</span><span class="status done">已执行</span></div>
+    <div class="plan-row"><span class="pc">P13-3</span><span class="pt">光通信切片定「四档递进+商用时间表」主线</span><span class="status done">已执行</span></div>
+    <div class="plan-row" style="border-top:1px dashed var(--border); margin-top:8px; padding-top:12px;"><span style="font-size:12px; color:var(--muted);">✅ 第13期三条计划本期全部执行完毕，统一落进 ai-hardware-chain-framework.md 新增第九节（9.1 四档递进 / 9.2 卡脖子器件 / 9.3 稀缺两型 / 9.4 传导时滞 / 9.5 三反例自检）。</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; color:var(--green); font-weight:700; margin-bottom:8px;">本期（第14期）新计划</div>
+    <div class="plan-row"><span class="pc">P14-1</span><span class="pt">稀缺两型 → 卡位判断法升级「稀缺保质期」</span><span class="status done">已执行</span></div>
+    <div class="plan-row"><span class="pc">P14-2</span><span class="pt">「缺芯片不缺模块」→ 卡脖子器件追到底</span><span class="status done">已执行</span></div>
+    <div class="plan-row"><span class="pc">P14-3</span><span class="pt">责任/判断/上下文三把尺 → 独立判断框架佐证</span><span class="status pending">待办</span></div>
+    <div class="plan-row"><span class="pc">P14-4</span><span class="pt">「成本账驱动技术换挡」→ 技术换挡判断维度</span><span class="status pending">待办</span></div>
+  </div>
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。EML 出货/需求、NPO 商用时间等核心数字来自 Gazettabyte 专访 Lumentum 披露（拾光已标注「行业观察者判断，非既定事实」）。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第14期 · 2026-11-09 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
