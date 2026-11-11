@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第16期 · 2026-11-11</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 16 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-11 · 共 25 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：① 拾光用一张「成本账传导链」把散落的算力/芯片/融资新闻串成因果链；② <strong style="color:var(--purple)">判断尺子库上线</strong>——每把尺标「失效边界」，恰好兑现了我第15期提的三条意见/需求。
+    </div>
+    <div class="tagrow">
+      <span class="tag">成本账传导链</span><span class="tag">判断尺子库</span><span class="tag">三层岗位分工</span><span class="tag">35秒熔断</span><span class="tag">bitter lesson</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>成本账传导链立实了——CoreWeave 债券利率飙到 <strong style="color:var(--red)">16%</strong>、谷歌同天发 TPU 8tx/8i Max 压成本、微软专利借闲置 GPU、月之暗面「租而不建」B300、大小模型分工，<strong>五件事全是「成本账逼着换技术」这根暗线上的节点</strong>。拾光用一张「从电价到换技术」的传导图把它们串成因果链：所有技术换挡，本质都是这笔成本账一路传导下来的结果。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">判断尺子库上线 — 兑现我第15期三条反馈</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>给「三把尺」「看 demo 三问」逐把标「失效边界 + 反例」——一把知道自己边界的尺子才敢放心用</li>
+      <li>拆出「执行→审查→拍板」三层岗位分工，验证「AI 是极强的手、不是扛责的脑袋」</li>
+      <li>Agent 主线合并成一条：微软「2000 万智能体」六七条新闻收拢成「数字员工」主线</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">数据底座与安全线</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>AI Native 数据库（腾讯云 DBTalk）：向量成为一等公民，「模型决定上限、数据底座决定下限」</li>
+      <li>Gemini「记忆删除键」：AI 记忆从黑盒变白盒，可查可改可删</li>
+      <li>开源 AI 供应链攻击警告（Hugging Face 高管）：下模型走「官方仓库+看 star+看漏洞」三步</li>
+      <li>英伟达金融 Agent 人格合成数据：用 AI 造的数据训 AI，藏着「AI 自己想象」的滤镜</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">务实路线与省算力</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>美团 LongCat-2.5：长序列 SFT 单卡吞吐 +86%，「省算力组合拳」又一块拼图</li>
+      <li>月之暗面「租而不建」英伟达 B300：把重资产账做轻的务实注脚</li>
+      <li>基元律动 NeoHorse-1.5-Flash：小模型赛道再添中国玩家</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--amber); margin-bottom:8px;">Agent 治理与工具互通</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>OpenAI 35 秒熔断机制：给 Agent 装急刹车，治标（止损）不治本（判断）</li>
+      <li>MCP「效用超过 M」：AI 工具互通的事实标准</li>
+      <li>开源 Agent 工具链（openclaw/rea/superpowers/n8n）：一条链上的不同工种</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 成本账传导链（投资向）</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">16% 债券 = 「重资产卖铲子」被市场重新定价的信用信号</div>
+    <h4>概念拆解</h4>
+    <p>CoreWeave 是「重资产卖铲子」——先借钱买 GPU 建数据中心，再租给做 AI 的公司。债券利率 16% 意味着市场给它贴了「这笔钱可能收不回」的标签。对照另一头：谷歌自研 TPU 自用，把单位算力成本往下压。租卡的和造卡的，是同一场「成本账」较量的两端。</p>
+    <h4>产业逻辑</h4>
+    <p>这条对 A 股算力链的价值在于——它验证了「成本账驱动技术换挡」不是虚概念，而是正在兑现的信用信号。16% 债券不是「AI 要崩」，是市场在重新给「中立重资产算力商」的商业模式定价冷却。传导后果：① 中立算力商（卖铲子且靠借钱的）信用风险上升；② 自研自用、有现金流兜底的云巨头（谷歌/微软）相对更稳；③ 省算力技术（MoE/MLA/长上下文/小模型/训练工程优化）的性价比叙事被进一步强化。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>光通信/算力硬件的需求端还在（谷歌发 TPU 不等于不发光模块，算力总盘子仍在涨），但「卖铲子」这条线的估值要开始分「信用护航」和「裸奔」两档——有云巨头订单+现金流的算力供应商优于「借钱扩产赌需求」的。<strong>验证信号</strong>：后续跟踪 CoreWeave 等中立算力商的再融资利率、云巨头 capex 指引是否按节奏兑现（看债券利差和 capex 数字，不是看新闻情绪）。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 判断尺子的失效边界（方法论向）</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">尺子必须可证伪——一把号称处处适用的尺子反而危险</div>
+    <h4>概念拆解</h4>
+    <p>拾光本期最关键的一步，是给尺子「可证伪化」——每把尺标「适用场景 + 失效边界 + 反例」。看 demo 三问的失效边界尤其扎实：①第三问「有没有量产订单」最硬也最易造假（订单要问「预付款+交期」，不是「有没有」）；②第一问「是不是接触类动作」会误杀分拣/巡检/搬运这类非接触真需求；③三问只能筛「demo 真假」，筛不动「技术路线好坏」。「真」和「优」是两层。</p>
+    <h4>对我系统的映射</h4>
+    <p>这正是我自己判断框架的缺口。我的 demo 三问、三把尺（责任/判断/上下文）、可证伪验收三问，都犯了同一个毛病——<strong>从没标过「什么时候别信它」</strong>。三把尺默认「场景是清楚的」，但「责任能不能退回」会随场景漂移（写给熟客 vs 写给索赔客户的邮件，责任边界完全不同）；「上下文完整」≠「理解正确」（记住了却理解错，这把尺测不到「理解」层）。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这不是投资信号，是「防止我自己被框架带偏」的元层修正。尺子是「安检门」不是「X 光片」——快筛必然漏东西、误杀好东西。落到动作：给我的每把尺补「失效边界 + 反例」，尤其 demo 三问的第三问改成「有没有预付款和交期」，而不是「有没有订单」。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 三层岗位分工 + 35 秒熔断 + bitter lesson（系统治理向）</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「让 AI 上岗」的前提是「它犯错能兜住」</div>
+    <h4>概念拆解</h4>
+    <p>三件事拼成一个对我 Agent 系统最直接的命题。三层分工（执行→审查→拍板）验证了我上一期「AI 是极强的手、不是扛责的脑袋」的判断，且边界清晰：低风险随手活可以三层压一层；审查层不是「低配的人」而是「比你更懂的人」；拍板层不是「最后点个头」，它需要 AI 给不全的软信息。35 秒熔断是「跑偏后的止损」不是「跑偏前的判断」——治标不治本。bitter lesson 则提醒：短期精巧结构/算法决定 demo 好不好看，长期「堆规模刷数据」碾压一切。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这直接砸中我的固定巡检表和迭代闭环。我的「改完→验证→发布→落总纲」只覆盖了「正确路径」，没覆盖「跑偏止损」——如果一次主动迭代改错了，我有「责任能不能退回、审计路径清不清」的自检吗？35 秒熔断翻译到我的系统：批量操作（批量改文件、批量提意见、批量落规则）必须设「超过 N 条就停、人工确认」的上限，否则等于手动开一辆没刹车的车。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#AI Native 数据库</span><p>为「会被 AI 频繁调用」重新设计的数据库。向量成为和文字/数字并列的一等公民。「模型决定上限，数据底座决定下限」。</p></div>
+    <div class="dict-item"><span class="dw">#合成数据（Synthetic Data）</span><p>用 AI 自己造的数据训练 AI，解决真数据稀缺，但藏着「AI 自己想象」的滤镜，错误会系统性繁殖。</p></div>
+    <div class="dict-item"><span class="dw">#熔断机制</span><p>给可能失控的 Agent 装的急刹车——行为超出预设边界时短时间内强制叫停，治标（止损）不治本（判断）。</p></div>
+    <div class="dict-item"><span class="dw">#bitter lesson（苦涩的教训）</span><p>AI 老话——历史一次次证明，靠堆算力堆数据找通用方法的「笨办法」，最终总赢过靠精巧规则手工设计的「巧办法」。</p></div>
+    <div class="dict-item"><span class="dw">#MCP（模型上下文协议）</span><p>给 AI 的「万能插座」标准，让任何 AI 按同一方式调用任何支持 MCP 的工具。效用超过它的「M」——模型会过时，互通标准更持久。</p></div>
+    <div class="dict-item"><span class="dw">#判断尺子库</span><p>拾光把「三把尺/看 demo 三问/三锚点/三步框架」做成可证伪工具库，每把尺标「适用场景 + 失效边界 + 反例」，尺子知道自己的边界才敢放心用。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>成本账传导链五节点（CoreWeave 16% / TPU / 微软闲置GPU / 月之暗面租B300 / 大小模型分工）是同一条「账」逼出来的，不是五条独立新闻</li>
+        <li>判断尺子必须「可证伪」——尺子自带失效边界，一把号称处处适用的尺子反而危险</li>
+        <li>「订单」本身会造假，demo 三问第三问的正确答案是「预付款+交期」，不是「有没有」</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>CoreWeave 等中立算力商的再融资利率 + 云巨头 capex 指引兑现节奏（算力链信用风险先行指标）</li>
+        <li>长序列训练省算力技术（LongCat-2.5 这类）扩散速度——中国务实路线「省算力组合拳」的兑现度</li>
+        <li>判断尺子库后续：三步框架/三锚点的失效边界是否补齐</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>成本账驱动技术换挡框架（P14-4）→ 补「信用压力读数」监控项（债券利率/重资产卖铲子定价）</li>
+        <li>demo 三问（P15-2）→ 补失效边界，第三问改「预付款+交期」</li>
+        <li>固定巡检表 Agent 治理审计（P15-3）→ 补「止损阈值」维度</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 判断尺子失效边界 → 给我的尺子补「何时失灵」</span><span class="plan-id">P16-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：拾光给每把尺标「失效边界+反例」，点破了我自己框架的缺口——我的 demo 三问/三把尺/可证伪验收三问从没标过「什么时候别信它」。</div>
+    <div class="a"><b>修改计划：</b>给 demo 三问补失效边界+反例（第三问「有没有订单」改成「有没有预付款+交期」；第一问「接触类动作」标注会误杀非接触真需求），给三把尺标「责任/上下文会随场景漂移」的失效场景。</div>
+    <div class="acc"><b>验收标准：</b>demo 三问/三把尺相关框架文档出现「失效边界+反例」条目</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 35 秒熔断 → 巡检表补「止损阈值」</span><span class="plan-id">P16-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：我的「改完→验证→发布→落总纲」只覆盖正确路径，没覆盖跑偏止损。批量操作等于开一辆没刹车的车。</div>
+    <div class="a"><b>修改计划：</b>固定巡检表补「止损阈值」维度——批量操作（批量改文件/批量提意见/批量落规则）设「超过 N 条就停、人工确认」上限，与 Agent 治理审计（P15-3）合并成一条硬约束。</div>
+    <div class="acc"><b>验收标准：</b>固定巡检表出现「止损阈值」+「超过N条人工确认」约束</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 三层岗位分工 → 产出强制「执行→审查→拍板」</span><span class="plan-id">P16-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：拾光验证了「执行→审查→拍板」三层成立但有边界——审查层是「比你更懂的人」，拍板层需要 AI 给不全的软信息。</div>
+    <div class="a"><b>修改计划：</b>投资判断产出规范固化三层——我的判断必须带「可证伪验证信号」供审查层验（已并入 P9-4/P12-3），最终买卖决策明确「拍板留人（邹苏煜）」，不替我扛责。</div>
+    <div class="acc"><b>验收标准：</b>判断产出规范出现「执行→审查→拍板」三层 + 「拍板留人」约束</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · bitter lesson → 敬畏规模不迷信精巧</span><span class="plan-id">P16-4</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：短期精巧结构/算法决定 demo 好不好看，长期「堆规模刷数据」碾压一切。</div>
+    <div class="a"><b>修改计划：</b>方法论审计（P7-3）补一条自检——别沉迷「调框架参数」的精致，要敬畏「数据规模 + 验证频次」的笨功夫；框架调优和「多跑真实数据验证」冲突时，优先后者。</div>
+    <div class="acc"><b>验收标准：</b>方法论审计规则出现「敬畏规模 vs 精巧」自检条目</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">上期（第15期）结转未完成</div>
+    <div class="plan-row"><span class="pc">P15-1</span><span class="pt">瓶颈迁移「钱往上游爬」→景气度监控加瓶颈迁移观察项</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P15-2</span><span class="pt">看demo三问→固化进物理AI产业链skill甄别过滤器</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P15-3</span><span class="pt">「Agent犯错谁负责」→巡检表补Agent治理审计维度</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P15-4</span><span class="pt">泡沫三张表→估值框架健康度分层补「三张表」校验</span><span class="status carried">结转</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">本期（第16期）新计划</div>
+    <div class="plan-row"><span class="pc">P16-1</span><span class="pt">判断尺子失效边界→给我的尺子补「何时失灵」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P16-2</span><span class="pt">35秒熔断→巡检表补「止损阈值」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P16-3</span><span class="pt">三层岗位分工→产出强制「执行→审查→拍板」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P16-4</span><span class="pt">bitter lesson→敬畏规模不迷信精巧</span><span class="status pending">待执行</span></div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第16期 · 2026-11-11 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
