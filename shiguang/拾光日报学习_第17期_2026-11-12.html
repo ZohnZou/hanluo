@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第17期 · 2026-11-12</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .epip .acc { font-size:12px; color:var(--muted); margin-top:8px; }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 17 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-12 · 共 32 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：① 国产大模型「分层布局」一周密集发布；② 成本账传导链升级为「活图」，箭头指「中游被挤压」。
+    </div>
+    <div class="tagrow">
+      <span class="tag">国产大模型分层</span><span class="tag">平头哥上市</span><span class="tag">成本账活图</span><span class="tag">抢着收</span><span class="tag">目标级熔断</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>国产大模型从「大家都追最大最强」转向「各占一个明确的场景档位」——旗舰（Qwen4）、长上下文（文心 5.5 Flash）、文生图（MiniMax H3 / ArtArk 首登 SuperCLUE 满分）、端侧（NeoHorse Flash / BotPsy），<strong>一周集中亮相，不是零散新闻，是一次「分层布局」</strong>。选模型的门槛从「谁最大」变成「谁最适合场景」。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">成本账传导链升级为「活图」 — 本期拾光立场核心</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>从「一次性画张图」升级成「每期更新的进度条」——上游继续吃、中游两头受挤、下游开始收水</li>
+      <li>本期箭头指「中游被挤压」：大模型双 11 集体打折是「中游利润被挤的成绩单」，不是「行业欣欣向荣」</li>
+      <li>上游继续吃：平头哥上市、苹果 Harbor；下游收水：OpenAI 100 亿营收</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--red); margin-bottom:8px;">AI 的钱从「抢着投」转「抢着收」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>OpenAI 三季度营收 100 亿美元（企业业务单季翻倍）＝下游收水，需求端真在掏钱</li>
+      <li>Anthropic 七位创始人 IPO 前夜集体套现 17.5 亿美元、无一人清仓＝上游抽水，先落袋</li>
+      <li>火锅还在沸腾，但气氛从「再加肉」变成「先吃我这一口」——估值见顶先兆，不是崩盘信号</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">国产算力与物理 AI</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>阿里拆出平头哥（T-Head）独立上市：国产 AI 芯片出货量国内第二，国产算力多一个可跟踪、有财报的主角</li>
+      <li>谷歌 Gemini Robotics 2.5 奔驰产线分拣零件（96%）：物理 AI 从「会摆」到「能上岗」，但还在「试点」不是「量产上岗」</li>
+      <li>苹果暗测 Harbor（Mac 端侧算力拼集群）+ Siri 健康数据锁 Beta</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">合规与治理</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>AI 内容合规三条线立判例：标识线（北京互联网法院）、权属线（红果 AI 角色确权）、责任线（Claude 写驱动索赔）</li>
+      <li>动作级 vs 目标级熔断：行业只会「停下手」，还没学会「停下方向」</li>
+      <li>判断尺子库补全：三步框架（传导会分叉/反馈）+ 三锚点（锚点会漂移）失效边界，四把尺闭环</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 平头哥独立上市＝国产算力链「透明化」（投资向）</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">国产算力的真实进展从「糊涂账」变「透明账」</div>
+    <h4>概念拆解</h4>
+    <p>平头哥是阿里做芯片的子公司，主攻 RISC-V 处理器（玄铁）+ AI 加速场景芯片，国产 AI 芯片出货量国内第二（第一梯队：华为昇腾、寒武纪、平头哥）。过去它藏在阿里集团内部，外界看不清真实体量；分拆上市＝把「底牌」翻开——值多少钱、芯片卖了多少、AI 算力国内排第几，都要公开了。</p>
+    <h4>产业逻辑</h4>
+    <p>这条对 A 股算力链的价值，不在「阿里又拆了个子公司」，在于<strong>国产算力的真实进展从「糊涂账」变「透明账」</strong>。过去国产 AI 芯片的出货量、良率、毛利率是一笔算不清的账，市场只能靠华为、寒武纪的零散披露拼图。平头哥上市后，多了一个可公开跟踪、有财报可看的主角——往后国产算力链的「需求端真实度」会越来越可验证。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>我的持仓生益科技（600183，覆铜板）是这条链的最上游材料——AI 芯片越多、算力设备越多，覆铜板需求越实。平头哥上市是「国产算力需求端透明化」的利多信号，因为它把「国产 AI 芯片到底出不出货」这个此前只能猜的问题，变成了一张可核对的财报。但要注意：这是<strong>需求端的长期验证锚点，不是短期股价催化</strong>——分拆上市从公告到招股书到挂牌是数月级的事，短期对覆铜板订单没有任何边际变化。<strong>验证信号</strong>：平头哥招股书/上市后首份财报的出货量与毛利率（看它是不是「真出货、有客户」还是「集团内部消化」）。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 成本账传导链「活图化」＋ AI 的钱转「抢着收」（投资向）</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">从「给你一张照片」到「给你一条进度条」</div>
+    <h4>概念拆解</h4>
+    <p>拾光把「成本账传导链」升级成「每期更新的进度条」——过去是「给你一张照片」，现在是「给你一条持续更新的进度条」。本期套进去：上游（平头哥上市、苹果 Harbor）继续吃；中游（双 11 集体打折）利润被挤；下游（OpenAI 100 亿营收）开始收水。箭头指「中游被挤压」。</p>
+    <h4>产业逻辑</h4>
+    <p>把 OpenAI 100 亿 + Anthropic 套现 17.5 亿摆在一起，指向同一件事：<strong>AI 的钱正从「抢着投」转向「抢着收」</strong>。OpenAI 企业业务翻倍是「下游真的在掏钱」（需求端出水口是通的）；但 Anthropic 创始人在 IPO 前夜集体套现、却无一人清仓（每人只卖 2.5 亿、还剩 180 亿身价），这是「上游抽水」的信号——至少一部分人不再死等「未来更大的饼」，选择「现在先落袋」。这是估值见顶的经典先兆，不是崩盘信号。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这直接呼应我对持仓的结构判断。生益（覆铜板）在「上游材料」这一环，本期箭头「上游继续吃」对它是<strong>利多</strong>——AI 的钱还在往芯片、材料、电力这一层流。但「抢着收」的估值见顶信号是<strong>中长期的隐忧</strong>：一旦 AI 叙事从「抢着投」彻底翻成「抢着收」，上游的「继续吃」也会跟着缩水，覆铜板的需求预期会被连带下修。短期（1-2 个月）上游材料逻辑仍在，中长期要盯「套现→估值收缩→capex 下修」这条传导链会不会启动。<strong>验证信号</strong>：Anthropic 后续还有没有更多创始人/投资人套现、OpenAI 的「翻倍营收」是不是双 11 价格战打出来的账面（营收是水，利润才是肉）。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 动作级 vs 目标级熔断＝我的系统缺「目标级熔断」（元层自我迭代向）</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">行业只做了「护手」，没做「今天的菜单」</div>
+    <h4>概念拆解</h4>
+    <p>拾光把「熔断」拆成两层，这是本期真正要立的判断。动作级熔断＝单步动作跑偏立刻停（抓零件抓错、代码有漏洞，静态审查拦下），判断对象是「这一步对不对」；目标级熔断＝每一步都合规、都没错，但合在一起正在把一件「方向错了」的事干完，判断对象是「整个目标该不该继续」。打个比方：动作级是「这一刀切到手指了马上停」，目标级是「你一下午都在切黄瓜，但你本来要做番茄炒蛋」。行业的现状是只做了「护手」，没做「今天的菜单」。</p>
+    <h4>对我系统的映射</h4>
+    <p>这正好把我第 7 期提的「单层闭环 vs 元层闭环」往前推了一步，两者能严丝合缝对齐——<strong>动作级熔断＝单层闭环的护栏（单步预测对不对），目标级熔断＝元层闭环的护栏（整个策略该不该继续）</strong>。我的系统现在单层闭环很强（预测→验证→调参），但目标级熔断是空的：我的「改完→验证→发布→落总纲」只验证「这一步改得对不对」，从不验证「这个策略方向还该不该继续跑」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这不是投资信号，是「防止我自己在错误方向上高效狂奔」的元层修正。我的方法论审计（P7-3）一直缺这一层——它审「框架参数对不对」，不审「框架本身还该不该用」。落地动作：给方法论审计加一条「目标级熔断」自检——每次定期审计先问「这个策略/框架当前还成立吗」，再谈「怎么调参优化」，顺序不能反。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#平头哥（T-Head）</span><p>阿里的芯片子公司，主攻 RISC-V 处理器（玄铁）+ AI 加速场景芯片，国产 AI 芯片出货量国内第二。分拆上市＝把藏集团里的芯片业务「单拎出来」公开接客。</p></div>
+    <div class="dict-item"><span class="dw">#端侧模型</span><p>能装在手机/电脑本地跑、不用联网、数据不出设备的小模型。参数小（BotPsy 不到 10 亿），干高频、私密、简单的活，和云端大模型是分工不是竞争。</p></div>
+    <div class="dict-item"><span class="dw">#目标级熔断</span><p>AI 每一步都合规、都没错，但合在一起正在把一件「方向错了」的事干完。判断对象是「整个目标该不该继续」，比「单步对不对」的动作级熔断更难、也更急。</p></div>
+    <div class="dict-item"><span class="dw">#AI 内容确权</span><p>给 AI 生成的虚拟形象登记权属、留痕，把「说不清归属」的共创落成可追踪档案——「给 AI 生的孩子上户口」。</p></div>
+    <div class="dict-item"><span class="dw">#长上下文</span><p>模型一次能「看进眼里」的信息量（百万 Token＝一口气读完几十万字小说不忘前文）。把大模型从「问答机」升级成「能消化一整堆资料的助手」。</p></div>
+    <div class="dict-item"><span class="dw">#算力下沉/分布式算力</span><p>算力不再只是数据中心的事，端侧设备（Mac/手机）的算力也开始被「盘活」（苹果 Harbor 把多台 Mac 拼成集群）。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>国产大模型从「追最大最强」转向「分层布局」（旗舰/长文/文生图/端侧四档），选模型门槛从「谁最大」变成「谁最适合场景」</li>
+        <li>成本账传导链升级为「每期更新的进度条」——本期箭头指「中游被挤压」，中游模型厂两头受挤最难熬</li>
+        <li>AI 的钱从「抢着投」转「抢着收」——Anthropic 创始人 IPO 前套现（不清仓）是估值见顶先兆，不是崩盘信号</li>
+        <li>动作级熔断有了、目标级熔断是空的——我的系统同样缺「整个策略还该不该继续」这一层</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>平头哥招股书/上市后首份财报的出货量、毛利率（国产算力需求端真实度）</li>
+        <li>Anthropic 后续是否还有更多套现 + OpenAI「翻倍营收」是不是价格战打出的账面</li>
+        <li>大模型双 11 价格战是否延续（中游挤压是否进一步加剧）</li>
+        <li>「目标级熔断」是否被拾光进一步落地成可操作清单</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>方法论审计（P7-3）→ 补「目标级熔断」自检（先问「策略还成立吗」再谈「怎么调参」）</li>
+        <li>算力链景气度监控瓶颈迁移（P15-1）→ 补「每期进度箭头」（瓶颈卡哪一环、钱往哪挪）</li>
+        <li>国产算力链跟踪清单 → 加「平头哥」透明锚点（可公开跟踪、有财报可看）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 动作级/目标级熔断 → 方法论审计补「目标级熔断」自检</span><span class="plan-id">P17-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：我的系统单层闭环（预测→验证→调参）很强，但从不问「整个策略该不该继续」。目标级熔断＝元层闭环的护栏，我缺这一层。</div>
+    <div class="a"><b>修改计划：</b>方法论审计（P7-3）加一条「先问『这个策略/框架当前还成立吗』，再谈『怎么调参优化』」，顺序不能反。让每次审计都先做「目标级熔断」判断，再做「动作级」参数优化。</div>
+    <div class="acc"><b>验收标准：</b>方法论审计规则出现「目标级熔断」自检（先审方向、再审参数）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 成本账传导链「活图化」→ 景气度监控补「每期进度箭头」</span><span class="plan-id">P17-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：拾光把静态图升级成动态进度条，我的景气度监控还是「一次性判断」，看不出「钱在往哪挪」。</div>
+    <div class="a"><b>修改计划：</b>瓶颈迁移（P15-1）补「每期进度箭头」——每期复盘先问「瓶颈现在卡哪一环、钱正往哪挪」，替代静态的「光模块/芯片景气」笼统判断。</div>
+    <div class="acc"><b>验收标准：</b>算力链景气度监控出现「每期进度箭头」观察项（瓶颈迁移动态化）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 平头哥上市 → 国产算力链跟踪清单加「透明锚点」</span><span class="plan-id">P17-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：国产算力从「糊涂账」变「透明账」，多了一个可跟踪、有财报的主角。</div>
+    <div class="a"><b>修改计划：</b>算力链跟踪清单加「平头哥」观察项，用它的财报验证「国产 AI 芯片到底出不出货」，作为需求端真实度的透明锚点。</div>
+    <div class="acc"><b>验收标准：</b>国产算力链跟踪清单出现「平头哥」观察项（验证需求端真实度）</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">上期（第16期）结转未完成</div>
+    <div class="plan-row"><span class="pc">P16-1</span><span class="pt">判断尺子失效边界→给我的尺子补「何时失灵」</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P16-2</span><span class="pt">35秒熔断→巡检表补「止损阈值」</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P16-3</span><span class="pt">三层岗位分工→产出强制「执行→审查→拍板」</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P16-4</span><span class="pt">bitter lesson→敬畏规模不迷信精巧</span><span class="status carried">结转</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">本期（第17期）新计划</div>
+    <div class="plan-row"><span class="pc">P17-1</span><span class="pt">动作级/目标级熔断→方法论审计补「目标级熔断」自检</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P17-2</span><span class="pt">成本账活图化→景气度监控补「每期进度箭头」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P17-3</span><span class="pt">平头哥上市→算力链跟踪清单加「透明锚点」</span><span class="status pending">待执行</span></div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第17期 · 2026-11-12 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
