@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔄 AI闭环诊断 · 2026-11-11</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+         max-width: 900px; margin: 0 auto; padding: 20px;
+         background: #f1f5f9; color: #1e293b; font-size: 13px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+             color: white; padding: 24px 28px; border-radius: 14px; margin-bottom: 20px; }
+  .header h1 { font-size: 22px; margin-bottom: 4px; }
+  .header .meta { opacity: 0.75; font-size: 12px; margin-top: 4px; }
+  .card { background: white; border-radius: 12px; padding: 18px 20px;
+           margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px;
+                 padding-bottom: 8px; border-bottom: 2px solid #e2e8f0;
+                 display: flex; align-items: center; gap: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { background: #f8fafc; text-align: left; padding: 8px 10px; font-weight: 600;
+       color: #475569; border-bottom: 2px solid #e2e8f0; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f1f5f9; }
+  tr:hover td { background: #f8fafc; }
+  .metric { text-align: center; }
+  .metric .value { font-size: 28px; font-weight: 800; }
+  .metric .label { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+  .up { color: #dc2626; }
+  .down { color: #16a34a; }
+  .footer { text-align: center; color: #94a3b8; font-size: 11px; margin-top: 20px; }
+  .pulse { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔄 AI Agent 闭环诊断</h1>
+  <div class="meta">预测日期: 2026-11-11 | 验证日期: 2026-11-12 17:16 | </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📊 核心指标</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="metric">
+      <div class="value" style="color:#dc2626">53.6%</div>
+      <div class="label">XGBoost准确率 (158/295)</div>
+    </div>
+    <div class="metric">
+      <div class="value">2/10</div>
+      <div class="label">XGBoost TOP10命中</div>
+    </div>
+    <div class="metric">
+      <div class="value">0/10</div>
+      <div class="label">五专家 TOP10命中</div>
+    </div>
+    <div class="metric">
+      <div class="value"><span style="font-size:14px">📉 下降 (58% → 54%)</span></div>
+      <div class="label">准确率趋势</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">🚨 智能报警</div>
+  <div style="background:#dcfce7;padding:12px;border-radius:8px">✅ 无异常，系统正常运行</div>
+</div>
+
+<div class="card">
+  <div class="card-title">🏆 XGBoost TOP10 验证结果</div>
+  <table>
+    <thead><tr><th>#</th><th>股票</th><th>XGBoost概率</th><th>五专家分</th><th>实际涨跌</th><th>判断</th></tr></thead>
+    <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>中际旭创</strong><br><span style="font-size:11px;color:#94a3b8">300308</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">85.1%</span></td>
+          <td>3.5</td>
+          <td style="color:#16a34a">-6.1%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>欧科亿</strong><br><span style="font-size:11px;color:#94a3b8">688308</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">84.9%</span></td>
+          <td>3.5</td>
+          <td style="color:#16a34a">-3.4%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>太辰光</strong><br><span style="font-size:11px;color:#94a3b8">300570</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">80.3%</span></td>
+          <td>6.5</td>
+          <td style="color:#16a34a">-2.4%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>腾景科技</strong><br><span style="font-size:11px;color:#94a3b8">688195</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">80.3%</span></td>
+          <td>6.5</td>
+          <td style="color:#16a34a">-0.7%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>华正新材</strong><br><span style="font-size:11px;color:#94a3b8">603186</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">80.0%</span></td>
+          <td>6.5</td>
+          <td style="color:#16a34a">-5.0%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>长盈通</strong><br><span style="font-size:11px;color:#94a3b8">688143</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">79.5%</span></td>
+          <td>6.5</td>
+          <td style="color:#dc2626">+0.8%</td>
+          <td>✅</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>鸿富诚</strong><br><span style="font-size:11px;color:#94a3b8">301716</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">79.2%</span></td>
+          <td>3.0</td>
+          <td style="color:#16a34a">-4.8%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><strong>源杰科技</strong><br><span style="font-size:11px;color:#94a3b8">688498</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">79.2%</span></td>
+          <td>6.5</td>
+          <td style="color:#16a34a">-1.6%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>天孚通信</strong><br><span style="font-size:11px;color:#94a3b8">300394</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">78.7%</span></td>
+          <td>6.5</td>
+          <td style="color:#16a34a">-2.6%</td>
+          <td>❌</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><strong>长光华芯</strong><br><span style="font-size:11px;color:#94a3b8">688048</span></td>
+          <td><span style="color:#7c3aed;font-weight:700">78.5%</span></td>
+          <td>7.5</td>
+          <td style="color:#dc2626">+1.1%</td>
+          <td>✅</td>
+        </tr></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">📈 准确率趋势（近10天）</div>
+  <table>
+    <thead><tr><th>日期</th><th>XGBoost准确率</th></tr></thead>
+    <tbody><tr><td>2026-10-27</td><td style="color:#dc2626;font-weight:700">71.7%</td></tr><tr><td>2026-10-28</td><td style="color:#94a3b8;font-weight:700">36.7%</td></tr><tr><td>2026-10-29</td><td style="color:#94a3b8;font-weight:700">22.2%</td></tr><tr><td>2026-10-30</td><td style="color:#dc2626;font-weight:700">72.2%</td></tr><tr><td>2026-11-02</td><td style="color:#94a3b8;font-weight:700">44.4%</td></tr><tr><td>2026-11-03</td><td style="color:#dc2626;font-weight:700">74.6%</td></tr><tr><td>2026-11-04</td><td style="color:#dc2626;font-weight:700">63.1%</td></tr><tr><td>2026-11-09</td><td style="color:#f59e0b;font-weight:700">55.9%</td></tr><tr><td>2026-11-10</td><td style="color:#dc2626;font-weight:700">62.0%</td></tr><tr><td>2026-11-11</td><td style="color:#f59e0b;font-weight:700">53.6%</td></tr></tbody>
+  </table>
+</div>
+
+<div class="footer">
+  🔄 AI Agent闭环 · 预测→验证→修正→报警 · 2026-11-12 17:16
+</div>
+</body>
+</html>
