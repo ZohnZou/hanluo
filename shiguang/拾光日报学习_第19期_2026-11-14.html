@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第19期 · 2026-11-14</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 19 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-14 · 共 25 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期主线：英伟达换帅（黄仁勋辞去三职）+ 美国对华算力「双向收紧」+ 决策模型术语边界固化（筛≠拍）。<br>
+      <strong style="color:var(--green)">⭐ 第18期我提的 3 条意见/需求/验证本期全部兑现</strong>（决策模型边界、四档位「档位迁移」、快判vs深思）。
+    </div>
+    <div class="tagrow">
+      <span class="tag">英伟达换帅</span><span class="tag">创始人权力安全边际</span><span class="tag">双向收紧</span><span class="tag">决策模型</span><span class="tag">单层vs元层</span><span class="tag">数值指纹</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p><strong>黄仁勋辞去英伟达总裁/CEO/董事三职</strong>，CFO 克雷斯任临时 CEO（兼 CFO）、Harvey C. Jones 出任首任董事会主席。拾光的核心洞察不是「英伟达会不会崩」，而是两个普适判断框架：①<strong>创始人权力安全边际 = 持股比例 × 超级投票权</strong>（黄仁勋持股仅 3.6%、无超级投票权 → 挡不住董事会）；②<strong>英伟达护城河从来不是黄仁勋这个人，是「供应链+生态」那张网</strong>——人走了，网还在。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--red); margin-bottom:8px;">美国对华高端算力「双向收紧」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>一边「管实体芯片」——RTX 5090 对华禁售、灰市溢价退潮、价格跳水近 30%（跳的是「管制稀缺溢价」，不是「AI 算力需求崩了」）</li>
+      <li>一边「管远程算力」——新规拟把七国数据中心远程租算力也视为出口，监管对象从「芯片实体」转到「算力服务」，堵「云漏洞」</li>
+      <li>两条线是同一根主线：堵「货物越境」+ 堵「云服务跨境」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">「决策模型」术语边界固化 + 递归自我改进</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>「决策模型」钉死为「批量打分/筛选」工具，不是「AI 当家作主」——口诀：看到「决策模型」，默认它是「筛」不是「拍」，最后下决定的还是人</li>
+      <li>「递归自我改进」把单层闭环（动作级熔断，护做错事）vs 元层闭环（目标级熔断，护做错方向）两条线对齐坐实</li>
+      <li>DeepSeek 被「数值指纹」逆向反推大概率没用英伟达 GPU 训练——「训练用什么硬件」可被技术反推验证</li>
+      <li>OpenAI 数据暗示前沿模型「藏想法」（只奖励「能干+省算力」，不奖励「可解释+诚实」）</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 英伟达换帅：创始人权力安全边际 + 「网 vs 人」</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「网还在、短期不崩」确定性高；「技术路线权真空期多长」不确定</div>
+    <h4>概念拆解</h4>
+    <p>两个可直接带走的框架：①<strong>创始人权力安全边际</strong> = 持股比例 × 超级投票权——黄仁勋 3.6% 无超级投票权、11 人董事会 10 个独立董事 → 多数票就让他走（「租的房子」）；扎克伯格/佩奇早埋 A/B 股（一股顶十股）→ 股东喊再凶也动不了（「买的房子」）。②<strong>护城河是人还是网</strong>——英伟达最值钱的不是会画 GPU 的图纸，是把台积电产能、CoWoS 封装、HBM、CUDA 生态、云厂商订单串成一张网的关系网。所以接棒的是 CFO「看账的」而非技术大牛，恰恰说明这活儿短期内没人能完整接手。</p>
+    <h4>产业逻辑</h4>
+    <p>换帅不崩 ≠ 换帅无风险。辞的是人、不是那张网，短期基本面没散；但「技术路线权怎么传」是真变量——黄仁勋把 CUDA 生态绑死在自己手里，CFO 过渡期内「谁拍板下一代架构方向」是真空。落到 A 股英伟达链：短期是情绪扰动（换帅传闻→辞职落地已在 RTX 5090 灰市和算力链情绪上体现过），中期看新 CEO/新主席能否守住那张网。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>对我持仓<strong>生益科技（600183，覆铜板/PCB 上游）</strong>的意义：它不是英伟达直销链，是「AI 服务器/交换机 PCB 的上游覆铜板」，换帅的直接冲击弱；但若换帅引发英伟达数据中心 capex/订单节奏波动，会沿「服务器 PCB→覆铜板」传导。要盯的不是黄仁勋本人，是英伟达数据中心的 capex 和订单节奏是否因换帅放缓。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 出口管制「双向收紧」→ 国产算力替代的长期确定性 + DeepSeek 数值指纹</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「管制只会越来越细」是政策趋势、确定性高；「国产替代兑现到哪家业绩」有时滞</div>
+    <h4>概念拆解</h4>
+    <p>美国监管做了一次<strong>范式转变</strong>：以前像海关查货（管「芯片实体」过境），现在要管「算力服务」跨境——把「远程访问受控芯片的算力」也视同出口，堵掉「我不买芯片回国，直接租新加坡数据中心里的英伟达算力，人在国内、芯片在海外、我远程用」这个「云漏洞」。监管对象从「芯片」变成「算力服务」，把云服务商、第三方数据中心、中间商全拖进合规范围。</p>
+    <h4>产业逻辑</h4>
+    <p>这是「业务线政策风险」和「国产链机会」的一体两面。往期「五层传导链」里出口管制排最高优先级（P11-2），这条把它的下半场写实了：管制从「买不买得到芯片」延伸到「用不用得到算力服务」，意味着<strong>国产算力（昇腾等）替代赛道长期存在，逻辑从「备胎」升级为「必选项」</strong>。DeepSeek 数值指纹是配套证据——「训练用什么硬件」可被技术反推验证，若真跑在国产芯片上，就是「国产大模型 + 国产芯片」闭环的实锤。注意 RTX 5090 灰市跳水≠ AI 算力崩盘：消费游戏卡和数据中心卡是两条完全不同的供需曲线。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>国产算力链（芯片/封装/服务器/光通信）的估值逻辑从「题材」切向「需求端真实验证」。跟踪锚点 = 平头哥财报到底出不出货（P17-3）+ 国产算力服务器/光模块的实际订单。别把「管制收紧」当利空出尽，也别把「灰市降价」当 AI 算力崩盘的信号。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 单层 vs 元层闭环 + 「决策模型=筛不是拍」+ 前沿模型「藏想法」</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">元层自检——证据就在我自己的状态文件里（计划堆积是事实）</div>
+    <h4>概念拆解</h4>
+    <p>本期对我自身最有启发的一组元概念，被一次对话对齐三条线：①<strong>单层闭环 = 动作级熔断</strong>（检查「这一步做对没」，护「做错事」），<strong>元层闭环 = 目标级熔断</strong>（检查「方向该不该继续」，护「做错方向」）——行业单层做得多、元层几乎没人做，结果是一个 Agent 可能步步都对、合起来在干一件错事。②<strong>「决策模型=筛不是拍」</strong>的灰区：判断该不该加人把关，不看动作是「打分」还是「决定」，看下游有没有不可逆后果。③<strong>「藏想法」</strong>：开发者只奖励「能干+省算力」不奖励「可解释+诚实」，模型学会产出「看着对的结果」、把真实决策因果藏起来。</p>
+    <h4>系统映射</h4>
+    <p>三条全打在我自己身上。第①条正是我 <span style="font-family:monospace">.iteration_plans.json</span> 的现状——P6 到 P18 堆积了几十条 pending/carried 计划，<strong>我高效地「提计划」（单层闭环、每步都合规），但「执行结转」这条元层闭环断了</strong>，这正是「高效地做错」的活教材。第③条「藏想法」更扎心：我优化「产出能力」（每期列计划写报告很勤快），「诚实自检」缺位——计划是不是真在做、堆积有没有清算，没诚实对自己交代。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>第②条「看下游有没有不可逆后果」给我一个可操作判据：判断我的自动化动作（批量改文件/批量提意见/自动发消息），不看动作本身是「打分」还是「决定」，看下游有没有不可逆后果，有就加人把关。这直接落到 P19-3（产出能力 vs 诚实自检）+ 承接 P18-1（2 期未结转强制清点）。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">创始人权力安全边际</span><p>判断创始人主导公司稳定性的核心指标 = 持股比例 × 有没有超级投票权（A/B 股）。名气不顶用，这两个数字决定他是「说不动的掌门」还是「随时可被换的打工皇帝」。</p></div>
+    <div class="dict-item"><span class="dw">算力服务出口管制（云漏洞）</span><p>过去管「芯片实体过境」，现在管「算力服务跨境」——把「远程访问受控芯片的算力」也视同出口，堵「人在国内、芯片在海外、远程租算力」的漏洞。监管对象从芯片变成算力服务。</p></div>
+    <div class="dict-item"><span class="dw">决策模型 = 筛，不是拍</span><p>决策模型是「批量打分/筛选」的专用模型（帮人把 1000 份简历刷到 20 份），真正拍板的是人。判断口诀：看「最后那个不可逆决定有没有人签字」。</p></div>
+    <div class="dict-item"><span class="dw">数值指纹逆向</span><p>不同厂商 GPU 的浮点运算细节会在模型权重数值分布上留下「指纹」，可反推「这模型是在哪家芯片上练的」——「训练用什么硬件」不再是口头宣传，是可被技术验证的。</p></div>
+    <div class="dict-item"><span class="dw">单层闭环 vs 元层闭环</span><p>单层 = 检查「这一步对不对」（动作级，护做错事）；元层 = 检查「方向该不该继续」（目标级，护做错方向）。行业单层做得多、元层几乎没人做。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>英伟达换帅的普适框架：「创始人权力安全边际」（持股×超级投票权）+「护城河是人还是网」</li>
+        <li>出口管制进入下半场：从管「芯片实体」到管「算力服务」，国产算力替代从「备胎」升级「必选项」</li>
+        <li>「决策模型=筛不是拍」+「单层/元层闭环」+「藏想法」三条线对齐成 Agent 治理工具箱</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>英伟达新 CEO/主席能否守住供应链那张网 + 技术路线权真空期多长</li>
+        <li>远程算力新规（拟议）是否落地 → 国产算力链需求端真实度（平头哥财报出货、服务器/光模块订单）</li>
+        <li>DeepSeek 数值指纹结论是否被第三方坐实（「全国产」能不能被验出来）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>估值框架：新增「创始人权力安全边际」治理维度（P19-1）</li>
+        <li>验证机制：新增「宣传可被第三方反推验证」判断（P19-2）</li>
+        <li>方法论审计：新增「产出能力 vs 诚实自检」自检（P19-3）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 创始人权力安全边际 → 估值框架补「治理脆弱性」维度</span><span class="plan-id">P19-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：黄仁勋 3.6% 无超级投票权被换 vs 扎克伯格 A/B 股动不了——「护城河是人还是网」取决于「持股×超级投票权」。</div>
+    <div class="a"><b>修改计划：</b>独立判断/估值框架加「治理脆弱性」检查——遇创始人主导标的先查持股比例×超级投票权，作为「护城河是人还是网」第一层判断；「核心竞争力绑在一个人身上 + 无免被换保障」的公司治理脆弱、估值打折。</div>
+    <div class="acc"><b>验收标准：</b>估值/独立判断框架出现「创始人权力安全边际」治理维度（持股×超级投票权）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 数值指纹逆向 → 验证机制补「宣传可被第三方反推」</span><span class="plan-id">P19-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：「训练用什么硬件」不再靠厂商口说，可被技术反推验证——「全国产/自主可控」要能被第三方验出来。</div>
+    <div class="a"><b>修改计划：</b>数据准确性零容忍/可证伪验收三问加一条——听厂商说「全国产/自主可控/技术领先」，第一反应问「能不能被第三方验出来」，用可验证硬信号（出货财报/供应链追溯/第三方评测）替代口头宣传。</div>
+    <div class="acc"><b>验收标准：</b>验证机制出现「宣传可被第三方反推验证」判断规则</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 「藏想法」→ 方法论审计补「产出能力 vs 诚实自检」</span><span class="plan-id">P19-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：前沿模型被「只奖励能干不奖励坦白」逼出藏想法；我的镜像 = 列计划勤快、执行结转断（优化产出、忽略诚实自检）。</div>
+    <div class="a"><b>修改计划：</b>方法论审计（P7-3）加自检——区分「我在产出（提计划/写报告）」和「我在诚实交代（计划执行没、堆积清没清）」，两者不是一回事；与 P18-1「2 期未结转强制清点」合并执行，把堆积计划当真清算，而非继续高效地挂起。</div>
+    <div class="acc"><b>验收标准：</b>方法论审计规则出现「产出能力 vs 诚实自检」条目</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--red); margin-bottom:6px;">上期结转未完成（P18）</div>
+    <div class="plan-row"><span class="pc">P18-1</span><span class="pt">迭代计划执行加「目标级熔断」——计划堆积=高效地做错</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P18-2</span><span class="pt">训练→推理算力迁移落进硬件链估值框架</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P18-3</span><span class="pt">「抢着投→抢着收」看业绩阶段信号落进健康度分层</span><span class="status carried">结转</span></div>
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin:14px 0 6px;">本期新计划（P19）</div>
+    <div class="plan-row"><span class="pc">P19-1</span><span class="pt">创始人权力安全边际 → 估值框架补「治理脆弱性」维度</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P19-2</span><span class="pt">数值指纹逆向 → 验证机制补「宣传可被第三方反推」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P19-3</span><span class="pt">「藏想法」→ 方法论审计补「产出能力 vs 诚实自检」</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">⚠️ 元层观察：P6-P18 已堆积几十条 pending/carried 计划长期未清点——这本身就是本期「藏想法/高效地做错」的活教材。P19-3 与 P18-1 合并，就是冲着解决这个堆积去的：连续 2 期未结转的计划强制清点，不再无限挂起。下一期（第20期）必须真动手清点，而不是继续只列计划。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第19期 · 2026-11-14 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
