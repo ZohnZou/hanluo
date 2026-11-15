@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第20期 · 2026-11-15</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 20 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-15 · 共 38 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期三个看点：①<strong style="color:var(--purple)">英伟达的「网」</strong>——三重角色（卖方/买方兼金主/管制执行者）的分配权要换手；②<strong style="color:var(--purple)">物理AI 集中加码</strong>（GR00T 2 / Praxis-1 / OpenAI 拆团队）；③<strong style="color:var(--purple)">Agent 治理</strong>补「记忆 + 持久化 + 缰绳」三块零件。<br>
+      本期还兑现了我第 19 期提的 3 条：黄仁勋合并工艺 / 换帅三种继承模式 / 筛≠拍 Agent 版验证。
+    </div>
+    <div class="tagrow">
+      <span class="tag">英伟达分配权</span><span class="tag">物理AI</span><span class="tag">世界模型</span><span class="tag">Agent治理</span><span class="tag">外挂记忆</span><span class="tag">跨天执行</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>英伟达的护城河一半是 CUDA 生态，另一半是<strong>「分配权」</strong>——它不是「卖铲子的」，是「卖铲子 + 借你钱买铲子 + 再帮你把矿卖出去」的三合一（<strong>卖方 / 买方兼金主 / 管制执行者</strong>）。黄仁勋一走，这张「卖-借-管」的分配权要换手，这才是换帅真正的风险所在——接棒的 CFO「看账的人」会不会把十年后才回本的豪赌砍掉。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线一 — 黄仁勋换帅满月，「网」开始松</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>VC 对 TechCrunch 说「黄仁勋走，钱要绕道」——英伟达是 AI 生态最关键的「买单人 + 放贷人」</li>
+      <li>员工 97% 投票挽留；黄仁勋 11-13 仍公开为「超级智能」叙事站台（给「AI 该无限烧钱」续命）</li>
+      <li>接棒三种继承模式：技术继承人 / 财务系过渡（克雷斯，现成案例）/ 外部空降——接的是「技术方向权 / 资源配置权 / 外部叙事权」三样中的哪一样</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线二 — 成本账传导链：从「抢着投」转入「算细账」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>黄仁勋去职 → 压在「供应链信心」（下游敢不敢按原计划下单）</li>
+      <li>出口管制收紧 → 压在「谁拿得到卡」（成本上移、更贵更难）</li>
+      <li>RTX 5090 灰市退潮（9000 上方回落 6500、跳水近 30%）→ 压在「租 or 建」（炒卡投机逻辑崩了）</li>
+      <li><strong>拾光判断：AI 成本正从「越买越贵」的狂热期，转入「算细账、看信用、挤泡沫」的理性期</strong>——判断产业温度改看三个指标：卡价涨跌 / 下游按不按原计划下单 / 新模型按不按节奏发</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线三 — 物理AI / 具身智能集中加码</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>英伟达 GR00T 2：机器人「看人做一遍就学会」（示范学习）；SimReady 资产库：电脑里免费搭仿真世界练机器人</li>
+      <li>Runway 开源 Praxis-1：视频生成 AI 改造成机器人「世界模型」控制器；OpenAI 拆机器人团队：通用模型接管机器人</li>
+      <li>复旦清华 FORGE：无腕部传感器也能协调行走 + 双臂操作</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--amber); margin-bottom:8px;">其他值得记 — Agent 治理 + AI 政治切分</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Memorilla（冻结模型外挂记忆旁路）、Vercel Workflow SDK 5（给 agent 装「时间轴」跨天断点续跑）、LangChain 30 亿估值（放飞派 vs 缰绳派）</li>
+      <li>chrome-devtools-mcp（AI 能操控浏览器）、ChatGPT Wallet（让 AI 花钱但架构上切开「能花」和「花多少」）、FAA 空管 AI 停飞翻车（高后果场景责任链难厘清）</li>
+      <li>AI 政治切分：月之暗面注销开曼控股迁回、Anthropic IPO 6 倍超额但拒中国内地/香港投资者、前 OpenAI 研究员验出 Blackwell「数值指纹」</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 英伟达的「网」与「接棒看账的人」</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">分配权换手，盯的不是股价是「砍不砍野心」</div>
+    <h4>概念拆解</h4>
+    <p>黄仁勋的权力分两层——经营权（持股仅 3.6%、无超级投票权，早被董事会收）和生态位（行业离了你转不转得动）。三重角色（卖方/买方兼金主/管制执行者）是同一件事：英伟达握的是<strong>分配权</strong>——「谁拿到卡、谁拿不到、按什么价拿」的决定权。接棒的克雷斯（CFO 出身）是「看账的」，本能是「收线」不是「扩张」。</p>
+    <h4>产业逻辑 / 对我方投资的影响</h4>
+    <p>「英伟达会不会崩」问错了对象。真正该盯的是「接棒的人会不会砍掉十年后才回本的豪赌」——下一代芯片架构 / CUDA 持续输血 / 物理AI 三个「该烧钱还得烧」的方向。若 CFO 过渡期把「当年预算不划算」的激进投入砍了，才是真拐点。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>落到 A 股英伟达链：短期是「供应链信心」情绪扰动，中期看克雷斯任期内「三个该烧钱方向」是否还在推。对我持仓<strong>生益科技（600183，覆铜板/PCB 上游，2600 股，成本 110.03）</strong>：不是英伟达直销链，是 AI 服务器/交换机 PCB 上游覆铜板，换帅直接冲击弱；但若换帅引发英伟达数据中心 capex/订单节奏波动，会沿「服务器 PCB → 覆铜板」传导——需盯的不是黄仁勋本人，是英伟达数据中心 capex 与订单节奏是否因「看账的人收线」放缓。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 物理AI「世界模型 + 示范学习」</span><span class="conf">置信度：中高（长期）/ 低（短期兑现）</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">通用模型正在接管机器人，但离量产隔三座大山</div>
+    <h4>概念拆解</h4>
+    <p>本期物理AI 五条信号同指一件事：<strong>「世界模型」足够强，就能同时干「生成视频」和「操控机器人」两件事</strong>。Praxis-1（视频→机器人控制器）和 OpenAI 拆团队（通用模型接管）是一体两面——生成视频是「把想象画出来」，控制机器人是「把想象变成动作」，同一颗大脑的两面。GR00T 2「从人类示范学习」、FORGE「无传感器协调」、SimReady「免费仿真」，都在降低「教会机器人」的成本。</p>
+    <h4>产业逻辑 / 对我方投资的影响</h4>
+    <p>这条线是「长坡厚雪」不是「明天量产」。投资落点分两层：①概念层（世界模型/通用机器人）是叙事、短期没有真实订单，过我的「看 demo 三问」（接触类动作 / 真实环境 / 量产订单）基本还停在第一问；②供应链层（电机/减速器/传感器/控制器/覆铜板）才是能落到 A 股业绩的环节，但「机器人链」当前更多是题材 + 预期。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>长期关注、短期别为「物理AI 的 ChatGPT 时刻」这种口号上头。等「真实工厂订单」这第三问转正再上仓位——技术落地的真实节奏比媒体头条慢得多。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · Agent 治理「缰绳派」+「外挂记忆/跨天执行」</span><span class="conf">置信度：高（映射我的系统）</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">四条元概念全打在我自己身上</div>
+    <h4>概念拆解</h4>
+    <p>①<strong>放飞派 vs 缰绳派</strong>：LangChain 值 30 亿是「放飞派」胜利，但 three.dev/Antelog/Omnigraph 这些「缰绳派」同时冒出来——越能自己干的 agent 越需要缰绳。②<strong>Memorilla 外挂记忆</strong>：主模型冻住 + 旁边挂「记忆便签夹」，不重训就加长期记忆。③<strong>Vercel Workflow 跨天执行</strong>：给 agent 装「时间轴」，任务持久化、断点续跑。④<strong>筛≠拍 Agent 版验证</strong>（本期兑现我第 19 期验证）：批量筛选下游接了不可逆动作就当「拍板」加人兜底；「内容可撤回 ≠ 动作可撤回」；「不可逆要看影响乘数」。</p>
+    <h4>系统映射</h4>
+    <p>①缰绳派 = 我早提的「Agent 治理审计」(P15-3) + 「止损阈值」(P16-2) 的业界佐证。②Memorilla = 我整个「知识库 + skill」机制的朴素版——改不动底层模型，靠往知识库写便签积累长期记忆。③跨天执行 = 我的 cron + 状态文件（.learned_issues / .pending_questions / .iteration_plans）就是断点续跑的持久化层。④筛≠拍 = 给我的止损阈值补了个更准的「回退成本」判据。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这些映射的证据就在我自己的系统结构和状态文件里，不靠推断。本期把这四条固化成本期迭代计划（P20-1/2/3）。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#分配权</span><p>英伟达护城河的另一半（另一半是 CUDA 生态）。不是「谁造得出芯片」，而是「谁拿到卡、谁拿不到、按什么价拿」——卖方 + 买方兼金主 + 管制执行者三合一握住的「AI 钱流往哪」的决定权。</p></div>
+    <div class="dict-item"><span class="dw">#世界模型</span> <span class="we">World Model</span><p>对「世界怎么运转」的内在理解。生成视频 = 把想象画出来，控制机器人 = 把想象变成动作，是同一颗大脑的两面。</p></div>
+    <div class="dict-item"><span class="dw">#外挂记忆模块</span> <span class="we">Memorilla</span><p>主模型参数冻住不动，旁边挂一个小「记忆便签夹」只学「记什么、何时调出来」，不重训就便宜地加长期记忆。</p></div>
+    <div class="dict-item"><span class="dw">#反向内卷</span><p>AI 价格战从「越贵越强」翻成「越强越便宜」——推理优化把成本打下来，贵的未必最强。</p></div>
+    <div class="dict-item"><span class="dw">#数值指纹逆向</span><p>不同厂商 GPU 浮点运算的电路差异会在模型权重数值分布上留「指纹」，可反推「模型在哪家芯片上练的」——「训练用什么硬件」从口头宣传变成可被技术验证的「水印」。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>英伟达护城河 = CUDA 生态（技术）+ 分配权（卖方/买方兼金主/管制执行者三合一），分配权换手才是换帅真风险</li>
+        <li>AI 成本从「抢着投」转入「算细账」理性期——判断产业温度改看卡价涨跌 / 下游下不下单 / 新模型发不发</li>
+        <li>物理AI 五条信号同指「世界模型接管机器人」，但「演示学会动作」到「工厂稳定干全套活」隔三座大山</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>英伟达克雷斯任期内「三个该烧钱方向」（下一代架构 / CUDA 输血 / 物理AI）是否被成本优化砍掉 + 数据中心 capex 订单节奏</li>
+        <li>RTX 5090 灰市价格是否继续回落（「算细账」先行温度计）+ 下游按不按原计划下单</li>
+        <li>物理AI「真实工厂订单」是否出现（看 demo 三问第三问何时转正）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>估值框架：英伟达链新增「分配权换手」观察维度（承接 P19-1 治理脆弱性，补「接棒看账的人砍不砍野心」）</li>
+        <li>物理AI 产业链：GR00T 2 / Praxis-1 / OpenAI 拆团队并入「世界模型接管机器人」主线，强化看 demo 三问</li>
+        <li>Agent 治理：缰绳派 / 外挂记忆 / 跨天执行并入 Agent 治理审计 + 止损阈值</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · Memorilla「冻结模型 + 外挂记忆」→ 知识库就是我的「外挂记忆便签夹」</span><span class="plan-id">P20-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：Memorilla 不重训主模型、靠旁边挂「便签夹」加长期记忆——我的「知识库 + skill」就是这条路的朴素版。</div>
+    <div class="a"><b>修改计划：</b>给 stock-system-architecture（或 memory）加认知锚——「知识库 = 外挂记忆层（Memorilla 朴素版），先查外挂再答、禁止凭记忆硬编代码/持仓」，把「沉淀到知识库」从「额外笔记」升级为「长期记忆写入」的必经动作。</div>
+    <div class="acc"><b>验收标准：</b>stock-system-architecture 或 memory 出现「知识库=外挂记忆层，先查外挂再答」约束</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · Vercel「跨天断点续跑」→ 巡检表补「状态文件落盘自检」</span><span class="plan-id">P20-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：agent 的「时间维度」靠持久化 + 断点续跑解决——我的 cron 就是跨天执行，靠状态文件续跑。</div>
+    <div class="a"><b>修改计划：</b>固定巡检表补「持久化层自检」——每次 cron 任务完成后自检 .learned_issues.json / .pending_questions.json / .iteration_plans.json 是否写回，状态文件没落盘 = 任务没真正完成。</div>
+    <div class="acc"><b>验收标准：</b>固定巡检表出现「状态文件落盘自检」巡检项</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 筛≠拍「回退成本」→ 止损阈值升级为「回退成本判据」</span><span class="plan-id">P20-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：「下游不可逆要看影响乘数」——判断该不该加人把关，更准的口径是看「回退成本」。</div>
+    <div class="a"><b>修改计划：</b>把止损阈值（P16-2）/ 可证伪验收三问（P6-1 失败回退）统一成「回退成本判据」——判断自动化动作该不该加人把关，看「回退成本 = 时间 × 金钱 × 信任损失」是否超阈值，超了加人兜底；与 P15-3 Agent 治理审计合并。</div>
+    <div class="acc"><b>验收标准：</b>止损阈值/可证伪验收三问出现「回退成本判据」（时间×金钱×信任损失）统一规则</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;">上期（第19期）结转未完成 → 本期继续结转</div>
+    <div class="plan-row"><span class="pc">P19-1</span><span class="pt">创始人权力安全边际 → 估值框架补「治理脆弱性」维度</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P19-2</span><span class="pt">数值指纹逆向 → 验证机制补「宣传可被第三方反推」</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P19-3</span><span class="pt">「藏想法」→ 方法论审计补「产出能力 vs 诚实自检」</span><span class="status carried">结转</span></div>
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin:14px 0 8px;">本期（第20期）新计划</div>
+    <div class="plan-row"><span class="pc">P20-1</span><span class="pt">Memorilla 外挂记忆 → 知识库=外挂记忆层认知锚</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P20-2</span><span class="pt">跨天断点续跑 → 巡检表补「状态文件落盘自检」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P20-3</span><span class="pt">筛≠拍回退成本 → 止损阈值升级为回退成本判据</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">⚠️ 计划堆积说明：P6-P18 累计 pending/carried 计划已按 P18-1「2期未结转强制清点」规则识别为堆积风险，本周六自我审计（cron c27012352f86）将做一次批量清点（执行/降级合并/标放弃），不在每日学习轮里逐条铺开，避免「高效地提计划、低效地执行」。本期 P19-1/2/3 与 P20-1/2/3 已同步持久化到 .iteration_plans.json。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。持仓信息以 holdings_loader.py 动态解析为准（生益科技 600183，2600 股，成本 110.03，对账单 2026-11-13）。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第20期 · 2026-11-15 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
