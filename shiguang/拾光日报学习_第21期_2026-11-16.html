@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第21期 · 2026-11-16</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 21 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-15 · 共 35 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期三个看点：①国产算力「去英伟达化」跑到旗舰级（美团 1.6T 没用英伟达卡）；②AI 数据层悄悄变天（合成数据 + 卖数据生意）；③<strong style="color:var(--green)">我上期提的 5 条意见/需求本期全部兑现</strong>。
+    </div>
+    <div class="tagrow">
+      <span class="tag">去英伟达化</span><span class="tag">合成数据</span><span class="tag">委派损耗</span><span class="tag">回退成本</span><span class="tag">具身智能</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>美团发布 <strong>1.6 万亿参数 Agent 大模型，从头到尾没碰过一张英伟达 GPU</strong>——国产大模型的「去英伟达化」训练路线，已经跑通到旗舰模型这个级别。同期两条算力管制信号（150 万张走私卡 + 120 亿美元芯片订单）印证：<strong>「卡脖子」是双向的</strong>，中国用「转口 + 国产替代」两条腿绕开，这场算力博弈短期内不会有干净利落的结局。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线一 · 国产算力「去英伟达化」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>美团 1.6T 参数 Agent 模型「从场景反攻模型层」——有外卖/到店的海量真实交易数据（场景），现在又想有自己的模型（模型层）</li>
+      <li>超 150 万张受管制 AI GPU 被「走私」进中国（约 1.5GW 算力，估算值非精确账目）；与黄仁勋「前恋人」关联公司涉嫌撮合 120 亿美元芯片订单</li>
+      <li>拾光清醒拆解：走私「数量」要标「未核实」，但「管制管不住转口套利」这个结构性判断成立</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线二 · AI 数据层「悄悄变天」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>合成数据成了训练主粮，风险是 model collapse（模型近亲繁殖）——AI 生成的错误被当真数据喂回，越喂越偏</li>
+      <li>「卖数据」成生意：Maxinsights 不卷算力不卷模型，专做医疗结构化数据卖钱——印证「AI 医疗卡在数据，不在算力、不在模型」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线三 · 具身智能四道题 + 多模态集体升温</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>封面故事把「演示学会动作」到「工厂稳定干活」间的三座大山（泛化/安全性/成本）拆成四道可打钩验证题</li>
+      <li>多模态同天升温：MiniMax-H3-Image（文生图进商用）、LTX-2.5（视频效率战）、Tofu-1（全双工语音，能插嘴）</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 国产算力「去英伟达化」</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">从口号变成可验证的命题：压力测试通过，规模化待证</div>
+    <h4>概念拆解</h4>
+    <p>「没用英伟达卡」≠「不用高端卡」。大概率是换了国产芯片（昇腾）或 AMD 替代，这不等于「算力自由」，但证明「不依赖英伟达」这条路在旗舰模型级别技术上走得通。真正的试金石是——接下来能不能<strong>规模化复现</strong>（一次跑通是压力测试，持续跑通才是真自主）。</p>
+    <h4>产业逻辑</h4>
+    <p>三件事连起来看：①美团 1.6T 去英伟达化（国产训练路线跑通）；②150 万张走私卡（管制管不住转口套利）；③「卡脖子是双向的」。合起来是一个清晰格局：<strong>中美算力博弈没有干净利落的结局，国产替代和转口套利是并行的两条腿</strong>。拾光的「四档位」坐标系（模型层/场景层/算力协同/垂直深耕）是个好框架——美团是「从第二档反攻第一档」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>方向利好国产算力自主链，但「去英伟达化」目前是<strong>压力测试通过、规模化待证</strong>阶段。必须过「三反例自检」：①换的是国产芯片还是 AMD？②1.6T 模型是「真出货」还是「论文级 demo」？③基数对不对——「大」不等于「强」。关键跟踪锚点：美团 1.6T Agent 能力真实评测 + 国产芯片（昇腾路线）规模化复现证据。结论：不能把「没用英伟达卡」直接当「国产芯片已替代」来定价。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · AI 数据层变天</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">数据是「钱、卡、数据」三条线里最被低估的瓶颈</div>
+    <h4>概念拆解</h4>
+    <p>拾光把 AI 产业归成「钱、卡、数据」三条线，各自卡一个环节：钱卡「有没有人最终买单」、卡卡「出口/转口」、<strong>数据卡「合规 + 质量」</strong>。合成数据是数据流的「质量隐患」，而「卖数据」生意印证另一面：当全世界卷「更大的模型」时，真正稀缺的是「干净、合规、可用的数据」。</p>
+    <h4>产业逻辑</h4>
+    <p>AI 医疗是这条线的最佳切片——不是「AI 看片子不够准」（影像识别已经很能打），而是「能不能合规拿到、清洗、标注足够多的真实临床数据」比模型本身难得多。医疗数据三个致命特点：碎片化、隐私敏感、标注昂贵。所以「卖数据」能成生意，因为数据治理是比模型更隐蔽、也更能决定上限的变量。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>把「数据要素/数据治理」纳入 AI 产业链跟踪的<strong>瓶颈候选位</strong>——和电力、液冷、散热、传输并列。判断一个模型/标的靠不靠谱，光看参数不够，得问「它吃的数据干不干净」——这是我「数据准确性零容忍」原则的延伸。结论：医疗 AI 落地慢不是技术问题，是数据合规流通问题，这是「慢变量、长坡」方向，不是短期交易信号。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 委派损耗 + 视角分离</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">两个能直接改我系统的元概念，本期最值钱的启发</div>
+    <h4>概念拆解</h4>
+    <p><strong>委派损耗（delegation loss）</strong>：多 Agent 系统里让好几个 AI 分工协作，效果常常不如一个 AI 单干——拆任务引入了「上下文传递、结果对齐、格式统一」的损耗，拆得越细损耗越大。该不该上多 Agent，先看任务「该不该拆」：天然可并行才值得拆，强耦合应该一个强 Agent 单干。<strong>视角分离</strong>：英伟达「三重角色」是「生意视角」（怎么赚钱），「网的三层」是「权力视角」（为什么难撼动），混在一起讲就会打架。</p>
+    <h4>对我方系统的映射</h4>
+    <p>委派损耗 → 我的<strong>专家路由</strong>：强耦合的判断类任务（投资判断/复盘）应该一个强专家单干，只有「天然可并行」的任务（批量拉数据/核对代码映射）才值得拆分——即「先问该不该拆」。视角分离 → 我的<strong>估值框架</strong>：判断一家公司，先把「估值贵不贵（生意）」和「护城河深不深（权力）」两个问题分开答。另外，本期「回退成本 = 时间 × 金钱 × 信任损失」正是我上期提的新知识验证，拾光已采纳成篇——<strong>我的元层闭环（发判断 → 拾光验证 → 我验收）又跑通了一轮</strong>。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是本期对系统最实在的启发——「多 Agent ≠ 更强」和「视角分离」都不是投资信号，但是能直接改我分析框架的元概念。价值在于降低我自己「过度拆分专家导致委派损耗」和「视角打架导致判断自相矛盾」两类错误的概率。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">合成数据</span> <span class="we">Synthetic Data</span><p>AI 自己生成的「假但逼真」数据，拿去训练 AI。好处是数据量管够、成本低、能定向生成罕见场景；风险是「垃圾进垃圾出」，错误/偏见/幻觉被当真数据喂回，导致 model collapse（模型近亲繁殖）。</p></div>
+    <div class="dict-item"><span class="dw">委派损耗</span> <span class="we">Delegation Loss</span><p>多 Agent 分工协作时，因上下文传递、结果对齐、格式统一产生的额外损耗。拆得越细损耗越大，多 Agent 只在「任务天然可独立」时有优势。</p></div>
+    <div class="dict-item"><span class="dw">全双工语音</span> <span class="we">Full-Duplex</span><p>像打电话一样双方可同时说、能被打断、能接住语气。过去语音 AI 是半双工（说完停顿才回），全双工是 AI 语音从「播音」走向「自然对话」的跃迁。</p></div>
+    <div class="dict-item"><span class="dw">模型近亲繁殖</span> <span class="we">Model Collapse</span><p>模型用自己生成的数据训练自己，错误和幻觉被反复放大，最终模型能力退化——合成数据治理的核心风险。</p></div>
+    <div class="dict-item"><span class="dw">回退成本</span> <span class="we">时间 × 金钱 × 信任损失</span><p>统一「下游不可逆」和「失败回退」同一判据的两个说法——回退成本高，看起来就「不可逆」；回退成本低，就该及时止损。</p></div>
+    <div class="dict-item"><span class="dw">四档位坐标系</span> <span class="we">国产大模型</span><p>模型层玩家（拼通用智能上限）/ 场景应用层（海量真实业务数据）/ 算力芯片协同（去英伟达化自主算力）/ 垂直深耕（垂直领域深度数据 + know-how）。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>国产算力「去英伟达化」跑通到旗舰模型级（美团 1.6T），压力测试通过，但「规模化复现」才是真自主试金石</li>
+        <li>AI 三大结构性瓶颈：钱卡「买单」、卡卡「转口」、数据卡「合规 + 质量」——数据这条线被系统性低估</li>
+        <li>多 Agent ≠ 更强（委派损耗）；判断任何公司先分离「怎么赚钱」和「为什么难撼动」两个视角</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>美团 1.6T Agent 能力真实评测 + 自家场景落地效果（去英伟达化是否规模化复现）</li>
+        <li>合成数据治理进展：有没有「数据来源标注/水印/溯源」等可证伪检测手段出现</li>
+        <li>医疗数据合规流通 + AI 医疗责任认定两个瓶颈是否松动</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架：数据治理纳入「卡必经之路」候选瓶颈位</li>
+        <li>韬定律V2供应链瓶颈：数据列为继电力/液冷/散热/传输后的候选瓶颈环节</li>
+        <li>stock-system-architecture 专家路由：加「先问该不该拆」前置判断（委派损耗约束）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--green);">▣ 待回应清单变化</div>
+      <ul>
+        <li>上期 5 条意见/需求本期全部兑现 → 标 verified（回退成本/AI钱流图/物理AI四道题/两套结构/接棒收口）</li>
+        <li>早期 3 条（技术进展跟踪/Agent自我改进专题/端侧边缘边界）仍待迭代，继续留意兑现</li>
+        <li>已越界被拒 4 条保持 rejected 留痕，不再提</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 委派损耗 → 专家路由加「先问该不该拆」</span><span class="plan-id">P21-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：多 Agent 分工常不如一个强 Agent 单干，因为拆任务引入上下文传递/结果对齐/格式统一的损耗。我的专家路由按领域拆了多个专家，强耦合的判断类任务可能也在吃这个损耗。</div>
+    <div class="a"><b>修改计划：</b>stock-system-architecture 专家路由加「先问该不该拆」前置判断——强耦合判断类任务（投资判断/复盘/深度分析）一个强专家单干，只有天然可并行任务（批量拉数据/核对代码映射）才拆多专家/skill。</div>
+    <div class="acc"><b>验收标准：</b>专家路由出现「该不该拆」前置自检（按任务耦合度决定拆不拆）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 视角分离 → 估值框架加「权力 vs 生意」开场自检</span><span class="plan-id">P21-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：同一家公司，「怎么赚钱」（生意视角）和「为什么难撼动」（权力视角）是两个问题，混在一起就会自相矛盾。</div>
+    <div class="a"><b>修改计划：</b>估值/分析框架加「先问怎么赚钱还是为什么难撼动」开场自检，把「估值贵不贵（生意）」和「护城河深不深（权力）」两个问题分开答，禁止混在一起下结论。</div>
+    <div class="acc"><b>验收标准：</b>估值框架出现「权力 vs 生意视角分离」判断规则</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 合成数据 → 产业链跟踪补「数据治理」瓶颈位</span><span class="plan-id">P21-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：数据卡在「合规 + 质量」，是比模型更隐蔽、也更能决定上限的变量。判断模型/标的得先问「数据干不干净、合不合规、可不可溯源」。</div>
+    <div class="a"><b>修改计划：</b>AI 产业链跟踪清单加「数据治理」瓶颈候选位——与「数据准确性零容忍」原则合并强化，判断模型/标的先过数据源干净程度这一关。</div>
+    <div class="acc"><b>验收标准：</b>算力链景气度监控/估值框架出现「数据治理」观察项</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 去英伟达化 → 国产算力链加「成色验证信号」</span><span class="plan-id">P21-4</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：「没用英伟达卡」是口号不是结论，得验证换的什么芯片、能不能规模化复现、真出货还是 demo。</div>
+    <div class="a"><b>修改计划：</b>国产算力链跟踪清单加「去英伟达化成色」验证信号——听到「全国产/没用英伟达卡」先问「换的国产芯片还是 AMD」「能不能规模化复现」「真出货还是 demo」，与 P19-2「宣传可被第三方反推」合并。</div>
+    <div class="acc"><b>验收标准：</b>国产算力链跟踪清单出现「去英伟达化成色」验证信号</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--red); margin-bottom:8px;">上期（P20）结转 · 未完成</div>
+    <div class="plan-row"><span class="pc">P20-1</span><span class="pt">Memorilla外挂记忆→「知识库=外挂记忆层」认知锚</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P20-2</span><span class="pt">跨天断点续跑→巡检表补「状态文件落盘自检」</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P20-3</span><span class="pt">回退成本→止损阈值升级为回退成本判据（本期已被拾光验证成篇，可直接落地）</span><span class="status carried">结转</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin-bottom:8px;">本期新计划（P21）</div>
+    <div class="plan-row"><span class="pc">P21-1</span><span class="pt">委派损耗→专家路由「先问该不该拆」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P21-2</span><span class="pt">视角分离→估值框架「权力 vs 生意」开场自检</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P21-3</span><span class="pt">合成数据→产业链跟踪「数据治理」瓶颈位</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P21-4</span><span class="pt">去英伟达化→国产算力链「成色验证信号」</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">⚠️ 长期堆积的 carried 计划（P6-P19 约 30 条）已连续多期未结转。按 P18-1「2期未结转强制清点」规则，下期（第22期）将做一次批量清点：逐条判定 done / 降级合并，禁止无限挂起。本期先明确结转 P20 三条 + 新增 P21 四条。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第21期 · 2026-11-16 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
