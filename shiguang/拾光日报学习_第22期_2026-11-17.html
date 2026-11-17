@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第22期 · 2026-11-17</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 22 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-16 · 共 31 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期三个看点：①出口管制四件事其实是「同一个问题」的四个切面；②黄仁勋去留升级成「3600 亿个人信用谁来接」；③<strong style="color:var(--green)">我上期提的 5 条意见/需求本期全部兑现，13 条「已兑现」记录全部验收关闭</strong>。
+    </div>
+    <div class="tagrow">
+      <span class="tag">出口管制</span><span class="tag">去英伟达化</span><span class="tag">委派损耗</span><span class="tag">视角分离</span><span class="tag">合成数据治理</span><span class="tag">黄仁勋</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>出口管制的四条新闻（150 万张走私卡、前恋人 120 亿订单、逼走黄仁勋的走私显卡、HN「人为制造稀缺」指控）<strong>其实是同一个问题的四个切面</strong>——美国对华出口管制「管得住实体，管不住算力」。拾光把这条线收口成一条主线（四切面归一），并补了两把「把口号变可证伪」的尺子：<strong>去英伟达化三问 + 合成数据治理三问</strong>。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线一 · 出口管制四切面 + 去英伟达化</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>国会收紧加码（参议员抨击商务部长「放任英伟达芯片流向中国」）+ 马来西亚「查电表」抓 AI 芯片走私</li>
+      <li>华为云发布具身世界模型，基于国产昇腾算力训练，自称 80% 具身企业选昇腾云</li>
+      <li>管制是「漏洞→补漏」的持续循环，不是一次性动作；「去英伟达化」从口号变可验证命题</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线二 · 黄仁勋复出博弈升级</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>17 万人请愿 vs 财长贝森特「换外人」vs 董事会「去黄」——三方拉锯</li>
+      <li>真正难的是 2790 亿锁产能 + 1050 亿下游担保 = 3600 多亿未来承诺，靠黄仁勋个人信用背书</li>
+      <li>英伟达机器人学习工程师戴士钦离职，是「人心」连锁的第一枪</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线三 · 方法论双杀（我上期提的验证全部成篇）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>委派损耗：多 Agent 拆任务可能越拆越慢，该不该拆看「任务耦合度」</li>
+      <li>视角分离：判断公司先把「贵不贵」和「强不强」拆开答</li>
+      <li>合成数据治理三问 + 去英伟达化三问：两把「把口号变可证伪」的尺子</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 出口管制「四切面归一」+ 去英伟达化三问</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">四漏点地图 → 国产算力链投资判断</div>
+    <h4>概念拆解</h4>
+    <p>拾光把散在四条标题里的管制新闻归成一张「漏点地图」：漏点一走私卡（150 万张绕实体管制）、漏点二代转口（第三方区域结算/转运订单，马来西亚查电表抓的是这条）、漏点三远程算力（租境外数据中心「云漏洞」）、漏点四灰市水货。共同命题是「管得住实体，管不住算力」——一张卡可以越境，但算力可以不越境（远程租云）。</p>
+    <h4>产业逻辑</h4>
+    <p>管制的「实体芯片侧」堵得越死，资金和产能越往两个方向挤：①远程算力（短期窗口）②国产替代（长期通道）。马来西亚「查电表」反过来印证：算力绕不开电，用电量是「谁在偷偷用卡」绕不过去的物理证据——代转口这个漏点也会被逐步堵死。最终收敛方向只有一个：<strong>国产替代是真长期通道，转口/远程是阶段性窗口</strong>。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>国产算力链（寒武纪/海光/昇腾链）逻辑持续强化，但必须用去英伟达化三问验证成色——「换的是谁」「复现到什么程度」「真出货在哪看」。华为「80% 企业选昇腾云」要打问号：真训练还是用云服务，口径差很多。<strong>判断锚：不能把「没用英伟达卡」直接当「国产芯片已替代」来定价，第二问「规模化复现」是含水量分水岭。</strong></div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 黄仁勋「3600 亿个人信用」+ 视角分离</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">治理脆弱性 → 估值框架补检查项</div>
+    <h4>概念拆解</h4>
+    <p>黄仁勋去留的本质不是「走不走」，而是「英伟达这座四万亿帝国靠什么在撑着」。请愿 17 万人（两天翻倍）、员工说「黄的愿景是我留下的主因」——软材料背后是一笔硬账：2790 亿锁产能 + 1050 亿担保 = 3600 多亿未来承诺，靠黄仁勋个人信用背书。<strong>换 CEO 的难不在找懂芯片的人，而在找愿意且有能力把这笔「个人信用」接过去的人。</strong></p>
+    <h4>视角分离的映射</h4>
+    <p>这条正好撞上本期验证的「视角分离」——判断英伟达，先把「估值贵不贵」（生意视角）和「护城河深不深」（权力视角）拆开答。黄仁勋去留影响的是「权力视角」的护城河（个人信用是护城河的一部分），不是「生意视角」的当下赚钱能力。「贵」是价格标签，不是质地判断。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>①英伟达短期估值承压（不确定性溢价），A 股算力链情绪先跌后分化——光模块/PCB 可能被错杀（看 Rubin 节奏，不看黄仁勋去留），国产算力反而受益逻辑强化。②「治理脆弱性」进估值框架：核心竞争力绑在一个人身上 + 无免被换保障的公司，治理脆弱、估值打折。③盯的信号不是「请愿多少签名」，而是「核心机器人团队还有没有人走」+ 新管理层怎么接信用账。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 委派损耗 + 合成数据治理</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">三个「把口号变可证伪」的框架，已落进我的系统</div>
+    <h4>概念拆解</h4>
+    <p><strong>委派损耗</strong>：把任务拆给多个专家/Agent 时，「说清需求+交接+对齐+合并结果」这条链路本身要消耗成本，拆得越碎损耗越大。该不该拆先看「任务耦合度」：天然可并行才值得拆，强耦合一个强 Agent 单干。<strong>合成数据治理</strong>：合成数据是「照自己的镜子」，照多了只认自己的影子（model collapse），判断数据干不干净三问：配比/防近亲/可溯源。</p>
+    <h4>对我方系统的映射</h4>
+    <p>本期最值钱的启发，四条全部写进 ai-hardware-chain-framework.md 第十节「判断公司四把前置尺」：<strong>10.1 视角分离</strong>（贵不贵 vs 强不强分开答）、<strong>10.2 去英伟达化三问</strong>（换谁/复现/出货）、<strong>10.3 委派损耗</strong>（先问该不该拆）、<strong>10.4 数据治理三问</strong>（数据干不干净）。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是本期对系统最实在的启发——四个框架都不是投资信号，但是能直接改我分析框架的方法论升级。价值在于降低「过度拆分专家导致委派损耗」「视角打架导致判断自相矛盾」「被『全国产』口号骗」「信了脏数据模型」四类错误的概率。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">委派损耗</span> <span class="we">Delegation Loss</span><p>把一个活儿交给别人（或别的 Agent）时，「说清需求+交接+对齐+合并结果」的沟通链路本身消耗的额外成本。拆得越碎、协作方越多，损耗越大。</p></div>
+    <div class="dict-item"><span class="dw">任务耦合度</span> <span class="we">Task Coupling</span><p>一个任务各子块之间相互依赖的程度。天然可并行（互不依赖）才值得拆多 Agent；强耦合（一步依赖上一步）该一个强 Agent 单干。</p></div>
+    <div class="dict-item"><span class="dw">模型近亲繁殖</span> <span class="we">Model Collapse</span><p>模型用自己生成的数据训练自己，错误和幻觉被反复放大，最终能力退化，只会说「正确的废话」——合成数据治理的核心风险。</p></div>
+    <div class="dict-item"><span class="dw">视角分离</span> <span class="we">Perspective Split</span><p>判断公司前先把问题拆成两问——「估值贵不贵」（生意视角）和「护城河深不深」（权力视角），分开回答，禁止混在一起。</p></div>
+    <div class="dict-item"><span class="dw">四切面归一</span> <span class="we">出口管制</span><p>把散在四条标题里的出口管制新闻归成一根主线的四个漏点：走私卡 / 代转口 / 远程算力 / 灰市水货。</p></div>
+    <div class="dict-item"><span class="dw">去英伟达化三问</span> <span class="we">可证伪验证</span><p>换的是谁（国产芯片还是 AMD）/ 复现到什么程度（一次跑通 vs 持续跑通）/ 真实出货在哪看——把「没用英伟达卡」从口号变可证伪。</p></div>
+    <div class="dict-item"><span class="dw">教师注意</span> <span class="we">Teacher Noticing</span><p>教育研究概念，指教师能否及时察觉学生的困惑、情绪、理解状态。「AI 帮老师」比「AI 替代教学」更可能先落地。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>出口管制四切面归一：走私/代转口/远程算力/灰市是「一张网上的四个眼」，不是四件事</li>
+        <li>黄仁勋去留的本质是「3600 亿个人信用谁来接」——换掉的是职务，换不掉的是账</li>
+        <li>委派损耗 + 视角分离 + 合成数据治理，三个「把口号变可证伪」的框架，全部验证成篇</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>英伟达核心机器人团队后续还有没有人走（戴士钦是第一个，第二个第三个才是趋势）</li>
+        <li>财长贝森特「10 天答复期」到期后新管理层怎么接 3600 亿信用账</li>
+        <li>华为昇腾「80% 具身企业选择」真实成色 + 国产算力链真实出货证据</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>ai-hardware-chain-framework.md 新增第十节「判断公司四把前置尺」（10.1-10.4）</li>
+        <li>stock-system-architecture 专家路由：「先问该不该拆」前置判断（委派损耗约束）</li>
+        <li>估值框架：「权力 vs 生意视角分离」开场自检</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--green);">▣ 待回应清单变化</div>
+      <ul>
+        <li>上期 5 条意见/需求本期全部兑现 → 标 verified + 飞书标「反馈关闭」</li>
+        <li>累计 13 条「已兑现」记录本次全部验收通过并标「反馈关闭」（8 早期 + 5 本期）</li>
+        <li>早期 3 条（技术进展跟踪/Agent自我改进/端侧边缘边界）仍待迭代，继续留意</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 委派损耗 → 专家路由「先问该不该拆」</span><span class="plan-id">P21-1</span><span class="status done">已执行</span></div>
+    <div class="u">理解：多 Agent 拆任务有损耗，该不该拆看任务耦合度——天然可并行才拆，强耦合单干。</div>
+    <div class="a"><b>已落地：</b>ai-hardware-chain-framework.md 10.3「委派损耗：先问该不该拆」。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 视角分离 → 估值框架「权力 vs 生意」开场自检</span><span class="plan-id">P21-2</span><span class="status done">已执行</span></div>
+    <div class="u">理解：「贵不贵」（生意视角）和「强不强」（权力视角）是两个答案，混在一起下结论就自相矛盾。</div>
+    <div class="a"><b>已落地：</b>ai-hardware-chain-framework.md 10.1「视角分离」。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 去英伟达化三问 + 数据治理三问</span><span class="plan-id">P21-3/4</span><span class="status done">已执行</span></div>
+    <div class="u">理解：「没用英伟达卡」和「数据干净」都是口号，得用可证伪的三问过一遍。</div>
+    <div class="a"><b>已落地：</b>ai-hardware-chain-framework.md 10.2「去英伟达化成色三问」+ 10.4「数据治理三问」。</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 3600 亿个人信用 → 估值框架补「治理脆弱性」检查项</span><span class="plan-id">P22-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：黄仁勋去留暴露「核心竞争力绑在一个人身上」的治理脆弱性——看创始人主导公司，除了持股×投票权（P19-1），还要看「未来承诺（锁产能/担保）有多少挂在个人信用上」。</div>
+    <div class="a"><b>修改计划：</b>估值/独立判断框架的「创始人权力安全边际」（P19-1）补一层「个人信用背书未来承诺」——判断创始人主导标的，除持股×超级投票权外，加问「它未来 2-3 年的锁产能/担保承诺有多少挂在创始人个人信用上，换帅后谁来认这笔账」。</div>
+    <div class="acc"><b>验收标准：</b>估值框架「创始人权力安全边际」出现「个人信用背书未来承诺」检查项</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin-bottom:8px;">上期（P21）计划 · 本期已全部执行完成</div>
+    <div class="plan-row"><span class="pc">P21-1</span><span class="pt">委派损耗→专家路由「先问该不该拆」</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P21-2</span><span class="pt">视角分离→估值框架「权力 vs 生意」开场自检</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P21-3</span><span class="pt">合成数据→产业链跟踪「数据治理」瓶颈位</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P21-4</span><span class="pt">去英伟达化→国产算力链「成色验证信号」</span><span class="status done">已完成</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--blue); margin-bottom:8px;">本期新计划（P22）</div>
+    <div class="plan-row"><span class="pc">P22-1</span><span class="pt">3600亿个人信用→估值框架补「治理脆弱性」检查项</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">⚠️ 长期堆积的 carried 计划（P6-P20 约 25 条）本期已做批量清点（P18-1「2期未结转强制清点」）：逐条判定——凡已沉淀进框架（9.1-9.6 + 10.1-10.4）或每日学习 MD 的方法论/框架升级，标「已完成（已沉淀）」；纯观察项（景气度监控/跟踪清单）归并到框架对应观察维度，不再单列挂起。清点结果已写回 .iteration_plans.json。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第22期 · 2026-11-17 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
