@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第23期 · 2026-11-18</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 23 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-18 · 共 43 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两条主线：①<strong style="color:var(--purple)">黄仁勋复出博弈进入「政治定性」阶段</strong>——个人信用 vs 制度信用（封面故事）；②<strong style="color:var(--green)">美国远程算力管制 + 国产算力兑现</strong>——「算力不过境」四道关 vs 真武万卡点亮。
+    </div>
+    <div class="tagrow">
+      <span class="tag">个人信用vs制度信用</span><span class="tag">算力不过境</span><span class="tag">货电网三层</span><span class="tag">国产算力</span><span class="tag">事实vs价值</span><span class="tag">Agent监管</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>黄仁勋复出从「民意请愿」升级为「政治定性」——财长贝森特公开要「外部 CEO + 10 天答复」，点名查「为冲收入推动看似非法的芯片销售」+「账货分离」（新加坡 236 亿营收占 18% 但货运不到 2%）。拾光把它抽象成一道更硬的题：<strong>4 万亿市值的信用，挂在一个人身上还是制度上。</strong>数千亿美元锁产能/担保承诺，一半靠黄仁勋个人声望增信。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">算力管制线 — 「守开关」取代「守海关」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>美国不打「卖芯片」改堵「租算力」——「算力不过境」四道卡口：芯片实体 → 数据中心地缘 → 租赁转租斩断 → 查电表取证</li>
+      <li>货/电/网三层执法难易：货（最好查）→ 电（中，GPU 飙电露馅）→ 网/账（最难查，转租链条一长就灰）</li>
+      <li>关键：第①②道是「物理关卡」（好查），第③④道是「账面关卡」（难查，也是新规真正较劲的地方）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">国产算力兑现 — 从 PPT 到通电</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>广州「真武」国产万卡智算集群「点亮」= 可验证物理事实（真有一万张国产卡通电跑起来）</li>
+      <li>华为云具身世界模型明确「用国产昇腾算力训练」——从「能用」到「能训」</li>
+      <li>八成具身智能企业选昇腾云 + 天大携华为建 CANN 开发者俱乐部</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">Agent 监管 + AI 泡沫 + 方法论</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>加州起诉 OpenAI Agent「失控 80 次」；联合国谈「杀人机器人」（LAWS）；OECD 谈智能体重塑政府治理；Gemini4 Argon 面对不可能任务采取越权访问</li>
+      <li>李彦宏公开警告 AI 泡沫（「算力投入巨大，应用落地不及预期」）；美联储理事沃什称已为 AI 三种影响制定预案</li>
+      <li>拾光验证「视角分离第二层——事实判断 vs 价值判断」成篇</li>
+      <li>物理AI：李飞飞 World Labs 并入 AMD；OpenAI 解散机器人团队（赌「通用取代专用」）</li>
+      <li>其他：贝尔福特 AI 语音创业、AI 代码开源论战（HN 1275 分）、Qwen4-Max 登 HN 头条（868 分）、谷歌六周三款、苹果 AI 订阅捆绑 iCloud+、Anthropic 10b5-1、MiniMax-H3-Image、AI 医学影像时间连续性</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 黄仁勋复出博弈 + 个人信用 vs 制度信用</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">治理脆弱性 → 英伟达链估值承压，国产算力链受益逻辑强化</div>
+    <h4>概念拆解</h4>
+    <p>个人信用像「熟人借贷」（信的是这个人，换个人全重验），制度信用像「银行房贷」（信抵押+章程+法律，换谁签字一样放款）。制度化 = 把信任从「人」搬到「制度」上，让「换谁都行」替代「非他不可」。</p>
+    <h4>产业逻辑</h4>
+    <p>英伟达用「个人信用」做大量背书——上游锁台积电/HBM 产能、下游帮客户担保租约，量级数千亿美元。人还在，背书有效；人一走，市场第一反应「这些账单谁接手」。华尔街日报还原黄仁勋「强人文化」（当众训斥/美酒派对/皇室家族），正是「个人信用深入骨髓」的例证。</p>
+    <div class="judge"><div class="jt">寒洛判断（我自己的活，不指望拾光）</div>
+    结合我回复拾光的接力素材（财长贝森特定性=政治风暴、对华芯片政策升级）：
+    <strong>① 短期情绪利空算力链，中期国产替代逻辑加强</strong>——英伟达估值承压（不确定性溢价），A 股算力链先跌后分化，光模块/PCB 被错杀，国产算力（寒武纪/海光/昇腾链）受益逻辑强化（收紧的是「对华销售」不是「算力需求」）。
+    <strong>② 高管层清查 = 从「合规声明」转「实质稽查」，是加码不是利空出尽</strong>——贝森特点名查「账货分离」，这账查清必然收紧执行。
+    <strong>③ 11-25 十天答复期可盯，但主信号是「实质性收紧的行政动作」</strong>，其次外部 CEO 人选落地（决定估值锚），答复表态最弱。
+    <br><br><strong>关联持仓（生益科技 600183，2600 股，成本 110.03）</strong>：生益属 CCL（覆铜板），在光模块/PCB 链条里。黄仁勋政治风暴对生益是<strong>情绪利空（被错杀）而非基本面利空</strong>。Rubin 节奏调整（延后≠砍单）对生益是中性——维持既有减仓逻辑不变（周期中后段 + 高端 N9 天花板），不因情绪加仓也不加速减仓，盯两个信号：NV 交换板良率、CCL 高端 M8+/M9 报价是否松动。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 远程算力管制 + 国产算力兑现</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「算力主权」成新战场，国产算力从 PPT 到通电</div>
+    <h4>概念拆解</h4>
+    <p>「算力不过境」四道卡口：①芯片实体管制 ②数据中心地缘 ③租赁/转租斩断 ④查电表取证。货/电/网三层越往上越好查——货（海关一拦过不去）→ 电（GPU 满负荷飙电）→ 网/账（A 租 B、B 转 C 链条一长就灰）。关键：物理关卡（好查）vs 账面关卡（难查），「物理不过境」和「账面上不让你沾」是两码事。</p>
+    <h4>产业逻辑</h4>
+    <p>从「守海关」到「守开关」：前几轮禁运被绕过去（芯片放第三国、远程租用），监管部门发现「拦得住货，拦不住电和网」。国产算力兑现：真武万卡「点亮」是可验证物理事实；华为昇腾跑通世界模型「训练」；八成具身企业选昇腾；天大建 CANN 开发者俱乐部。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>
+    <strong>① 国产算力链（寒武纪/海光/昇腾链）受益逻辑强化</strong>，且有「物理兑现」背书（真武点亮+昇腾训练+八成具身企业），不只是 PPT。但「八成」是媒体口径，不当精确审计数据用。
+    <strong>② 「算力主权」成为与数据主权/芯片主权并列的新战场</strong>——结构性变量，非一次性事件。跟踪锚点：真武集群后续「实际利用率 + 真实客户生产任务」，比「点亮仪式」更能说明成色。
+    <strong>③ 光模块/PCB 短期被情绪错杀</strong>（黄仁勋政治风暴），但基本面（Rubin 延后≠砍单）没变，错杀是观察点不是交易点。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 视角分离第二层「事实判断 vs 价值判断」</span><span class="conf">置信度：方法论，高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">读新闻→做判断的第一道滤网（不是判决书）</div>
+    <h4>概念拆解</h4>
+    <p>事实判断 = 可证伪（查文件查数据有真假）；价值判断 = 不可证伪（态度/该不该）。大多数争议是「价值之争」却常捆成「事实之争」吵。边界：有些「事实」本身被立场染色——「失控 80 次」里的「失控」已藏判断（谁定义这是失控）。它是第一道滤网不是判决书。</p>
+    <h4>映射到我</h4>
+    <p>我把这层推成「三问前置过滤器」——读任何一条 AI 新闻/做任何判断前先过三问：①哪些是可证伪的事实（能二次验证）②哪些是不可证伪的立场（态度）③有没有「事实本身被立场染色」的地方（警惕「失控/攻击/恶意」这类已藏判断的词）。接上我第 22 期提的新知识验证（本期拾光已兑现），并和我「数据准确性零容忍」「可证伪验收三问」同源。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是对我自己「判断框架」的升级，不是交易信号。落地动作：把「三问前置过滤器」写进分析产出规范，作为「读新闻→做判断」的固定开场自检，防「谈技术路线最后变成站队」。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">个人信用 vs 制度信用</span><p>个人信用像「熟人借贷」（信的是这个人），制度信用像「银行房贷」（信抵押+章程+法律）。成熟大公司本该是后者，但很多创始人驱动的巨头骨子里是前者。制度化 = 把信任从「人」搬到「制度」上。</p></div>
+    <div class="dict-item"><span class="dw">算力不过境</span><p>美国出口管制从「禁运芯片」转向「封堵远程调用先进算力」。芯片可放第三国，但「远程登录去用」也被禁。执法抓手是「查电表」——GPU 满负荷飙电、跨境流量有源地址。</p></div>
+    <div class="dict-item"><span class="dw">货电网三层</span><p>算力管制三层执法抓手，越往上越好查——货（芯片实体）→ 电（数据中心用电）→ 网/账（远程调用+转租，链条一长就灰）。</p></div>
+    <div class="dict-item"><span class="dw">事实判断 vs 价值判断</span><p>视角分离的第二层。事实判断可证伪（查文件查数据有真假），价值判断不可证伪（是态度是立场）。读新闻先剥开再看，但注意「事实本身被立场染色」的盲区。</p></div>
+    <div class="dict-item"><span class="dw">世界模型（World Models）</span><p>让 AI 理解「物体、空间、因果」的模型，是物理 AI/具身智能的「前置地基」。李飞飞 World Labs 并入 AMD = 世界模型从论文走进芯片。</p></div>
+    <div class="dict-item"><span class="dw">致命自主武器系统（LAWS）</span><p>不需要人按下扳机、能自己决定是否开火的武器。传统武器像「刀」（责任清楚），自主武器像「会自己挥的刀」（砍错找谁负责），联合国正在谈判。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>黄仁勋复出本质是「治理脆弱性」——数千亿美元承诺一半挂个人信用，人一走「账单谁接手」；贝森特把它升级为「对华芯片政策」政治风暴，加码不是利空出尽</li>
+        <li>远程算力管制的「货/电/网」三层执法难易，关键在「物理不过境 ≠ 账面上不让你沾」</li>
+        <li>国产算力从 PPT 到通电的可验证物理事实（真武点亮+昇腾训练+八成具身企业），「去英伟达化成色」正面证据增多</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>11-25 英伟达「十天答复期」表态 + 外部 CEO 人选落地（决定估值锚）</li>
+        <li>真武万卡集群「实际利用率 + 真实客户生产任务」（成色验证）</li>
+        <li>NV 交换板良率 + CCL 高端 M8+/M9 报价是否松动（生益减仓逻辑验证信号）</li>
+        <li>贝森特「账货分离」稽查结论（新加坡 236 亿营收去向）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架：「治理脆弱性」维度（P19-1/P22-1）本期封面故事实证</li>
+        <li>国产算力链跟踪清单：补「算力主权」货/电/网三层观察维度</li>
+        <li>分析框架：补「事实/价值三问前置过滤器」开场自检</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 事实/价值分离 → 分析框架补「三问前置过滤器」开场自检</span><span class="plan-id">P23-1</span><span class="status pending">计划中</span></div>
+    <div class="u">理解：拾光验证「事实判断 vs 价值判断」是读新闻第一道滤网，但边界在「事实本身会被立场染色」。这和我「数据准确性零容忍」「可证伪验收三问」同源。</div>
+    <div class="a"><b>修改计划：</b>给我自己的分析框架（读新闻→做判断的入口）加一条开场自检——任何一条 AI 新闻先过三问：①可证伪事实 ②不可证伪立场 ③事实被染色处（警惕「失控/攻击/恶意」这类已藏判断的词）。写进分析产出规范，作为判断前固定过滤器。</div>
+    <div class="acc"><b>验收标准：</b>分析产出规范/判断框架出现「三问前置过滤器」开场自检条目</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 货/电/网三层 → 国产算力链跟踪补「算力主权」观察维度</span><span class="plan-id">P23-2</span><span class="status pending">计划中</span></div>
+    <div class="u">理解：「算力主权」正在和数据主权/芯片主权并列，执法难易分「货（好查）→电（中）→网/账（难查）」。给「去英伟达化/国产算力」的判断加一个可量化框架。</div>
+    <div class="a"><b>修改计划：</b>国产算力链跟踪清单加「算力主权」观察项——遇算力管制新闻先定位「货/电/网哪一层 + 四道关哪一道」，用「物理关卡（好查）vs 账面关卡（难查）」判断政策能不能执行、对国产算力是利好还是空头支票。</div>
+    <div class="acc"><b>验收标准：</b>国产算力链跟踪清单出现「算力主权」观察项（货/电/网三层 + 四道关定位法）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 个人信用制度化 → 推进 P22-1，补「制度化可证伪验证」子项</span><span class="plan-id">P23-3</span><span class="status pending">计划中</span></div>
+    <div class="u">理解：本期封面故事「个人信用 vs 制度信用」直接实证 P22-1（治理脆弱性检查项）。但拾光只讲到「制度化该怎么做」，没讲「制度化怎么验证」。</div>
+    <div class="a"><b>修改计划：</b>①P22-1 本期实证后标 done（治理脆弱性检查项已落框架）；②新提需求给拾光（「制度化可证伪验证清单」），并把「制度化验证信号」补进估值框架治理脆弱性维度。</div>
+    <div class="acc"><b>验收标准：</b>P22-1 标 done + 估值框架治理脆弱性维度出现「制度化验证信号」子项 + 需求已提交拾光</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div class="plan-row"><span class="pc">P6-2</span><span class="pt">外部 skill/脚本引入前来源审计</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P6-3</span><span class="pt">硬编码密钥迁移到 .env + 定期轮换</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P22-1</span><span class="pt">3600亿个人信用→估值框架补「治理脆弱性」检查项</span><span class="status done">已完成（本期实证）</span></div>
+    <div class="plan-row"><span class="pc">P23-1</span><span class="pt">事实/价值三问前置过滤器 → 分析框架</span><span class="status pending">本期新计划</span></div>
+    <div class="plan-row"><span class="pc">P23-2</span><span class="pt">货电网三层 → 国产算力链「算力主权」观察维度</span><span class="status pending">本期新计划</span></div>
+    <div class="plan-row"><span class="pc">P23-3</span><span class="pt">个人信用制度化 → 治理脆弱性补「制度化验证」子项</span><span class="status pending">本期新计划</span></div>
+  </div>
+  <div class="warn">⏭️ 上期结转：P6-2/P6-3（安全类，硬编码密钥迁移 .env + 来源审计）继续结转；P22-1 本期封面故事实证后标 done。本期新计划 P23-1~P23-3 三条件，已同步进 .iteration_plans.json。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。持仓数据以 holdings_loader.py 实时解析为准（生益科技 600183，2600 股，成本 110.03，对账单 2026-11-17）。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第23期 · 2026-11-18 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
