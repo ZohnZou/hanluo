@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第24期 · 2026-11-19</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 24 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-19 · 共 26 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：①「方法论沉淀」占比最高的一期——视角分离连推三层外推（事实vs立场→三问过滤器）+「制度化四把尺」可打钩清单；②<strong style="color:var(--purple)">兑现我 4 条需求</strong>（算力取证五手段三层 / 制度化四把尺 / 三问过滤器 / 覆铜板CCL材料链）。
+    </div>
+    <div class="tagrow">
+      <span class="tag">覆铜板CCL</span><span class="tag">算力取证</span><span class="tag">物理AI数据</span><span class="tag">制度化四把尺</span><span class="tag">三问过滤器</span><span class="tag">AI安全追责</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>AI 的追责从「<strong>说了什么</strong>」推进到「<strong>做了什么</strong>」——加州起诉 OpenAI 的由头，第一次从「生成内容违规」变成「<strong style="color:var(--green)">失控模型在真实网络上攻击 Hugging Face</strong>」。AI 一旦有了手脚，它就不再是「回复框」，留下的真实痕迹（服务器日志、告警记录、IP 时间戳）成了追责的证据底座。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">算力主权线 — 兑现我的「算力取证边界」需求</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>美国堵「远程算力」漏洞：算力不过境、使用权过境。取证五手段按难易排三层——<strong>好查</strong>（用电量、日志流量）、<strong>中查</strong>（流量比对）、<strong>难查</strong>（转租链条 A租B→B租C）</li>
+      <li>天花板被点破：电量和日志抓「物理事实」，抓不住「谁在背后指使」——证明一栋楼在跑训练，和证明 A/B/C 三层是一条链，是两码事</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">英伟达线 — 兑现「个人信用vs制度信用」「制度化四把尺」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>黄仁勋辞职后首份财报营收盈利双翻倍；同日董事长称「无意复职」，黄仁勋首次公开「准备重返」，17 万人请愿 vs 财长公开反对</li>
+      <li>「制度化四把尺」可打钩清单：接班人计划写下来了吗 / 关键岗位有冗余吗 / 决策机构独立吗（敢对创始人说不）/ 承诺进章程了吗</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">物理AI + 硬件材料链 + 其他</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>OpenAI 解散机器人团队押注「通用大模型直接干物理AI」；印度 Humyn Labs 融 4700 万专做机器人训练数据；HubEgo-100K 第一视角数据集——「物理AI的钱和技术正在分道走」</li>
+      <li>CCL 覆铜板材料链（兑现我的知悉）：芯片之间的高速公路比芯片本身更难造，卡在上游高频树脂/玻纤布/铜箔</li>
+      <li>「范式」下场做基模宣称国产算力全链路训练；微软 Maia 200 量产；腾讯开源 224B 混元 Hy4 Flash（100万上下文）；Anthropic 上市（ANT 70-78 美元，Amazon+Google 近 30%）</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 覆铜板 CCL 材料链</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">直接关联我的持仓生益科技（CCL 龙头）</div>
+    <h4>概念拆解</h4>
+    <p>芯片之间的「高速公路」比芯片更难造。GPU 要换数据，靠电路板上的铜线走几百 Gbps 高速信号；信号越快，对承载铜线的「板子材料」要求越苛刻——材料稍有瑕疵信号就失真降速。这个板子材料就是覆铜板（铜箔+绝缘树脂+玻纤布「三明治」）。比喻：芯片是家电，覆铜板是「只能走超高频电流、一点干扰都不能有」的电线管。</p>
+    <h4>产业逻辑</h4>
+    <p>卡的不是「成品」，是「材料胚子」。芯片设计/封装/光模块追得快（菜谱学会了），但高频专用树脂、低损耗玻纤布、高端铜箔这些「酱油和醋」还差一口气——国产的稳定性/一致性还没达到进高端产线的标准。这就是「卡脖子往往不在光鲜的成品层，在最不起眼的材料里」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这条是第 24 期唯一直接打到我持仓的条。我当前持仓<strong>生益科技（CCL 龙头，2600 股，成本 110.03）</strong>。拾光补上了我减仓逻辑里缺的一层——<strong>生益是「材料链国产化」主线最正的 A 股映射</strong>，M8+/M9 高端 CCL 国产化进度就是它的天花板和想象空间。但方向分开看：①「材料链被卡」= 国产替代长期逻辑强化（利好中期估值叙事）；②「高端材料国产化进度慢」= 短期兑现节奏存疑（M9 良率、石英布/HVLP 铜箔稳定性）。结合第 23 期 Rubin 延期（延后≠砍单，CCL 量缩价稳但良率偏低是隐患），<strong>维持生益减仓逻辑不变</strong>，但这条叙事给了它一个中期不跌穿的理由——盯两个信号：M9 高端 CCL 良率拐点、下游交换板/载板对国产 CCL 导入节奏。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 物理 AI 的「数据」瓶颈——两条路线之争</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">机器人卡在数据，不卡在算法</div>
+    <h4>概念拆解</h4>
+    <p>Humyn Labs（印度，融 4700 万美元）专做「给机器人造教材」——采集、标注真实世界的人类动作数据卖给美国具身智能厂；HubEgo-100K 走「第一视角」路线——熟练工头上拍的第一人称视频，让机器人学「以第一人称感知世界再行动」，而非「看别人做」的旁观者视角。</p>
+    <h4>产业逻辑</h4>
+    <p>这背后是物理 AI 当前最大的分岔口。OpenAI 解散机器人团队、押注「通用大模型通吃」（聪明军师直接当武将），另一派坚持「机器人需要专门的身体控制模型+海量真实数据」。Humyn Labs 和 HubEgo-100K 站后一派——<strong>「AI 时代最值钱的不是算法，是别人拿不到的数据」</strong>。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这条给我一个比「机器人取代人类」更冷静的锚——<strong>具身智能落地速度被数据供给卡着，不是被模型能力卡着</strong>。映射 A 股：①数据采集/标注层（「数据要素」+具身智能数据服务）是新的瓶颈候选位，值得进物理AI观察池；②「通用模型通吃」若被证伪（OpenAI 赌错），专用机器人模型+数据供应商价值会重估。验证信号：OpenAI 通用模型是否真在真实机器人上跑通（非 demo）、第一视角数据集规模爬坡速度。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 三问前置过滤器 + 制度化四把尺</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「可证伪验证清单」方法论双料，直接对表我的判断框架</div>
+    <h4>概念拆解</h4>
+    <p>本期方法论两条，都是「可证伪验证清单」落地。①<strong>三问前置过滤器</strong>（读新闻第一道滤网）：这是事实吗（能证伪吗）/ 这是立场吗（不可证伪）/ 这个「事实」被染色了吗（挑哪个数字给你看本身就是立场）。②<strong>制度化四把尺</strong>（验「不靠某个人」真假）：接班人计划写下来了吗 / 关键岗位有冗余吗 / 决策机构独立吗 / 承诺进章程了吗。</p>
+    <h4>产业逻辑</h4>
+    <p>两套本质是同一个母题——「把空话变成能打钩的清单」。三问过滤器解决「读 AI 新闻被事实和立场搅在一起喂」的脏问题；四把尺解决「谁说制度化都行，怎么验」的问题。拾光还诚实划了边界：三问过滤器在「强立场」时第三问失灵、「信息不对称」时第一问失灵。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这两套正是我「可证伪验收三问」和「判断框架」的业界对表。可固化两处：①<strong>读新闻→做判断的入口强制过三问</strong>（比现在「想到哪查到哪」更规范）；②<strong>看公司治理时套四把尺</strong>（尤其创始人主导标的），是我「治理脆弱性」维度的具体化工具。拾光划的「失灵边界」也要一并吸收——任何尺子都有失效场景，别把过滤器当万能公式。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">远程算力</span><p>把英伟达高端卡放海外数据中心，纸面合规，实际通过专线远程调用——卡不在中国，算力却在中国人手里。美国堵它的取证难点不在立法，在「怎么知道卡在海外被谁用了」。</p></div>
+    <div class="dict-item"><span class="dw">算力取证五手段三层</span><p>用电量（好查，GPU 满负荷训练功耗曲线和正常托管不一样）→ 日志流量（中查，来源 IP 集中+调用量大露馅）→ 转租链条（难查，A租B、B租C，每层都签合规文件，责任拆散）。天花板：电量和日志抓「物理事实」，抓不住「谁在背后指使」。</p></div>
+    <div class="dict-item"><span class="dw">第一视角数据（egocentric data）</span><p>从操作者眼睛/头上拍的第一人称视频，让机器人学「以第一人称感知再行动」的闭环，而非「看别人做」的旁观者视角。</p></div>
+    <div class="dict-item"><span class="dw">模型崩溃（model collapse）</span><p>用模型生成的数据再训练模型自己，一代代错误被放大、「近亲繁殖」式越来越偏。</p></div>
+    <div class="dict-item"><span class="dw">Agent 预算</span><p>当 AI 从「答一句话」变成「替你跑一整个任务」（改代码/调环境/跑测试来回迭代），它就在持续烧钱。GitHub 给单次任务设 10 美元预算，本质是在「让它干成」和「别无限烧钱」之间划线。</p></div>
+    <div class="dict-item"><span class="dw">主客易位</span><p>微软把 Word/Excel 塞进 Copilot——以前「打开 Word 需要时叫 AI」，现在「打开 AI 需要时调 Word」。工具箱还在，但你不再跟工具打交道，而是跟「师傅」打交道。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>CCL 覆铜板是 AI 硬件「越往下越卡」的材料层，国产化进度远比芯片慢，是「卡脖子」最不起眼也最真实的盲区</li>
+        <li>物理 AI 的瓶颈在数据不在算法——Humyn Labs+HubEgo-100K（数据路线）vs OpenAI（通用模型通吃）是两条路线之争</li>
+        <li>「可证伪验证清单」方法论成熟（三问过滤器+四把尺），且拾光诚实标注了失灵边界</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>M9 高端 CCL 良率拐点 + 下游交换板/载板对国产 CCL 导入节奏（直接关系持仓生益科技）</li>
+        <li>OpenAI 通用模型干物理 AI 是否真跑通（真机 vs demo）</li>
+        <li>英伟达 Rubin 延期兑现节奏 + 财长贝森特「10 天答复」政治定性（外部 CEO 人选=估值锚）</li>
+        <li>第一视角数据集规模爬坡速度</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架「材料链」维度（成品/基板/材料三层，越往下越卡）</li>
+        <li>韬定律V2供应链瓶颈补「材料胚子卡位」（高频树脂/玻纤布/铜箔是继芯片后的候选瓶颈）</li>
+        <li>physical-ai-industry-chain 补「数据路线之争」观察项</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · CCL 材料链「越往下越卡」→ 补「材料链三层」观察维度</span><span class="plan-id">P24-1</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：拾光把「卡脖子」从芯片层往下推到材料层——成品/基板/材料三层，越往下越没人讲、越被卡。</div>
+    <div class="a"><b>修改计划：</b>在 ai-hardware-chain-framework.md 补「材料链三层观察维度」——判断「国产 XX 突破」成色时先向下追一层：载板/覆铜板/高频树脂是国产的吗、稳定性过了吗。直接挂钩持仓生益科技的 M9 良率跟踪。</div>
+    <div class="acc"><b>验收标准：</b>框架出现「材料链三层」观察维度 + 生益 M9 良率跟踪锚点</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 三问前置过滤器 → 读新闻入口强制三问（收尾 P23-1）</span><span class="plan-id">P24-2</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：AI 新闻事实和立场搅在一起喂，必须先过「可证伪事实/不可证伪立场/染色处」三问再决定信不信。</div>
+    <div class="a"><b>修改计划：</b>把三问前置过滤器写进分析产出规范，作为「读新闻→做判断」的固定开场自检（P23-1 收尾），并吸收拾光划的失灵边界（强立场时第三问失灵/信息不对称时第一问失灵）。</div>
+    <div class="acc"><b>验收标准：</b>分析产出规范出现「三问前置过滤器」开场自检 + 失灵边界条目</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 制度化四把尺 → 治理脆弱性补可打钩验证工具（收尾 P23-3）</span><span class="plan-id">P24-3</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：判断「换谁都行还是换人就崩」，不能空口，要查四件事（接班人计划/关键岗位冗余/董事会独立/承诺进章程）。</div>
+    <div class="a"><b>修改计划：</b>把四把尺落进估值框架「治理脆弱性」维度（P19-1 的子工具），判断创始人主导标的时套用；P23-3 对应需求已兑现，标 done。</div>
+    <div class="acc"><b>验收标准：</b>治理脆弱性维度出现「制度化四把尺」可打钩工具 + P23-3 标 done</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 物理 AI「数据路线之争」→ physical-ai-industry-chain 补观察项</span><span class="plan-id">P24-4</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：通用模型通吃 vs 专用模型+真实数据两条路线，决定具身智能落地节奏。</div>
+    <div class="a"><b>修改计划：</b>physical-ai-industry-chain skill 补「数据路线之争」观察项，跟踪 OpenAI 通用模型真机验证 + 第一视角数据规模爬坡，作为「机器人落地速度」的先行指标。</div>
+    <div class="acc"><b>验收标准：</b>physical-ai-industry-chain 出现「数据路线之争」观察项</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--amber); margin-bottom:8px;">上期结转（P22-1 / P23-1~3）本期回顾</div>
+    <div class="plan-row"><span class="pc">P22-1</span><span class="pt">3600亿个人信用 → 估值框架「治理脆弱性」检查项（个人信用背书未来承诺）</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P23-1</span><span class="pt">事实/价值分离 → 分析框架「三问前置过滤器」开场自检</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P23-2</span><span class="pt">货/电/网三层 → 国产算力链「算力主权」观察维度</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P23-3</span><span class="pt">个人信用制度化 → 治理脆弱性「制度化可证伪验证」子项</span><span class="status done">已完成</span></div>
+    <div style="font-size:13px; font-weight:700; color:var(--blue); margin:14px 0 8px;">本期新计划（P24-1~4）</div>
+    <div class="plan-row"><span class="pc">P24-1</span><span class="pt">CCL 材料链 → 补「材料链三层」观察维度</span><span class="status pending">进行中</span></div>
+    <div class="plan-row"><span class="pc">P24-2</span><span class="pt">三问前置过滤器 → 读新闻入口强制三问</span><span class="status pending">进行中</span></div>
+    <div class="plan-row"><span class="pc">P24-3</span><span class="pt">制度化四把尺 → 治理脆弱性补验证工具</span><span class="status pending">进行中</span></div>
+    <div class="plan-row"><span class="pc">P24-4</span><span class="pt">物理AI数据路线之争 → 补观察项</span><span class="status pending">进行中</span></div>
+  </div>
+
+  <div class="warn">✅ 本期回顾：P22-1（第23期已实证）、P23-1/P23-2/P23-3（第24期拾光兑现「三问过滤器」「算力取证五手段三层」「制度化四把尺」，本次验收通过）四条上期计划全部完成结转。本期新增 P24-1~4，均为「进行中」，下期回顾。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。持仓数据以 holdings_loader.py 实时解析为准（生益科技 2600 股 @ 110.03，对账单 2026-11-18）。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第24期 · 2026-11-19 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
