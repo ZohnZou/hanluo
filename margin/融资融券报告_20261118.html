@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>融资融券每日报告 · 20261118</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.6; padding:20px 16px 60px; max-width:960px; margin:0 auto; }
+  h1 { font-size:22px; letter-spacing:1px; }
+  .header { padding:20px 0 12px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
+  .badge { display:inline-block; background:var(--card); border:1px solid var(--border); border-radius:999px; padding:2px 10px; margin-right:6px; font-size:12px; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; margin:16px 0; }
+  .stat { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; }
+  .stat .k { color:var(--muted); font-size:12px; }
+  .stat .v { font-size:20px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:16px 0; }
+  .card-title { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .card-note { color:var(--muted); font-size:12px; margin-bottom:12px; }
+  .chartbox { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:16px 0; }
+  .chart-title { font-size:15px; font-weight:700; margin-bottom:10px; }
+  .chart-note { color:var(--muted); font-size:12px; margin-top:8px; text-align:center; }
+  .tablewrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th { background:#1c2128; color:var(--muted); font-weight:600; text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  tbody td { padding:8px 10px; border-bottom:1px solid #21262d; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  tbody tr:hover { background:#1c2128; }
+  .up { color:var(--red); }
+  .down { color:var(--green); }
+  .foot { color:var(--muted); font-size:12px; text-align:center; margin-top:24px; }
+  @media (max-width:640px) { h1{font-size:19px;} .stat .v{font-size:17px;} table{font-size:12px;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>融资融券每日报告</h1>
+  <div class="sub">数据截止 20261118 · 环比基准 20261117 · Tushare margin / margin_detail</div>
+  <div style="margin-top:10px;">
+    <span class="badge">全市场融资余额 20,786 亿</span>
+    <span class="badge">两融个股 3894 只</span>
+    <span class="badge">当日融资买入 867 亿</span>
+    <span class="badge">当日融资偿还 967 亿</span>
+  </div>
+</div>
+
+
+  <div class="chartbox">
+    <div class="chart-title">全市场融资余额 · 近30交易日（亿元）</div>
+    <svg viewBox='0 0 960 300' style='width:100%;height:auto'>
+      <line x1='60' y1='250.0' x2='940' y2='250.0' stroke='#21262d' stroke-width='1'/><text x='52' y='254.0' fill='#8b949e' font-size='11' text-anchor='end'>21,900</text><line x1='60' y1='192.5000000000001' x2='940' y2='192.5000000000001' stroke='#21262d' stroke-width='1'/><text x='52' y='196.5000000000001' fill='#8b949e' font-size='11' text-anchor='end'>22,798</text><line x1='60' y1='135.0' x2='940' y2='135.0' stroke='#21262d' stroke-width='1'/><text x='52' y='139.0' fill='#8b949e' font-size='11' text-anchor='end'>23,696</text><line x1='60' y1='77.49999999999989' x2='940' y2='77.49999999999989' stroke='#21262d' stroke-width='1'/><text x='52' y='81.49999999999989' fill='#8b949e' font-size='11' text-anchor='end'>24,594</text><line x1='60' y1='20.0' x2='940' y2='20.0' stroke='#21262d' stroke-width='1'/><text x='52' y='24.0' fill='#8b949e' font-size='11' text-anchor='end'>25,491</text>
+      <path d='M 60.0,28.12178338394216 L 60.0,28.12178338394216 L 90.34482758620689,37.45932742289159 L 120.6896551724138,40.466320555260836 L 151.0344827586207,46.27204314514438 L 181.3793103448276,53.08485705459651 L 211.72413793103448,73.14501824094674 L 242.06896551724137,82.36946883721538 L 272.41379310344826,86.37820045627035 L 302.7586206896552,87.74866475220733 L 333.1034482758621,88.36414432170861 L 363.44827586206895,103.28204609111557 L 393.7931034482759,118.8304853190572 L 424.13793103448273,122.39271734995698 L 454.48275862068965,132.6797392736627 L 484.82758620689657,131.3578602346534 L 515.1724137931035,148.07722864197495 L 545.5172413793103,174.55195984818675 L 575.8620689655172,182.68777928360737 L 606.2068965517242,203.2328373256169 L 636.551724137931,202.38161986065364 L 666.8965517241379,198.1406027551636 L 697.2413793103449,213.1961962888716 L 727.5862068965517,205.4671562042379 L 757.9310344827586,206.35425410450762 L 788.2758620689655,201.55617834738425 L 818.6206896551724,201.11749882072067 L 848.9655172413793,211.71252047300135 L 879.3103448275862,225.4230296605122 L 909.6551724137931,237.33732132738592 L 940.0,242.95236954687212 L 940.0,250 L 60.0,250 Z' fill='rgba(88,166,255,.08)'/>
+      <path d='M 60.0,28.12178338394216 90.34482758620689,37.45932742289159 120.6896551724138,40.466320555260836 151.0344827586207,46.27204314514438 181.3793103448276,53.08485705459651 211.72413793103448,73.14501824094674 242.06896551724137,82.36946883721538 272.41379310344826,86.37820045627035 302.7586206896552,87.74866475220733 333.1034482758621,88.36414432170861 363.44827586206895,103.28204609111557 393.7931034482759,118.8304853190572 424.13793103448273,122.39271734995698 454.48275862068965,132.6797392736627 484.82758620689657,131.3578602346534 515.1724137931035,148.07722864197495 545.5172413793103,174.55195984818675 575.8620689655172,182.68777928360737 606.2068965517242,203.2328373256169 636.551724137931,202.38161986065364 666.8965517241379,198.1406027551636 697.2413793103449,213.1961962888716 727.5862068965517,205.4671562042379 757.9310344827586,206.35425410450762 788.2758620689655,201.55617834738425 818.6206896551724,201.11749882072067 848.9655172413793,211.71252047300135 879.3103448275862,225.4230296605122 909.6551724137931,237.33732132738592 940.0,242.95236954687212' fill='none' stroke='#58a6ff' stroke-width='2'/>
+      <text x='60.0' y='268' fill='#8b949e' font-size='11' text-anchor='middle'>1008</text><text x='211.72413793103448' y='268' fill='#8b949e' font-size='11' text-anchor='middle'>1015</text><text x='363.44827586206895' y='268' fill='#8b949e' font-size='11' text-anchor='middle'>1022</text><text x='515.1724137931035' y='268' fill='#8b949e' font-size='11' text-anchor='middle'>1029</text><text x='666.8965517241379' y='268' fill='#8b949e' font-size='11' text-anchor='middle'>1105</text><text x='818.6206896551724' y='268' fill='#8b949e' font-size='11' text-anchor='middle'>1112</text>
+      <text x='940' y='234.95236954687212' fill='#58a6ff' font-size='13' font-weight='600' text-anchor='end'>22,010</text>
+    </svg>
+    <div class="chart-note">起点 25,365 亿 → 终点 22,010 亿，区间变动 -3,355 亿</div>
+  </div>
+
+
+<div class="card">
+  <div class="card-title">融资余额异动看什么</div>
+  <div class="grid">
+    <div class="stat"><div class="k">融资余额骤降</div><div class="v down">融资盘在撤</div></div>
+    <div class="stat"><div class="k">融资余额骤增</div><div class="v up">杠杆资金在追</div></div>
+    <div class="stat"><div class="k">余额+龙虎榜交叉</div><div class="v">找机构出货</div></div>
+  </div>
+</div>
+
+
+  <div class="card">
+    <div class="card-title">融资余额绝对值 TOP30（亿元）</div>
+    <div class="card-note">融资盘压在哪几个大票上</div>
+    <div class="tablewrap"><table><thead><tr><th>股票</th><th>融资余额</th><th>融资买入</th><th>融资偿还</th></tr></thead><tbody><tr><td>中国平安(601318.SH)</td><td>338.38</td><td>1.63</td><td>1.73</td></tr><tr><td>东方财富(300059.SZ)</td><td>200.26</td><td>2.06</td><td>2.92</td></tr><tr><td>中信证券(600030.SH)</td><td>171.15</td><td>1.57</td><td>1.44</td></tr><tr><td>中际旭创(300308.SZ)</td><td>153.06</td><td>16.41</td><td>15.14</td></tr><tr><td>宁德时代(300750.SZ)</td><td>145.88</td><td>5.36</td><td>7.46</td></tr><tr><td>贵州茅台(600519.SH)</td><td>145.16</td><td>2.06</td><td>3.14</td></tr><tr><td>寒武纪(688256.SH)</td><td>128.91</td><td>11.46</td><td>10.05</td></tr><tr><td>兆易创新(603986.SH)</td><td>127.96</td><td>7.00</td><td>7.23</td></tr><tr><td>比亚迪(002594.SZ)</td><td>121.70</td><td>0.93</td><td>1.00</td></tr><tr><td>长江电力(600900.SH)</td><td>112.78</td><td>1.24</td><td>2.92</td></tr><tr><td>新易盛(300502.SZ)</td><td>98.24</td><td>10.92</td><td>11.58</td></tr><tr><td>胜宏科技(300476.SZ)</td><td>92.57</td><td>4.19</td><td>4.80</td></tr><tr><td>紫金矿业(601899.SH)</td><td>92.38</td><td>7.01</td><td>4.54</td></tr><tr><td>京东方A(000725.SZ)</td><td>92.16</td><td>3.42</td><td>4.16</td></tr><tr><td>中芯国际(688981.SH)</td><td>91.10</td><td>4.45</td><td>5.63</td></tr><tr><td>长鑫科技(688825.SH)</td><td>88.78</td><td>7.22</td><td>9.60</td></tr><tr><td>招商银行(600036.SH)</td><td>87.36</td><td>1.84</td><td>1.71</td></tr><tr><td>澜起科技(688008.SH)</td><td>87.07</td><td>2.70</td><td>4.66</td></tr><tr><td>中兴通讯(000063.SZ)</td><td>80.83</td><td>0.97</td><td>1.82</td></tr><tr><td>国泰海通(601211.SH)</td><td>78.99</td><td>1.09</td><td>0.57</td></tr><tr><td>兴业银行(601166.SH)</td><td>75.98</td><td>1.58</td><td>1.57</td></tr><tr><td>海光信息(688041.SH)</td><td>75.21</td><td>3.35</td><td>2.86</td></tr><tr><td>民生银行(600016.SH)</td><td>72.49</td><td>1.38</td><td>1.32</td></tr><tr><td>中科曙光(603019.SH)</td><td>67.71</td><td>2.31</td><td>2.35</td></tr><tr><td>东山精密(002384.SZ)</td><td>63.88</td><td>6.74</td><td>6.12</td></tr><tr><td>中国船舶(600150.SH)</td><td>61.18</td><td>2.31</td><td>2.66</td></tr><tr><td>阳光电源(300274.SZ)</td><td>60.53</td><td>1.07</td><td>1.89</td></tr><tr><td>工业富联(601138.SH)</td><td>58.64</td><td>3.01</td><td>4.07</td></tr><tr><td>华泰证券(601688.SH)</td><td>58.62</td><td>0.38</td><td>0.70</td></tr><tr><td>佰维存储(688525.SH)</td><td>57.63</td><td>2.11</td><td>2.05</td></tr></tbody></table></div>
+  </div>
+
+
+
+  <div class="card">
+    <div class="card-title">融资余额环比骤降 TOP30（融资盘在撤）</div>
+    <div class="card-note">环比 = 20261117 → 20261118，绿色 = 融资余额下降。骤降往往是融资盘割肉或获利了结，也可能是被强平</div>
+    <div class="tablewrap"><table><thead><tr><th>股票</th><th>环比</th><th>融资余额</th><th>变动</th></tr></thead><tbody><tr><td>阳光照明(600261.SH)</td><td>-49.8%</td><td>1.98</td><td>-1.96</td></tr><tr><td>双环科技(000707.SZ)</td><td>-34.6%</td><td>1.16</td><td>-0.61</td></tr><tr><td>九阳股份(002242.SZ)</td><td>-33.1%</td><td>3.65</td><td>-1.81</td></tr><tr><td>沈鼓集团(601091.SH)</td><td>-19.9%</td><td>1.30</td><td>-0.32</td></tr><tr><td>苑东生物(688513.SH)</td><td>-17.5%</td><td>1.28</td><td>-0.27</td></tr><tr><td>申联生物(688098.SH)</td><td>-17.2%</td><td>1.66</td><td>-0.34</td></tr><tr><td>蓝盾光电(300862.SZ)</td><td>-16.6%</td><td>3.64</td><td>-0.73</td></tr><tr><td>嘉和美康(688246.SH)</td><td>-15.9%</td><td>1.02</td><td>-0.19</td></tr><tr><td>莱美药业(300006.SZ)</td><td>-14.8%</td><td>3.03</td><td>-0.53</td></tr><tr><td>永和股份(605020.SH)</td><td>-13.8%</td><td>3.21</td><td>-0.52</td></tr><tr><td>智微智能(001339.SZ)</td><td>-13.4%</td><td>2.94</td><td>-0.45</td></tr><tr><td>北投科技(600936.SH)</td><td>-13.4%</td><td>1.94</td><td>-0.30</td></tr><tr><td>福能股份(600483.SH)</td><td>-13.3%</td><td>2.07</td><td>-0.32</td></tr><tr><td>泰胜风能(300129.SZ)</td><td>-13.3%</td><td>5.14</td><td>-0.79</td></tr><tr><td>翱捷科技(688220.SH)</td><td>-12.8%</td><td>3.79</td><td>-0.56</td></tr><tr><td>冰山冷热(000530.SZ)</td><td>-12.5%</td><td>2.51</td><td>-0.36</td></tr><tr><td>诺普信(002215.SZ)</td><td>-12.0%</td><td>4.08</td><td>-0.56</td></tr><tr><td>海天味业(603288.SH)</td><td>-12.0%</td><td>11.45</td><td>-1.57</td></tr><tr><td>农业银行(601288.SH)</td><td>-12.0%</td><td>8.02</td><td>-1.09</td></tr><tr><td>儒意电影(002739.SZ)</td><td>-11.8%</td><td>10.92</td><td>-1.46</td></tr><tr><td>洪城环境(600461.SH)</td><td>-11.0%</td><td>1.02</td><td>-0.13</td></tr><tr><td>京仪装备(688652.SH)</td><td>-10.8%</td><td>1.98</td><td>-0.24</td></tr><tr><td>岱美股份(603730.SH)</td><td>-10.5%</td><td>3.18</td><td>-0.37</td></tr><tr><td>上纬新材(688585.SH)</td><td>-10.4%</td><td>4.97</td><td>-0.58</td></tr><tr><td>天禄科技(301045.SZ)</td><td>-10.4%</td><td>1.23</td><td>-0.14</td></tr><tr><td>安培龙(301413.SZ)</td><td>-10.4%</td><td>2.45</td><td>-0.28</td></tr><tr><td>超纯应材(301717.SZ)</td><td>-9.4%</td><td>3.78</td><td>-0.39</td></tr><tr><td>襄阳轴承(000678.SZ)</td><td>-9.2%</td><td>1.66</td><td>-0.17</td></tr><tr><td>山东矿机(002526.SZ)</td><td>-9.1%</td><td>2.04</td><td>-0.21</td></tr><tr><td>摩恩电气(002451.SZ)</td><td>-9.1%</td><td>1.02</td><td>-0.10</td></tr></tbody></table></div>
+  </div>
+
+
+
+  <div class="card">
+    <div class="card-title">融资余额环比骤增 TOP30（杠杆资金在追）</div>
+    <div class="card-note">红色 = 融资余额上升。杠杆追入的票，情绪热但容易追高</div>
+    <div class="tablewrap"><table><thead><tr><th>股票</th><th>环比</th><th>融资余额</th><th>变动</th></tr></thead><tbody><tr><td>行云科技(300209.SZ)</td><td>+27.6%</td><td>2.53</td><td>+0.55</td></tr><tr><td>北纬科技(002148.SZ)</td><td>+24.2%</td><td>2.46</td><td>+0.48</td></tr><tr><td>华丰科技(688629.SH)</td><td>+21.9%</td><td>14.93</td><td>+2.68</td></tr><tr><td>杭叉集团(603298.SH)</td><td>+20.1%</td><td>1.46</td><td>+0.24</td></tr><tr><td>华胜天成(600410.SH)</td><td>+19.5%</td><td>13.08</td><td>+2.14</td></tr><tr><td>联合化学(301209.SZ)</td><td>+18.8%</td><td>2.66</td><td>+0.42</td></tr><tr><td>永臻股份(603381.SH)</td><td>+15.8%</td><td>1.14</td><td>+0.16</td></tr><tr><td>恒坤新材(688727.SH)</td><td>+14.6%</td><td>1.99</td><td>+0.25</td></tr><tr><td>江化微(603078.SH)</td><td>+12.0%</td><td>3.14</td><td>+0.34</td></tr><tr><td>漱玉平民(301017.SZ)</td><td>+11.3%</td><td>1.02</td><td>+0.10</td></tr><tr><td>伟测科技(688372.SH)</td><td>+11.1%</td><td>6.49</td><td>+0.65</td></tr><tr><td>厦门银行(601187.SH)</td><td>+11.0%</td><td>1.12</td><td>+0.11</td></tr><tr><td>顺钠股份(000533.SZ)</td><td>+9.9%</td><td>1.95</td><td>+0.18</td></tr><tr><td>旋极信息(300324.SZ)</td><td>+9.8%</td><td>4.75</td><td>+0.42</td></tr><tr><td>云图控股(002539.SZ)</td><td>+9.3%</td><td>5.24</td><td>+0.45</td></tr><tr><td>光库科技(300620.SZ)</td><td>+9.2%</td><td>10.32</td><td>+0.87</td></tr><tr><td>华是科技(301218.SZ)</td><td>+8.2%</td><td>3.69</td><td>+0.28</td></tr><tr><td>天府文旅(000558.SZ)</td><td>+8.0%</td><td>1.20</td><td>+0.09</td></tr><tr><td>好当家(600467.SH)</td><td>+7.5%</td><td>1.35</td><td>+0.09</td></tr><tr><td>大胜达(603687.SH)</td><td>+7.5%</td><td>3.47</td><td>+0.24</td></tr><tr><td>宏景科技(301396.SZ)</td><td>+7.3%</td><td>8.32</td><td>+0.57</td></tr><tr><td>波长光电(301421.SZ)</td><td>+7.2%</td><td>2.25</td><td>+0.15</td></tr><tr><td>意华股份(002897.SZ)</td><td>+7.1%</td><td>4.40</td><td>+0.29</td></tr><tr><td>盛合晶微(688820.SH)</td><td>+7.0%</td><td>15.85</td><td>+1.04</td></tr><tr><td>百克生物(688276.SH)</td><td>+6.6%</td><td>1.46</td><td>+0.09</td></tr><tr><td>皇氏集团(002329.SZ)</td><td>+6.5%</td><td>1.27</td><td>+0.08</td></tr><tr><td>燕京啤酒(000729.SZ)</td><td>+6.5%</td><td>1.62</td><td>+0.10</td></tr><tr><td>满坤科技(301132.SZ)</td><td>+6.5%</td><td>1.42</td><td>+0.09</td></tr><tr><td>正泰电源(002150.SZ)</td><td>+6.5%</td><td>1.34</td><td>+0.08</td></tr><tr><td>北巴传媒(600386.SH)</td><td>+6.3%</td><td>1.27</td><td>+0.08</td></tr></tbody></table></div>
+  </div>
+
+
+<div class="foot">寒洛 · 数据源 Tushare VIP · 融资融券每日报告 · 生成于 2026-11-19 09:01</div>
+</body>
+</html>
