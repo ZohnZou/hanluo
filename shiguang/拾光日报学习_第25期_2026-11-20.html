@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第25期 · 2026-11-20</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 25 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-20 · 共 31 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：①<strong style="color:var(--purple)">兑现读者反馈浓度最高的一期</strong>——我第 24 期提的 4 条（三问过滤器兜底/算力定价权/物理AI两条路线/自动化双闸）全部落地；②主线是「<strong style="color:var(--amber)">算力定价权</strong>」被三方争夺（英伟达卖卡 / 云厂商转租 / 自研绕开）。
+    </div>
+    <div class="tagrow">
+      <span class="tag">算力定价权</span><span class="tag">物理AI两条路线</span><span class="tag">自动化双闸</span><span class="tag">覆铜板材料链</span><span class="tag">Anthropic IPO</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>AI 军备竞赛正在把「定价权」从英伟达手里往外推。微软高管公开说客户<strong>「开始认真考虑换别的 AI 芯片」</strong>、苹果为 DRAM 签<strong>四年长约</strong>、韩国出口首破<strong> 1 万亿美元</strong>——三条独立新闻指向同一根线：算力（芯片+内存）变成卖方市场硬通货，但定价权正被三方（<strong style="color:var(--green)">英伟达卖卡</strong> / <strong style="color:var(--blue)">云厂商转租</strong> / <strong style="color:var(--amber)">自研巨头绕开</strong>）争夺。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线 1 — 算力定价权（约 9 条）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>英伟达投机器人、偏不投云厂商 → 一张「算力定价权」地图（往更下游播种 + 疏远转租者）</li>
+      <li>微软自研 Maia 引入 EMIB 封装、范式国产算力「全链路」训出双模型 → 绕开/替代路线走实</li>
+      <li>联想营收破 2000 亿、净利 +166% → 押了十几年的 AI 算力第二曲线集中兑现</li>
+      <li>微软公开叫板「同样任务我更便宜更好」→ 竞争焦点从「最强」转向「性价比」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线 2 — 物理 AI / 具身智能（约 6 条）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>马斯克「明年机器人收拾脏盘子」→ 非结构化长尾任务，时间表打折看</li>
+      <li>OpenAI 解散机器人团队押通用模型 → 物理 AI「通用通吃派 vs 专用数据派」两条路线</li>
+      <li>大模型把医生/记者/投降士兵标成自杀式无人机 → 回退成本无穷大场景，AI 不能自主拍板</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线 3 — 方法论验证（兑现我第 24 期反馈）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>三问过滤器补「失灵兜底」B 计划 → 第一问失灵退交叉验证 / 第三问失灵退暂存立场</li>
+      <li>「该不该让 AI 自动干活」升级「自动化双闸」→ 回退成本闸 + 运行成本闸，验证成立</li>
+      <li>中南大学标尺造假 → 验图三问（来源/二次加工/独立印证）</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 算力定价权 + 去英伟达化成色验证</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">本期核心主线，直接关系英伟达链估值 + 国产算力/存储/材料链受益逻辑</div>
+    <h4>概念拆解</h4>
+    <p>「算力定价权」= 在「谁买机器 / 谁租机器 / 谁跑模型」这条链上，谁定「一小时算力值多少钱」。三方各一招：①<strong>英伟达卖卡</strong>（硬件毛利 70%+，卡在源头稀缺）；②<strong>云厂商/neocloud 转租</strong>（买卡→按小时出租→稀释差价）；③<strong>自研巨头绕开</strong>（微软 Maia、谷歌 TPU，不买卡自己造）。</p>
+    <h4>产业逻辑</h4>
+    <p>英伟达定价权根基 = 技术稀缺 + 心理稀缺（「客户认为别无选择」）。微软高管那句「客户开始认真考虑换芯片」+ 苹果签四年 DRAM 长约，是同一件事两面——上游全线卖方市场，但买家用「长约锁货 + 自研绕开」两条腿对冲英伟达。范式「全链路国产算力训出基座模型」从「应该能」变「已经训出来」，但离「便宜、稳、可规模化复现」还差一个量级。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>英伟达链短期情绪承压（换帅 + 定价权松动预期），但这是「情绪杀」不是「需求杀」——算力需求没消失，只是买家对冲动作增加。<strong>受益逻辑强化的是三条替代线：①国产算力（范式「全链路」是里程碑不是拐点，看 2028 放量）；②存储/内存链（苹果四年长约 = DRAM 涨价是多年趋势）；③ PCB/CCL 材料链（M8/M9 只有升级没有倒退）。</strong> 但「三星穿透严查代工」是「第一问失灵」活教材——单一来源查不到真伪，正确动作是搁置不操作，不是跟着传闻砸国产算力。结论：算力链从「英伟达单极」走向「多方分食」。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 物理 AI 两条路线 + 具身智能落地节奏</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">OpenAI 解散机器人团队不是放弃，是从「专用派」换到「通用派」</div>
+    <h4>概念拆解</h4>
+    <p>物理 AI 两条路线：<strong>路线 A 通用通吃派</strong>（OpenAI，赌大脑够强身体是附庸）vs <strong>路线 B 专用数据派</strong>（Humyn Labs 收真实操作数据 / HubEgo 收第一视角数据，赌好身体+好数据先干起来）。分水岭是「结构化 vs 非结构化」——工厂机械臂（固定工序）今天就能商用，收拾脏盘子/上大街还远。</p>
+    <h4>产业逻辑</h4>
+    <p>OpenAI 从 B 派换到 A 派不是放弃机器人，是赌「通用模型够强后身体是最好解决的部分」；专用派赌的是「抓杯子不碎、拥挤房间不撞人、看到和动手对齐」这些脏活累活通用模型解决不了。混合路线（专用身体跑起来 + 通用模型逐步接管）最可能是最终形态。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>具身智能「既别神话也别一棍子打死」，任何「明年就能 X」先翻译成「结构化重复任务 or 非结构化长尾任务」，前者兑现概率远高于后者。<strong>A 股机器人链当前更多是「专用派 + 零部件」叙事</strong>——本体/减速器/丝杠/传感器先受益于工厂/物流结构化场景落地，通用模型是长周期变量。马斯克「收拾盘子」时间表打折看，不作为近期交易依据。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 自动化双闸 + 三问过滤器兜底</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">方法论，对我自身 cron 自动化体系的直接启发 ⭐</div>
+    <h4>概念拆解</h4>
+    <p>我第 24 期反馈的兑现，两件套：<strong>自动化双闸</strong>——第一闸「回退成本 = 时间 × 金钱 × 信任损失」（管风险，错了退不退得回，高→人工把关），第二闸「运行成本」（管成本，一直开着值不值，高→降频或交回人工），是「先风险后成本」的顺序闸；<strong>三问过滤器兜底</strong>——第一问失灵退「只信交叉验证第三方源」，第三问失灵退「暂存立场只认可证伪部分」。</p>
+    <h4>对我系统的映射</h4>
+    <p>①我的 98 个 cron 里 84 个纯脚本，判断「该不该让 AI 自动干」此前只有「回退成本」单一判据，现在升级成顺序双闸——「自动标状态/提意见」回退成本低但也要算运行成本，「自动改配置/发消息」回退成本高必须留人工。②读新闻做判断入口补兜底——三星严查代工这种「第一问失灵」场景，正确动作是搁置不操作。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>本期拾光明确「验证结论：双闸框架成立」，并划边界（只适用「可退回、可量化」任务；干错就不可逆的任务回退成本无穷大，第一闸直接判死刑）。这是「方法论沉淀」而非「交易信号」，但价值最高——直接反哺我的自动化治理。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">算力定价权</span> <span class="we">Pricing Power of Compute</span><p>在「买机器/租机器/跑模型」链上谁定「一小时算力值多少钱」。英伟达卖卡定价、云厂商转租稀释、自研巨头绕开，争的不是卡，是「一小时算力的最终解释权」。</p></div>
+    <div class="dict-item"><span class="dw">物理 AI 两条路线</span><p>通用通吃派（OpenAI，赌大脑够强）vs 专用数据派（Humyn/HubEgo，赌好身体+好数据）。结构化场景专用派先商用，非结构化要靠通用模型。</p></div>
+    <div class="dict-item"><span class="dw">自动化双闸</span> <span class="we">Two-Gate Automation</span><p>回退成本闸（管风险：错了退不退得回）+ 运行成本闸（管成本：一直开着值不值）。顺序闸，第一闸不过别谈第二闸。</p></div>
+    <div class="dict-item"><span class="dw">三问过滤器兜底</span><p>第一问失灵（查不到事实）退交叉验证第三方源；第三问失灵（强立场染色）退暂存立场只认可证伪部分。过滤器 + 兜底两件套。</p></div>
+    <div class="dict-item"><span class="dw">介电损耗因子 Df</span> <span class="we">Dissipation Factor</span><p>信号在 PCB 走线上的「摩擦损耗」，越低信号越清晰。覆铜板 M6→M9 分级靠 Df 一路压（M9 压到 0.0007-0.0009，降幅近 40%）。</p></div>
+    <div class="dict-item"><span class="dw">验图三问</span><p>来源可靠吗 / 有没有被 P 过改过 AI 生成过 / 有没有第二独立来源印证。AI 时代「能证伪一张图」比「能看懂一张图」更稀缺。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>英伟达定价权 = 技术稀缺 + 心理稀缺，客户「开始评估替代」= 心理稀缺松动，比「业绩变弱」更危险</li>
+        <li>苹果四年 DRAM 长约 = AI 把内存推成「第二块硬通货」，上游芯片+内存+材料全线卖方市场</li>
+        <li>覆铜板 M9 材料成本不到机柜 BOM 1%，但降级吃掉 10-20% 算力 → 材料环节「只有升级没有倒退」的刚性</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>贝森特十天答复期（11-25）→ 英伟达对华销售/合规是否实质收紧</li>
+        <li>范式国产算力能否「第二次、第三次复现」全链路训练</li>
+        <li>HBM/DRAM 合约价 + 苹果长约落地节奏（存储周期拐点）</li>
+        <li>机器人结构化场景真实订单 vs 消费级讲故事</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>AI硬件链估值框架：补「定价权松动」观察维度</li>
+        <li>韬定律V2：内存（HBM/DRAM）是继芯片之后「卡必经之路」的第二块硬通货</li>
+        <li>physical-ai-industry-chain：补「结构化/非结构化分水岭」判断尺度</li>
+        <li>覆铜板材料链（挂钩持仓生益科技 600183，2600股 @110.03）：M8/M9 高端材料刚性，良率是跟踪锚点</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 自动化双闸 → 巡检表/Agent治理补「双闸判据」</span><span class="plan-id">P25-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：判断「该不该让 AI/cron 自动干」从单一「回退成本」升级成顺序双闸——先问回退成本（错了退不退得回），再问运行成本（一直开着值不值）。</div>
+    <div class="a"><b>修改计划：</b>固定巡检表 / Agent治理审计维度（P15-3）补「自动化双闸判据」——批量自动化动作（标状态/提意见/改配置/发消息）先过回退成本闸，再过运行成本闸，替换此前单一判据。</div>
+    <div class="acc"><b>验收标准：</b>巡检表/Agent治理审计出现「回退成本闸 + 运行成本闸」顺序双闸条目</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 算力定价权三方图 → 估值框架补「定价权松动」观察维度</span><span class="plan-id">P25-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：看英伟达/AI芯片/云服务新闻，先判断这条动作在「争夺/稀释/绕开」定价权的哪一路，别只看涨跌。</div>
+    <div class="a"><b>修改计划：</b>AI硬件链估值框架补「定价权松动」观察维度——判断英伟达链估值必带「客户是否开始认真评估替代」信号（换芯片/自研/长约锁货），替代「只看稀缺性」的静态判断。</div>
+    <div class="acc"><b>验收标准：</b>估值框架出现「定价权松动」观察维度 + 「客户评估替代」跟踪锚点</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 验图三问 → 数据准确性零容忍补「图像证据三问」</span><span class="plan-id">P25-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：AI 一键生成/改图时代，「能证伪一张图」比「能看懂一张图」更稀缺。中南大学标尺造假被逮住靠的就是「验图」。</div>
+    <div class="a"><b>修改计划：</b>数据准确性零容忍原则补「图像证据三问」——看到「实锤截图/实验数据图/聊天记录」，先问来源可靠吗 / 有没有被二次加工 / 有没有第二独立来源印证。</div>
+    <div class="acc"><b>验收标准：</b>数据准确性零容忍相关文档出现「图像证据三问」检查项</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--amber); margin-bottom:8px;">上期（P24）计划回顾</div>
+    <div class="plan-row"><span class="pc">P24-1</span><span class="pt">CCL材料链 → 补「材料链三层」观察维度</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P24-2</span><span class="pt">三问前置过滤器 → 读新闻入口强制三问（收尾P23-1）</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P24-3</span><span class="pt">制度化四把尺 → 治理脆弱性补可打钩工具（收尾P23-3）</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P24-4</span><span class="pt">物理AI数据路线之争 → physical-ai-industry-chain补观察项</span><span class="status done">已完成</span></div>
+    <div style="font-size:12px; color:var(--muted); margin-top:8px;">P24 四条全部借第 25 期「兑现读者反馈」落地闭环——拾光本期把材料链三层、三问兜底、物理AI两条路线全部成篇，观察维度内容已齐备，随本期学习沉淀进框架。</div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin-bottom:8px;">本期（P25）新计划</div>
+    <div class="plan-row"><span class="pc">P25-1</span><span class="pt">自动化双闸 → 巡检表/Agent治理补「双闸判据」</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P25-2</span><span class="pt">算力定价权三方图 → 估值框架补「定价权松动」观察维度</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P25-3</span><span class="pt">验图三问 → 数据准确性零容忍补「图像证据三问」</span><span class="status pending">待执行</span></div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。持仓以 holdings_loader.py 实时解析为准（当前：生益科技 600183，2600股 @110.03）。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第25期 · 2026-11-20 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
