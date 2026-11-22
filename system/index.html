@@ -27,6 +27,8 @@
   .fbtn:hover { color:var(--text); border-color:var(--blue); }
   .fbtn.active { color:var(--blue); border-color:var(--blue); background:rgba(88,166,255,.10); font-weight:700; }
   .fselect { background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:4px 8px; font-size:12px; }
+  .fsearch { background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:4px 10px; font-size:12px; width:180px; }
+  .fsearch:focus { border-color:var(--blue); outline:none; }
   .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:12px 0; }
   .card-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
   .fid, .rid { font-family:monospace; font-size:14px; font-weight:700; color:var(--blue); background:rgba(88,166,255,.08); padding:2px 10px; border-radius:6px; }
@@ -92,7 +94,7 @@
 <body>
   <div class="header">
     <h1>📚 因子库与规则库全景</h1>
-    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 14:03 · 数据源 factor_ledger.json / rule_ledger.json</div>
+    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 14:07 · 数据源 factor_ledger.json / rule_ledger.json</div>
   </div>
 
   <div class="tabs">
@@ -117,6 +119,9 @@
         <option value="ic">IC 降序</option>
         <option value="lastupd">最新更新</option>
       </select>
+      <span class="tb-sep"></span>
+      <span class="tb-label">🔍 搜索：</span>
+      <input type="text" class="fsearch" id="factorSearch" placeholder="穿透搜索二级/三级因子…" oninput="applyFactor()">
     </div>
     
     <div class="card" data-prod="1" data-cat="短线时机" data-ic="0.3" data-lastupd="2026-11-21">
@@ -590,6 +595,7 @@ function setFactorProd(p) {
 function applyFactor() {
   const cat = document.getElementById('factorCat').value;
   const sort = document.getElementById('factorSort').value;
+  const q = (document.getElementById('factorSearch').value || '').trim().toLowerCase();
   const container = document.getElementById('tab-factor');
   const cards = Array.from(container.querySelectorAll('.card'));
   cards.forEach(function(c) {
@@ -597,8 +603,17 @@ function applyFactor() {
     if (factorProd === 'prod' && c.dataset.prod !== '1') show = false;
     if (factorProd === 'off' && c.dataset.prod !== '0') show = false;
     if (cat !== 'all' && c.dataset.cat !== cat) show = false;
+    if (show && q) {
+      const txt = c.textContent.toLowerCase();
+      if (txt.indexOf(q) === -1) show = false;
+    }
     c.style.display = show ? '' : 'none';
   });
+  if (q) {
+    container.querySelectorAll('.subtree').forEach(function(d) {
+      d.open = d.textContent.toLowerCase().indexOf(q) !== -1;
+    });
+  }
   if (sort === 'ic') { cards.sort(function(a,b) { return (parseFloat(b.dataset.ic)||-999) - (parseFloat(a.dataset.ic)||-999); }); }
   else if (sort === 'lastupd') { cards.sort(function(a,b) { return (b.dataset.lastupd||'').localeCompare(a.dataset.lastupd||''); }); }
   cards.forEach(function(c) { container.appendChild(c); });
