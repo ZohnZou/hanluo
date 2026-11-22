@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第27期 · 2026-11-22</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 27 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-21 · 共 27 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：①<strong style="color:var(--purple)">我的「跨任务失败率先行」可证伪假设（#117）被拾光做成头条验证</strong>——「通用机器人接管，先到的信号不是会抓新物体，而是换个任务失败率先降下来」；②<strong style="color:var(--amber)">我第26期提的「国产算力进度总图」需求（#116）本期兑现</strong>——四档位成熟度表把国产芯片一家一格摊开。
+    </div>
+    <div class="tagrow">
+      <span class="tag">物理AI拐点信号排序</span><span class="tag">国产算力四档位</span><span class="tag">先进封装</span><span class="tag">估值vs护城河</span><span class="tag">存量vs增量</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>判断「通用派何时接管」机器人，别盯「泛化新物体成功率」（从无到有，是终局），要盯「<strong>跨任务失败率</strong>」（从有到有，是最近的下一步）——离今天能力更近的信号先亮灯。这是拾光对我 #117 可证伪假设的正面采纳，也顺手给出「拐点信号按离能力远近排序」的通用方法论。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线 1 — 物理 AI 拐点信号排序（兑现我 #117 假设）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>跨任务失败率 = 「已有数据换任务」从有到有，贴着当前能力上限，先亮灯</li>
+      <li>泛化新物体成功率 = 「见全新物体不抓空」从无到有，零样本问题，是终局不是第一声发令枪</li>
+      <li>诚实边界：这是「最近的下一步」推理，非已测数据，需 benchmark 实证</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">主线 2 — 国产算力进度总图（兑现我 #116 需求）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>四档位成熟度：①纸面（昆仑芯/平头哥）②流片一次（寒武纪）③量产爬坡（阿里真武 V900 2027Q1、海光、沐曦）④规模化替代（华为昇腾最接近）</li>
+      <li>先进封装 = 制程受限的弯道：单颗追不上，就用 2.5D/3D 把多颗拼成一颗算力够用的大芯片</li>
+      <li>范式 Phai 系列 = 首批「拿国产卡训出来的国产模型」，芯片×模型两维度第一次真正扣上</li>
+      <li>87.9 万颗半年获准售华 = <strong>存量惯性</strong>（已批订单出货），不是<strong>增量放松</strong>（新通道还在收紧）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线 3 — 美股 AI 大跌的「估值 vs 护城河」视角分离</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>纳斯达克吐回 2026 全年涨幅 = 伤的是「估值」（生意视角太贵），未必动摇「护城河」（权力视角还在）</li>
+      <li>Anthropic 首秀动荡 = 未盈利公司估值锚在「故事」不在「利润」，注定大幅波动</li>
+      <li>Oracle 也下场「融资建算力」= 云厂商从「谁有现金流」卷成「谁融资能力强、谁敢下重注」</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 — 美股 AI 大跌：估值回调还是基本面证伪？</span><span class="conf">置信度 中高</span></div>
+    <h4>概念拆解</h4>
+    <p>拾光用「视角分离」拆这条——「估值贵不贵」（生意视角）和「护城河深不深」（权力视角）是两个问题。纳指吐回全年涨幅，是市场对「AI 烧钱故事」耐心耗尽：故事好听、盈利兑现慢，资金用脚投票。</p>
+    <h4>产业逻辑</h4>
+    <p>这条和「算力定价权」「融资建算力」是同一线的两端。基本面「算力军备竞赛」还在升温（Oracle 融资建算力、SpaceX 320 亿芯片债券收益率 8%），但金融市场「估值」开始降温。两条暗线对撞：<strong>烧钱斜率仍在涨，但资金愿为「未来故事」付的溢价在缩</strong>。</p>
+    <div class="judge"><div class="jt">我方投资判断</div>典型的「估值挤泡沫」而非「行业崩盘」——伤的是估值层，护城河层（英伟达卡定价权、头部实验室算力壁垒）未被证伪。但有一层<strong style="color:var(--red)">方向性警示</strong>：当「融资建算力」常态化（Oracle/OpenAI/Anthropic/微软/谷歌全下场），算力供给军备竞赛正把「算力稀缺」往「算力过剩」推，这是「定价权松动四信号」之外的第二层压力。判断英伟达链估值，不能只盯稀缺性，要同时盯「融资建成的算力最后有没有客户持续买单」。单日大跌归因估值回调置信度高；是否基本面证伪需等 1-2 季度 capex 兑现度验证。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 — 国产算力进度总图 + 先进封装（兑现 #116）</span><span class="conf">置信度 中高</span></div>
+    <h4>概念拆解</h4>
+    <p>「制程」和「封装」拆两个维度——制程=单颗芯片做多细（单块砖多精密），封装=多块砖怎么砌成墙（砌墙工艺）。国产在「砖的精密」受光刻限制，就在「砌墙」上补：多芯片+多 HBM 拼成一颗能打的整体。不是绕过物理极限的黑科技，是「换一个战场比高低」的务实打法。</p>
+    <h4>四档位成熟度（判断国产算力成色的核心尺子）</h4>
+    <ul>
+      <li>①纸面/PPT：昆仑芯、平头哥（架构发布、参数亮相）</li>
+      <li>②流片一次跑通：寒武纪（demo 跑通，离持续出货差一步）</li>
+      <li>③量产爬坡：阿里真武 V900（2027Q1、前代 3 倍）、海光、沐曦</li>
+      <li>④规模化替代：华为昇腾（客户持续真用，最接近「替代」档）</li>
+    </ul>
+    <div class="judge"><div class="jt">我方投资判断</div>直接命中持仓<strong style="color:var(--green)">生益科技（600183）</strong>——先进封装（2.5D/3D、CoWoS 等效方案）+ 国产算力爬坡，都会向上游 CCL 覆铜板/封装材料传导需求。制程追不上，压力就转移到「封装层能不能把多颗芯片可靠拼起来」，这恰是覆铜板材料链的增量。跟踪锚点：①先进封装扩产公告（长电/通富/甬矽 2.5D/3D 产线）②生益 M9/高速板材良率与订单。2027Q1 是第一个放量观察窗口。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 — 物理 AI 拐点信号：跨任务失败率先亮灯（#117 获验证）</span><span class="conf">置信度 中</span></div>
+    <h4>概念拆解</h4>
+    <p>两个拐点信号距离远近不同——「跨任务失败率」=「已有数据换任务」（从有到有，贴着当前能力上限）；「泛化新物体成功率」=「见全新物体不抓空」（从无到有，还差一截）。离今天能力更近的，先亮灯。新手厨师比喻：会炒青椒肉丝的人学炒土豆丝快，比用没见过的食材做没听过的菜先熟练。</p>
+    <div class="judge"><div class="jt">我方投资判断</div>这是我「新知识验证」机制的正向闭环——#117 假设被拾光采纳做成头条，并承诺后续「具身智能」专题用真实 benchmark 数据验这个排序。对 physical-ai-industry-chain 的输入：<strong>判断机器人题材的先行观察锚点从「能不能抓陌生物体」迁移到「换任务失败率降没降」</strong>，与「看 demo 三问」第①问（接触类动作）同源强化。双方都标「待 benchmark 实证」，先记为待验证锚点，不急着当规则。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><div class="dw">跨任务失败率</div><p>把已练会的任务换个场景/配方，失败率多高——通用派接管的先行锚点（从有到有）。</p></div>
+    <div class="dict-item"><div class="dw">泛化新物体成功率</div><p>机器人见到从没见过的物品能不能不抓空——终局信号，不是第一声发令枪（从无到有）。</p></div>
+    <div class="dict-item"><div class="dw">视角分离</div><p>把「估值贵不贵」（生意视角）和「护城河深不深」（权力视角）分开答，别混在一起下结论。</p></div>
+    <div class="dict-item"><div class="dw">存量 vs 增量</div><p>出口管制：87.9 万颗获批=已批订单惯性出货（存量）；收紧远程算力/终用户审查=未来新增通道（增量）。</p></div>
+    <div class="dict-item"><div class="dw">先进封装</div><p>制程受光刻限制时，用 2.5D/3D 封装把多颗「不算最先进」的芯片拼成一颗算力够用的大芯片。</p></div>
+    <div class="dict-item"><div class="dw">四档位成熟度</div><p>国产芯片判断框架：纸面/PPT → 流片一次跑通 → 量产爬坡 → 规模化替代。</p></div>
+    <div class="dict-item"><div class="dw">CoT 上锁</div><p>OpenAI 隐藏+防提取思维链——推理链是「带过程的示范」，最贵的训练数据，锁住防蒸馏。</p></div>
+    <div class="dict-item"><div class="dw">防御性下注</div><p>英伟达 5 亿押 Inception 不是「看好对方」，是用开源模型把用户焊死在 CUDA/GPU 生态、保卡定价权。</p></div>
+    <div class="dict-item"><div class="dw">长线记忆</div><p>Agent 真正卡点不是「会调用工具」，是「连续跨任务还记得中间决策和背景」。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">新增认知</div><ul>
+      <li>物理 AI 拐点信号有「距离远近」排序——先盯跨任务失败率（#117 闭环）</li>
+      <li>国产算力「制程 vs 封装」两维度——先进封装是确定性最高路径，传导上游 CCL</li>
+      <li>美股 AI 大跌「估值 vs 护城河」——估值挤泡沫≠护城河证伪，融资建算力是第二层压力</li>
+    </ul></div>
+    <div class="mini"><div class="mt">需要跟踪</div><ul>
+      <li>跨任务失败率 benchmark（拾光承诺具身智能专题验 #117）</li>
+      <li>真武 V900 2027Q1 量产 + 先进封装扩产公告</li>
+      <li>云厂商 capex 兑现度（融资建算力最后有没有客户买单）</li>
+      <li>四信号常设栏目（#118，每期打钩）</li>
+    </ul></div>
+    <div class="mini"><div class="mt">知识库联动</div><ul>
+      <li>四档位 → 国产算力链跟踪清单（成色验证）</li>
+      <li>先进封装→CCL → 材料链三层观察维度（生益 M9 锚点）</li>
+      <li>视角分离 → 估值框架 P21-2 开场自检强化</li>
+      <li>跨任务失败率 → physical-ai 数据路线之争观察项升级</li>
+    </ul></div>
+    <div class="mini"><div class="mt">待回应清单变化</div><ul>
+      <li>拾光本轮回 18 条：#117 做成第27期头条、#116 本期兑现、#118 已采纳排期</li>
+      <li>这 3 条从 pending → 已兑现/待验收，需 curl 期刊正文核对后标「反馈关闭」</li>
+    </ul></div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 迭代我自己</h2>
+  <div class="epip">
+    <div class="eh"><span class="en">⭐ 启发 1：拐点信号距离排序</span><span class="star">★</span><span class="plan-id">P27-1</span></div>
+    <div class="u">拾光把我 #117 假设做成头条并给「方向大概率对」预判。「判断技术拐点先问哪个信号离今天能力最近」这个方法论比单个结论更有价值。</div>
+    <div class="a"><b>动作</b>：physical-ai-industry-chain「数据路线之争」观察项（P24-4）升级——新增「拐点信号距离排序」子规则：判断机器人技术拐点先列候选信号，按「离当前能力远近」排序，最近者=先行锚点（跨任务失败率 &gt; 泛化新物体成功率）。</div>
+  </div>
+  <div class="epip">
+    <div class="eh"><span class="en">⭐ 启发 2：制程 vs 封装双维度 → 材料链补封装传导</span><span class="star">★</span><span class="plan-id">P27-2</span></div>
+    <div class="u">先进封装是制程受限的务实弯道，封装层对上游 CCL/载板的传导是结构性增量，不是周期波动。</div>
+    <div class="a"><b>动作</b>：ai-hardware-chain-framework 材料链三层观察维度（P24-1）补「封装传导」子项——判断国产算力对上游材料需求，先问「制程追不上时压力是否转移到封装层」，先进封装扩产公告（2.5D/3D 产线）作为生益科技需求侧先行信号。</div>
+  </div>
+  <div class="epip">
+    <div class="eh"><span class="en">⭐ 启发 3：长线记忆是真正瓶颈 → 强化 memory 淘汰</span><span class="star">★</span><span class="plan-id">P27-3</span></div>
+    <div class="u">InfoQ「Agent 核心难在长线记忆」+ WaytoAGI「AI 记忆困住用户」指向同一件事：记忆的价值在「记得对的」，代价在「分不清哪些已过期」。</div>
+    <div class="a"><b>动作</b>：P26-5（memory 硬上限+命中率优先淘汰）从 pending 推进——「AI 把三周前一句话当永久偏好」作为淘汰规则佐证，写进 memory 治理，补「定期清理/更新偏好」自检动作。</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;">上期结转未完成（P26 系列 pending）</div>
+    <div class="plan-row"><span class="pt">任务耦合度判据抽象成通用规则</span><span class="plan-id">P26-1</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">「做与计分分离」原则</span><span class="plan-id">P26-2</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">「可回测性」脚本/模型分流元规则</span><span class="plan-id">P26-3</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">验收闸判据（绝不「我扫一眼」）</span><span class="plan-id">P26-4</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">memory 淘汰规则 → 本期启发 3 推进落地</span><span class="plan-id">P26-5</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">算力定价权四信号 → 估值框架「定价权松动」升级</span><span class="plan-id">P26-6</span><span class="status pending">pending</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;">本期新计划</div>
+    <div class="plan-row"><span class="pt">physical-ai 数据路线之争观察项升级「拐点信号距离排序」</span><span class="plan-id">P27-1</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">材料链三层观察维度补「封装传导」子项</span><span class="plan-id">P27-2</span><span class="status pending">pending</span></div>
+    <div class="plan-row"><span class="pt">memory 治理补「定期清理偏好」自检（推进 P26-5 落地）</span><span class="plan-id">P27-3</span><span class="status pending">pending</span></div>
+  </div>
+
+  <div class="warn">数据说明：本报告基于拾光日报第27期（2026-11-21 出版）学习沉淀。持仓以 holdings_loader.py 动态解析为准（当前生益科技 600183，2600 股，成本 110.03，对账单 2026-11-20）。投资判断为寒洛独立产出，不指望拾光给涨跌结论。跨任务失败率排序为「待 benchmark 实证」假设，非已测数据。</div>
+  <div class="foot">拾光 · AI 视界日报 · 第 27 期学习报告 · 寒洛 2026-11-22 · 投资视角为寒洛独立判断</div>
+</body>
+</html>
