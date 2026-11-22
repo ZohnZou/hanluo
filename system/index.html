@@ -20,6 +20,13 @@
   .tab .cnt { font-family:monospace; font-size:11px; color:var(--muted); margin-left:4px; }
   .tab-panel { display:none; }
   .tab-panel.active { display:block; }
+  .toolbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:12px 0; padding:10px 12px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+  .tb-label { font-size:12px; color:var(--muted); }
+  .tb-sep { width:1px; height:16px; background:var(--border); }
+  .fbtn { background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:8px; padding:4px 12px; font-size:12px; cursor:pointer; transition:.15s; }
+  .fbtn:hover { color:var(--text); border-color:var(--blue); }
+  .fbtn.active { color:var(--blue); border-color:var(--blue); background:rgba(88,166,255,.10); font-weight:700; }
+  .fselect { background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:4px 8px; font-size:12px; }
   .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:12px 0; }
   .card-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
   .fid, .rid { font-family:monospace; font-size:14px; font-weight:700; color:var(--blue); background:rgba(88,166,255,.08); padding:2px 10px; border-radius:6px; }
@@ -73,7 +80,7 @@
 <body>
   <div class="header">
     <h1>📚 因子库与规则库全景</h1>
-    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 13:48 · 数据源 factor_ledger.json / rule_ledger.json</div>
+    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 13:52 · 数据源 factor_ledger.json / rule_ledger.json</div>
   </div>
 
   <div class="warn">⚠️ <b>数据一致性提醒</b>：factor_ledger 的 unified_score 已更新到 V6.66.5 权重（0.42*money_flow + 0.31*D哥 + 0.27*z_score），但 rule_ledger 的 final_score_formula 仍停 V6.66.0 旧版（0.56/0.275/0.165，xgb 已砍）。本页以 <b>因子台账为准</b>，规则台账该条待同步。</div>
@@ -85,7 +92,24 @@
   </div>
 
   <div class="tab-panel active" id="tab-factor">
-    <div class="card">
+    <div class="toolbar">
+      <span class="tb-label">生产：</span>
+      <button class="fbtn active" data-fprod="all" onclick="setFactorProd('all')">全部</button>
+      <button class="fbtn" data-fprod="prod" onclick="setFactorProd('prod')">✅ 生产中</button>
+      <button class="fbtn" data-fprod="off" onclick="setFactorProd('off')">❌ 已下线</button>
+      <span class="tb-sep"></span>
+      <span class="tb-label">分类：</span>
+      <select class="fselect" id="factorCat" onchange="applyFactor()"><option value="all">全部</option><option value="短线时机">短线时机</option><option value="中长期质量">中长期质量</option><option value="资金面">资金面</option><option value="机器学习">机器学习</option><option value="风险度量">风险度量</option><option value="交易信号">交易信号</option><option value="支撑阻力">支撑阻力</option><option value="妖股">妖股</option><option value="方向">方向</option><option value="缠论">缠论</option><option value="消息面/事件面">消息面/事件面</option><option value="综合评分">综合评分</option></select>
+      <span class="tb-sep"></span>
+      <span class="tb-label">排序：</span>
+      <select class="fselect" id="factorSort" onchange="applyFactor()">
+        <option value="default">默认顺序</option>
+        <option value="ic">IC 降序</option>
+        <option value="lastupd">最新更新</option>
+      </select>
+    </div>
+    
+    <div class="card" data-prod="1" data-cat="短线时机" data-ic="0.3" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="fid">z_score</code>
         <span class="cat-tag">短线时机</span>
@@ -101,7 +125,7 @@
       
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--blue)">IC</span><span class="hist-ver">IC诊断</span><span class="hist-content">out-of-sample rank_ic=0.3682 n=6563 · ✅ 有效</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="中长期质量" data-ic="0.3793" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="fid">mid_long_score</code>
         <span class="cat-tag">中长期质量</span>
@@ -117,7 +141,7 @@
       
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--blue)">IC</span><span class="hist-ver">IC诊断</span><span class="hist-content">out-of-sample rank_ic=0.3793 n=6563 · ✅ 有效</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="资金面" data-ic="0.48" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="fid">money_flow_score</code>
         <span class="cat-tag">资金面</span>
@@ -133,7 +157,7 @@
       
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--blue)">IC</span><span class="hist-ver">IC诊断</span><span class="hist-content">out-of-sample rank_ic=0.6005 n=6552 · ✅ 有效</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="0" data-cat="机器学习" data-ic="-0.3074" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="fid">xgb_score</code>
         <span class="cat-tag">机器学习</span>
@@ -149,7 +173,7 @@
       
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--blue)">IC</span><span class="hist-ver">IC诊断</span><span class="hist-content">out-of-sample rank_ic=-0.3231 n=5970 · ✅ 有效</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="风险度量" data-ic="" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="fid">atr_pct</code>
         <span class="cat-tag">风险度量</span>
@@ -165,7 +189,7 @@
       
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--blue)">IC</span><span class="hist-ver">IC诊断</span><span class="hist-content">out-of-sample rank_ic=-0.1907 n=6563 · ✅ 有效</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="0" data-cat="交易信号" data-ic="" data-lastupd="2026-11-22">
       <div class="card-head">
         <code class="fid">build_signal</code>
         <span class="cat-tag">交易信号</span>
@@ -181,7 +205,7 @@
       <div class="vitals">📡 最新体检 2026-11-22 · sig_rate=0.428 · n=206179 · <b>None</b></div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--muted)">体检</span><span class="hist-ver">体检</span><span class="hist-content">sig_rate=0.428 n=206179 health=None</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="支撑阻力" data-ic="" data-lastupd="2026-11-22">
       <div class="card-head">
         <code class="fid">sr_levels</code>
         <span class="cat-tag">支撑阻力</span>
@@ -197,7 +221,7 @@
       <div class="vitals">📡 最新体检 2026-11-22 · touch_rate=0.562 · n=985539 · <b>None</b></div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--muted)">体检</span><span class="hist-ver">体检</span><span class="hist-content">touch_rate=0.562 n=985539 health=None</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="妖股" data-ic="" data-lastupd="">
       <div class="card-head">
         <code class="fid">yaogu_scoring</code>
         <span class="cat-tag">妖股</span>
@@ -213,7 +237,7 @@
       
       
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="方向" data-ic="" data-lastupd="2026-11-22">
       <div class="card-head">
         <code class="fid">direction</code>
         <span class="cat-tag">方向</span>
@@ -229,7 +253,7 @@
       <div class="vitals">📡 最新体检 2026-11-22 · dir_rate=0.5 · n=206179 · <b>None</b></div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--muted)">体检</span><span class="hist-ver">体检</span><span class="hist-content">dir_rate=0.5 n=206179 health=None</span></div></div>
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="缠论" data-ic="" data-lastupd="">
       <div class="card-head">
         <code class="fid">chanlun</code>
         <span class="cat-tag">缠论</span>
@@ -245,7 +269,7 @@
       
       
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="消息面/事件面" data-ic="" data-lastupd="">
       <div class="card-head">
         <code class="fid">shiguang</code>
         <span class="cat-tag">消息面/事件面</span>
@@ -261,7 +285,7 @@
       
       
     </div>
-    <div class="card">
+    <div class="card" data-prod="1" data-cat="综合评分" data-ic="" data-lastupd="2026-11-22">
       <div class="card-head">
         <code class="fid">unified_score</code>
         <span class="cat-tag">综合评分</span>
@@ -276,9 +300,30 @@
       <div class="note">💡 V6.66 P0 修复双评分分裂：旧的 final_score（z_score 主导）与 _composite_score（money_flow+mid_long 主导）两套因子互不相认，统一为本因子。 V6.66.5：砍 xgb（IC -0.3074 反向）换 D哥（IC +0.4559），样本外 rank_ic 0.6501→0.6716（+3.3%）。权重测算脚本 weight_optimization.py 留存。</div>
       <div class="vitals">📡 最新体检 2026-11-22 · rank_ic=-0.2964 · n=266 · <b>None</b></div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--muted)">体检</span><span class="hist-ver">体检</span><span class="hist-content">rank_ic=-0.2964 n=266 health=None</span></div></div>
-    </div></div>
+    </div>
+  </div>
   <div class="tab-panel" id="tab-rule">
-    <div class="card rule">
+    <div class="toolbar">
+      <span class="tb-label">状态：</span>
+      <button class="fbtn active" data-rstate="all" onclick="setRuleState('all')">全部</button>
+      <button class="fbtn" data-rstate="champion" onclick="setRuleState('champion')">🏆 冠军</button>
+      <button class="fbtn" data-rstate="shadow" onclick="setRuleState('shadow')">👁 影子</button>
+      <button class="fbtn" data-rstate="candidate" onclick="setRuleState('candidate')">⏳ 候选</button>
+      <button class="fbtn" data-rstate="retired" onclick="setRuleState('retired')">♻️ 退役</button>
+      <span class="tb-sep"></span>
+      <span class="tb-label">生产：</span>
+      <button class="fbtn active" data-rprod="all" onclick="setRuleProd('all')">全部</button>
+      <button class="fbtn" data-rprod="prod" onclick="setRuleProd('prod')">✅ 生产</button>
+      <button class="fbtn" data-rprod="off" onclick="setRuleProd('off')">❌ 未生产</button>
+      <span class="tb-sep"></span>
+      <span class="tb-label">排序：</span>
+      <select class="fselect" id="ruleSort" onchange="applyRule()">
+        <option value="default">默认顺序</option>
+        <option value="lastupd">最新更新</option>
+      </select>
+    </div>
+    
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="2026-09-04">
       <div class="card-head">
         <code class="rid">yaogu_scoring</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -295,7 +340,7 @@
       <div class="note">💡 §86.7 第一刀首选（权重结构清晰 + 已有456连板回测样本 + 独立不占TOP10名额）</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-09-04</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.56.0</span><span class="hist-content">次日涨停率36.6%、均涨幅+3.21%、炸板风险15.4%</span></div><div class="hist-row"><span class="hist-date">2026-09-04</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.56.1</span><span class="hist-content">流通市值24.7亿 / 总市值76.6亿 / 流通比例32% → 降8分+标⚠️限售</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.55.0</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.56.0</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.56.1</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="retired" data-prod="1" data-lastupd="2026-08-29">
       <div class="card-head">
         <code class="rid">composite_score_formula</code>
         <span class="state" style="color:var(--muted);border-color:var(--muted)">退役·历史</span>
@@ -312,7 +357,7 @@
       <div class="note">💡 ⚠️ V6.66 P0 已废弃：双评分统一后，generate_prediction_md.py 排序不再用 composite_score（0.6 mf + 0.4 mid_long），改读 final_score（unified_score）。本规则保留历史，不再进生产。</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-08-29</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.52</span><span class="hist-content">新公式 IC=0.5891 vs 旧公式 0.1132，5倍提升</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.52</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.66.0 retired</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="2026-06（V6.32 修订）">
       <div class="card-head">
         <code class="rid">quality_tier_stop_loss</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -329,7 +374,7 @@
       <div class="note">💡 V6.32 统一修正：删除原S级不设止损/加仓信号；任何股票都有止损线</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-06-04</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.23</span><span class="hist-content">东山/兆易卖出后回升，亏损源于被摔下车</span></div><div class="hist-row"><span class="hist-date">2026-06（V6.32 修订）</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.32</span><span class="hist-content">⚠️ 仅2个轶事样本（东山精密C级/兆易创新），违反§6.4对照组铁律，事后反推≠规律</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.23</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.32</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="2026-06-04">
       <div class="card-head">
         <code class="rid">b_library_admission</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -346,7 +391,7 @@
       <div class="note">💡 从A库86只反向工程，以25只S/A级为好股样本抽取基因；+5%收紧（A库最弱A级7.6分 → B库门槛8.0）</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-06-04</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.29.0</span><span class="hist-content">25只S/A级全过✅ / 61只B/C/D级全不过✅</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.29.0</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="2026-10-10">
       <div class="card-head">
         <code class="rid">expert_weights</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -363,7 +408,7 @@
       <div class="note">💡 最小权重1%防虚高；mid_long_score由硬编码改动态从expert_weights.json读取。✅ V6.65.48 修复：load_expert_weights() 现读 json 顶层专家名的 effective_weight（旧代码读 wdata['weights'] 但 json 无此键→动态权重从未生效，一直用默认值归一化），已修复。修复后 mid_long 仅 D哥/芒格/塔勒布/缠论 4 专家（达利欧 IC=0 已砍），负数 clamp 到 0。V6.65.47 的'漂移'标注系误盘 workspace/scripts/ 废弃残留，已撤销</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-07-26（26.07.26.02）</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">v1.2-template-loader（前身）</span><span class="hist-content">无数据专家虚高bug（bullish=0→hit_rate=0.5→钱德24.9%→强制1%）</span></div><div class="hist-row"><span class="hist-date">2026-10-10</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">v1.2-template-loader</span><span class="hist-content">sample_records=2929；global_rank_ic 10-07=0.2 → 10-09=0.1（近期有回落）</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">v1.2-template-loader</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="V6.49">
       <div class="card-head">
         <code class="rid">mid_long_score_formula</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -380,7 +425,7 @@
       <div class="note">💡 V6.65.48 盘点补登记。达利欧 IC=0.0001 已 dropped（line 1144 注释）。mid_long_score 在 final_score 中不直接加权，仅作 quality_boost 质量过滤三挡（≥7/≥5/&lt;5），因 mid_long IC=-0.11 反向（见 final_score_formula 规则）</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.49</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="2026-11-22">
       <div class="card-head">
         <code class="rid">final_score_formula</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -397,7 +442,7 @@
       <div class="note">💡 V6.66 P0 双评分分裂统一：旧的 final_score（z_score主导）与 composite_score（money_flow+mid_long主导）两套因子互不相认，统一为本公式（IC 归一化加权）。排序/展示/买入区间/操作建议/止损分档全吃这一个分。z_score 由 factors/z_score.py::z_score_timing 提供，money_flow 由 factors/money_flow.py::money_flow_score 提供。</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-06-05</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.31</span><span class="hist-content">z_score IC=0.30 / xgb IC=0.18 / mid_long IC=-0.11 / 达利欧 IC=0.00 / 芒格 IC=-0.22</span></div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.66.0</span><span class="hist-content">money_flow 0.61 / z_score 0.30 / xgb 0.18 三正 IC 因子加权，权重 0.56/0.275/0.165</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.31</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.66.0</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="candidate" data-prod="0" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="rid">signal_trade_reminder</code>
         <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
@@ -414,7 +459,7 @@
       <div class="note">💡 价格行为引擎交易提醒。因子=方向强度(非胜率)+支撑阻力(srlab)+EMA位置+前高前低结构。V1.1(2026-11-21)根因修正：全股池296只/20.6万根walk-forward实测，支撑位止损负期望EV-0.033，固定5%止损正期望EV+0.050。V1.2(2026-11-21，邹苏煜指令)：①方向概率(direction_score规则打分)命中率仅49.5%≈随机，不再当胜率展示，改「方向强度分」，字段confidence→strength；②止损锚定关键位——做空止损卡阻力下方会被扫，改max(5%,阻力×1.02)抬到阻力上方；③超跌超涨过滤——生益科技9-22见顶149.94跌至58.37(-61%)末端仍给顺势卖出，加±20%偏离过滤降级观望。止损口径与建仓预测止损(nearest_support)分属两阶段。</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">信号胜率 43.6%（183止盈/237止损/132未完成）· 均盈亏 1.07% · EV 0.089</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">信号胜率 38.7%（50846止盈/80657止损/32642未完成）· 均盈亏 0.43% · EV -0.033</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V1.1</span><span class="hist-content">根因=止损方式非方向。支撑位止损EV-0.033→固定5%止损EV+0.050。盈亏比1.5最优(EV+0.050峰值)。方向门槛65%胜率46.8%EV+0.169</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">信号胜率 41.9%（59007止盈/81660止损/24338未完成）· 均盈亏 0.4% · EV 0.049</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">信号胜率 42.8%（60225止盈/80505止损/24121未完成）· 均盈亏 0.48% · EV 0.07</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V1.2</span><span class="hist-content">超跌观望/止损锚定阻力(80.07)/止损锚定支撑(50.96)/超涨观望 全通过；生益11-20(close58.37,EMA20 77.08,bias-24.3%)触发超跌观望不再追空</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V1.0</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V1.1</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="candidate" data-prod="1" data-lastupd="V6.65.51">
       <div class="card-head">
         <code class="rid">entry_prediction_stop_loss</code>
         <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
@@ -431,7 +476,7 @@
       <div class="note">💡 V6.65.47 第一铲：建仓预测止损从 price×0.93 硬编码统一到「最近支撑位」，对齐引擎 build_signal 口径。✅ V6.65.51 接入 srlab detector：优先 srlab 检测支撑位（摆动点+前10日低+EMA20），失败回退简化版（最近低点+MA20）；batch 版保留完整 OHLCV 序列（原只留近5日，srlab 需完整60+日）。-7%下限防支撑太远止损过深。与持仓风控止损（quality_tier_stop_loss）分属两阶段；且 build_signal 交易提醒止损已独立改固定5%（V6.65.56验证驱动，见 signal_trade_reminder V1.1），本规则 nearest_support 仅服务建仓预测买入止损：本规则=买入前预测，后者=持有期风控。未回测验证，state=candidate，开盘日印证</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.65.47</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.65.51</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="champion" data-prod="1" data-lastupd="V6.0">
       <div class="card-head">
         <code class="rid">ma250_filter</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
@@ -448,7 +493,7 @@
       <div class="note">💡 用户铁律「年线(MA250)之下不推荐」。软过滤（标记+TOP排除），非硬剔除；无数据默认放行防误杀。V6.65.47 盘点登记</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.0</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="candidate" data-prod="1" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="rid">direction_score</code>
         <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
@@ -465,7 +510,7 @@
       <div class="note">💡 价格行为引擎方向因子。V1.1(2026-11-21)：全股池296只/20.6万根四规则IC诊断，影线规则IC=-0.024反向(看多命中率44%比随机低6pp)，A股影线语义与国际相反(上影=主力试盘看多，下影=假支撑诱多看空)，已翻转。翻转后方向命中率49.5%→50.0%、信号EV+0.049→+0.07。⚠️ 趋势/结构/动量IC均&lt;0.035仍弱，方向因子整体无强alpha，四规则天花板~50%，质变需引入量价/资金流/市场状态等新因子。【V6.65.61 天花板结论，2026-11-21】资金流接入验证：超大单净额IC+0.03量级(次日+0.018/未来3日+0.031)、主力净额net_mf反向IC-0.015，接入direction_score命中率仅+0.3pp(51.5%→51.8%，一致/不一致无差别)。结论：日线次日涨跌方向预测天花板51-52%，纯价格形态+资金流都撞不破，这是市场信噪比本质非因子问题。定位：方向因子=弱参考(不主导决策)，决策主力=XGBoost(IC0.18)+多因子。铁律：禁止再在方向因子上调阈值/加因子做无效投入。</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">方向命中率 49.4%（359对/368错/1平）</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">方向命中率 49.5%（100722对/102899错/2262平）</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">方向命中率 49.5%（100722对/102899错/2262平）</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">方向命中率 50.0%（101777对/101844错/2262平）</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V1.1</span><span class="hist-content">超大单净额IC+0.036正向但弱，主力净额IC-0.015反向，接入direction_score命中率+0.3pp(51.5%→51.8%)，一致/不一致无差别——零增量</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V1.0</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V1.1</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="candidate" data-prod="1" data-lastupd="2026-11-21">
       <div class="card-head">
         <code class="rid">sr_probability</code>
         <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
@@ -482,7 +527,7 @@
       <div class="note">💡 触及 AUC 0.78 真信号（口径=40根+区带边，校准良好，实际56.2% vs 预测63.5%，偏差-7.3pp轻微高估可接受）；守住概率 placebo 对照无定位增量（距离驱动），只当校准好的弱信号。⚠️ 2026-11-21 曾误判「触及高估27pp」，系验证口径(10根+center)与训练口径(40根+区带边)不匹配，已纠正。</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">⚠️已纠正(口径错误)：触及率 36.7% vs 预测 62.5%（偏差-25.8pp）· 守住率 21.5% vs 预测 67.9%（偏差-46.4pp）。触及概率实际校准良好(训练口径40根+区带边，实际55.3%vs基率56%)，此前</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">⚠️已纠正(口径错误)：触及率 36.6% vs 预测 63.5%（偏差-26.9pp）· 守住率 19.2% vs 预测 67.9%（偏差-48.7pp）。触及概率实际校准良好(训练口径40根+区带边，实际55.3%vs基率56%)，此前</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">触及率 56.2% vs 预测 63.5%（偏差-7.3pp）· 守住率 26.9% vs 预测 72.0%（偏差-45.1pp）</span></div><div class="hist-row"><span class="hist-date">2026-11-21</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver"></span><span class="hist-content">触及率 56.2% vs 预测 63.5%（偏差-7.3pp）· 守住率 26.9% vs 预测 72.0%（偏差-45.1pp）</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V1.0</span><span class="hist-content">版本</span></div></div>
     </div>
-    <div class="card rule">
+    <div class="card rule" data-state="candidate" data-prod="1" data-lastupd="2026-11-22">
       <div class="card-head">
         <code class="rid">market_state_gate</code>
         <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
@@ -498,7 +543,8 @@
       <div class="kv"><span class="k">总纲章节</span><div class="v">§77 市场状态分类 / §86.7</div></div>
       <div class="note">💡 2026-11-22 落地。核心是修 breadth bug（index_daily 对申万 .SI 代码返回空 → 改 sw_daily，行业宽度 0%→11.1% 真实化）并接入价格行为引擎。市场状态五态分类器 §77-① 本已存在，但 breadth 恒 0 导致 RANGE（震荡）永测不准——正是用户第5条「市场状态闸」洞察的印证。降级只做诚实提示（震荡市方向≈随机），不改信号分数，符合方向因子52%天花板结论。未回测降级有效性，state=candidate（§43 F4）。</div>
       <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V1.0</span><span class="hist-content">行业宽度 0%（0/0 全 data insufficient）→ 11.1%（3/27），市场状态 MILD_BEAR 宽度极窄真实化；header 徽章 + 交易提醒降级提示均正常渲染</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V1.0</span><span class="hist-content">版本</span></div></div>
-    </div></div>
+    </div>
+  </div>
   <div class="tab-panel" id="tab-link">
     <div class="card">
       <div class="note">「联动因子」字段列出每条规则直接调用的因子参数。核心链路：<b>money_flow / D哥 / z_score</b> 三个正 IC 因子 → unified_score（统一评分）→ 排序/展示/买入区间/操作建议/止损分档全吃它。quality_boost（mid_long 挡位）作质量过滤不进加权。xgb_score 已因 IC 反向（-0.3074）下线，由 D哥（IC +0.4559）替代。</div>
@@ -512,6 +558,52 @@ function switchTab(name) {
   document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('tab-' + name).classList.add('active');
   event.target.classList.add('active');
+}
+let factorProd = 'all', ruleState = 'all', ruleProd = 'all';
+function setFactorProd(p) {
+  factorProd = p;
+  document.querySelectorAll('[data-fprod]').forEach(function(b) { b.classList.toggle('active', b.dataset.fprod === p); });
+  applyFactor();
+}
+function applyFactor() {
+  const cat = document.getElementById('factorCat').value;
+  const sort = document.getElementById('factorSort').value;
+  const container = document.getElementById('tab-factor');
+  const cards = Array.from(container.querySelectorAll('.card'));
+  cards.forEach(function(c) {
+    let show = true;
+    if (factorProd === 'prod' && c.dataset.prod !== '1') show = false;
+    if (factorProd === 'off' && c.dataset.prod !== '0') show = false;
+    if (cat !== 'all' && c.dataset.cat !== cat) show = false;
+    c.style.display = show ? '' : 'none';
+  });
+  if (sort === 'ic') { cards.sort(function(a,b) { return (parseFloat(b.dataset.ic)||-999) - (parseFloat(a.dataset.ic)||-999); }); }
+  else if (sort === 'lastupd') { cards.sort(function(a,b) { return (b.dataset.lastupd||'').localeCompare(a.dataset.lastupd||''); }); }
+  cards.forEach(function(c) { container.appendChild(c); });
+}
+function setRuleState(s) {
+  ruleState = s;
+  document.querySelectorAll('[data-rstate]').forEach(function(b) { b.classList.toggle('active', b.dataset.rstate === s); });
+  applyRule();
+}
+function setRuleProd(p) {
+  ruleProd = p;
+  document.querySelectorAll('[data-rprod]').forEach(function(b) { b.classList.toggle('active', b.dataset.rprod === p); });
+  applyRule();
+}
+function applyRule() {
+  const sort = document.getElementById('ruleSort').value;
+  const container = document.getElementById('tab-rule');
+  const cards = Array.from(container.querySelectorAll('.card'));
+  cards.forEach(function(c) {
+    let show = true;
+    if (ruleState !== 'all' && c.dataset.state !== ruleState) show = false;
+    if (ruleProd === 'prod' && c.dataset.prod !== '1') show = false;
+    if (ruleProd === 'off' && c.dataset.prod !== '0') show = false;
+    c.style.display = show ? '' : 'none';
+  });
+  if (sort === 'lastupd') { cards.sort(function(a,b) { return (b.dataset.lastupd||'').localeCompare(a.dataset.lastupd||''); }); }
+  cards.forEach(function(c) { container.appendChild(c); });
 }
 </script>
 </body>
