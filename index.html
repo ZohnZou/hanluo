@@ -21,6 +21,15 @@
   .readall-btn { background:var(--card); color:var(--blue); border:1px solid var(--blue); border-radius:14px; padding:4px 16px; font-size:13px; cursor:pointer; margin:2px 0 4px; transition:.15s; }
   .readall-btn:hover { background:rgba(88,166,255,.14); }
   .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:12px; margin:16px 0; }
+  .tools-bar { margin:18px 0 4px; }
+  .tools-title { color:var(--amber); font-size:13px; font-weight:700; margin-bottom:10px; letter-spacing:1px; }
+  .tools-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:10px; }
+  .tool { display:flex; flex-direction:column; gap:5px; background:linear-gradient(135deg,#1c2a3e,#161b22); border:1px solid var(--blue); border-radius:12px; padding:14px 16px; color:var(--text); transition:.15s; }
+  .tool:hover { transform:translateY(-2px); box-shadow:0 4px 16px rgba(88,166,255,.18); border-color:#79b8ff; }
+  .tool-icon { font-size:22px; line-height:1; }
+  .tool-name { font-size:14px; font-weight:700; }
+  .tool-desc { font-size:11px; color:var(--muted); }
+  .tool-tag { font-size:10px; color:var(--amber); border:1px solid var(--amber); border-radius:6px; padding:0 6px; width:fit-content; }
   .cat { position:relative; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color:var(--text); transition:.15s; cursor:pointer; }
   .cat:hover { border-color:var(--blue); transform:translateY(-2px); }
   .cat.pinned { border-color:var(--amber); background:rgba(210,153,34,.14); box-shadow:0 0 0 1px var(--amber) inset; }
@@ -44,6 +53,9 @@
     <div class="hint">⭐ 点星标置顶重点 · 拖拽方块排序（PC）· 设置存本浏览器</div>
     <button class="readall-btn" id="readAllBtn">✓ 一键全部已读</button>
   </div>
+
+  <div class="tools-bar"><div class="tools-title">🔧 工具导航</div><div class="tools-grid"><a class="tool" href="http://192.168.31.8:8900" target="_blank" rel="noopener"><span class="tool-icon">📈</span><span class="tool-name">价格行为 · 逐K演绎</span><span class="tool-desc">选股 + 指数预测 · 逐K回放 · 实时画线 · 三段分析</span><span class="tool-tag">局域网工具 · 同一WiFi可访问</span></a></div></div>
+
   <div class="grid" id="grid"></div>
   <div class="foot">寒洛 · 数据源 Tushare VIP · 自动更新</div>
 <script>
