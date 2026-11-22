@@ -80,10 +80,8 @@
 <body>
   <div class="header">
     <h1>📚 因子库与规则库全景</h1>
-    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 13:52 · 数据源 factor_ledger.json / rule_ledger.json</div>
+    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 13:55 · 数据源 factor_ledger.json / rule_ledger.json</div>
   </div>
-
-  <div class="warn">⚠️ <b>数据一致性提醒</b>：factor_ledger 的 unified_score 已更新到 V6.66.5 权重（0.42*money_flow + 0.31*D哥 + 0.27*z_score），但 rule_ledger 的 final_score_formula 仍停 V6.66.0 旧版（0.56/0.275/0.165，xgb 已砍）。本页以 <b>因子台账为准</b>，规则台账该条待同步。</div>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('factor')">🔬 因子库<span class="cnt">(12)</span></button>
@@ -429,18 +427,18 @@
       <div class="card-head">
         <code class="rid">final_score_formula</code>
         <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
-        <span class="ver-tag">V6.66.0</span>
+        <span class="ver-tag">V6.66.5</span>
         <span class="badge on">✅ 生产</span>
       </div>
       <h3 class="fname">建仓预测统一评分（unified_score，IC 加权多因子，V6.66 P0 双评分统一）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-11-22</b></div>
-      <div class="kv"><span class="k">公式/规则</span><div class="v formula">final_score = unified_score = clamp(0.56*money_flow + 0.275*z_score + 0.165*xgb + quality_boost, 1, 10)</div></div>
-      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">money_flow</td><td>IC 0.61（walk-forward 2938样本，最强）权重 0.56</td></tr><tr><td class="subk">z_score</td><td>IC 0.30（最强短线时机）权重 0.275</td></tr><tr><td class="subk">xgb</td><td>IC 0.18 权重 0.165</td></tr><tr><td class="subk">quality_boost</td><td>mid_long 质量过滤挡位（≥7→+0.5 / 5-7→0 / &lt;5→-1.0）+ 超跌豁免</td></tr><tr><td class="subk">已砍专家</td><td>达利欧 IC=0 已砍；芒格 IC=-0.22 反向已降权；mid_long IC=-0.11 反向只做挡位不进加权</td></tr></table></div>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">final_score = unified_score = clamp(0.42*money_flow + 0.31*D哥 + 0.27*z_score + quality_boost, 1, 10)</div></div>
+      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">money_flow</td><td>IC 0.6133（walk-forward 2938样本，最强单因子）权重 0.42</td></tr><tr><td class="subk">D哥</td><td>IC 0.4559（全系统第二强）权重 0.31（V6.66.5 替代 xgb 晋升）</td></tr><tr><td class="subk">z_score</td><td>IC 0.3884 权重 0.27</td></tr><tr><td class="subk">quality_boost</td><td>mid_long 质量过滤挡位（≥7→+0.5 / 5-7→0 / &lt;5→-1.0）+ 超跌豁免</td></tr><tr><td class="subk">已砍/降权</td><td>xgb IC -0.3074 反向已下线（V6.66.5）；达利欧 IC=0 已砍；芒格 IC=-0.22 反向已降权；mid_long IC=-0.11 反向只做挡位不进加权</td></tr></table></div>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">money_flow_score</code><code class="link">z_score</code><code class="link">xgb_score</code><code class="link">mid_long_score</code><code class="link">unified_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/score.py::unified_score() + scripts/daily_prediction.py::expert_analysis()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测 / §86.7</div></div>
-      <div class="note">💡 V6.66 P0 双评分分裂统一：旧的 final_score（z_score主导）与 composite_score（money_flow+mid_long主导）两套因子互不相认，统一为本公式（IC 归一化加权）。排序/展示/买入区间/操作建议/止损分档全吃这一个分。z_score 由 factors/z_score.py::z_score_timing 提供，money_flow 由 factors/money_flow.py::money_flow_score 提供。</div>
-      <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-06-05</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.31</span><span class="hist-content">z_score IC=0.30 / xgb IC=0.18 / mid_long IC=-0.11 / 达利欧 IC=0.00 / 芒格 IC=-0.22</span></div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--purple)">验证</span><span class="hist-ver">V6.66.0</span><span class="hist-content">money_flow 0.61 / z_score 0.30 / xgb 0.18 三正 IC 因子加权，权重 0.56/0.275/0.165</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.31</span><span class="hist-content">版本</span></div><div class="hist-row"><span class="hist-date">—</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.66.0</span><span class="hist-content">版本</span></div></div>
+      <div class="note">💡 V6.66 P0 双评分分裂统一：旧的 final_score（z_score主导）与 composite_score（money_flow+mid_long主导）两套因子互不相认，统一为本公式（IC 归一化加权）。排序/展示/买入区间/操作建议/止损分档全吃这一个分。z_score 由 factors/z_score.py::z_score_timing 提供，money_flow 由 factors/money_flow.py::money_flow_score 提供。 V6.66.5：砍 xgb（IC -0.3074 反向）换 D哥（IC +0.4559），权重 0.56/0.275/0.165 → 0.42/0.31/0.27。</div>
+      <div class="hist-wrap"><div class="hist-title">🕐 迭代版本记录</div><div class="hist-row"><span class="hist-date">2026-11-22</span><span class="hist-type" style="color:var(--amber)">版本</span><span class="hist-ver">V6.66.5</span><span class="hist-content">权重同步：0.56/0.275/0.165 → 0.42/0.31/0.27（砍xgb换D哥）</span></div></div>
     </div>
     <div class="card rule" data-state="candidate" data-prod="0" data-lastupd="2026-11-21">
       <div class="card-head">
