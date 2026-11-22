@@ -94,7 +94,7 @@
 <body>
   <div class="header">
     <h1>📚 因子库与规则库全景</h1>
-    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 14:07 · 数据源 factor_ledger.json / rule_ledger.json</div>
+    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 14:12 · 数据源 factor_ledger.json / rule_ledger.json</div>
   </div>
 
   <div class="tabs">
@@ -348,6 +348,9 @@
         <option value="default">默认顺序</option>
         <option value="lastupd">最新更新</option>
       </select>
+      <span class="tb-sep"></span>
+      <span class="tb-label">🔍 搜索：</span>
+      <input type="text" class="fsearch" id="ruleSearch" placeholder="穿透搜索二级/三级子规则…" oninput="applyRule()">
     </div>
     
     <div class="card rule" data-state="champion" data-prod="1" data-lastupd="2026-09-04">
@@ -360,7 +363,7 @@
       <h3 class="fname">妖股打分规则</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-09-04</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">score = s_lb*0.45 + s_mv*0.20 + s_tr*0.10 + s_money*0.15 + s_hy*0.10（连板倒U型 + 流通比例风险修正 + 资金进场度）</div></div>
-      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">s_lb_连板倒U型</td><td>2板=35 / 3板=80 / 4板=75 / 5板=65 / 6板=70 / ≥7板=55 / 其他=20</td></tr><tr><td class="subk">s_mv_流通市值(越小越妖)</td><td>&lt;30亿=100 / &lt;50亿=80 / &lt;80亿=60 / &lt;100亿=40 / ≥100亿=20</td></tr><tr><td class="subk">s_tr_换手</td><td>5-15%=100 / 15-25%=70 / &lt;5%=50 / &gt;25%=30</td></tr><tr><td class="subk">s_money_资金进场度</td><td>0-100直接映射，无数据中性50（2026-10-21新增，区分主力抱团vs出货板）</td></tr><tr><td class="subk">s_hy_板块效应</td><td>同板块涨停≥3家=100 / 2家=70 / 1家=40 / 0家=0</td></tr><tr><td class="subk">流通比例修正</td><td>流通比例&lt;50% → -8分(⚠️限售)；50-80% → -3分(△限售)；&gt;80%无修正</td></tr></table></div>
+      <details class="subtree"><summary>🌲 二级子规则 6 个 · 三级参数 23 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">连板倒U型</span><span class="w-tag">0.45</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">2板</span><span class="leaf-val">35</span></div><div class="leaf"><span class="leaf-name">3板</span><span class="leaf-val">80</span></div><div class="leaf"><span class="leaf-name">4板</span><span class="leaf-val">75</span></div><div class="leaf"><span class="leaf-name">5板</span><span class="leaf-val">65</span></div><div class="leaf"><span class="leaf-name">6板</span><span class="leaf-val">70</span></div><div class="leaf"><span class="leaf-name">≥7板</span><span class="leaf-val">55</span></div><div class="leaf"><span class="leaf-name">其他</span><span class="leaf-val">20</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">流通市值</span><span class="w-tag">0.20</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">&lt;30亿</span><span class="leaf-val">100</span></div><div class="leaf"><span class="leaf-name">&lt;50亿</span><span class="leaf-val">80</span></div><div class="leaf"><span class="leaf-name">&lt;80亿</span><span class="leaf-val">60</span></div><div class="leaf"><span class="leaf-name">&lt;100亿</span><span class="leaf-val">40</span></div><div class="leaf"><span class="leaf-name">≥100亿</span><span class="leaf-val">20</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">换手率</span><span class="w-tag">0.10</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">5-15%</span><span class="leaf-val">100</span></div><div class="leaf"><span class="leaf-name">15-25%</span><span class="leaf-val">70</span></div><div class="leaf"><span class="leaf-name">&lt;5%</span><span class="leaf-val">50</span></div><div class="leaf"><span class="leaf-name">&gt;25%</span><span class="leaf-val">30</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">资金进场度</span><span class="w-tag">0.15</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">0-100映射</span><span class="leaf-val">无数据中性50</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">板块效应</span><span class="w-tag">0.10</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">≥3家涨停</span><span class="leaf-val">100</span></div><div class="leaf"><span class="leaf-name">2家</span><span class="leaf-val">70</span></div><div class="leaf"><span class="leaf-name">1家</span><span class="leaf-val">40</span></div><div class="leaf"><span class="leaf-name">0家</span><span class="leaf-val">0</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">流通比例修正</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">&lt;50%</span><span class="leaf-val">-8(⚠️限售)</span></div><div class="leaf"><span class="leaf-name">50-80%</span><span class="leaf-val">-3(△限售)</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">yaogu_scoring</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/yaogu_monitor.py::score_stock()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§5 妖股监控 / §86.7</div></div>
@@ -377,7 +380,7 @@
       <h3 class="fname">综合评分公式</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-08-29</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">composite_score = 0.60 * money_flow_score + 0.40 * mid_long_score（二因子主导）</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 2 个 · 三级参数 2 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">money_flow_score</span><span class="w-tag">0.60</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">定位</span><span class="leaf-val">资金流（已废弃，见 final_score_formula）</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">mid_long_score</span><span class="w-tag">0.40</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">定位</span><span class="leaf-val">中长期质量</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">money_flow_score</code><code class="link">mid_long_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::compute_composite_score()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7</div></div>
@@ -394,7 +397,7 @@
       <h3 class="fname">质量分级止损</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-06（V6.32 修订）</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">质量等级 → 正常止损 / 大盘恐慌止损</div></div>
-      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">S级</td><td>正常-7% / 恐慌-15%（硬线，恐慌加仓须人工确认禁止自动）</td></tr><tr><td class="subk">A级</td><td>正常-7% / 恐慌-12%</td></tr><tr><td class="subk">B级</td><td>正常-5% / 恐慌-8%</td></tr><tr><td class="subk">C级</td><td>正常-5% / 恐慌-5%</td></tr><tr><td class="subk">D级</td><td>正常-3% / 恐慌-3%立即</td></tr></table></div>
+      <details class="subtree"><summary>🌲 二级子规则 5 个 · 三级参数 10 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">S级</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">正常</span><span class="leaf-val">-7%</span></div><div class="leaf"><span class="leaf-name">恐慌</span><span class="leaf-val">-15%（硬线，加仓须人工确认）</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">A级</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">正常</span><span class="leaf-val">-7%</span></div><div class="leaf"><span class="leaf-name">恐慌</span><span class="leaf-val">-12%</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">B级</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">正常</span><span class="leaf-val">-5%</span></div><div class="leaf"><span class="leaf-name">恐慌</span><span class="leaf-val">-8%</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">C级</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">正常</span><span class="leaf-val">-5%</span></div><div class="leaf"><span class="leaf-name">恐慌</span><span class="leaf-val">-5%</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">D级</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">正常</span><span class="leaf-val">-3%</span></div><div class="leaf"><span class="leaf-name">恐慌</span><span class="leaf-val">-3%立即</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/lib/stop_loss.py::compute_stop_price()（唯一止损计算入口）</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§38 质量分级止损体系</div></div>
@@ -411,7 +414,7 @@
       <h3 class="fname">B库准入门槛</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-06-04</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">供给≥7.4 + 需求≥5.8 + 财务≥6.8 + 总分≥8.0（三维加权35/35/30）</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 4 个 · 三级参数 4 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">供给</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">阈值</span><span class="leaf-val">≥7.4</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">需求</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">阈值</span><span class="leaf-val">≥5.8</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">财务</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">阈值</span><span class="leaf-val">≥6.8</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">总分</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">阈值</span><span class="leaf-val">≥8.0（三维加权35/35/30）</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">quality_scorer 三维评分 + B库扫描流程</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§35 B库准入规则</div></div>
@@ -428,7 +431,7 @@
       <h3 class="fname">专家权重体系</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-10-10</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">effective_weight = base_weight + adjustment（per-expert 胜率/IC 驱动调整）</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 8 个 · 三级参数 8 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">D哥</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">effective_weight（动态）</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">芒格</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">动态</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">塔勒布</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">动态</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">缠论</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">动态</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">钱德</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">最小1%防虚高</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">达利欧</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">IC=0 已砍</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">Z哥</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">动态</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">P13质量评分</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">权重</span><span class="leaf-val">最小1%</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/expert_weights.json（动态读取）+ scripts/update_expert_weights.py</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§80 专家权重体系 / §86.7</div></div>
@@ -445,7 +448,7 @@
       <h3 class="fname">中长期综合分（4专家动态加权，达利欧已砍）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>V6.49</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">mid_long_score = D哥×w_dge + 芒格×w_mg + 塔勒布×w_tlb + 缠论×w_cl（权重从 expert_weights.json 的 effective_weight 归一化，见 expert_weights 规则）</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 4 个 · 三级参数 4 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">D哥</span><span class="w-tag">w_dge</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">来源</span><span class="leaf-val">expert_weights.json</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">芒格</span><span class="w-tag">w_mg</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">来源</span><span class="leaf-val">expert_weights.json</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">塔勒布</span><span class="w-tag">w_tlb</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">来源</span><span class="leaf-val">expert_weights.json</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">缠论</span><span class="w-tag">w_cl</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">来源</span><span class="leaf-val">expert_weights.json</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::expert_analysis()（line ~1139）+ load_expert_weights()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测 / §86.7</div></div>
@@ -462,7 +465,7 @@
       <h3 class="fname">建仓预测统一评分（unified_score，IC 加权多因子，V6.66 P0 双评分统一）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-11-22</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">final_score = unified_score = clamp(0.42*money_flow + 0.31*D哥 + 0.27*z_score + quality_boost, 1, 10)</div></div>
-      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">money_flow</td><td>IC 0.6133（walk-forward 2938样本，最强单因子）权重 0.42</td></tr><tr><td class="subk">D哥</td><td>IC 0.4559（全系统第二强）权重 0.31（V6.66.5 替代 xgb 晋升）</td></tr><tr><td class="subk">z_score</td><td>IC 0.3884 权重 0.27</td></tr><tr><td class="subk">quality_boost</td><td>mid_long 质量过滤挡位（≥7→+0.5 / 5-7→0 / &lt;5→-1.0）+ 超跌豁免</td></tr><tr><td class="subk">已砍/降权</td><td>xgb IC -0.3074 反向已下线（V6.66.5）；达利欧 IC=0 已砍；芒格 IC=-0.22 反向已降权；mid_long IC=-0.11 反向只做挡位不进加权</td></tr></table></div>
+      <details class="subtree"><summary>🌲 二级子规则 4 个 · 三级参数 6 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">money_flow</span><span class="w-tag">0.42</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">IC</span><span class="leaf-val">0.6133</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">D哥</span><span class="w-tag">0.31</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">IC</span><span class="leaf-val">0.4559</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">z_score</span><span class="w-tag">0.27</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">IC</span><span class="leaf-val">0.3884</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">quality_boost</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">mid_long≥7</span><span class="leaf-val">+0.5</span></div><div class="leaf"><span class="leaf-name">5-7</span><span class="leaf-val">+0.0</span></div><div class="leaf"><span class="leaf-name">&lt;5</span><span class="leaf-val">-1.0</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">money_flow_score</code><code class="link">z_score</code><code class="link">xgb_score</code><code class="link">mid_long_score</code><code class="link">unified_score</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/score.py::unified_score() + scripts/daily_prediction.py::expert_analysis()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测 / §86.7</div></div>
@@ -479,7 +482,7 @@
       <h3 class="fname">交易提醒规则（方向+入场/止损/目标+信号强度）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-11-21</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">入场=现价；止损=锚定关键位：做空 max(入场×1.05, 阻力×1.02)、做多 min(入场×0.95, 支撑×0.98)；目标=入场±(入场-止损)×1.5；盈亏比固定1.5；方向强度&lt;55一律观望；|close-EMA20|/EMA20 偏离超±20%顺势信号降级观望。V1.1(2026-11-21)：止损从支撑位改固定5%。V1.2(2026-11-21)：方向概率下架改强度分+止损锚定关键位+超跌超涨过滤</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 4 个 · 三级参数 6 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">方向门槛</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">方向强度&lt;55</span><span class="leaf-val">观望</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">入场</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">入场价</span><span class="leaf-val">现价</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">止损</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">做多</span><span class="leaf-val">min(5%, 支撑×0.98)</span></div><div class="leaf"><span class="leaf-name">做空</span><span class="leaf-val">max(5%, 阻力×1.02)</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">目标</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">盈亏比</span><span class="leaf-val">1.5</span></div><div class="leaf"><span class="leaf-name">目标价</span><span class="leaf-val">入场±(入场-止损)×1.5</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">direction</code><code class="link">sr_levels</code><code class="link">atr_pct</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/signal.py::build_signal()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7 / 价格行为引擎</div></div>
@@ -496,7 +499,7 @@
       <h3 class="fname">建仓预测买入止损（最近支撑位优先，-7%下限兜底）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>V6.65.51</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">stop_loss = max(support, price×0.93)；support = 优先 srlab detector（摆动点+前10日低+EMA20，取最接近现价且&lt;现价的支撑位）→ 回退简化版（最近低点+MA20）→ 无则 price×0.93</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 3 个 · 三级参数 4 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">srlab detector</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">构成</span><span class="leaf-val">摆动点 + 前10日低 + EMA20</span></div><div class="leaf"><span class="leaf-name">取位</span><span class="leaf-val">最接近现价且&lt;现价的支撑</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">简化版回退</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">构成</span><span class="leaf-val">最近低点 + MA20</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">-7% 下限兜底</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">公式</span><span class="leaf-val">stop = max(support, price×0.93)</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">sr_levels</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::_srlab_support() + expert_analysis()（V6.65.51 接入 srlab）</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测止损口径统一 / §86.7</div></div>
@@ -513,7 +516,7 @@
       <h3 class="fname">年线（MA250）过滤</h3>
       <div class="last-upd">⏱️ 最新更新：<b>V6.0</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">现价 &lt; MA250 → 标记🔴年线下 + 不进入推荐TOP；无年线数据默认放行（不误杀）</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 2 个 · 三级参数 2 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">年线下</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">现价&lt;MA250</span><span class="leaf-val">标记🔴 + 排除推荐TOP</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">无数据</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">默认</span><span class="leaf-val">放行（不误杀）</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v muted">外部数据（非因子库参数）</div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/ma250_fetcher.py（抓取） + scripts/generate_prediction_md.py::_is_above_ma250()/_ma250_badge()（消费）</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§97 / §86.7</div></div>
@@ -530,7 +533,7 @@
       <h3 class="fname">方向概率打分（趋势+影线+结构+动量，40-65区间）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-11-21</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">score=50±(趋势vsEMA20±4/EMA方向±3/上影+7/下影-7【V1.1翻转】/测试前高-4/突破前高+6/跌破前低-5/连续阳阴线clamp±6)，clamp[40,65]</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 4 个 · 三级参数 8 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">趋势</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">收盘vs EMA20</span><span class="leaf-val">±4</span></div><div class="leaf"><span class="leaf-name">EMA方向</span><span class="leaf-val">±3</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">影线(A股反向)</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">上影长</span><span class="leaf-val">+7</span></div><div class="leaf"><span class="leaf-name">下影长</span><span class="leaf-val">-7</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">结构</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">测试前高未破</span><span class="leaf-val">-4</span></div><div class="leaf"><span class="leaf-name">突破前高</span><span class="leaf-val">+6</span></div><div class="leaf"><span class="leaf-name">跌破前低</span><span class="leaf-val">-5</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">动量</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">连续阳/阴线</span><span class="leaf-val">clamp ±6</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">direction</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/direction.py::direction_score()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7 / 价格行为引擎</div></div>
@@ -547,7 +550,7 @@
       <h3 class="fname">支撑阻力概率（srlab 8特征逻辑回归：触及×守住）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-11-21</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">touch_prob/hold_prob = srlab 逻辑回归（dist/dist_sq/width/logev/atr_pct/hold_lb 等8特征）</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 2 个 · 三级参数 2 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">触及概率</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">模型</span><span class="leaf-val">8特征逻辑回归，AUC 0.78</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">守住概率</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">定位</span><span class="leaf-val">AUC 0.53≈随机，用base_rate</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">sr_levels</code></div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/srlab/bridge.py::predict_sr_levels()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7 / 价格行为引擎</div></div>
@@ -564,7 +567,7 @@
       <h3 class="fname">市场状态闸（震荡/熊市信号降级提示）</h3>
       <div class="last-upd">⏱️ 最新更新：<b>2026-11-22</b></div>
       <div class="kv"><span class="k">公式/规则</span><div class="v formula">读 market_state_classifier 五态（STRONG_BULL/MILD_BULL/RANGE/MILD_BEAR/PANIC_BEAR），价格行为引擎交易提醒卡片按态加降级提示：RANGE「震荡市方向≈随机」/ MILD_BEAR「信号可信度低，控制仓位」/ PANIC_BEAR「不建议操作」。只降级提示，不改信号分数。</div></div>
-      
+      <details class="subtree"><summary>🌲 二级子规则 5 个 · 三级参数 5 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">STRONG_BULL</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">降级</span><span class="leaf-val">无</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">MILD_BULL</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">降级</span><span class="leaf-val">无</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">RANGE</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">降级</span><span class="leaf-val">震荡市方向≈随机</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">MILD_BEAR</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">降级</span><span class="leaf-val">信号可信度低，控制仓位</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">PANIC_BEAR</span></div><div class="leaves"><div class="leaf"><span class="leaf-name">降级</span><span class="leaf-val">不建议操作</span></div></div></div></details>
       <div class="kv"><span class="k">🔗 联动因子</span><div class="v muted">外部数据（非因子库参数）</div></div>
       <div class="kv"><span class="k">数据源</span><div class="v">scripts/market_state_classifier.py（五态判定）+ workspace/scripts/price_action_engine.py::_load_market_state()/marketDowngrade()/renderMarketState()</div></div>
       <div class="kv"><span class="k">总纲章节</span><div class="v">§77 市场状态分类 / §86.7</div></div>
@@ -630,6 +633,7 @@ function setRuleProd(p) {
 }
 function applyRule() {
   const sort = document.getElementById('ruleSort').value;
+  const q = (document.getElementById('ruleSearch').value || '').trim().toLowerCase();
   const container = document.getElementById('tab-rule');
   const cards = Array.from(container.querySelectorAll('.card'));
   cards.forEach(function(c) {
@@ -637,8 +641,17 @@ function applyRule() {
     if (ruleState !== 'all' && c.dataset.state !== ruleState) show = false;
     if (ruleProd === 'prod' && c.dataset.prod !== '1') show = false;
     if (ruleProd === 'off' && c.dataset.prod !== '0') show = false;
+    if (show && q) {
+      const txt = c.textContent.toLowerCase();
+      if (txt.indexOf(q) === -1) show = false;
+    }
     c.style.display = show ? '' : 'none';
   });
+  if (q) {
+    container.querySelectorAll('.subtree').forEach(function(d) {
+      d.open = d.textContent.toLowerCase().indexOf(q) !== -1;
+    });
+  }
   if (sort === 'lastupd') { cards.sort(function(a,b) { return (b.dataset.lastupd||'').localeCompare(a.dataset.lastupd||''); }); }
   cards.forEach(function(c) { container.appendChild(c); });
 }
