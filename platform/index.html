@@ -48,7 +48,8 @@
   .hc-fold summary { cursor:pointer; font-size:13px; font-weight:600; color:var(--text); padding:7px 0; }
   .hc-fold summary:hover { color:var(--blue); }
   .hc-fold-body { font-size:12px; color:var(--muted); line-height:1.65; padding:2px 0 8px; }
-  .hc-jumps { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .hc-jumps { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; align-items:center; }
+  .jump-label { font-size:11px; color:var(--muted); }
   .pill { display:inline-block; font-size:12px; color:var(--blue); background:rgba(88,166,255,.10); border:1px solid var(--border); border-radius:20px; padding:4px 12px; transition:.12s; }
   .pill:hover { border-color:var(--blue); }
   .pill.kx { color:var(--coral); background:rgba(255,90,53,.10); }
@@ -96,7 +97,7 @@
 <body>
   <div class="header">
     <h1>🎯 操盘平台</h1>
-    <div class="sub">持仓联动视图 · 现有模块/报表/库聚合 · 生成于 2026-11-22 15:30 · 数据基准 2026-11-20</div>
+    <div class="sub">持仓联动视图 · 现有模块/报表/库聚合 · 生成于 2026-11-22 15:38 · 数据基准 2026-11-20</div>
   </div>
 
   <div class="kpi">
@@ -125,7 +126,7 @@
       <div class="hc-line"><span class="hc-lhb muted">龙虎榜：今日未上榜</span></div>
       <details class="hc-fold"><summary>📋 复盘结论</summary><div class="hc-fold-body">我的判断：跌势延续，再创新低，空头趋势未改。11-18 那根 +3.91% 是连续跌停后的技术性反抽，已经被 11-19 -1.00% + 11-20 -3.18% 完全吞掉，今天盘中还创了 57.76 新低、跌幅重新放大，说明空头力量根本没有衰竭，反抽不构成企稳。现价跌破 MA5 和所有均线，均线全空头，没有任何止跌信号——这不是抄底位，是下跌中继的延续。</div><a class="pill" href="../review/操盘复盘_2026-11-20.html" target="_blank">复盘全文 ↗</a></details>
       <details class="hc-fold"><summary>📜 交易流水（68 笔）</summary><div class="trades"><div class="trade-row"><span>10.29</span><span class="b">B</span><span>300</span><span>94.2</span><span>-28,260</span></div><div class="trade-row"><span>11.11</span><span class="s">S</span><span>1000</span><span>74.45</span><span>+74,450</span></div><div class="trade-row"><span>11.12</span><span class="b">B</span><span>1100</span><span>79.23</span><span>-87,153</span></div><div class="trade-row"><span>11.12</span><span class="s">S</span><span>1100</span><span>80.72</span><span>+88,792</span></div><div class="trade-row"><span>11.12</span><span class="b">B</span><span>200</span><span>79.77</span><span>-15,954</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>600</span><span>70.74</span><span>-42,444</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>500</span><span>72.05</span><span>-36,025</span></div><div class="trade-row"><span>11.13</span><span class="s">S</span><span>1100</span><span>71.4</span><span>+78,540</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>400</span><span>69.58</span><span>-27,832</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>700</span><span>68.81</span><span>-48,167</span></div></div><a class="pill" href="../account/index.html" target="_blank">账户全量报告 ↗</a></details>
-      <div class="hc-jumps"><a class="pill" href="../review/操盘复盘_2026-11-20.html" target="_blank">复盘</a><a class="pill kx" href="http://192.168.31.8:8900/predict?q=600183" target="_blank">逐K演绎</a><a class="pill" href="../dashboard/A股板块每日情报仪表盘_2026-11-20.html" target="_blank">板块</a><a class="pill" href="../system/index.html" target="_blank">因子规则</a><a class="pill" href="../account/index.html" target="_blank">账户</a></div>
+      <div class="hc-jumps"><span class="jump-label">跳转工具：</span><a class="pill" href="../review/操盘复盘_2026-11-20.html" target="_blank" title="今日操盘复盘 → 昨日结论 + 明日策略">📋 复盘 ↗</a><a class="pill kx" href="http://192.168.31.8:8900/predict?q=600183" target="_blank" title="价格行为逐K演绎（局域网 8900，需同一 WiFi）">🔍 逐K演绎 ↗</a><a class="pill" href="../dashboard/A股板块每日情报仪表盘_2026-11-20.html" target="_blank" title="申万板块每日情报仪表盘 → 行业强弱">🏭 板块 ↗</a><a class="pill" href="../system/index.html" target="_blank" title="因子库/规则库/联动关系 三tab 全景">🧮 因子规则 ↗</a><a class="pill" href="../account/index.html" target="_blank" title="账户全量历史报告 → 资金/盈亏/成交/周期">💰 账户 ↗</a></div>
     </div>
 
   <div class="fundline">💧 资金线：可用资金 <b>¥153.44</b> · 减仓可释放约 <b>¥151,762</b>（按持仓市值估算）</div>
