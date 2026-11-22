@@ -1,18 +1,12 @@
 {
   "updated": "2026-11-22",
-  "total": 374,
+  "total": 373,
   "items": [
     {
       "type": "因子规则库",
       "date": "2026-11-22",
       "title": "因子库与规则库全景",
       "url": "system/index.html"
-    },
-    {
-      "type": "操盘平台",
-      "date": "2026-11-22",
-      "title": "操盘平台 · 持仓联动视图",
-      "url": "platform/index.html"
     },
     {
       "type": "拾光日报学习",
