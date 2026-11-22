@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘平台 · 持仓联动视图</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.6; padding:16px; max-width:1100px; margin:0 auto; }
+  a { color:var(--blue); text-decoration:none; }
+  .header { text-align:center; padding:16px 8px 10px; }
+  .header h1 { font-size:22px; letter-spacing:2px; }
+  .header .sub { color:var(--muted); font-size:12px; margin-top:4px; }
+  .overview { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin:14px 0; }
+  .ov-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px; text-align:center; }
+  .ov-item .k { font-size:11px; color:var(--muted); display:block; }
+  .ov-item .v { font-size:17px; font-weight:700; margin-top:2px; }
+  .ov-item .v.red { color:var(--red); } .ov-item .v.green { color:var(--green); }
+  .sec-title { font-size:15px; color:var(--blue); font-weight:700; margin:20px 0 8px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:6px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin:10px 0; }
+  .h-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+  .h-head h3 { font-size:16px; }
+  .h-head code { font-family:monospace; color:var(--blue); background:rgba(88,166,255,.08); padding:2px 8px; border-radius:6px; font-size:13px; }
+  .pnl { font-size:15px; font-weight:700; font-family:monospace; }
+  .pnl.bad { color:var(--red); } .pnl.good { color:var(--green); }
+  .snap { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:10px; }
+  .snap-item { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px; text-align:center; }
+  .snap-item .k { font-size:11px; color:var(--muted); display:block; }
+  .snap-item b { font-size:14px; font-family:monospace; }
+  .slice { border-top:1px solid var(--border); padding:8px 2px; }
+  .slice-t { font-size:11px; color:var(--purple); font-weight:700; display:block; margin-bottom:2px; }
+  .sug { font-size:14px; font-weight:700; color:var(--amber); }
+  .ind { font-size:13px; }
+  .ind b { color:var(--blue); }
+  .sub { font-size:12px; color:var(--muted); margin-top:2px; line-height:1.55; }
+  .mono { font-family:monospace; font-size:12px; }
+  .jump { font-size:11px; margin-left:6px; color:var(--blue); }
+  .badge.up { background:rgba(248,81,73,.15); color:var(--red); font-size:11px; padding:1px 8px; border-radius:6px; font-weight:700; }
+  .muted { color:var(--muted); font-size:12px; }
+  .slice-trades { margin-top:8px; border-top:1px dashed var(--border); padding-top:6px; }
+  .slice-trades summary { cursor:pointer; font-size:12px; color:var(--blue); font-weight:700; }
+  .trades { max-height:220px; overflow-y:auto; margin:6px 0; }
+  .trade-row { display:grid; grid-template-columns:50px 30px 50px 60px 1fr; gap:4px; font-size:11px; font-family:monospace; padding:3px 0; border-bottom:1px solid var(--border); }
+  .trade-row .b { color:var(--red); } .trade-row .s { color:var(--green); }
+  .cand-row { display:grid; grid-template-columns:30px 1fr 90px 50px 110px; gap:6px; align-items:center; padding:6px 0; border-bottom:1px solid var(--border); font-size:12px; }
+  .cand-row.yg .cscore { color:var(--amber); font-weight:700; }
+  .rk { color:var(--muted); font-family:monospace; }
+  .cn { font-weight:600; } .cn code { color:var(--blue); font-size:11px; }
+  .csw { color:var(--muted); font-size:11px; }
+  .cscore { color:var(--green); font-family:monospace; font-weight:700; }
+  .crange { color:var(--muted); font-family:monospace; font-size:11px; }
+  .fundline { background:linear-gradient(90deg,rgba(88,166,255,.08),rgba(63,185,80,.08)); border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:14px 0; font-size:13px; }
+  .fundline b { color:var(--amber); }
+  .foot { text-align:center; color:var(--muted); font-size:11px; margin:20px 0 8px; }
+  @media (max-width:640px) {
+    body { padding:12px 8px; }
+    .snap { grid-template-columns:repeat(2,1fr); }
+    .cand-row { grid-template-columns:24px 1fr 60px; }
+    .cand-row .csw, .cand-row .crange { display:none; }
+    .trade-row { grid-template-columns:40px 24px 40px 50px 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎯 操盘平台</h1>
+    <div class="sub">持仓联动视图 · 现有模块/报表/库聚合 · 生成于 2026-11-22 14:52 · 数据基准 2026-11-20</div>
+  </div>
+
+  <div class="overview">
+    <div class="ov-item"><span class="k">总资产</span><span class="v">¥151,915.44</span></div>
+    <div class="ov-item"><span class="k">仓位</span><span class="v">**99.90%**（11-20 市价口径）</span></div>
+    <div class="ov-item"><span class="k">可用资金</span><span class="v">¥153.44</span></div>
+    <div class="ov-item"><span class="k">累计盈亏</span><span class="v red">约 **-¥258,485（-58.61%）**（现价基于 11-20 收盘 realtime_quote）</span></div>
+  </div>
+
+  <div class="sec-title">📦 持仓区</div>
+  
+    <div class="card hold">
+      <div class="h-head">
+        <h3>生益科技 <code>600183</code></h3>
+        <span class="pnl bad">-46.95%（-134,316）</span>
+      </div>
+      <div class="snap">
+        <div class="snap-item"><span class="k">成本</span><b>110.03</b></div>
+        <div class="snap-item"><span class="k">现价</span><b>58.37</b></div>
+        <div class="snap-item"><span class="k">持仓</span><b>2600股</b></div>
+        <div class="snap-item"><span class="k">市值</span><b>¥151,762</b></div>
+      </div>
+      <div class="slice"><span class="slice-t">操盘建议</span><span class="sug">🟢 持有/逢低可加</span><div class="sub">系统看涨 + 🟢生产级</div><div class="sub mono">评分 3.51 · 方向 🔴看涨 · 区间 54.26-66.32 · 止损 54.26</div><a class="jump" href="../prediction/自选股建仓预测_2026-11-20.html" target="_blank">↗ 建仓预测</a></div>
+      <div class="slice"><span class="slice-t">复盘结论</span><div class="sub">我的判断：跌势延续，再创新低，空头趋势未改。11-18 那根 +3.91% 是连续跌停后的技术性反抽，已经被 11-19 -1.00% + 11-20 -3.18% 完全吞掉，今天盘中还创了 57.76 新低、跌幅重新放大，说明空头力量根本没有衰竭，反抽不构成企稳。现价跌破 MA5 和所有均线，均线全空头，没有任何止跌…</div><a class="jump" href="../review/操盘复盘_2026-11-20.html" target="_blank">↗ 操盘复盘</a></div>
+      <div class="slice"><span class="slice-t">龙虎榜 · 今日</span><span class="muted">未上榜</span></div>
+      <div class="slice"><span class="slice-t">行业定位 · 申万三级</span><span class="ind">电子 → 元件 → <b>印制电路板</b></span><a class="jump" href="../dashboard/A股板块每日情报仪表盘_2026-11-20.html" target="_blank">↗ 板块仪表盘</a></div>
+      <div class="slice"><span class="slice-t">因子规则</span><span class="muted">建仓预测统一评分（资金流 0.42 + D哥 0.31 + Z哥 0.27）</span><a class="jump" href="../system/index.html" target="_blank">↗ 因子规则库</a></div>
+      <details class="slice-trades"><summary>📜 交易流水（共 68 笔，最近 8 笔）</summary>
+        <div class="trades"><div class="trade-row"><span>11.12</span><span class="b">B</span><span>1100</span><span>79.23</span><span>-87,153</span></div><div class="trade-row"><span>11.12</span><span class="s">S</span><span>1100</span><span>80.72</span><span>+88,792</span></div><div class="trade-row"><span>11.12</span><span class="b">B</span><span>200</span><span>79.77</span><span>-15,954</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>600</span><span>70.74</span><span>-42,444</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>500</span><span>72.05</span><span>-36,025</span></div><div class="trade-row"><span>11.13</span><span class="s">S</span><span>1100</span><span>71.4</span><span>+78,540</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>400</span><span>69.58</span><span>-27,832</span></div><div class="trade-row"><span>11.13</span><span class="b">B</span><span>700</span><span>68.81</span><span>-48,167</span></div></div>
+        <a class="jump" href="../account/index.html" target="_blank">↗ 账户全量报告</a>
+      </details>
+    </div>
+
+  <div class="fundline">💧 资金线：可用资金 <b>¥153.44</b> · 减仓可释放约 <b>¥151,762</b>（按持仓市值估算，纯展示）</div>
+
+  <div class="sec-title">🎯 候选区</div>
+  <div class="card">
+    <div class="h-head"><h3>⭐ 今日候选 TOP10</h3><a class="jump" href="../prediction/自选股建仓预测_2026-11-20.html" target="_blank">↗ 完整预测</a></div>
+    <div class="cand-row"><span class="rk">1</span><span class="cn">中芯国际 <code>688981</code></span><span class="csw">半导体</span><span class="cscore">7.16</span><span class="crange mono">104.42~141.33</span></div><div class="cand-row"><span class="rk">2</span><span class="cn">长江电力 <code>600900</code></span><span class="csw">电力</span><span class="cscore">7.12</span><span class="crange mono">27.79~33.97</span></div><div class="cand-row"><span class="rk">3</span><span class="cn">红板科技 <code>603459</code></span><span class="csw">元件</span><span class="cscore">6.98</span><span class="crange mono">51.23~57.77</span></div><div class="cand-row"><span class="rk">4</span><span class="cn">福莱新材 <code>605488</code></span><span class="csw">塑料</span><span class="cscore">6.81</span><span class="crange mono">38.77~43.71</span></div><div class="cand-row"><span class="rk">5</span><span class="cn">宇树科技 <code>688836</code></span><span class="csw">自动化设备</span><span class="cscore">6.68</span><span class="crange mono">560.24~631.76</span></div><div class="cand-row"><span class="rk">6</span><span class="cn">飞亚达 <code>000026</code></span><span class="csw">饰品</span><span class="cscore">6.63</span><span class="crange mono">18.85~21.25</span></div><div class="cand-row"><span class="rk">7</span><span class="cn">拓荆科技 <code>688072</code></span><span class="csw">半导体</span><span class="cscore">6.46</span><span class="crange mono">514.65~580.35</span></div><div class="cand-row"><span class="rk">8</span><span class="cn">金安国纪 <code>002636</code></span><span class="csw">元件</span><span class="cscore">6.44</span><span class="crange mono">47.36~53.40</span></div><div class="cand-row"><span class="rk">9</span><span class="cn">华正新材 <code>603186</code></span><span class="csw">元件</span><span class="cscore">6.2</span><span class="crange mono">115.67~130.43</span></div><div class="cand-row"><span class="rk">10</span><span class="cn">长川科技 <code>300604</code></span><span class="csw">半导体</span><span class="cscore">6.1</span><span class="crange mono">181.27~204.41</span></div>
+  </div>
+  <div class="card">
+    <div class="h-head"><h3>🦄 妖股榜 TOP10</h3><a class="jump" href="../prediction/自选股建仓预测_2026-11-20.html" target="_blank">↗ 完整预测</a></div>
+    <div class="cand-row yg"><span class="rk">1</span><span class="cn">紫竹高科 <code>002058</code></span><span class="csw">电池</span><span class="cscore">4板</span><span class="crange">⚠️高位 🟡黄金</span></div><div class="cand-row yg"><span class="rk">2</span><span class="cn">时代万恒 <code>600241</code></span><span class="csw">电池</span><span class="cscore">5板</span><span class="crange">⚠️高位</span></div><div class="cand-row yg"><span class="rk">3</span><span class="cn">领湃科技 <code>300530</code></span><span class="csw">电池</span><span class="cscore">2板</span><span class="crange">—</span></div><div class="cand-row yg"><span class="rk">4</span><span class="cn">雄韬股份 <code>002733</code></span><span class="csw">电池</span><span class="cscore">2板</span><span class="crange">—</span></div><div class="cand-row yg"><span class="rk">5</span><span class="cn">丰元股份 <code>002805</code></span><span class="csw">电池</span><span class="cscore">2板</span><span class="crange">—</span></div><div class="cand-row yg"><span class="rk">6</span><span class="cn">楚环科技 <code>001336</code></span><span class="csw">环保设备Ⅱ</span><span class="cscore">2板</span><span class="crange">△限售</span></div><div class="cand-row yg"><span class="rk">7</span><span class="cn">九阳股份 <code>002242</code></span><span class="csw">小家电</span><span class="cscore">5板</span><span class="crange">⚠️高位</span></div><div class="cand-row yg"><span class="rk">8</span><span class="cn">安泰集团 <code>600408</code></span><span class="csw">焦炭Ⅱ</span><span class="cscore">2板</span><span class="crange">—</span></div><div class="cand-row yg"><span class="rk">9</span><span class="cn">新华传媒 <code>600825</code></span><span class="csw">出版</span><span class="cscore">9板</span><span class="crange">🔴接盘区</span></div><div class="cand-row yg"><span class="rk">10</span><span class="cn">红豆股份 <code>600400</code></span><span class="csw">服装家纺</span><span class="cscore">2板</span><span class="crange">—</span></div>
+    <div class="sub" style="margin-top:6px">⚠️ 妖股高风险铁律：单票≤15%仓位 · -7%铁止损 · 炸板即卖 · 永不补仓</div>
+  </div>
+
+  <div class="foot">操盘平台 · 数据全读现有对账单/建仓预测/复盘/缓存/接口/台账 · 零新建</div>
+</body>
+</html>
