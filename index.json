@@ -1,12 +1,18 @@
 {
   "updated": "2026-11-23",
-  "total": 377,
+  "total": 378,
   "items": [
     {
       "type": "因子规则库",
       "date": "2026-11-22",
       "title": "因子库与规则库全景",
       "url": "system/index.html"
+    },
+    {
+      "type": "建仓预测",
+      "date": "2026-11-23",
+      "title": "自选股建仓预测_2026-11-23",
+      "url": "prediction/自选股建仓预测_2026-11-23.html"
     },
     {
       "type": "板块仪表盘",
