@@ -1,7 +1,13 @@
 {
   "updated": "2026-11-22",
-  "total": 372,
+  "total": 373,
   "items": [
+    {
+      "type": "因子规则库",
+      "date": "2026-11-22",
+      "title": "因子库与规则库全景",
+      "url": "system/index.html"
+    },
     {
       "type": "拾光日报学习",
       "date": "2026-11-22",

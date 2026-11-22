@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寒洛 · 因子库与规则库全景</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.65; padding:16px; max-width:960px; margin:0 auto; }
+  a { color:var(--blue); text-decoration:none; }
+  .header { text-align:center; padding:20px 8px 12px; }
+  .header h1 { font-size:24px; letter-spacing:2px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
+  .warn { background:rgba(210,153,34,.08); border-left:3px solid var(--amber); padding:10px 14px; border-radius:6px; margin:12px 0; font-size:13px; }
+  .sec-title { font-size:16px; color:var(--blue); font-weight:700; margin:26px 0 12px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:8px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:12px 0; }
+  .card-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+  .fid, .rid { font-family:monospace; font-size:14px; font-weight:700; color:var(--blue); background:rgba(88,166,255,.08); padding:2px 10px; border-radius:6px; }
+  .rid { color:var(--purple); background:rgba(188,140,255,.10); }
+  .cat-tag { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:8px; padding:1px 8px; }
+  .state { font-size:11px; border:1px solid; border-radius:8px; padding:1px 8px; font-weight:700; }
+  .ver-tag { font-size:11px; color:var(--muted); font-family:monospace; }
+  .badge { font-size:11px; padding:1px 8px; border-radius:8px; }
+  .badge.on { background:rgba(63,185,80,.15); color:var(--green); }
+  .badge.off { background:rgba(248,81,73,.15); color:var(--red); }
+  .fname { font-size:16px; margin-bottom:10px; }
+  .kv { display:grid; grid-template-columns:110px 1fr; gap:4px 12px; padding:6px 0; border-bottom:1px solid var(--border); font-size:13px; }
+  .kv:last-of-type { border-bottom:none; }
+  .kv .k { color:var(--muted); font-weight:600; }
+  .kv .v { min-width:0; overflow-wrap:anywhere; }
+  .formula { font-family:monospace; font-size:12.5px; color:var(--text); background:var(--bg); padding:8px 10px; border-radius:6px; }
+  .note { font-size:13px; color:var(--muted); margin-top:10px; line-height:1.7; }
+  .ic { font-family:monospace; font-weight:700; }
+  .ic-hist, .vitals { font-size:12px; color:var(--muted); margin-top:6px; font-family:monospace; }
+  .vitals { color:var(--amber); }
+  .links { display:flex; flex-wrap:wrap; gap:6px; }
+  .link { font-family:monospace; font-size:12px; color:var(--green); background:rgba(63,185,80,.10); padding:1px 8px; border-radius:6px; }
+  .muted { color:var(--muted); }
+  .sub-wrap { margin:8px 0; }
+  .sub-title { font-size:12px; color:var(--purple); font-weight:700; margin:6px 0 4px; }
+  .subtable { width:100%; border-collapse:collapse; font-size:12px; }
+  .subtable td { padding:5px 8px; border:1px solid var(--border); }
+  .subtable .subk { font-family:monospace; color:var(--blue); white-space:nowrap; width:30%; }
+  .ver { font-size:12px; color:var(--muted); margin-top:8px; font-family:monospace; }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin:24px 0 8px; }
+  @media (max-width:640px) {
+    body { padding:12px 10px; }
+    .header h1 { font-size:20px; }
+    .card { padding:14px 12px; }
+    .kv { grid-template-columns:1fr; gap:2px; }
+    .kv .k { margin-top:4px; }
+    .fid, .rid { font-size:13px; }
+    .subtable .subk { white-space:normal; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>📚 因子库与规则库全景</h1>
+    <div class="sub">因子 12 个 · 规则 13 条 · 生成于 2026-11-22 13:40 · 数据源 factor_ledger.json / rule_ledger.json</div>
+  </div>
+
+  <div class="warn">⚠️ <b>数据一致性提醒</b>：factor_ledger 的 unified_score 已更新到 V6.66.5 权重（0.42*money_flow + 0.31*D哥 + 0.27*z_score），但 rule_ledger 的 final_score_formula 仍停在 V6.66.0 旧版（0.56/0.275/0.165，xgb 已砍）。本页以 <b>因子台账为准</b>，规则台账该条待同步。</div>
+
+  <div class="sec-title">🔬 因子库（12 个参数）</div>
+  
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">z_score</code>
+        <span class="cat-tag">短线时机</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">Z哥超短时机评分</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">起始5分，量比&gt;1.3+2/1.0+1/不足-1；MA5乖离&lt;2%+2/&lt;4%+1/&gt;8%-2；均线多头+1/空头-1；路线trend_confirm+1/left_side下轨+1；D哥过滤avoid-1；clamp 3-9</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/z_score.py::z_score_timing()（V6.66 P2 收编自 daily_prediction.py，纯函数）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v"><span class="ic" style="color:var(--green)">IC +0.3000</span> 649条维度诊断（2026-06-05），最强因子</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">unified_score 输入因子（权重 0.275，见 factors/score.py）+ scores['Z哥'] 展示</div></div>
+      <div class="note">💡 V6.66 P2 物理收编到 factors/z_score.py。不再单独主导 final_score，作为统一评分的正 IC 因子之一（IC 0.30）。</div>
+      <div class="ic-hist">📊 2026-11-21 · out-of-sample · rank_ic 0.3682 · pearson 0.3695 · n=6563 · ✅ 有效</div>
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">mid_long_score</code>
+        <span class="cat-tag">中长期质量</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">中长期质量评分（4专家动态加权）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">D哥×w_dge + 芒格×w_mg + 塔勒布×w_tlb + 缠论×w_cl（权重从 expert_weights.json effective_weight 归一化，达利欧 IC=0 已砍）</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::expert_analysis()（mid_long_score 段）+ load_expert_weights()</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v"><span class="ic" style="color:var(--green)">IC +0.3793</span> 维度诊断 11-21 复现（6563样本，样本外）：+0.3793 正向，符号翻转（旧 -0.11 → +0.3793），根因=V6.65.48 修复 load_expert_weights 后 D哥 权重真正生效</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">降级为质量过滤挡位（quality_boost：≥7→+0.5 / 5-7→0 / &lt;5→-1.0），不直接进 final_score 加权</div></div>
+      <div class="note">💡 IC 反向 → 不能直接加权，只做质量过滤。V6.65.49 修复 load_expert_weights 读 json bug，动态权重首次真正生效。 V6.66.5：D哥 成分（IC +0.4559 全系统第二强）单独晋升进 unified_score 加权（权重 0.31），mid_long 整体仍作 quality_boost 挡位（D哥 已覆盖其大部分信息，corr 0.939）。</div>
+      <div class="ic-hist">📊 2026-11-21 · out-of-sample · rank_ic 0.3793 · pearson 0.3291 · n=6563 · ✅ 有效</div>
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">money_flow_score</code>
+        <span class="cat-tag">资金面</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">P7 资金流评分</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">get_money_flow_score(code) 计算个股资金流 0-10</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/money_flow.py::money_flow_score()（V6.66 P2 收编自 daily_prediction.py）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v"><span class="ic" style="color:var(--green)">IC +0.4800</span> walk-forward 训练IC=+0.48 / 验证IC=+0.61（2938样本，compute_composite_score 注释）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">unified_score 输入因子（权重 0.56，最强单因子）+ 展示层评分</div></div>
+      <div class="note">💡 V6.66 P2 物理收编到 factors/money_flow.py。V6.66 P0 起作为统一评分最终分的主导因子（权重 0.56，IC 0.61），不再只在展示层 composite。</div>
+      <div class="ic-hist">📊 2026-11-21 · out-of-sample · rank_ic 0.6005 · pearson 0.5515 · n=6552 · ✅ 有效</div>
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">xgb_score</code>
+        <span class="cat-tag">机器学习</span>
+        <span class="badge off">❌ 已下线</span>
+      </div>
+      <h3 class="fname">XGBoost 独立信号</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">xgb_boost = (xgb_score - 5) × 0.15（xgb∈0-10 基准5）</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::expert_analysis()（xgb_boost 段）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v"><span class="ic" style="color:var(--red)">IC -0.3074</span> 维度诊断 11-21 复现（6552样本，样本外）：-0.3074 反向，符号翻转（旧 0.18 → -0.3074）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">final_score 独立加成项（渐进双轨：保留 final_score + 新增 xgb_score）</div></div>
+      <div class="note">💡 渐进双轨部署，未激进替换。特征重要性 money_flow_score(0.17) &gt; day_return(0.12) &gt; buy_range_pct(0.11)。 ⚠️ V6.66.5 反向下线：IC -0.3074 样本外反向，权重测算证实真进加权会把 unified_score 从 0.65 拖到 0.61。由 D哥 替代（D哥 IC +0.4559 第二强）。保留历史与监测（若未来重训后 IC 转正可重新评估）。</div>
+      <div class="ic-hist">📊 2026-11-21 · out-of-sample · rank_ic -0.3231 · pearson -0.2428 · n=5970 · ✅ 有效</div>
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">atr_pct</code>
+        <span class="cat-tag">风险度量</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">ATR14 波动率</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">atr14 = mean(TR_i), i∈[0,14)；atr_pct = atr14 / price</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::batch_get_all_stocks_data()（ATR 段）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 未单独诊断（风险度量非方向因子）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">方案B 预测波动区间（_half = clamp(atr_pct, 0.015, 0.06)）+ srlab 检测的 ATR 基准</div></div>
+      <div class="note">💡 风险度量因子，不预测方向，用于区间宽度和支撑阻力距离归一化。</div>
+      <div class="ic-hist">📊 2026-11-21 · out-of-sample · rank_ic -0.1907 · pearson -0.1938 · n=6563 · ✅ 有效</div>
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">build_signal</code>
+        <span class="cat-tag">交易信号</span>
+        <span class="badge off">❌ 已下线</span>
+      </div>
+      <h3 class="fname">交易提醒因子（方向+入场/止损/目标+置信度）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">方向概率门槛55%；入场=现价；做多止损=最近支撑/做空=最近阻力；目标=入场±(入场-止损)×1.5；盈亏比固定1.5</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/signal.py::build_signal()</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 未回测验证（state=candidate，见 rule_ledger signal_trade_reminder）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">价格行为引擎 build_signal（in_production=false，state=candidate，未回测）</div></div>
+      <div class="note">💡 V6.66 P2 台账修正：旧台账误记「进建仓预测止损统一（nearest_support 入口）」，实际建仓预测止损用的是 srlab detector（_srlab_support）。本因子未回测、未进生产决策，禁止进建仓预测止损。</div>
+      
+      <div class="vitals">📡 最新体检 2026-11-22 · sig_rate=0.428 · n=206179 · <b>ALERT</b></div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">sr_levels</code>
+        <span class="cat-tag">支撑阻力</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">支撑阻力概率（srlab）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">8特征逻辑回归：触及概率（dist_atr/width_atr/n_events/stale/vp/close_p等8特征）+ 守住概率</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/srlab/（detector_pa.py + probability.py + bridge.py）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 触及 AUC 0.78(support)/0.73(resistance)；守住 AUC 0.53/0.61（接近随机，placebo 对照全负）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">①价格行为引擎（bridge.py 已接）②建仓预测止损支撑位（V6.65.51 _srlab_support 接入 detector 位置检测）</div></div>
+      <div class="note">💡 触及概率模型靠谱（AUC 0.78），守住概率用 base_rate 即可（AUC 0.53 加不上信息）。detector 位置检测（摆动点+前10日高低+EMA20）已接入建仓预测止损，概率层暂未接入止损（止损只用位置）。</div>
+      
+      <div class="vitals">📡 最新体检 2026-11-22 · touch_rate=0.562 · n=985539 · <b>ALERT</b></div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">yaogu_scoring</code>
+        <span class="cat-tag">妖股</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">妖股打分（连板倒U型五因子）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">s_lb*0.45 + s_mv*0.20 + s_tr*0.10 + s_money*0.15 + s_hy*0.10 + 流通比例修正</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/yaogu.py::score_stock()（V6.65.52 收编自 yaogu_monitor.py）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 回测456连板样本次日涨停率36.6%（见 rule_ledger yaogu_scoring 规则）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">yaogu_monitor.py 妖股 TOP10 排名</div></div>
+      <div class="note">💡 2026-10-21 新增资金进场度 money_score 权重0.15。收编时修正 rule_ledger 旧四因子公式漂移（0.5/0.25/0.15/0.10 → 0.45/0.20/0.10/0.15/0.10）。</div>
+      
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">direction</code>
+        <span class="cat-tag">方向</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">多空方向概率（规则引擎四因子）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">趋势(收盘vs EMA20 ±4, EMA方向 ±3) + 影线(上影-7/下影+7) + 结构(测试前高-4/突破前高+6/跌破前低-5) + 动量(连续阳阴线±6)，clamp 40-65</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/direction.py::direction_score()（V6.65.52 收编自 price_action_engine.py）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 未单独诊断（方向概率，非次日收益排序因子）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">price_action_engine.py 逐K方向 + 建仓预测方向列（V6.65.55 generate_prediction_md.py _load_direction_map 注入）+ build_signal</div></div>
+      <div class="note">💡 V6.66 P1-③ 展示层诚实化：方向命中率≈50%（≈抛硬币），展示层不再二值化成确定「看涨/看跌」，改显示强度分 + 「非胜率·弱信号」标注。</div>
+      
+      <div class="vitals">📡 最新体检 2026-11-22 · dir_rate=0.5 · n=206179 · <b>ALERT</b></div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">chanlun</code>
+        <span class="cat-tag">缠论</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">缠论买点算法（摆动点版：摆动点→笔→中枢→背驰）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">calc_swing_points(摆动点分形) → merge_swings(合并) → build_chanlun(笔+中枢) → detect_divergence(背驰力度衰减30%)</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/chanlun.py（V6.65.54 统一摆动点版，以价格行为·逐K历史演绎为准）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 未回测（三大买点：中枢下沿/摆动低点确认/背驰点）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">price_action_engine.py（逐K历史演绎）+ chanlun_buy_price.py（买入价计算）+ chanlun_cache_builder.py（缓存）+ daily_prediction.py 底分型检测（读缓存）</div></div>
+      <div class="note">💡 V6.65.54 统一：废弃分型版（process_inclusion/find_fractals 那套），摆动点版为唯一权威。引擎、买入价计算器、缓存构建器全走 factors/chanlun.py，无重复实现。</div>
+      
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">shiguang</code>
+        <span class="cat-tag">消息面/事件面</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">拾光产业信号（消息面独立因子）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">拾光期刊可核验产业信号结构化 → factors/shiguang_signals.json → shiguang_signal(industry, code) 按行业关键词粗筛 + 个股白名单精匹配 → 独立展示（不混 direction_score）</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/shiguang.py::shiguang_signal()（V6.65.64 新增）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— 事件/板块级信号，非个股次日收益排序因子，不做 IC 验证（样本稀疏 + 链归属行业粗匹配）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">price_action_engine.py 逐K演绎最后一根（当前时点）独立卡片「🌐拾光产业信号」</div></div>
+      <div class="note">💡 消息面/事件面独立信号层，与技术面 direction_score 平级但不混分（V6.65.62 铁律禁止往方向因子加因子）。只抽产业信号不抽情绪噪音（暴跌=噪音、四信号打钩=信号），strength 三档诚实标（1预期/2部分打钩/3硬信号），direction 按链方向分开。</div>
+      
+      
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <code class="fid">unified_score</code>
+        <span class="cat-tag">综合评分</span>
+        <span class="badge on">✅ 生产中</span>
+      </div>
+      <h3 class="fname">统一综合评分（IC 加权多因子合成）</h3>
+      <div class="kv"><span class="k">算法/范围</span><div class="v formula">0.42*money_flow + 0.31*D哥 + 0.27*z_score + quality_boost（mid_long 挡位 + 超跌豁免）</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/score.py::unified_score()（V6.66 P0 新建）</div></div>
+      <div class="kv"><span class="k">IC 值</span><div class="v">— V6.66.5 权重测算：mf 0.6133 / D哥 0.4559 / z 0.3884 单因子 rank_ic → IC 归一化（5241样本/18交易日）</div></div>
+      <div class="kv"><span class="k">用途/联动</span><div class="v">全系统唯一权威评分：排序 / 展示 / 买入区间(zone_width) / 操作建议(action) / 止损分档 全吃它（V6.66 P0 消除双评分分裂）</div></div>
+      <div class="note">💡 V6.66 P0 修复双评分分裂：旧的 final_score（z_score 主导）与 _composite_score（money_flow+mid_long 主导）两套因子互不相认，统一为本因子。 V6.66.5：砍 xgb（IC -0.3074 反向）换 D哥（IC +0.4559），样本外 rank_ic 0.6501→0.6716（+3.3%）。权重测算脚本 weight_optimization.py 留存。</div>
+      
+      <div class="vitals">📡 最新体检 2026-11-22 · rank_ic=-0.2964 · n=266 · <b>ALERT</b></div>
+    </div>
+
+  <div class="sec-title">📜 规则库（13 条规则）</div>
+  
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">yaogu_scoring</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">V6.56.1</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">妖股打分规则</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">score = s_lb*0.45 + s_mv*0.20 + s_tr*0.10 + s_money*0.15 + s_hy*0.10（连板倒U型 + 流通比例风险修正 + 资金进场度）</div></div>
+      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">s_lb_连板倒U型</td><td>2板=35 / 3板=80 / 4板=75 / 5板=65 / 6板=70 / ≥7板=55 / 其他=20</td></tr><tr><td class="subk">s_mv_流通市值(越小越妖)</td><td>&lt;30亿=100 / &lt;50亿=80 / &lt;80亿=60 / &lt;100亿=40 / ≥100亿=20</td></tr><tr><td class="subk">s_tr_换手</td><td>5-15%=100 / 15-25%=70 / &lt;5%=50 / &gt;25%=30</td></tr><tr><td class="subk">s_money_资金进场度</td><td>0-100直接映射，无数据中性50（2026-10-21新增，区分主力抱团vs出货板）</td></tr><tr><td class="subk">s_hy_板块效应</td><td>同板块涨停≥3家=100 / 2家=70 / 1家=40 / 0家=0</td></tr><tr><td class="subk">流通比例修正</td><td>流通比例&lt;50% → -8分(⚠️限售)；50-80% → -3分(△限售)；&gt;80%无修正</td></tr></table></div>
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">yaogu_scoring</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/yaogu_monitor.py::score_stock()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§5 妖股监控 / §86.7</div></div>
+      <div class="note">💡 §86.7 第一刀首选（权重结构清晰 + 已有456连板回测样本 + 独立不占TOP10名额）</div>
+      <div class="ver">📜 版本：V6.55.0 → V6.56.0 → V6.56.1</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">composite_score_formula</code>
+        <span class="state" style="color:var(--muted);border-color:var(--muted)">退役·历史</span>
+        <span class="ver-tag">V6.52</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">综合评分公式</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">composite_score = 0.60 * money_flow_score + 0.40 * mid_long_score（二因子主导）</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">money_flow_score</code><code class="link">mid_long_score</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::compute_composite_score()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7</div></div>
+      <div class="note">💡 ⚠️ V6.66 P0 已废弃：双评分统一后，generate_prediction_md.py 排序不再用 composite_score（0.6 mf + 0.4 mid_long），改读 final_score（unified_score）。本规则保留历史，不再进生产。</div>
+      <div class="ver">📜 版本：V6.52 → V6.66.0 retired</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">quality_tier_stop_loss</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">V6.32</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">质量分级止损</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">质量等级 → 正常止损 / 大盘恐慌止损</div></div>
+      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">S级</td><td>正常-7% / 恐慌-15%（硬线，恐慌加仓须人工确认禁止自动）</td></tr><tr><td class="subk">A级</td><td>正常-7% / 恐慌-12%</td></tr><tr><td class="subk">B级</td><td>正常-5% / 恐慌-8%</td></tr><tr><td class="subk">C级</td><td>正常-5% / 恐慌-5%</td></tr><tr><td class="subk">D级</td><td>正常-3% / 恐慌-3%立即</td></tr></table></div>
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/lib/stop_loss.py::compute_stop_price()（唯一止损计算入口）</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§38 质量分级止损体系</div></div>
+      <div class="note">💡 V6.32 统一修正：删除原S级不设止损/加仓信号；任何股票都有止损线</div>
+      <div class="ver">📜 版本：V6.23 → V6.32</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">b_library_admission</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">V6.29.0</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">B库准入门槛</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">供给≥7.4 + 需求≥5.8 + 财务≥6.8 + 总分≥8.0（三维加权35/35/30）</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">quality_scorer 三维评分 + B库扫描流程</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§35 B库准入规则</div></div>
+      <div class="note">💡 从A库86只反向工程，以25只S/A级为好股样本抽取基因；+5%收紧（A库最弱A级7.6分 → B库门槛8.0）</div>
+      <div class="ver">📜 版本：V6.29.0</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">expert_weights</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">v1.2-template-loader</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">专家权重体系</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">effective_weight = base_weight + adjustment（per-expert 胜率/IC 驱动调整）</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/expert_weights.json（动态读取）+ scripts/update_expert_weights.py</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§80 专家权重体系 / §86.7</div></div>
+      <div class="note">💡 最小权重1%防虚高；mid_long_score由硬编码改动态从expert_weights.json读取。✅ V6.65.48 修复：load_expert_weights() 现读 json 顶层专家名的 effective_weight（旧代码读 wdata['weights'] 但 json 无此键→动态权重从未生效，一直用默认值归一化），已修复。修复后 mid_long 仅 D哥/芒格/塔勒布/缠论 4 专家（达利欧 IC=0 已砍），负数 clamp 到 0。V6.65.47 的'漂移'标注系误盘 workspace/scripts/ 废弃残留，已撤销</div>
+      <div class="ver">📜 版本：v1.2-template-loader</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">mid_long_score_formula</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">V6.49</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">中长期综合分（4专家动态加权，达利欧已砍）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">mid_long_score = D哥×w_dge + 芒格×w_mg + 塔勒布×w_tlb + 缠论×w_cl（权重从 expert_weights.json 的 effective_weight 归一化，见 expert_weights 规则）</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">mid_long_score</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::expert_analysis()（line ~1139）+ load_expert_weights()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测 / §86.7</div></div>
+      <div class="note">💡 V6.65.48 盘点补登记。达利欧 IC=0.0001 已 dropped（line 1144 注释）。mid_long_score 在 final_score 中不直接加权，仅作 quality_boost 质量过滤三挡（≥7/≥5/&lt;5），因 mid_long IC=-0.11 反向（见 final_score_formula 规则）</div>
+      <div class="ver">📜 版本：V6.49</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">final_score_formula</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">V6.66.0</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">建仓预测统一评分（unified_score，IC 加权多因子，V6.66 P0 双评分统一）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">final_score = unified_score = clamp(0.56*money_flow + 0.275*z_score + 0.165*xgb + quality_boost, 1, 10)</div></div>
+      <div class="sub-wrap"><div class="sub-title">子评分/档位明细</div><table class="subtable"><tr><td class="subk">money_flow</td><td>IC 0.61（walk-forward 2938样本，最强）权重 0.56</td></tr><tr><td class="subk">z_score</td><td>IC 0.30（最强短线时机）权重 0.275</td></tr><tr><td class="subk">xgb</td><td>IC 0.18 权重 0.165</td></tr><tr><td class="subk">quality_boost</td><td>mid_long 质量过滤挡位（≥7→+0.5 / 5-7→0 / &lt;5→-1.0）+ 超跌豁免</td></tr><tr><td class="subk">已砍专家</td><td>达利欧 IC=0 已砍；芒格 IC=-0.22 反向已降权；mid_long IC=-0.11 反向只做挡位不进加权</td></tr></table></div>
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">money_flow_score</code><code class="link">z_score</code><code class="link">xgb_score</code><code class="link">mid_long_score</code><code class="link">unified_score</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/score.py::unified_score() + scripts/daily_prediction.py::expert_analysis()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测 / §86.7</div></div>
+      <div class="note">💡 V6.66 P0 双评分分裂统一：旧的 final_score（z_score主导）与 composite_score（money_flow+mid_long主导）两套因子互不相认，统一为本公式（IC 归一化加权）。排序/展示/买入区间/操作建议/止损分档全吃这一个分。z_score 由 factors/z_score.py::z_score_timing 提供，money_flow 由 factors/money_flow.py::money_flow_score 提供。</div>
+      <div class="ver">📜 版本：V6.31 → V6.66.0</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">signal_trade_reminder</code>
+        <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
+        <span class="ver-tag">V1.2</span>
+        <span class="badge off">❌ 未生产</span>
+      </div>
+      <h3 class="fname">交易提醒规则（方向+入场/止损/目标+信号强度）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">入场=现价；止损=锚定关键位：做空 max(入场×1.05, 阻力×1.02)、做多 min(入场×0.95, 支撑×0.98)；目标=入场±(入场-止损)×1.5；盈亏比固定1.5；方向强度&lt;55一律观望；|close-EMA20|/EMA20 偏离超±20%顺势信号降级观望。V1.1(2026-11-21)：止损从支撑位改固定5%。V1.2(2026-11-21)：方向概率下架改强度分+止损锚定关键位+超跌超涨过滤</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">direction</code><code class="link">sr_levels</code><code class="link">atr_pct</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/signal.py::build_signal()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7 / 价格行为引擎</div></div>
+      <div class="note">💡 价格行为引擎交易提醒。因子=方向强度(非胜率)+支撑阻力(srlab)+EMA位置+前高前低结构。V1.1(2026-11-21)根因修正：全股池296只/20.6万根walk-forward实测，支撑位止损负期望EV-0.033，固定5%止损正期望EV+0.050。V1.2(2026-11-21，邹苏煜指令)：①方向概率(direction_score规则打分)命中率仅49.5%≈随机，不再当胜率展示，改「方向强度分」，字段confidence→strength；②止损锚定关键位——做空止损卡阻力下方会被扫，改max(5%,阻力×1.02)抬到阻力上方；③超跌超涨过滤——生益科技9-22见顶149.94跌至58.37(-61%)末端仍给顺势卖出，加±20%偏离过滤降级观望。止损口径与建仓预测止损(nearest_support)分属两阶段。</div>
+      <div class="ver">📜 版本：V1.0 → V1.1 → V1.2</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">entry_prediction_stop_loss</code>
+        <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
+        <span class="ver-tag">V6.65.51</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">建仓预测买入止损（最近支撑位优先，-7%下限兜底）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">stop_loss = max(support, price×0.93)；support = 优先 srlab detector（摆动点+前10日低+EMA20，取最接近现价且&lt;现价的支撑位）→ 回退简化版（最近低点+MA20）→ 无则 price×0.93</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">sr_levels</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/daily_prediction.py::_srlab_support() + expert_analysis()（V6.65.51 接入 srlab）</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§97 建仓预测止损口径统一 / §86.7</div></div>
+      <div class="note">💡 V6.65.47 第一铲：建仓预测止损从 price×0.93 硬编码统一到「最近支撑位」，对齐引擎 build_signal 口径。✅ V6.65.51 接入 srlab detector：优先 srlab 检测支撑位（摆动点+前10日低+EMA20），失败回退简化版（最近低点+MA20）；batch 版保留完整 OHLCV 序列（原只留近5日，srlab 需完整60+日）。-7%下限防支撑太远止损过深。与持仓风控止损（quality_tier_stop_loss）分属两阶段；且 build_signal 交易提醒止损已独立改固定5%（V6.65.56验证驱动，见 signal_trade_reminder V1.1），本规则 nearest_support 仅服务建仓预测买入止损：本规则=买入前预测，后者=持有期风控。未回测验证，state=candidate，开盘日印证</div>
+      <div class="ver">📜 版本：V6.65.47 → V6.65.51</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">ma250_filter</code>
+        <span class="state" style="color:var(--green);border-color:var(--green)">冠军·生产</span>
+        <span class="ver-tag">V6.0</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">年线（MA250）过滤</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">现价 &lt; MA250 → 标记🔴年线下 + 不进入推荐TOP；无年线数据默认放行（不误杀）</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v muted">外部数据（非因子库参数）</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/ma250_fetcher.py（抓取） + scripts/generate_prediction_md.py::_is_above_ma250()/_ma250_badge()（消费）</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§97 / §86.7</div></div>
+      <div class="note">💡 用户铁律「年线(MA250)之下不推荐」。软过滤（标记+TOP排除），非硬剔除；无数据默认放行防误杀。V6.65.47 盘点登记</div>
+      <div class="ver">📜 版本：V6.0</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">direction_score</code>
+        <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
+        <span class="ver-tag">V1.1</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">方向概率打分（趋势+影线+结构+动量，40-65区间）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">score=50±(趋势vsEMA20±4/EMA方向±3/上影+7/下影-7【V1.1翻转】/测试前高-4/突破前高+6/跌破前低-5/连续阳阴线clamp±6)，clamp[40,65]</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">direction</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/factors/direction.py::direction_score()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7 / 价格行为引擎</div></div>
+      <div class="note">💡 价格行为引擎方向因子。V1.1(2026-11-21)：全股池296只/20.6万根四规则IC诊断，影线规则IC=-0.024反向(看多命中率44%比随机低6pp)，A股影线语义与国际相反(上影=主力试盘看多，下影=假支撑诱多看空)，已翻转。翻转后方向命中率49.5%→50.0%、信号EV+0.049→+0.07。⚠️ 趋势/结构/动量IC均&lt;0.035仍弱，方向因子整体无强alpha，四规则天花板~50%，质变需引入量价/资金流/市场状态等新因子。【V6.65.61 天花板结论，2026-11-21】资金流接入验证：超大单净额IC+0.03量级(次日+0.018/未来3日+0.031)、主力净额net_mf反向IC-0.015，接入direction_score命中率仅+0.3pp(51.5%→51.8%，一致/不一致无差别)。结论：日线次日涨跌方向预测天花板51-52%，纯价格形态+资金流都撞不破，这是市场信噪比本质非因子问题。定位：方向因子=弱参考(不主导决策)，决策主力=XGBoost(IC0.18)+多因子。铁律：禁止再在方向因子上调阈值/加因子做无效投入。</div>
+      <div class="ver">📜 版本：V1.0 → V1.1</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">sr_probability</code>
+        <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
+        <span class="ver-tag">V1.0</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">支撑阻力概率（srlab 8特征逻辑回归：触及×守住）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">touch_prob/hold_prob = srlab 逻辑回归（dist/dist_sq/width/logev/atr_pct/hold_lb 等8特征）</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v links"><code class="link">sr_levels</code></div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">workspace/scripts/srlab/bridge.py::predict_sr_levels()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§86.7 / 价格行为引擎</div></div>
+      <div class="note">💡 触及 AUC 0.78 真信号（口径=40根+区带边，校准良好，实际56.2% vs 预测63.5%，偏差-7.3pp轻微高估可接受）；守住概率 placebo 对照无定位增量（距离驱动），只当校准好的弱信号。⚠️ 2026-11-21 曾误判「触及高估27pp」，系验证口径(10根+center)与训练口径(40根+区带边)不匹配，已纠正。</div>
+      <div class="ver">📜 版本：V1.0</div>
+    </div>
+    <div class="card rule">
+      <div class="card-head">
+        <code class="rid">market_state_gate</code>
+        <span class="state" style="color:var(--amber);border-color:var(--amber)">候选·观察</span>
+        <span class="ver-tag">V1.0</span>
+        <span class="badge on">✅ 生产</span>
+      </div>
+      <h3 class="fname">市场状态闸（震荡/熊市信号降级提示）</h3>
+      <div class="kv"><span class="k">公式/规则</span><div class="v formula">读 market_state_classifier 五态（STRONG_BULL/MILD_BULL/RANGE/MILD_BEAR/PANIC_BEAR），价格行为引擎交易提醒卡片按态加降级提示：RANGE「震荡市方向≈随机」/ MILD_BEAR「信号可信度低，控制仓位」/ PANIC_BEAR「不建议操作」。只降级提示，不改信号分数。</div></div>
+      
+      <div class="kv"><span class="k">🔗 联动因子</span><div class="v muted">外部数据（非因子库参数）</div></div>
+      <div class="kv"><span class="k">数据源</span><div class="v">scripts/market_state_classifier.py（五态判定）+ workspace/scripts/price_action_engine.py::_load_market_state()/marketDowngrade()/renderMarketState()</div></div>
+      <div class="kv"><span class="k">总纲章节</span><div class="v">§77 市场状态分类 / §86.7</div></div>
+      <div class="note">💡 2026-11-22 落地。核心是修 breadth bug（index_daily 对申万 .SI 代码返回空 → 改 sw_daily，行业宽度 0%→11.1% 真实化）并接入价格行为引擎。市场状态五态分类器 §77-① 本已存在，但 breadth 恒 0 导致 RANGE（震荡）永测不准——正是用户第5条「市场状态闸」洞察的印证。降级只做诚实提示（震荡市方向≈随机），不改信号分数，符合方向因子52%天花板结论。未回测降级有效性，state=candidate（§43 F4）。</div>
+      <div class="ver">📜 版本：V1.0</div>
+    </div>
+
+  <div class="sec-title">🔗 联动说明</div>
+  <div class="card">
+    <div class="note">「联动因子」字段列出每条规则直接调用的因子参数。核心链路：<b>money_flow / D哥 / z_score</b> 三个正 IC 因子 → unified_score（统一评分）→ 排序/展示/买入区间/操作建议/止损分档全吃它。quality_boost（mid_long 挡位）作质量过滤不进加权。xgb_score 已因 IC 反向（-0.3074）下线，由 D哥（IC +0.4559）替代。</div>
+  </div>
+
+  <div class="foot">寒洛 · 因子库与规则库 · 数据源 Tushare VIP · 自动更新</div>
+</body>
+</html>
