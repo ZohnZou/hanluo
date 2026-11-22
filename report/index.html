@@ -52,8 +52,8 @@ function isNew(date, url) {
 }
 
 const TYPE = "深度报告";
-fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
-  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+const data = {"items": [{"type": "深度报告", "date": "2026-11-10", "title": "端侧AI深度研究报告_2026-11-10", "url": "report/端侧AI深度研究报告_2026-11-10.html"}, {"type": "深度报告", "date": "2026-11-04", "title": "生益科技Q3业绩与覆铜板周期重估_2026-11-04", "url": "report/生益科技Q3业绩与覆铜板周期重估_2026-11-04.html"}, {"type": "深度报告", "date": "2026-11-04", "title": "美国中期选举结果验证与推演更新_2026-11-04", "url": "report/美国中期选举结果验证与推演更新_2026-11-04.html"}, {"type": "深度报告", "date": "2026-11-03", "title": "美国中期选举沙盘推演_2026-11-03", "url": "report/美国中期选举沙盘推演_2026-11-03.html"}, {"type": "深度报告", "date": "2026-10-31", "title": "生益科技_Q3财报深度分析_2026-10-31", "url": "report/生益科技_Q3财报深度分析_2026-10-31.html"}, {"type": "深度报告", "date": "2026-10-31", "title": "宏昌电子_Q3财报分析_2026-10-31", "url": "report/宏昌电子_Q3财报分析_2026-10-31.html"}, {"type": "深度报告", "date": "2026-10-31", "title": "澜起科技_Q3财报分析_2026-10-31", "url": "report/澜起科技_Q3财报分析_2026-10-31.html"}, {"type": "深度报告", "date": "2026-10-27", "title": "物理AI深度全景_V4_2026-10-27", "url": "report/物理AI深度全景_V4_2026-10-27.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "埃斯顿深度报告_3万字版_2026-10-26", "url": "report/埃斯顿深度报告_3万字版_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "物理AI双标的深度报告_双3万字版_2026-10-26", "url": "report/物理AI双标的深度报告_双3万字版_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "埃斯顿深度报告_万字版_2026-10-26", "url": "report/埃斯顿深度报告_万字版_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "嘉立创深度报告_2026-10-26", "url": "report/嘉立创深度报告_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "凡拓数创深度报告_3万字版_2026-10-26", "url": "report/凡拓数创深度报告_3万字版_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "物理AI双标的深度报告_埃斯顿+凡拓数创_2026-10-26", "url": "report/物理AI双标的深度报告_埃斯顿+凡拓数创_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-26", "title": "埃斯顿深度报告_2026-10-26", "url": "report/埃斯顿深度报告_2026-10-26.html"}, {"type": "深度报告", "date": "2026-10-25", "title": "物理AI深度全景_V3_2026-10-25", "url": "report/物理AI深度全景_V3_2026-10-25.html"}, {"type": "深度报告", "date": "2026-10-23", "title": "物理AI概念辨析与产业链边界_2026-10-23", "url": "report/物理AI概念辨析与产业链边界_2026-10-23.html"}, {"type": "深度报告", "date": "2026-10-23", "title": "物理AI完整产业链全景_2026-10-23", "url": "report/物理AI完整产业链全景_2026-10-23.html"}, {"type": "深度报告", "date": "2026-10-23", "title": "物理AI深度全景_2026-10-23", "url": "report/物理AI深度全景_2026-10-23.html"}, {"type": "深度报告", "date": "2026-10-23", "title": "物理AI双会场_GTC柏林_宇树世界物理AI大会_2026-10-23", "url": "report/物理AI双会场_GTC柏林_宇树世界物理AI大会_2026-10-23.html"}, {"type": "深度报告", "date": "2026-10-21", "title": "物理AI全面介绍_2026-10-21", "url": "report/物理AI全面介绍_2026-10-21.html"}, {"type": "深度报告", "date": "2026-10-21", "title": "物理AI全产业链股票全景_2026-10-21", "url": "report/物理AI全产业链股票全景_2026-10-21.html"}]};
+  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {
     const url = i.url.replace('report/', '');
@@ -65,7 +65,6 @@ fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
     if (isNew(i.date, i.url)) a.innerHTML += '<span class="new-badge">NEW</span>';
     list.appendChild(a);
   });
-});
 </script>
 </body>
 </html>

@@ -52,8 +52,8 @@ function isNew(date, url) {
 }
 
 const TYPE = "投资版接力";
-fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
-  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+const data = {"items": [{"type": "投资版接力", "date": "2026-11-15", "title": "投资版接力_黄仁勋5300亿信用账单_2026-11-15", "url": "relay/投资版接力_黄仁勋5300亿信用账单_2026-11-15.html"}, {"type": "投资版接力", "date": "2026-10-31", "title": "投资版接力_第5期_2026-10-31", "url": "relay/投资版接力_第5期_2026-10-31.html"}]};
+  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {
     const url = i.url.replace('relay/', '');
@@ -65,7 +65,6 @@ fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
     if (isNew(i.date, i.url)) a.innerHTML += '<span class="new-badge">NEW</span>';
     list.appendChild(a);
   });
-});
 </script>
 </body>
 </html>

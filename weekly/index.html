@@ -52,8 +52,8 @@ function isNew(date, url) {
 }
 
 const TYPE = "周迭代/诊断";
-fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
-  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+const data = {"items": [{"type": "周迭代/诊断", "date": "2026-11-13", "title": "周迭代报告_2026-11-13", "url": "weekly/周迭代报告_2026-11-13.html"}, {"type": "周迭代/诊断", "date": "2026-11-06", "title": "周迭代报告_2026-11-06", "url": "weekly/周迭代报告_2026-11-06.html"}, {"type": "周迭代/诊断", "date": "2026-10-30", "title": "周迭代报告_2026-10-30", "url": "weekly/周迭代报告_2026-10-30.html"}, {"type": "周迭代/诊断", "date": "2026-10-25", "title": "操盘行为周报_20261025", "url": "weekly/操盘行为周报_20261025.html"}, {"type": "周迭代/诊断", "date": "2026-10-23", "title": "周迭代报告_2026-10-23", "url": "weekly/周迭代报告_2026-10-23.html"}]};
+  const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {
     const url = i.url.replace('weekly/', '');
@@ -65,7 +65,6 @@ fetch('../index.json?v='+Date.now()).then(r=>r.json()).then(data => {
     if (isNew(i.date, i.url)) a.innerHTML += '<span class="new-badge">NEW</span>';
     list.appendChild(a);
   });
-});
 </script>
 </body>
 </html>
