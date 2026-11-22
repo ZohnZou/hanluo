@@ -113,7 +113,7 @@
 <body>
   <div class="header">
     <h1>📚 因子库与规则库全景</h1>
-    <div class="sub">因子 13 个 · 规则 16 条 · 生成于 2026-11-22 22:09 · 数据源 factor_ledger.json / rule_ledger.json</div>
+    <div class="sub">因子 13 个 · 规则 16 条 · 生成于 2026-11-22 22:11 · 数据源 factor_ledger.json / rule_ledger.json</div>
   </div>
 
   <div class="tabs">
@@ -373,7 +373,7 @@
       <div class="kv"><span class="k">用途/联动</span><div class="v">deepseek_daily_analysis.py 方向预判锚点（P0）</div></div>
       
       <div class="note">💡 P0 移植 PA_Agent judge_direction 五信号投票。定位：给 DeepSeek 每日分析一个程序算好的方向三态锚点，不是胜率、不是短期涨跌预测。与 direction_score 互补：direction_score 逐K演绎连续强度分，direction_vote 每日三态预判。</div>
-      
+      <details class="subtree"><summary>🌲 二级因子 6 个 · 三级参数 11 个（点击展开）</summary><div class="subfactor"><div class="subf-head"><span class="subf-name">EMA斜率</span><span class="subf-lu">⏱️2026-11-22</span></div><div class="subf-desc">EMA20 10根回看斜率，0.05*ATR死区</div><div class="subf-formula">EMA20[0]-EMA20[10] vs 0.05*ATR</div><div class="leaves"><div class="leaf"><span class="leaf-name">向上</span><span class="leaf-val">+1</span></div><div class="leaf"><span class="leaf-name">向下</span><span class="leaf-val">-1</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">收盘重心</span><span class="subf-lu">⏱️2026-11-22</span></div><div class="subf-desc">8根窗口近半vs远半线性递减加权，0.1*ATR死区</div><div class="subf-formula">加权近半-远半 vs 0.1*ATR</div><div class="leaves"><div class="leaf"><span class="leaf-name">近半高</span><span class="leaf-val">+1</span></div><div class="leaf"><span class="leaf-name">近半低</span><span class="leaf-val">-1</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">波段结构</span><span class="subf-lu">⏱️2026-11-22</span></div><div class="subf-desc">2-bar pivot HH+HL/LL+LH</div><div class="subf-formula">摆动点结构判定</div><div class="leaves"><div class="leaf"><span class="leaf-name">HH+HL</span><span class="leaf-val">+1</span></div><div class="leaf"><span class="leaf-name">LL+LH</span><span class="leaf-val">-1</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">趋势棒占比</span><span class="subf-lu">⏱️2026-11-22</span></div><div class="subf-desc">body&gt;0.25且close_pos≥0.65多头/≤0.35空头，1.5×优势</div><div class="subf-formula">多头/空头趋势棒1.5×</div><div class="leaves"><div class="leaf"><span class="leaf-name">多头占优</span><span class="leaf-val">+1</span></div><div class="leaf"><span class="leaf-name">空头占优</span><span class="leaf-val">-1</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">K线重叠率</span><span class="subf-lu">⏱️2026-11-22</span></div><div class="subf-desc">相邻bar overlap/union均值，&lt;0.45低重叠强化EMA方向</div><div class="subf-formula">overlap均值阈值判定</div><div class="leaves"><div class="leaf"><span class="leaf-name">低重叠+多头</span><span class="leaf-val">+1</span></div><div class="leaf"><span class="leaf-name">低重叠+空头</span><span class="leaf-val">-1</span></div></div></div><div class="subfactor"><div class="subf-head"><span class="subf-name">中窗口确认</span><span class="subf-lu">⏱️2026-11-22</span></div><div class="subf-desc">20根收盘重心冲突时|score|&lt;4减1</div><div class="subf-formula">中窗口重心vs短窗口</div><div class="leaves"><div class="leaf"><span class="leaf-name">冲突扣分</span><span class="leaf-val">±1</span></div></div></div></details>
       
       
     </div>
