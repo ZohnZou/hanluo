@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全市场低吸候选扫描</title>
+<style>
+:root{--bg:#0b0f17;--surface:#111827;--border:#273247;--text:#e6eaf2;--mute:#7f8b9b;
+--red:#ff4040;--green:#22d18a;--gold:#f5b942;--blue:#58a6ff}
+*{box-sizing:border-box}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);
+max-width:960px;margin:0 auto;padding:20px 16px;font-size:14px;line-height:1.6}
+.header{background:linear-gradient(135deg,#141d2e,#0e1420);border:1px solid var(--border);border-radius:10px;
+padding:16px 20px;margin-bottom:14px}
+.header h1{font-size:17px;margin:0 0 4px;color:#f0f6fc}
+.header .sub{font-size:11px;color:var(--mute)}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:680px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+th{color:var(--mute);font-size:11px;font-weight:600;position:sticky;top:0;background:var(--surface)}
+td.code{font-family:monospace;color:var(--blue)}
+td.lb{color:var(--gold);font-weight:800;font-size:14px}
+td.name{font-weight:600}
+td.px{color:var(--gold);font-weight:700}
+td.sup b{color:var(--green)}
+td.p{color:var(--mute)}
+td.eff{color:var(--green);font-weight:800}
+td.ev{color:var(--gold);font-weight:600}
+.dim{color:#5a6b85;font-size:11px}
+.res{color:var(--mute)}
+.res b{color:var(--red)}
+.footer{text-align:center;color:#484f58;font-size:11px;margin-top:16px}
+.actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.actions a,.actions button{background:#141d2e;border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text);text-decoration:none;font-size:12px;font-weight:700;cursor:pointer}
+.actions a{border-color:var(--gold);color:var(--gold)}
+.actions button{border-color:var(--blue);color:var(--blue)}
+@media(max-width:640px){body{padding:12px 8px}th,td{padding:7px 6px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>全市场低吸候选扫描</h1>
+  <div class="sub">2026-11-22 22:14 · 扫描 2770 只 · 有效 2694 只 · 低吸候选 1228 只 · 数据源 Tushare 后复权</div>
+  <div class="sub" style="color:#f5b942;margin-top:4px">低吸分 = 守住概率 × 钟形距离权重（峰值在最佳低吸距离）。已过滤：触及事件≥2次 + 守住≥55.0% + 现价距支撑 0.5~2.5 ATR + 排除ST。⚠️ 低吸分是「可靠支撑 + 合理距离」的候选排序，不是买卖信号，下单前必须看个股基本面与技术形态。</div>
+  <div class="actions">
+    <a href="/scan/history">📅 历史</a>
+    <button onclick="shareLink()">🔗 分享</button>
+  </div>
+</div>
+<div class="tbl-wrap">
+<table>
+  <thead><tr>
+    <th>低吸分</th><th>代码</th><th>名称</th><th>现价</th><th>最近支撑</th><th>触及</th><th>守住</th><th>事件</th><th>有效</th><th>最近阻力</th>
+  </tr></thead>
+  <tbody>
+        <tr>
+          <td class="lb">76.1</td>
+          <td class="code">688787.SH</td>
+          <td class="name">海天瑞声</td>
+          <td class="px">122.64</td>
+          <td class="sup"><b>103.08</b><span class="dim">(-0.93ATR)</span></td>
+          <td class="p">49.2%</td>
+          <td class="p">76.6%</td>
+          <td class="ev">8</td>
+          <td class="eff">37.7%</td>
+          <td class="res"><div class="res">阻力 <b>125.39</b> <span>触80.2% · 守59.0%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">73.7</td>
+          <td class="code">301313.SZ</td>
+          <td class="name">凡拓数创</td>
+          <td class="px">59.81</td>
+          <td class="sup"><b>50.1</b><span class="dim">(-1.07ATR)</span></td>
+          <td class="p">59.7%</td>
+          <td class="p">74.2%</td>
+          <td class="ev">2</td>
+          <td class="eff">44.3%</td>
+          <td class="res"><div class="res">阻力 <b>62.12</b> <span>触80.6% · 守60.7%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">73.2</td>
+          <td class="code">301413.SZ</td>
+          <td class="name">安培龙</td>
+          <td class="px">106.44</td>
+          <td class="sup"><b>91.93</b><span class="dim">(-0.93ATR)</span></td>
+          <td class="p">61.4%</td>
+          <td class="p">73.7%</td>
+          <td class="ev">7</td>
+          <td class="eff">45.3%</td>
+          <td class="res"><div class="res">阻力 <b>108.37</b> <span>触84.8% · 守57.0%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">73.2</td>
+          <td class="code">688386.SH</td>
+          <td class="name">泛亚微透</td>
+          <td class="px">50.78</td>
+          <td class="sup"><b>43.58</b><span class="dim">(-0.86ATR)</span></td>
+          <td class="p">57.9%</td>
+          <td class="p">75.2%</td>
+          <td class="ev">3</td>
+          <td class="eff">43.6%</td>
+          <td class="res"><div class="res">阻力 <b>61.81</b> <span>触51.3% · 守72.1%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">72.9</td>
+          <td class="code">688360.SH</td>
+          <td class="name">德马科技</td>
+          <td class="px">41.99</td>
+          <td class="sup"><b>36.08</b><span class="dim">(-1.02ATR)</span></td>
+          <td class="p">59.0%</td>
+          <td class="p">72.9%</td>
+          <td class="ev">6</td>
+          <td class="eff">43.0%</td>
+          <td class="res"><div class="res">阻力 <b>42.23</b> <span>触87.0% · 守57.8%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">72.9</td>
+          <td class="code">688669.SH</td>
+          <td class="name">聚石化学</td>
+          <td class="px">40.54</td>
+          <td class="sup"><b>33.67</b><span class="dim">(-0.88ATR)</span></td>
+          <td class="p">46.1%</td>
+          <td class="p">74.4%</td>
+          <td class="ev">3</td>
+          <td class="eff">34.3%</td>
+          <td class="res"><div class="res">阻力 <b>41.47</b> <span>触75.3% · 守58.8%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">72.7</td>
+          <td class="code">301529.SZ</td>
+          <td class="name">福赛科技</td>
+          <td class="px">184.03</td>
+          <td class="sup"><b>156.76</b><span class="dim">(-1.06ATR)</span></td>
+          <td class="p">60.5%</td>
+          <td class="p">73.1%</td>
+          <td class="ev">6</td>
+          <td class="eff">44.2%</td>
+          <td class="res"><div class="res">阻力 <b>189.77</b> <span>触83.7% · 守60.2%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">72.6</td>
+          <td class="code">688322.SH</td>
+          <td class="name">奥比中光</td>
+          <td class="px">85.09</td>
+          <td class="sup"><b>74.58</b><span class="dim">(-1.03ATR)</span></td>
+          <td class="p">65.9%</td>
+          <td class="p">72.7%</td>
+          <td class="ev">8</td>
+          <td class="eff">48.0%</td>
+          <td class="res"><div class="res">阻力 <b>87.6</b> <span>触86.8% · 守59.8%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">72.1</td>
+          <td class="code">603533.SH</td>
+          <td class="name">掌阅科技</td>
+          <td class="px">23.38</td>
+          <td class="sup"><b>20.53</b><span class="dim">(-1.06ATR)</span></td>
+          <td class="p">63.3%</td>
+          <td class="p">72.5%</td>
+          <td class="ev">18</td>
+          <td class="eff">45.8%</td>
+          <td class="res"><div class="res">阻力 <b>24.38</b> <span>触85.7% · 守61.7%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">71.7</td>
+          <td class="code">301122.SZ</td>
+          <td class="name">采纳股份</td>
+          <td class="px">50.2</td>
+          <td class="sup"><b>42.94</b><span class="dim">(-1.03ATR)</span></td>
+          <td class="p">63.8%</td>
+          <td class="p">71.8%</td>
+          <td class="ev">5</td>
+          <td class="eff">45.8%</td>
+          <td class="res"><div class="res">阻力 <b>52.51</b> <span>触81.6% · 守62.0%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">71.6</td>
+          <td class="code">688702.SH</td>
+          <td class="name">盛科通信</td>
+          <td class="px">153.58</td>
+          <td class="sup"><b>124.56</b><span class="dim">(-1.16ATR)</span></td>
+          <td class="p">42.4%</td>
+          <td class="p">74.2%</td>
+          <td class="ev">9</td>
+          <td class="eff">31.5%</td>
+          <td class="res"><div class="res">阻力 <b>154.88</b> <span>触83.1% · 守58.6%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">71.4</td>
+          <td class="code">688105.SH</td>
+          <td class="name">诺唯赞</td>
+          <td class="px">25.12</td>
+          <td class="sup"><b>22.57</b><span class="dim">(-0.99ATR)</span></td>
+          <td class="p">67.5%</td>
+          <td class="p">71.4%</td>
+          <td class="ev">24</td>
+          <td class="eff">48.2%</td>
+          <td class="res"><div class="res">阻力 <b>25.66</b> <span>触89.6% · 守59.9%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">71.1</td>
+          <td class="code">301513.SZ</td>
+          <td class="name">尚水智能</td>
+          <td class="px">47.73</td>
+          <td class="sup"><b>42.17</b><span class="dim">(-0.88ATR)</span></td>
+          <td class="p">68.5%</td>
+          <td class="p">72.5%</td>
+          <td class="ev">4</td>
+          <td class="eff">49.7%</td>
+          <td class="res"><div class="res">阻力 <b>52.54</b> <span>触74.5% · 守66.1%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">71.0</td>
+          <td class="code">601595.SH</td>
+          <td class="name">上海电影</td>
+          <td class="px">37.39</td>
+          <td class="sup"><b>33.31</b><span class="dim">(-0.85ATR)</span></td>
+          <td class="p">65.9%</td>
+          <td class="p">73.3%</td>
+          <td class="ev">16</td>
+          <td class="eff">48.4%</td>
+          <td class="res"><div class="res">阻力 <b>40.42</b> <span>触78.5% · 守65.7%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">70.9</td>
+          <td class="code">301165.SZ</td>
+          <td class="name">锐捷网络</td>
+          <td class="px">133.09</td>
+          <td class="sup"><b>116.94</b><span class="dim">(-1.13ATR)</span></td>
+          <td class="p">66.9%</td>
+          <td class="p">72.6%</td>
+          <td class="ev">11</td>
+          <td class="eff">48.6%</td>
+          <td class="res"><div class="res">阻力 <b>135.27</b> <span>触89.5% · 守58.5%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">70.9</td>
+          <td class="code">301392.SZ</td>
+          <td class="name">汇成真空</td>
+          <td class="px">108.78</td>
+          <td class="sup"><b>97.38</b><span class="dim">(-0.99ATR)</span></td>
+          <td class="p">72.9%</td>
+          <td class="p">70.9%</td>
+          <td class="ev">5</td>
+          <td class="eff">51.6%</td>
+          <td class="res"><div class="res">阻力 <b>111.44</b> <span>触88.9% · 守59.1%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">70.8</td>
+          <td class="code">688655.SH</td>
+          <td class="name">迅捷兴</td>
+          <td class="px">33.42</td>
+          <td class="sup"><b>29.14</b><span class="dim">(-0.91ATR)</span></td>
+          <td class="p">64.3%</td>
+          <td class="p">71.6%</td>
+          <td class="ev">3</td>
+          <td class="eff">46.0%</td>
+          <td class="res"><div class="res">阻力 <b>34.61</b> <span>触83.0% · 守60.6%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">70.7</td>
+          <td class="code">603286.SH</td>
+          <td class="name">日盈电子</td>
+          <td class="px">45.38</td>
+          <td class="sup"><b>39.29</b><span class="dim">(-1.14ATR)</span></td>
+          <td class="p">64.4%</td>
+          <td class="p">72.7%</td>
+          <td class="ev">8</td>
+          <td class="eff">46.9%</td>
+          <td class="res"><div class="res">阻力 <b>47.07</b> <span>触86.0% · 守60.8%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">70.6</td>
+          <td class="code">603179.SH</td>
+          <td class="name">新泉股份</td>
+          <td class="px">139.35</td>
+          <td class="sup"><b>124.7</b><span class="dim">(-1.09ATR)</span></td>
+          <td class="p">72.3%</td>
+          <td class="p">71.4%</td>
+          <td class="ev">11</td>
+          <td class="eff">51.6%</td>
+          <td class="res"><div class="res">阻力 <b>145.34</b> <span>触87.2% · 守60.8%</span></div></td>
+        </tr>
+
+        <tr>
+          <td class="lb">70.5</td>
+          <td class="code">688507.SH</td>
+          <td class="name">索辰科技</td>
+          <td class="px">332.12</td>
+          <td class="sup"><b>294.3</b><span class="dim">(-0.88ATR)</span></td>
+          <td class="p">71.3%</td>
+          <td class="p">71.9%</td>
+          <td class="ev">6</td>
+          <td class="eff">51.3%</td>
+          <td class="res"><div class="res">阻力 <b>337.51</b> <span>触87.3% · 守55.9%</span></div></td>
+        </tr></tbody>
+</table>
+</div>
+<div class="footer">寒洛 · 支撑阻力概率模型（8特征逻辑回归）· 低吸分 = 守住×钟形距离权重 · 仅供研究，不构成投资建议</div>
+<script>
+function shareLink(){
+  var url = 'https://zohnzou.github.io/hanluo/scan/market_scan.html';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function(){ alert('已复制：' + url); });
+  } else {
+    window.prompt('复制链接：', url);
+  }
+}
+</script>
+</body>
+</html>
