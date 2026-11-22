@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>诚实画像 · 逐K验证体检</title>
+<style>
+:root{--bg:#0b0f17;--surface:#111827;--border:#273247;--text:#e6eaf2;--mute:#7f8b9b;--gold:#f5b942;--red:#ff4040;--green:#22d18a;--blue:#58a6ff}
+*{box-sizing:border-box}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;background:var(--bg);color:var(--text);max-width:960px;margin:0 auto;padding:20px 16px;font-size:14px;line-height:1.6}
+.header{background:linear-gradient(135deg,#141d2e,#0e1420);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:18px;text-align:center}
+.header h1{font-size:20px;margin:0 0 6px;color:#f0f6fc}
+.header .sub{font-size:12px;color:var(--mute)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px}
+.card h2{font-size:15px;color:var(--gold);margin:0 0 12px}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);white-space:nowrap}
+th{background:#141d2e;color:var(--mute);font-size:11px}
+.mute{color:var(--mute);font-size:11px}
+.honest{background:rgba(88,166,255,.06);border-left:3px solid var(--blue);padding:10px 14px;border-radius:6px;font-size:13px;margin-top:10px}
+.footer{font-size:11px;color:#484f58;text-align:center;margin-top:16px}
+@media (max-width:640px){body{padding:10px}th,td{padding:6px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🔬 诚实画像 · 逐K验证体检</h1>
+  <div class="sub">生成 2026-11-22 12:29 · 296 只 / 71812 根K线（其中 25252 根有市场状态标签）</div>
+</div>
+
+<div class="card">
+  <h2>市场状态 × 方向命中率</h2>
+  <div class="tbl-wrap"><table>
+  <thead><tr><th>市场状态</th><th>方向命中率</th><th>样本</th></tr></thead>
+  <tbody><tr><td>温和熊市</td><td>53.9</td><td class="mute">21623 样本</td></tr><tr><td>震荡市</td><td>53.8</td><td class="mute">2933 样本</td></tr><tr><td>温和牛市</td><td>44.7</td><td class="mute">293 样本</td></tr></tbody>
+  </table></div>
+  <div class="honest">诚实结论：震荡市方向≈随机（命中率应接近 50%），趋势市才有弱优势。如果数据显示趋势市命中率显著高于震荡市，说明「趋势持续性」在 A股成立，值得扶正 N日方向。</div>
+</div>
+
+<div class="card">
+  <h2>方向分数段 × 命中率 / 信号胜率</h2>
+  <div class="tbl-wrap"><table>
+  <thead><tr><th>方向分档</th><th>方向命中率</th><th>信号胜率</th><th>信号均盈亏</th></tr></thead>
+  <tbody><tr><td>方向分 40-45</td><td>53.5% <span class="mute">(28491)</span></td><td>39.0% <span class="mute">(16528)</span></td><td>0.79%</td></tr><tr><td>方向分 45-50</td><td>51.7% <span class="mute">(8156)</span></td><td>26.7% <span class="mute">(90)</span></td><td>-1.79%</td></tr><tr><td>方向分 50-55</td><td>49.2% <span class="mute">(9098)</span></td><td>样本不足% <span class="mute">(0)</span></td><td>—%</td></tr><tr><td>方向分 55-60</td><td>48.2% <span class="mute">(8831)</span></td><td>45.4% <span class="mute">(6418)</span></td><td>1.19%</td></tr><tr><td>方向分 60-65</td><td>49.8% <span class="mute">(16497)</span></td><td>48.8% <span class="mute">(10025)</span></td><td>1.98%</td></tr></tbody>
+  </table></div>
+  <div class="honest">诚实结论：如果「方向分 ≥58」信号胜率显著高于低分档，说明方向分数有排序能力（虽整体≈50%），可作高置信过滤。如果各档无差异，方向分就是噪声。</div>
+</div>
+
+<div class="card">
+  <h2>信号类型 × 胜率 / 期望值</h2>
+  <div class="tbl-wrap"><table>
+  <thead><tr><th>方向</th><th>胜率</th><th>均盈亏</th><th>EV(盈亏比1.5)</th></tr></thead>
+  <tbody><tr><td>卖出</td><td>38.9%</td><td>0.77%</td><td>-0.027</td></tr><tr><td>买入</td><td>47.4%</td><td>1.69%</td><td>0.186</td></tr></tbody>
+  </table></div>
+  <div class="honest">诚实结论：EV &gt; 0 才正期望。历史教训——支撑位止损 EV -0.033、固定5%止损 EV +0.050，止损方式比方向更重要。</div>
+</div>
+
+<div class="footer">寒洛 · 诚实画像 V1.0 · 数据源 Tushare VIP 逐K自验证（walk-forward 无前视）· 样本不足自动标注「样本不足」不硬给数字</div>
+</body>
+</html>
