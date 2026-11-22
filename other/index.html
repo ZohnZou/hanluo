@@ -30,7 +30,7 @@
 <body>
   <a class="back" href="../">← 返回总目录</a>
   <div class="list-title">其他</div>
-  <div class="list-sub">共 9 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
+  <div class="list-sub">共 10 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
   <div id="list"></div>
   <div class="foot">寒洛 · 自动更新</div>
 <script>
@@ -52,7 +52,7 @@ function isNew(date, url) {
 }
 
 const TYPE = "其他";
-const data = {"items": [{"type": "其他", "date": "2026-11-15", "title": "操盘行为周报_20261115", "url": "other/操盘行为周报_20261115.html"}, {"type": "其他", "date": "2026-11-10", "title": "端侧AI深度研究报告_2026-11-10", "url": "other/端侧AI深度研究报告_2026-11-10.html"}, {"type": "其他", "date": "2026-11-08", "title": "操盘行为周报_20261108", "url": "other/操盘行为周报_20261108.html"}, {"type": "其他", "date": "2026-11-04", "title": "生益科技Q3业绩与覆铜板周期重估_2026-11-04", "url": "other/生益科技Q3业绩与覆铜板周期重估_2026-11-04.html"}, {"type": "其他", "date": "2026-11-04", "title": "美国中期选举结果验证与推演更新_2026-11-04", "url": "other/美国中期选举结果验证与推演更新_2026-11-04.html"}, {"type": "其他", "date": "2026-11-03", "title": "美国中期选举沙盘推演_2026-11-03", "url": "other/美国中期选举沙盘推演_2026-11-03.html"}, {"type": "其他", "date": "2026-11-01", "title": "操盘行为周报_20261101", "url": "other/操盘行为周报_20261101.html"}, {"type": "其他", "date": "2026-10-24", "title": "Z哥搬砖战法指标说明书_2026-10-24", "url": "other/Z哥搬砖战法指标说明书_2026-10-24.html"}, {"type": "其他", "date": "2026-10-24", "title": "量价关系知识完整版_2026-10-24", "url": "other/量价关系知识完整版_2026-10-24.html"}]};
+const data = {"items": [{"type": "其他", "date": "2026-11-22", "title": "操盘行为周报_20261122", "url": "other/操盘行为周报_20261122.html"}, {"type": "其他", "date": "2026-11-15", "title": "操盘行为周报_20261115", "url": "other/操盘行为周报_20261115.html"}, {"type": "其他", "date": "2026-11-10", "title": "端侧AI深度研究报告_2026-11-10", "url": "other/端侧AI深度研究报告_2026-11-10.html"}, {"type": "其他", "date": "2026-11-08", "title": "操盘行为周报_20261108", "url": "other/操盘行为周报_20261108.html"}, {"type": "其他", "date": "2026-11-04", "title": "生益科技Q3业绩与覆铜板周期重估_2026-11-04", "url": "other/生益科技Q3业绩与覆铜板周期重估_2026-11-04.html"}, {"type": "其他", "date": "2026-11-04", "title": "美国中期选举结果验证与推演更新_2026-11-04", "url": "other/美国中期选举结果验证与推演更新_2026-11-04.html"}, {"type": "其他", "date": "2026-11-03", "title": "美国中期选举沙盘推演_2026-11-03", "url": "other/美国中期选举沙盘推演_2026-11-03.html"}, {"type": "其他", "date": "2026-11-01", "title": "操盘行为周报_20261101", "url": "other/操盘行为周报_20261101.html"}, {"type": "其他", "date": "2026-10-24", "title": "Z哥搬砖战法指标说明书_2026-10-24", "url": "other/Z哥搬砖战法指标说明书_2026-10-24.html"}, {"type": "其他", "date": "2026-10-24", "title": "量价关系知识完整版_2026-10-24", "url": "other/量价关系知识完整版_2026-10-24.html"}]};
   const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {

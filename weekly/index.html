@@ -30,7 +30,7 @@
 <body>
   <a class="back" href="../">← 返回总目录</a>
   <div class="list-title">周迭代/诊断</div>
-  <div class="list-sub">共 5 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
+  <div class="list-sub">共 6 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
   <div id="list"></div>
   <div class="foot">寒洛 · 自动更新</div>
 <script>
@@ -52,7 +52,7 @@ function isNew(date, url) {
 }
 
 const TYPE = "周迭代/诊断";
-const data = {"items": [{"type": "周迭代/诊断", "date": "2026-11-13", "title": "周迭代报告_2026-11-13", "url": "weekly/周迭代报告_2026-11-13.html"}, {"type": "周迭代/诊断", "date": "2026-11-06", "title": "周迭代报告_2026-11-06", "url": "weekly/周迭代报告_2026-11-06.html"}, {"type": "周迭代/诊断", "date": "2026-10-30", "title": "周迭代报告_2026-10-30", "url": "weekly/周迭代报告_2026-10-30.html"}, {"type": "周迭代/诊断", "date": "2026-10-25", "title": "操盘行为周报_20261025", "url": "weekly/操盘行为周报_20261025.html"}, {"type": "周迭代/诊断", "date": "2026-10-23", "title": "周迭代报告_2026-10-23", "url": "weekly/周迭代报告_2026-10-23.html"}]};
+const data = {"items": [{"type": "周迭代/诊断", "date": "2026-11-20", "title": "周迭代报告_2026-11-20", "url": "weekly/周迭代报告_2026-11-20.html"}, {"type": "周迭代/诊断", "date": "2026-11-13", "title": "周迭代报告_2026-11-13", "url": "weekly/周迭代报告_2026-11-13.html"}, {"type": "周迭代/诊断", "date": "2026-11-06", "title": "周迭代报告_2026-11-06", "url": "weekly/周迭代报告_2026-11-06.html"}, {"type": "周迭代/诊断", "date": "2026-10-30", "title": "周迭代报告_2026-10-30", "url": "weekly/周迭代报告_2026-10-30.html"}, {"type": "周迭代/诊断", "date": "2026-10-25", "title": "操盘行为周报_20261025", "url": "weekly/操盘行为周报_20261025.html"}, {"type": "周迭代/诊断", "date": "2026-10-23", "title": "周迭代报告_2026-10-23", "url": "weekly/周迭代报告_2026-10-23.html"}]};
   const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {
