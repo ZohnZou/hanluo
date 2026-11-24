@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第29期 · 2026-11-24</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 29 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-24 · 共 27 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期最该记住的一件事：<strong style="color:var(--purple)">黄仁勋能回来，靠的不是「公司离了他不行」，而是「股东没有能力赶他走」</strong>——持股 3.6%、无超级投票权，单层股权下董事会多数票即可解职。看任何「CEO 去留」大新闻，先查两个数：持股比例、有没有超级投票权。
+    </div>
+    <div class="tagrow">
+      <span class="tag">股权结构</span><span class="tag">国产算力四档位</span><span class="tag">Chiplet 标准化</span><span class="tag">存量 vs 增量</span><span class="tag">Agent 记忆</span><span class="tag">算力资本开支</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>黄仁勋去留的实质是「政治压力 vs 商业治理」的拔河，他本人能不能干是最不重要的变量。拾光抽成一把通用尺：<strong>看任何「CEO 去留」大新闻，先查两个数——创始人持股比例、有没有超级投票权</strong>。这与上期「英伟达暴跌是情绪不是产业信号」接上：情绪（罢免/复出）反复横跳，<strong style="color:var(--green)">四信号清单本期依然没有新数据可打钩</strong>。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">英伟达/治理线（投资核心）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>黄仁勋复出：单层股权 vs 双层股权（扎克伯格/佩奇一股十票），CEO 去留是「制度权力」问题</li>
+      <li>甲骨文为 OpenAI 订单「融资已就位」→ 算力资本开支仍在扩张期</li>
+      <li>Anthropic 万亿估值却只拿「垃圾级」发债——估值看想象、资信看现金流，两把尺分开</li>
+      <li>Mistral 落新加坡造「主权 AI」（数据不出国），AI 变成地缘政治棋子</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">国产算力产业链线</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>曙光 8000 斩戈登贝尔奖——「存量 vs 增量」二分已收判断尺子库 #126</li>
+      <li>国产算力四档位总图：纸面/流片/量产爬坡/规模化替代，<strong>第④档无人稳定占据</strong></li>
+      <li>Chiplet 标准化成篇：制程撞墙→Chiplet→先进封装，胜负手在「插座标准」UCIe</li>
+      <li>词元计量纳入国家标准——「用谁的尺子量，谁定规则」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">模型层/Agent 线 + 落地/社会线</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Agent 三种「记性」外挂对比（全塞/滚动摘要/外部记忆库）+ 银行封杀 Agent（身份/授权/责任三墙）</li>
+      <li>Murati 循环 Transformer 开源（26.4B 笔记本可跑，时间换智商）+ 视频模型 RL 后训练=「激活引导」</li>
+      <li>康养机器人采购（3.2 亿老人，具身智能首个「真花钱买」场景）+ 演员卖脸给微短剧（数字分身经济）</li>
+      <li>白菜价推理服务商窃密钥（便宜=隐私换差价）+ 四款医疗大模型开源 + GLM-5.4 补「看图」</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 英伟达股权结构：单层 vs 双层</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">CEO 去留是「制度权力」问题，不是「能干不能干」问题</div>
+    <h4>概念拆解</h4>
+    <p>黄仁勋持股约 3.6%、无超级投票权（单层股权，一股一票），特拉华州公司法下董事会 11 人里 10 个独立董事凑够多数票即可合法解职。对比 Meta 扎克伯格、Alphabet 佩奇/布林——持股同样不高，但一股顶十股（超级投票权），股东想赶也赶不走。<strong>同样是「创始人」，差距只在一个「双层股权」的架子上</strong>。</p>
+    <h4>产业逻辑</h4>
+    <p>罢免诱因是「涉情报指控」（与新加坡 Megaspeed 高管 Alice Huang 有接触），本质是国家安全议题。特朗普「力挺回归」、财长贝森特 7 天内 180° 改口（从「从外部物色 CEO」到「黄仁勋已算外部人士」）＝白宫松手。这是「政治压力 vs 商业治理」的拔河，呼应我 P19-1/P22-1「创始人权力安全边际」框架：先查「持股比例 × 超级投票权」，再看「未来承诺有多少挂在创始人个人信用上」。</p>
+    <h4>对持仓的影响</h4>
+    <p>英伟达基本面没坏——拾光接力素材已核实：Q3 营收 1158 亿美元、同比 +103%、超预期，但财报后次日单日 -14%、较 52 周高点 243.37 回撤 -48.4%（现价 125.53）。「财报翻倍、股价腰斩」= 杀的不是业绩，是「不确定性黑洞」的估值折价。对 A 股 CCL/PCB/光模块链（持仓生益科技 2600 股成本 110.03）仍是情绪外溢风险，不是基本面恶化。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>单层股权意味着英伟达「护城河是网不是人」——换掉黄仁勋，CUDA 生态、锁产能 5305 亿长约、客户惯性都还在。「复出」是情绪面短期修复，不是产业面新变量。纪律不变：<strong>盯四信号数据，不盯 K 线红绿</strong>。本期四信号仍「待观察」= 产业面没变化 = 反弹是回收弹药窗口，不是加仓理由。新跟踪锚点：甲骨文「融资就位」= 算力资本开支仍扩张，这个数持续暴涨就是扩张、突然掉头才要警惕泡沫。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 国产算力四档位 + Chiplet 标准化 + 存量vs增量</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">「发布」和「能用」之间隔着「量产爬坡」这条最长的坡</div>
+    <h4>概念拆解</h4>
+    <p>①<strong>四档位总图</strong>（自下而上）：纸面/设计（真武 V900）→ 流片（寒武纪/昆仑芯/平头哥）→ 量产爬坡（昇腾领先、海光服务器 CPU/DCU 在铺）→ 规模化替代（<strong>尚无国产芯片稳定占据=天花板</strong>）。②<strong>Chiplet 标准化</strong>：制程撞墙→逼出 Chiplet→Chiplet 逼出先进封装，胜负手不在切割技术，在「插座标准」（UCIe），谁的标准被采用谁拿「板图定价权」。③<strong>存量 vs 增量</strong>（尺 #126）：曙光 8000 拿奖是「存量」（单点闪光=牌面），能不能规模化复现、持续出货才是「增量」（底牌）。</p>
+    <h4>产业逻辑</h4>
+    <p>国产芯片新闻高光都打在「发布/拿奖」（纸面/流片档、存量闪光点），真正决定扛事的是第③档——良率、产能、软件生态。Chiplet 对国产尤其关键：不用所有功能都用最贵最新制程（CPU 用 5nm、I/O 用成熟 14nm），还能「换一颗小芯片就换一档产品」——绕开先进制程的第二条弯道。</p>
+    <h4>对持仓的影响</h4>
+    <p>Chiplet 标准化 → 先进封装扩产（2.5D/3D 产线）→ 上游覆铜板（M6→M9）、载板、高频树脂需求传导——强化生益科技（600183）「封装传导」子项（P24-1/P27-2 已落框架第十二节）。但「先进封装火了」≠「生益订单来了」，中间隔着载板/树脂国产化率和良率，仍是「间接催化、滞后兑现」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>读「国产算力突破/拿奖/全球第一」先做二分题——「存量」（单点能力）还是「增量」（可复制能力）。单点突破是牌面，规模化出货才是底牌。这把尺并进我的「去英伟达化成色三问」（P21-4/P19-2）：听「全国产/突破」先问「换国产还是 AMD」「能复现一次还是持续」「真出货还是 demo」。Chiplet「插座标准」是新卡位观察点——UCIe vs 国产标准，谁拿标准谁拿定价权，这是未来三年半导体一半大新闻的解读钥匙。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · Agent 记忆与上下文管理 + 身份/授权/责任三墙</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">卡点不在模型智商，在记忆管理和身份标准这块没人做扎实的地基</div>
+    <h4>概念拆解</h4>
+    <p>Agent 工作记忆是上下文窗口，窗口一关记忆清零——「忘光」不是 bug 是架构天然后果。三种「外挂记忆」各有病：①全塞上下文（满、慢、贵、糊）②滚动摘要（省地方但细节压没，「空调坏了」被压成「小事」）③外部记忆库 RAG（方向对，难在「何时取、取哪段」）。银行封杀 Agent 点破三道「非技术墙」：<strong>身份</strong>（怎么证明「它是我的代表」）、<strong>授权</strong>（谁授权做到哪一步）、<strong>责任</strong>（出事谁负责）。Agent 在模拟职场只完成不到 1/10 任务。</p>
+    <h4>产业逻辑</h4>
+    <p>Agent 从「demo 神器」到「能上生产的员工」，拦路虎是「记不住跨会话上下文」+「身份授权责任没定」。谁把「记忆抽屉」和「身份标准」做扎实，谁拿 Agent 下一阶段门票——价值正在超过「再多刷几个参数」。Murati 团队 26.4B 循环 Transformer（推理循环里长期保持状态）是从架构层动记忆，笔记本能跑，是「AI 平民化」一步。</p>
+    <h4>对系统的启发（⭐）</h4>
+    <p>①我的知识库本质就是「外部记忆库（RAG 朴素版）」，最大坑同样是「何时取、取哪段」→ 回答前先「提炼短笔记」再「按关键词局部查原文」（P28-2）；②「滚动摘要把细节压没」正是 P26-5 memory 淘汰规则的镜像——淘汰判据要看「这条一周后还会不会需要、需要时能不能从别处重新得到」；③「身份/授权/责任三墙」对应我的 Agent 治理审计（P15-3）——每次主动迭代自检「错了责任能不能退回、审计路径清不清晰」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>Agent 记忆/上下文管理是「应用层放量」的前置条件，不构成单一交易信号，但强化「应用层是下一阶段放量点」判断。A 股映射：谁做「记忆抽屉 + 身份标准」这层基础设施（向量数据库、身份认证、Agent 编排框架），谁卡 Agent 工程化瓶颈位——继算力之后的下一个「卖水人」位置。可证伪锚点：看「长流程多步任务」完成率 benchmark 是否开始被行业拿来当宣传口径。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#超级投票权（双层股权）</span><p>一股顶十股的股份结构。创始人持股不高但握超级投票权，股东想赶也赶不走（Meta 扎克伯格、Alphabet 佩奇）。对照英伟达黄仁勋的「单层股权」（持股 3.6%、一股一票），董事会多数票即可解职——「创始人说什么算」还是「股东说了算」，就差在这个架子上。</p></div>
+    <div class="dict-item"><span class="dw">#存量 vs 增量</span><p>读「突破类」新闻的第一把尺。存量=已证明的单点能力（拿奖/流片/全球第一）=牌面；增量=能持续复制的能力（规模化/持续出货/良率爬坡）=底牌。同一新闻常把两者捆在一起说，切开看才不被带节奏。</p></div>
+    <div class="dict-item"><span class="dw">#Chiplet（芯粒）</span><p>把一颗大 SoC 拆成 CPU/GPU/I/O/内存多颗小芯片，再用先进封装拼起来。制程撞墙→逼出 Chiplet→Chiplet 逼出先进封装。真正的胜负手在「小芯片之间的插座标准」（UCIe），谁的标准被采用谁拿板图定价权。</p></div>
+    <div class="dict-item"><span class="dw">#激活引导（Activation Steering）</span><p>视频/图像模型 RL 后训练的本质——不重画，而是在生成过程中「拨动某个倾向」，让模型朝人类偏好偏。能拨动风格和偏好，拨不动物理规律和常识正确性。</p></div>
+    <div class="dict-item"><span class="dw">#主权 AI（Sovereign AI）</span><p>数据、模型、算力都掌握在本国手中的 AI 能力，而非依赖美国大厂。数据主权和数据出境是红线的国家的核心诉求，也是「AI 变成地缘政治棋子」的信号。</p></div>
+    <div class="dict-item"><span class="dw">#词元（Token）</span><p>大模型读文本的最小块（不是按字、是按块读），输入输出和账单都按它算。国家数据局要给词元立计量/计费标准=「用谁的尺子量，谁定规则」，是比「谁模型强」更底层的「标准主权」竞争。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>「创始人去留 = 制度权力（持股×投票权）」，英伟达单层股权=护城河是网不是人，换 CEO 产业面不变</li>
+        <li>国产算力四档位第④档「规模化替代」无人稳定占据=整条坡的天花板；Chiplet 胜负手在插座标准</li>
+        <li>「存量 vs 增量」尺子收库（#126），曙光 8000 拿奖是存量闪光点，规模化出货才是底牌</li>
+        <li>Agent 卡点从「模型智商」转到「记忆管理 + 身份/授权/责任」——下一个「卖水人」是记忆抽屉和身份标准</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>四信号清单本期仍「待观察」→ 下期看是否有真数据打钩</li>
+        <li>甲骨文「融资就位」→ 算力资本开支是否继续扩张（AI 扩张期 vs 泡沫收紧先行指标）</li>
+        <li>真武 V900 明年 Q1 是否按时量产 + 昇腾/海光是否真在「量产爬坡」档持续出货</li>
+        <li>Chiplet 插座标准之争（UCIe vs 国产标准）走向</li>
+        <li>Agent 长流程任务完成率 benchmark 是否被行业当宣传口径（记忆管理成熟度信号）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>ai-hardware-chain-framework.md 治理脆弱性维度补「超级投票权」检查项（P29-1）</li>
+        <li>国产算力链跟踪清单补「四档位定位法」+「存量vs增量二分」前置（P29-2）</li>
+        <li>韬定律V2 补「标准之争卡位」维度（插座标准=板图定价权，P29-4）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 超级投票权 → 治理脆弱性维度补检查项</span><span class="plan-id">P29-1</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：CEO 去留 = 制度权力（持股×投票权）。单层股权公司护城河是「网」不是「人」，双层股权公司「个人信用背书未来承诺」占比更高。</div>
+    <div class="a"><b>修改计划：</b>ai-hardware-chain-framework.md「创始人权力安全边际」（P19-1/P22-1）补「单层 vs 双层股权」检查项——单层股权换帅情绪冲击大但产业面不变；双层股权换帅才真伤估值。</div>
+    <div class="acc"><b>验收标准：</b>治理脆弱性维度出现「超级投票权/单层双层股权」检查项</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 存量vs增量 + 四档位 → 跟踪清单补定位法</span><span class="plan-id">P29-2</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：读「国产算力突破」新闻先定位四档位，再做「存量（单点闪光）vs 增量（可规模化）」二分。</div>
+    <div class="a"><b>修改计划：</b>国产算力链跟踪清单加「四档位定位法」——与 P21-4「去英伟达化成色三问」、P19-2「宣传可被第三方反推」合并成「突破类新闻」通用前置过滤器。</div>
+    <div class="acc"><b>验收标准：</b>跟踪清单出现「四档位定位法」+「存量vs增量二分」前置条目</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · Agent 记忆三外挂 → 巡检表补记忆/授权自检</span><span class="plan-id">P29-3</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：滚动摘要会把细节压没（「空调坏了」压成「小事」），身份/授权/责任三墙对应 Agent 治理审计。</div>
+    <div class="a"><b>修改计划：</b>固定巡检表 Agent 治理审计（P15-3）补两条——①「记忆抽屉自检」：关键判断有没有被压成「小事」糊掉（防 P26-5 误删关键细节）；②「授权边界自检」：这次改动是否在已授权范围内，超出默认开工权先确认再动。</div>
+    <div class="acc"><b>验收标准：</b>固定巡检表出现「记忆抽屉自检」+「授权边界自检」巡检项</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 4 · 插座标准=板图定价权 → 韬定律V2 补标准卡位</span><span class="plan-id">P29-4</span><span class="status pending">进行中</span></div>
+    <div class="u">理解：Chiplet 的胜负手不在切割技术，在「插座标准」（UCIe）——谁的标准被广泛采用，谁拿板图定价权。</div>
+    <div class="a"><b>修改计划：</b>韬定律V2 供应链瓶颈框架加「卡标准比卡元件更值钱」——遇「多方案混战」技术演进（Chiplet 的 UCIe/国产标准、光模块多速率），先问「谁卡标准制定权」，与 P10-1「卡必经之路元件」并列。</div>
+    <div class="acc"><b>验收标准：</b>韬定律V2 出现「标准之争卡位」判断规则</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">上期结转未完成（P26-P28 pending）</div>
+    <div class="plan-row"><span class="pc">P26-1~5</span><span class="pt">任务耦合度/做与计分分离/可回测性/验收闸/memory淘汰 五条通用规则</span><span class="status pending">待办</span></div>
+    <div class="plan-row"><span class="pc">P27-1/3</span><span class="pt">拐点信号距离排序 / memory 定期清理偏好</span><span class="status pending">待办</span></div>
+    <div class="plan-row"><span class="pc">P28-1~4</span><span class="pt">改问法前置 / 短笔记+按需查 / 查账单不查宣传 / 练手vs重复边界</span><span class="status pending">待办</span></div>
+    <div style="font-size:13px; color:var(--muted); margin:12px 0 8px;">本期新计划（P29）</div>
+    <div class="plan-row"><span class="pc">P29-1</span><span class="pt">治理脆弱性补「超级投票权」检查项</span><span class="status pending">进行中</span></div>
+    <div class="plan-row"><span class="pc">P29-2</span><span class="pt">国产算力链跟踪清单补「四档位定位法」</span><span class="status pending">进行中</span></div>
+    <div class="plan-row"><span class="pc">P29-3</span><span class="pt">巡检表补「记忆抽屉 + 授权边界」自检</span><span class="status pending">进行中</span></div>
+    <div class="plan-row"><span class="pc">P29-4</span><span class="pt">韬定律V2 补「标准之争卡位」维度</span><span class="status pending">进行中</span></div>
+  </div>
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。持仓信息以 holdings_loader.py 实时对账单为准（本期：生益科技 2600 股）。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第29期 · 2026-11-24 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
