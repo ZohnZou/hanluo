@@ -1,12 +1,18 @@
 {
   "updated": "2026-11-24",
-  "total": 395,
+  "total": 396,
   "items": [
     {
       "type": "因子规则库",
       "date": "2026-11-23",
       "title": "因子库与规则库全景",
       "url": "system/index.html"
+    },
+    {
+      "type": "操盘复盘",
+      "date": "2026-11-24",
+      "title": "操盘复盘_2026-11-24",
+      "url": "review/操盘复盘_2026-11-24.html"
     },
     {
       "type": "建仓预测",
