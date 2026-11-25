@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF 资金流日报 · 20261124</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.6; padding:20px 16px 60px; max-width:960px; margin:0 auto; }
+  h1 { font-size:22px; letter-spacing:1px; }
+  .header { padding:20px 0 12px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
+  .big { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 22px; margin:16px 0; text-align:center; }
+  .big .v { font-size:40px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .big .k { color:var(--muted); font-size:13px; margin-top:4px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:16px 0; }
+  .card-title { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .card-note { color:var(--muted); font-size:12px; margin-bottom:12px; }
+  .tablewrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  thead th { background:#1c2128; color:var(--muted); font-weight:600; text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); white-space:nowrap; }
+  tbody td { padding:8px 10px; border-bottom:1px solid #21262d; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  tbody tr:hover { background:#1c2128; }
+  .up { color:var(--red); }
+  .down { color:var(--green); }
+  .code { color:var(--muted); font-family:Consolas,monospace; }
+  .muted { color:var(--muted); }
+  .foot { color:var(--muted); font-size:12px; text-align:center; margin-top:24px; }
+  @media (max-width:640px) { h1{font-size:19px;} .big .v{font-size:30px;} table{font-size:12px;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>ETF 资金流 · 托底信号日报</h1>
+  <div class="sub">数据截止 20261124 · 环比基准 20261123 · 20 只宽基 ETF 申赎口径 · Tushare fund_share</div>
+</div>
+
+<div class="big">
+  <div class="v down">-118.5 亿</div>
+  <div class="k">20 只宽基 ETF 单日申赎净流入合计 · <span class="down">非托底日</span></div>
+  <div class="k muted">单日净流入未破 100 亿，无明确托底动作</div>
+</div>
+
+<div class="card">
+  <div class="card-title">20 只 ETF 净流入明细（亿元）</div>
+  <div class="card-note">净流入 = 份额变化(万份) × 收盘价。红色 = 净申购，绿色 = 净赎回。宽基 ETF 大额净申购 = 国家队/机构托底。</div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>名称</th><th>代码</th><th class="num">今日份额(万份)</th><th class="num">份额变化</th><th class="num">收盘价</th><th class="num">净流入(亿)</th></tr></thead>
+    <tbody><tr><td>创业板ETF广发</td><td class='code'>159952.SZ</td><td class='num'>1,438,488</td><td class='num'>+15,640</td><td class='num'>1.392</td><td class='num up'>+2.2</td></tr><tr><td>中证1000ETF南方</td><td class='code'>512100.SH</td><td class='num'>2,556,722</td><td class='num'>+6,600</td><td class='num'>2.354</td><td class='num up'>+1.6</td></tr><tr><td>A500ETF南方</td><td class='code'>159352.SZ</td><td class='num'>3,111,010</td><td class='num'>+6,000</td><td class='num'>1.054</td><td class='num up'>+0.6</td></tr><tr><td>中证500ETF南方</td><td class='code'>510500.SH</td><td class='num'>1,250,817</td><td class='num'>-200</td><td class='num'>6.126</td><td class='num down'>-0.1</td></tr><tr><td>科创50ETF易方达</td><td class='code'>588080.SH</td><td class='num'>4,669,363</td><td class='num'>-6,900</td><td class='num'>1.276</td><td class='num down'>-0.9</td></tr><tr><td>中证A500ETF国泰</td><td class='code'>159338.SZ</td><td class='num'>2,771,909</td><td class='num'>-9,600</td><td class='num'>1.011</td><td class='num down'>-1.0</td></tr><tr><td>中证1000ETF易方达</td><td class='code'>159633.SZ</td><td class='num'>121,416</td><td class='num'>-6,000</td><td class='num'>2.488</td><td class='num down'>-1.5</td></tr><tr><td>创业板50ETF华安</td><td class='code'>159949.SZ</td><td class='num'>2,483,979</td><td class='num'>-27,500</td><td class='num'>1.018</td><td class='num down'>-2.8</td></tr><tr><td>中证1000ETF广发</td><td class='code'>560010.SH</td><td class='num'>259,862</td><td class='num'>-12,000</td><td class='num'>2.417</td><td class='num down'>-2.9</td></tr><tr><td>A500ETF华夏</td><td class='code'>512050.SH</td><td class='num'>1,755,499</td><td class='num'>-39,300</td><td class='num'>1.008</td><td class='num down'>-4.0</td></tr><tr><td>A500ETF华泰柏瑞</td><td class='code'>563360.SH</td><td class='num'>3,831,499</td><td class='num'>-44,700</td><td class='num'>1.067</td><td class='num down'>-4.8</td></tr><tr><td>中证1000ETF华夏</td><td class='code'>159845.SZ</td><td class='num'>243,043</td><td class='num'>-22,500</td><td class='num'>2.415</td><td class='num down'>-5.4</td></tr><tr><td>上证指数ETF富国</td><td class='code'>510210.SH</td><td class='num'>1,816,119</td><td class='num'>-70,800</td><td class='num'>0.921</td><td class='num down'>-6.5</td></tr><tr><td>上证50ETF华夏</td><td class='code'>510050.SH</td><td class='num'>2,414,317</td><td class='num'>-23,580</td><td class='num'>2.888</td><td class='num down'>-6.8</td></tr><tr><td>A500ETF易方达</td><td class='code'>159361.SZ</td><td class='num'>2,699,309</td><td class='num'>-72,000</td><td class='num'>1.033</td><td class='num down'>-7.4</td></tr><tr><td>创业板ETF易方达</td><td class='code'>159915.SZ</td><td class='num'>5,346,345</td><td class='num'>-45,200</td><td class='num'>2.292</td><td class='num down'>-10.4</td></tr><tr><td>科创50ETF华夏</td><td class='code'>588000.SH</td><td class='num'>10,431,567</td><td class='num'>-85,500</td><td class='num'>1.319</td><td class='num down'>-11.3</td></tr><tr><td>沪深300ETF嘉实</td><td class='code'>159919.SZ</td><td class='num'>2,133,292</td><td class='num'>-28,170</td><td class='num'>4.210</td><td class='num down'>-11.9</td></tr><tr><td>沪深300ETF易方达</td><td class='code'>510310.SH</td><td class='num'>2,854,414</td><td class='num'>-35,640</td><td class='num'>3.920</td><td class='num down'>-14.0</td></tr><tr><td>沪深300ETF华泰柏瑞</td><td class='code'>510300.SH</td><td class='num'>5,481,049</td><td class='num'>-77,670</td><td class='num'>4.033</td><td class='num down'>-31.3</td></tr></tbody>
+  </table></div>
+</div>
+
+<div class="foot">寒洛 · 数据源 Tushare VIP · ETF 资金流日报 · 生成于 2026-11-25 09:22</div>
+</body>
+</html>
