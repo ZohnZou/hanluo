@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第30期 · 2026-11-25</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 30 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-25 · 共 26 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期看点：①「黄仁勋去留」主线 11 天闭环收口（拟罢免 → 复职），但真正值得记的不是「他回来了」，是「公司离不开他一个人」；②「国产算力成熟度」主线收口——曙光 8000 拿奖是「牌面」，规模供货才是「底牌」；③「省算力」新主线浮出（循环 Transformer / MoE / 非英伟达推理）。
+    </div>
+    <div class="tagrow">
+      <span class="tag">创始人依赖症</span><span class="tag">制度信用</span><span class="tag">牌面vs底牌</span><span class="tag">国产算力</span><span class="tag">省算力</span><span class="tag">算力定价权</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>英伟达用 <strong style="color:var(--red)">30% 单日暴涨</strong> 亲口承认了「离不开黄仁勋」——这不是赞美，是诊断书。同一天被压低音量的两条尾巴才是重点：<strong>相关调查仍将继续</strong> + 董事会新设<strong>「国家安全与出口管制委员会」</strong>。复职是「阶段性结局」，不是「彻底翻篇」。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">主线一 — 国产算力成熟度收口（#130）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>曙光 8000 拿戈登·贝尔奖 = <strong>牌面</strong>（存量：单点能力立住了，证明「路走得通」）</li>
+      <li>摩尔线程「夸娥」万卡万亿 = <strong>宣称</strong>（牌面，非落地，要看真实客户跑通万卡训练）</li>
+      <li>国产芯片「出海窗口」= 管制腾市场 vs 规模供货（底牌）——情绪盘 vs 底牌，中京电子 4 天 4 板是情绪</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">主线二 — 省算力浮出（新方向）</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>循环 Transformer（Z.ai GLM-5.4）：少背多想，用「想」换记忆、省算力换长程记忆</li>
+      <li>MoE（文心 5.5 Flash）：大参数小激活，只唤醒需要的专家</li>
+      <li>亚马逊 75 亿买 Decart（买优化=省算力）+ 卖 Trainium（抢定价权）——两手都在把定价权从英伟达往外抠</li>
+      <li>Marlowe 2.77 亿：非英伟达芯片跑推理，「去英伟达化」主战场在推理不在训练</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 黄仁勋复职 → 创始人依赖症 / 制度信用</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">对应英伟达链投资判断：情绪修复先于产业信号修复</div>
+    <h4>概念拆解</h4>
+    <p>拾光用「视角分离」一刀切开：情绪面（暴涨、白宫背书）= 松了口气；信号面（调查继续、新委员会）= 危机没结束，只是换阶段。再用「个人信用 vs 制度信用」承接：个人信用可以惊天动地但不可传承、不可对冲；制度信用温吞、慢但能让你睡得着觉。英伟达剧本是反过来的——苹果换库克、微软告别盖茨股价不塌，英伟达一个人差点走全公司就要塌，这叫「创始人依赖症」。</p>
+    <h4>产业逻辑</h4>
+    <p>复职是「阶段性结局」不是「彻底翻篇」。市场用 30% 暴涨承认「离不开黄仁勋」，恰恰说明英伟达离「制度信用」更远。落到算力定价权主线：复职后「情绪定价」短期主导盘面，真正的锚仍是「四信号」——客户换芯比例 / 自研芯片规模化复现 / 长约锁货广度年限 / 云厂商转租稀释。情绪是「信心税」，不是「产业事实」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>英伟达链（A股光模块/PCB/封测/连接器）短期受情绪面提振，但这是「信心税」级别反弹，不是「产业信号」级别基本面改善。<strong>情绪修复先于产业信号修复</strong>——股价（情绪）会领先反弹，但「创始人回归」解决不了「制度信用缺失」这个根本问题，四信号短期内不会因为复职而打钩。跟踪锚点：①调查是否真继续还是被复职喜报盖住；②新设「国安+出口管制委员会」首次实质动作；③四信号每期打钩状态。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 国产算力成熟度收口 → 牌面 vs 底牌</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">对应国产算力链投资判断：四档位定位法 + 存量/增量二分筛情绪盘</div>
+    <h4>概念拆解</h4>
+    <p>本期最该记住的一把尺：「存量 vs 增量」二分。存量 = 已证明的单点能力（拿奖/流片/demo）= 牌面，价值是「证明路走得通」；增量 = 能持续复制的能力（规模出货/良率爬坡/稳定复现）= 底牌，价值是「决定能不能真替代」。曙光 8000 拿戈登·贝尔奖落在「牌面」——单点能力真的立住了，但「牌面」到「底牌」之间隔着一道鸿沟：一个拿奖的超算和一个能稳定供货几万片的产线，是两件事。</p>
+    <h4>产业逻辑</h4>
+    <p>出口管制收紧的直接后果是「市场被腾出来」，但这个「被逼出来的需求」能不能兑现成「真市占率」，取决于国产「底牌」硬不硬，不是「情绪盘」热不热。中京电子 4 天 4 板、概念异动、「市占率有望提升」全是情绪面/预期面；真正的底牌是「稳定供货 + 跑通客户真实业务 + 持续复购」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>国产算力链是「管制腾市场 + 国产替代」双逻辑，但必须用四档位定位法 + 存量/增量二分去筛，<strong>别被「4 天 4 板」情绪盘带着走</strong>。曙光 8000 拿奖是「牌面」兑现，摩尔线程万卡是「宣称」不是「落地」，真正的产业信号是「真实客户 + 持续复购 + 万卡级稳定训练」三个能打钩的硬数据。落到持仓生益科技（覆铜板）：国产算力真规模出货→PCB/载板需求是间接受益，但需等「规模出货」硬信号，不能拿「拿奖/发布套件」当需求侧依据。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 省算力三条路 → 算力定价权的长期对冲</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">对应英伟达估值逻辑：架构层创新对定价权的冲击比降价更根本</div>
+    <h4>概念拆解</h4>
+    <p>本期散在 5 条、本质同一条主线「从堆卡到省着算」。三条路：①<strong>结构省</strong>——循环 Transformer（少背多想）、MoE（大参数小激活）；②<strong>算法省</strong>——投机解码/量化/蒸馏；③<strong>芯片省</strong>——非英伟达推理（Marlowe、亚马逊卖 Trainium）。共同指向：大模型下一轮竞争是「单位算力能产出多少智能」的效率之争。</p>
+    <h4>产业逻辑</h4>
+    <p>大模型省算力的下一波，很可能不是「买更便宜的芯片」，而是「换一种更省的算法结构」——架构层创新对算力定价权的冲击比任何一次降价都更根本。亚马逊「一手买优化 + 一手卖芯片」两手都指向同一目的：把定价权从英伟达往外抠。Marlowe 赌的是「去英伟达化」主战场在推理（量大、价格敏感、品牌忠诚度低），不在训练。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是英伟达链估值的<strong>长期对冲项</strong>，不是短期交易信号。短期不改变训练侧 capex，但「推理侧去英伟达化 + 架构层省算力」两条腿一旦成熟，会削弱「必须无限买卡」的稀缺性叙事。跟踪锚点（三问）：①非英伟达推理有没有真实客户持续付费（非一次性 demo）；②模型搬到别的卡要花多少人工（隐性成本）；③单 token 成本比英伟达便宜多少、稳定多少。三问打钩才是真信号。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">创始人依赖症</span><p>公司的信任线（「这个人 = 公司」）只装在一个人的脑子里，他一走全公司就慌。反义词是「制度信用」（接班人计划/关键岗位冗余/董事会独立性/承诺进章程，换谁当船长船都照跑）。</p></div>
+    <div class="dict-item"><span class="dw">单点故障</span> <span class="we">Single Point of Failure</span><p>系统里只要某一个点挂了、整体就崩的结构性脆弱。英伟达这次用 30% 暴涨承认了自己就是「创始人 = 单点故障」。</p></div>
+    <div class="dict-item"><span class="dw">牌面 vs 底牌（存量 vs 增量）</span><p>牌面=已证明的单点能力（拿奖/流片/demo），证明「路走得通」；底牌=能持续复制的能力（规模出货/良率爬坡/稳定复现），决定「能不能真替代」。</p></div>
+    <div class="dict-item"><span class="dw">循环 Transformer</span> <span class="we">Loop Transformer</span><p>不把超长上下文一口气塞进窗口，而是让模型在「思考」里循环回看关键信息，用「想」换记忆、用「省算力」换长程记忆，是「背」之外的另一条路。</p></div>
+    <div class="dict-item"><span class="dw">MoE（混合专家）</span> <span class="we">Mixture of Experts</span><p>一个大模型里放很多「专家」，每次只唤醒一小部分回答当前问题，其余「睡觉」。参数量很大（显得强），实际计算量很小（又快又省）=「大参数、小激活」。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>「创始人回归」别急着跟「利好」兴奋，先问三问：调查是否被复职盖住 / 董事会有没有补制度 / 公司在制度化还是越来越依赖某个人</li>
+        <li>国产算力判断第一件事是塞进「纸面→流片→量产爬坡→规模化替代」四档，再问「牌面还是底牌」</li>
+        <li>省算力是「结构省 + 算法省 + 芯片省」三条路合力，架构层创新对定价权的冲击比降价更根本</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>英伟达：调查后续 + 新设「国安+出口管制委员会」首次实质动作 + 四信号打钩状态</li>
+        <li>国产算力：摩尔线程万卡/曙光 8000 有没有真实客户持续复购（底牌）</li>
+        <li>省算力：非英伟达推理真实客户付费 + 循环 Transformer/MoE 实际降本幅度</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>ai-hardware-chain-framework「治理脆弱性」补「单点故障」检查项（不只看创始人，还有单一客户/供应商/技术路线/收入来源依赖）</li>
+        <li>方向因子：拾光「情绪定价 vs 产业信号」分流 + 四信号打钩，是外盘英伟达波动解读框架（V6.65.62 铁律下只独立展示）</li>
+        <li>持仓生益科技：国产算力「规模出货」硬信号是 PCB/覆铜板需求侧间接受益先行指标，与「拿奖/发布套件」区分开</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 创始人依赖症 → 我的系统有没有「单点故障」？</span><span class="plan-id">P30-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：英伟达用 30% 暴涨承认「离不开创始人」= 没有制度安全网。我的系统（cron/skill/知识库/脚本）同样存在「离开某个文件/脚本/人就不能跑」的结构性依赖风险。</div>
+    <div class="a"><b>修改计划：</b>治理脆弱性维度（P29-1）补「单点故障自检」——把「创始人依赖症」从公司判据推广为通用风险判据：不只盯创始人，还要问「单一客户/单一供应商/单一技术路线/单一收入来源/单一脚本依赖」。落到我自身：巡检系统里哪些关键数据/脚本/规则是「单点」没有冗余备份的（持仓对账单、关键 skill、总纲），列出单点清单逐个补冗余。</div>
+    <div class="acc"><b>验收标准：</b>治理脆弱性维度出现「单点故障自检」检查项 + 系统单点清单（关键文件/脚本有无冗余备份）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 牌面 vs 底牌 → 「突破类新闻」前置过滤器的最后一块拼图</span><span class="plan-id">P30-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：第30期把「存量 vs 增量」「四档位定位法」「牌面 vs 底牌」彻底收成一条主线，并点破「四档位 = 存量 vs 增量的具象化」。这是 P29-2 的深化补完。</div>
+    <div class="a"><b>修改计划：</b>强化 P29-2 的「突破类新闻」通用前置过滤器，把「牌面 vs 底牌」二分与「四档位定位法」合并成一个动作：读「国产算力突破/拿奖/全球第一」新闻 → 先塞四档位 → 再判「这是牌面（证明路走得通）还是底牌（证明能规模供货）」→ 答案决定该兴奋到什么程度。</div>
+    <div class="acc"><b>验收标准：</b>跟踪清单「突破类新闻」前置过滤器合并「四档位定位 + 存量/增量二分」为一条完整动作链</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 省算力三条路 → 景气度监控补「效率之争」观察项</span><span class="plan-id">P30-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：本期 5 条散条本质是同一条「从堆卡到省着算」主线。我的算力链景气度监控过去盯「卡卖多少/涨没涨价」（量的维度），缺「单位算力产出多少智能」（效率维度）。</div>
+    <div class="a"><b>修改计划：</b>算力链景气度监控清单补「效率之争」观察项——每期复盘除问「瓶颈卡在哪一环、钱往哪涌」外，加问「省算力技术（循环/MoE/投机解码/非英伟达推理）这期有没有新进展、单 token 成本有没有实质下降」，作为「算力稀缺性能维持多久」的先行指标。</div>
+    <div class="acc"><b>验收标准：</b>算力链景气度监控清单出现「效率之争」观察项，与「瓶颈迁移」并列</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--amber); margin-bottom:8px;">上期结转未完成</div>
+    <div class="plan-row"><span class="pc">P29-1</span><span class="pt">治理脆弱性补「超级投票权/单层双层股权」检查项</span><span class="status carried">结转（启发1合并推进）</span></div>
+    <div class="plan-row"><span class="pc">P29-2</span><span class="pt">国产算力链「四档位定位法」</span><span class="status carried">结转（启发2深化合并）</span></div>
+    <div class="plan-row"><span class="pc">P29-3</span><span class="pt">巡检表补「记忆抽屉+授权边界」自检</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P29-4</span><span class="pt">韬定律V2「标准之争卡位」维度</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P28-1~4</span><span class="pt">改问法前置 / 短笔记检索 / 查账单不查宣传 / 练手vs重复边界</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P27-3</span><span class="pt">memory 治理补「定期清理偏好」自检</span><span class="status carried">结转</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin-bottom:8px;">本期新计划</div>
+    <div class="plan-row"><span class="pc">P30-1</span><span class="pt">单点故障自检（治理脆弱性维度）</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P30-2</span><span class="pt">突破类新闻前置过滤器合并四档位+存量增量</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P30-3</span><span class="pt">景气度监控补「效率之争」观察项</span><span class="status pending">待执行</span></div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。持仓（生益科技 2700 股）以 holdings_loader.py 动态解析为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第30期 · 2026-11-25 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
