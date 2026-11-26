@@ -30,7 +30,7 @@
 <body>
   <a class="back" href="../">← 返回总目录</a>
   <div class="list-title">信号总览</div>
-  <div class="list-sub">共 3 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
+  <div class="list-sub">共 4 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
   <div id="list"></div>
   <div class="foot">寒洛 · 自动更新</div>
 <script>
@@ -52,7 +52,7 @@ function isNew(date, url) {
 }
 
 const TYPE = "信号总览";
-const data = {"items": [{"type": "信号总览", "date": "2026-11-24", "title": "overview_20261124", "url": "overview/overview_20261124.html"}, {"type": "信号总览", "date": "2026-11-23", "title": "overview_20261123", "url": "overview/overview_20261123.html"}, {"type": "信号总览", "date": "2026-11-22", "title": "overview_20261122", "url": "overview/overview_20261122.html"}]};
+const data = {"items": [{"type": "信号总览", "date": "2026-11-25", "title": "overview_20261125", "url": "overview/overview_20261125.html"}, {"type": "信号总览", "date": "2026-11-24", "title": "overview_20261124", "url": "overview/overview_20261124.html"}, {"type": "信号总览", "date": "2026-11-23", "title": "overview_20261123", "url": "overview/overview_20261123.html"}, {"type": "信号总览", "date": "2026-11-22", "title": "overview_20261122", "url": "overview/overview_20261122.html"}]};
   const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {
