@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第31期 · 2026-11-26</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:10px; margin:12px 0; }
+  .kpi { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .kpi .n { font-size:20px; font-weight:700; color:var(--green); font-family:monospace; }
+  .kpi .n.red { color:var(--red); }
+  .kpi .l { font-size:12px; color:var(--muted); margin-top:3px; line-height:1.5; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .dir table { width:100%; border-collapse:collapse; margin:8px 0; font-size:13px; }
+  .dir th, .dir td { border:1px solid var(--border); padding:6px 8px; text-align:left; }
+  .dir th { background:var(--card2); color:var(--blue); font-weight:600; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 31 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-26 · 共 26 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期最大看点：<strong style="color:var(--purple)">「省算力」主线正式收口</strong>——五条散新闻收成一根线，升格为与「堆算力」平起平坐的第一性战略；国产算力商业模式从「卖卡」改写为「卖 Token」，一枪打在英伟达两层护城河上。
+    </div>
+    <div class="tagrow">
+      <span class="tag">省算力</span><span class="tag">结构省/算法省/芯片省</span><span class="tag">卖Token</span><span class="tag">有效算力</span><span class="tag">单点故障</span><span class="tag">人形机器人量产</span><span class="tag">定价逻辑切换</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>「省算力」已经从个别公司的技术选择，变成<strong>整个行业的主旋律</strong>。拾光把循环Transformer / MoE / 三值量化 / 非英伟达推理五条散新闻收成一根线——「大模型太贵，贵到必须省」——并升格为与「堆算力」<strong style="color:var(--green)">平起平坐的第一性战略</strong>。过去两年赢家逻辑是「我有更多卡」，从现在起多了一条「谁能用更少的卡，做出别人更多卡才能做的事」。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">省算力主线收口 — 结构省/算法省/芯片省三条路</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>结构省：Z.ai GLM-5.4（750B）用循环Transformer、百度文心5.5用MoE「大参数小激活」——省训练+推理，代价是重训+押架构</li>
+      <li>算法省：PrismML 三值压缩把27B模型压到九分之一、留93.7%编程力——主要省推理，代价是精度可能掉</li>
+      <li>芯片省：亚马逊买Decart补软件层、Marlowe非英伟达推理——换硬件，代价是生态迁移成本</li>
+      <li>关键分野：<strong style="color:var(--amber)">省训练=釜底抽薪，省推理=边角料</strong>——真正决定成本天花板的是训练</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">国产算力 — 从「卖卡」到「卖Token」</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>卖Token模式绕开CUDA生态、直插应用层，客户不关心底层芯片，按用量付费像用自来水</li>
+      <li>摩尔线程 + Sand.ai 把视频模型 MAGI-2 跑在国产算力上——「标称算力→有效算力」第一个可查样本</li>
+      <li>同时段国产GPU「四小龙」因流片不确定性股价重挫——市场在给「能不能出货」重新称重</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">黄仁勋复职一周 + 其他信号</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>白宫背书/马斯克合影/盘前涨30%（情绪）vs 司法调查继续/AI教父回击（信号）——印证上一期「复职是情绪、尾巴是信号」</li>
+      <li>Anthropic跌破发行价 = AI定价逻辑从「赌模型最强」切到「赌生意变现」</li>
+      <li>特斯拉AI5优先给Optimus + 小鹏IRON 2027Q2量产——人形机器人从demo切到排产线</li>
+      <li>单点故障两档分层（可替代冗余点 vs 不可对冲传承点）——创始人依赖推广为通用风险判据</li>
+      <li>MCP协议月下载破7亿（标准主权）、OpenAI/Anthropic「强到不敢发」、GPT-6涌现蛋白质设计能力</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 省算力三路 + 「省训练 vs 省推理」分野</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">判断任何「省X%算力」新闻是真省钱还是讲故事的通用尺子</div>
+    <h4>概念拆解</h4>
+    <p>省算力不是单选题，是看卡在哪一层再选路。三条路落在不同费钱环节，不能混着比：</p>
+    <table>
+      <tr><th>路</th><th>怎么省</th><th>省在哪</th><th>代价</th><th>代表</th></tr>
+      <tr><td>结构省</td><td>换模型架构（循环复用/MoE小激活）</td><td>训练+推理</td><td>重训+押架构</td><td>GLM-5.4 / 文心5.5</td></tr>
+      <tr><td>算法省</td><td>换跑法（量化/蒸馏/投机解码）</td><td>主要推理</td><td>精度可能掉</td><td>PrismML 三值压缩</td></tr>
+      <tr><td>芯片省</td><td>换硬件（非英伟达/自研ASIC）</td><td>推理为主</td><td>生态迁移成本</td><td>Marlowe / Decart</td></tr>
+    </table>
+    <h4>产业逻辑</h4>
+    <p>关键分野是拾光独家判断里最值钱的一句：<strong>省训练=釜底抽薪（动成本天花板），省推理=边角料（让已训模型跑便宜）</strong>。真正决定成本天花板的是训练，不是推理。现在大多数省钱动作省的是推理，谁能在训练侧把「结构省」跑通并规模化，谁的省钱才是釜底抽薪。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是英伟达链估值逻辑的<strong>长期对冲项 + 观察锚点升级</strong>。「省算力」从单条新闻变成行业主旋律 = 范式转身，要当趋势变量看。判断「省X%」新闻先问两问：①省的是训练还是推理 ②结构/算法/芯片哪一路。只有「训练侧+结构省」才动天花板，推理侧多是边角料、别被「省90%」标题骗走。循环Transformer从「小团队实验」杀进「旗舰标配」（750B GLM-5.4），说明结构省路线拿到主流入场券——这条若在训练侧规模化，会实质削弱「必须无限买卡」的稀缺性叙事，是「算力稀缺性能维持多久」的先行指标。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 国产算力「卖卡→卖Token」+ 有效算力</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">国产算力突围的真信号不是跑分，是「卖Token的在产应用」</div>
+    <h4>概念拆解</h4>
+    <p><strong>卖卡</strong> = 把芯片当硬件卖、一锤子买卖，客户要自己写代码/适配 → 撞上CUDA生态墙。<strong>卖Token</strong> = 直接卖「算出来的结果」，客户不关心底下什么卡、按用量付费像用自来水 → 绕开生态、直插应用层。<strong>标称算力 vs 有效算力</strong>：规格书理论峰值 vs 真跑大模型实际用出多少，中间隔着编译器/算子库/调度/生态适配。</p>
+    <h4>产业逻辑</h4>
+    <p>国产算力真正的突围不是「造出比英伟达更快的卡」，而是「让客户不需要关心用的是什么卡」。卖Token跳过了「生态追赶」这个最难的题。MAGI-2（视频生成=算力黑洞）能跑通国产卡，等于用「最重的活」验证了国产卡软硬结合能力——这不是跑「你好世界」，是爬「最陡的坡」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>这是「算力定价权四信号清单」的<strong>重要补充信号</strong>：国产算力进度条不在「跑分多高」，在「多少真实重负载应用长期跑国产卡+按Token付费」。卖Token模式一枪打在英伟达「硬件毛利+生态锁定」两层护城河，与亚马逊买Decart「软件补差距」同一逻辑，叠加构成定价权松动的商业模式侧第五观察维度。映射到A股：卖Token利好「有真实在产应用跑通的国产算力平台」（摩尔线程产业链）而非「跑分好看的芯片PPT」；四小龙因流片不确定性重挫，正说明市场开始用「能不能出货」称重——与「国产替代是方向、流片/良率/出货是节奏」分层一致。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · Anthropic跌破发行价 + 单点故障分层</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">AI定价逻辑切换 + 创始人依赖推广为通用风险判据</div>
+    <h4>概念拆解</h4>
+    <p><strong>跌破发行价</strong> = 二级市场「掏真金白银的人」不认上市前机构博弈的共识价，是市场用脚投票对公司估值的第一次公开纠偏。<strong>单点故障两档</strong>：①可替代冗余点（坏掉能找到替身，疼但不死）；②不可对冲传承点（坏掉没替身，承载别人学不走的东西）。有接棒路径的依赖叫「分工」，没有的叫「单点故障」。</p>
+    <h4>产业逻辑</h4>
+    <p>Anthropic跌破发行价真正的信号不是「这家公司不行」，而是「AI赛道的定价逻辑切换」——从「赌谁模型最强」切到「赌谁先把最强模型变成赚钱的生意」。接下来所有AI公司都得用现金流而非估值故事证明自己，估值体系会整体、普遍下修一轮。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>与我「三问分离尺」（想象空间/当下现金流/护城河）同源——Anthropic跌破发行价正是「现金流一维」证伪「想象空间一维」的活案例。后续AI公司最该追问的数字不是benchmark分数，而是「靠什么、什么时候把烧的钱赚回来」。单点故障分层直接落到治理脆弱性维度：读公司别只问「靠谁」，要问「那个人走了有没有接棒路径」。黄仁勋全票请回，最该读出的信号是「董事会手里没有能替代他的牌」。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">循环Transformer（Loop Transformer）</span><p>传统Transformer每层全新参数、越深越烧；循环版让「同一套参数循环复用多次」，用「一个不大的脑袋多转几圈」替代「堆大脑袋」，省下参数量和训练/推理成本。代表 Z.ai GLM-5.4（750B）。</p></div>
+    <div class="dict-item"><span class="dw">MoE（混合专家）</span><p>总参数很大、每次推理只激活相关几个专家，即「大参数、小激活」——看起来大、用起来省。代表 百度文心5.5 Flash。</p></div>
+    <div class="dict-item"><span class="dw">三值压缩</span><p>把权重硬逼到只有三个值（如-1/0/+1），体积暴减（27B压到九分之一）仍留93.7%编程力，是「算法省」里最激进的量化。</p></div>
+    <div class="dict-item"><span class="dw">流片（Tape-out）</span><p>把设计变成真实芯片、送去晶圆厂制造的「试产」。能不能顺利流片、良率多少，直接决定「PPT上的设计」能不能变「能卖的货」。</p></div>
+    <div class="dict-item"><span class="dw">标称算力 vs 有效算力</span><p>芯片规格书理论峰值 vs 真跑大模型实际用出多少，中间隔着编译器/算子库/调度/生态适配。MAGI-2跑国产卡 = 用「最重的活」验「有效算力」。</p></div>
+    <div class="dict-item"><span class="dw">单点故障（Single Point of Failure）</span><p>系统里某个点一坏整盘停摆。分两档——可替代冗余点（换灯泡）vs 不可对冲传承点（焊死的总闸）。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>「省算力」升格为与「堆算力」平起平坐的第一性战略，范式转身；判断「省X%」先问「省训练还是省推理、结构/算法/芯片哪一路」</li>
+        <li>国产算力「卖Token」绕开CUDA生态、直插应用层，同时打英伟达「硬件毛利+生态锁定」两层护城河</li>
+        <li>Anthropic跌破发行价 = AI定价逻辑从「赌模型最强」切到「赌生意变现」，现金流替代benchmark</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>循环Transformer训练侧能否规模化（GLM-5.4真实API价格/跑分兑现度）——省训练釜底抽薪的兑现信号</li>
+        <li>「真实应用+国产卡」配对数量（MAGI-2之后的第二、三个样本）——国产算力有效算力进度条</li>
+        <li>流片/良率/出货节奏（四小龙暴跌后的企稳信号）——「国产替代是方向、出货是节奏」分层验证</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>ai-hardware-chain-framework.md：新增「省算力三路+卖Token商业模式」判断维度（十三节）</li>
+        <li>效率之争观察项（P30-3）本次实质落地：省训练vs省推理分野 = 算力稀缺性先行指标</li>
+        <li>治理脆弱性维度：单点故障两档分层（P30-1）被拾光成篇验证，已验收标「反馈关闭」</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 「省训练 vs 省推理」分野 → 效率之争观察项落地为可打钩两问</span><span class="plan-id">P31-1</span><span class="status done">已完成</span></div>
+    <div class="u">理解：拾光把「省算力」浓缩成一个分野——省训练=釜底抽薪、省推理=边角料。这是判断任何「省成本」新闻真省还是讲故事的最短路径。</div>
+    <div class="a"><b>修改计划：</b>把 P30-3「效率之争观察项」正式落进 ai-hardware-chain-framework.md 十三节，补两问——①省的是训练还是推理 ②结构/算法/芯片哪一路，只有「训练侧+结构省」才动天花板。</div>
+    <div class="acc"><b>验收标准：</b>框架出现「省训练vs省推理分野」两问判断规则，与9.6三笔账并列</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「卖卡→卖Token」 → 国产算力成熟度补商业模式层</span><span class="plan-id">P31-2</span><span class="status done">已完成</span></div>
+    <div class="u">理解：国产算力突围的真信号不是「跑分」，是「卖Token的在产应用」——因为卖Token绕开了CUDA生态这道最难追的坎。</div>
+    <div class="a"><b>修改计划：</b>把「卖卡vs卖Token」作为国产算力四档位定位法（P29-2/P30-2）的商业模式层补进框架十三节——判断国产算力新闻，除定位四档位，再问「卖卡还是卖Token」，卖Token的在产应用才是底牌。</div>
+    <div class="acc"><b>验收标准：</b>框架四档位定位法出现「卖卡vs卖Token」商业模式层 + 「有效算力」观察锚点</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 「供电/封装/互联暗线」 → 瓶颈迁移补「明线vs暗线」维度</span><span class="plan-id">P31-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：算力成本胜负手会从「芯片/模型」明线转移到「供电、封装、互联」暗线，谁把「最后一公里」做便宜谁才真省。</div>
+    <div class="a"><b>修改计划：</b>给 9.6 瓶颈迁移「钱往上游爬」路径补一层「明线vs暗线」视角——评估算力成本别只盯芯片跑分，盯电费/散热/供电/封装这套隐藏成本，它决定AI服务「用起来贵不贵」的下限。</div>
+    <div class="acc"><b>验收标准：</b>框架9.6瓶颈迁移出现「明线vs暗线」维度（供电/散热/封装/互联作为成本暗线）</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--red); margin-bottom:6px;">上期结转未完成（P30 → 本期继续）</div>
+    <div class="plan-row"><span class="pc">P30-1</span><span class="pt">单点故障自检（创始人依赖推广为通用风险判据）</span><span class="status carried">结转</span></div>
+    <div class="plan-row"><span class="pc">P30-2</span><span class="pt">突破类新闻前置过滤器合并四档位+存量增量</span><span class="status carried">结转</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px;">本期新计划（P31）</div>
+    <div class="plan-row"><span class="pc">P31-1</span><span class="pt">省训练vs省推理分野 → 效率之争观察项落框架13.1</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P31-2</span><span class="pt">卖卡vs卖Token → 国产算力商业模式层落框架13.2</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P31-3</span><span class="pt">供电/封装/互联暗线 → 瓶颈迁移补明线vs暗线</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">✅ 本期新增框架判断维度已实质落地：省算力三路分类法 + 卖Token商业模式层已写进 ai-hardware-chain-framework.md 十三节（P31-1、P31-2 完成，P30-3 效率之争观察项随之落地）。P30-1（单点故障自检）、P30-2（突破类新闻前置过滤器）结转下期；更早的 P26-5 / P27-3 / P28-1~4 / P29-1~4 仍挂 .iteration_plans.json 待办，未丢失。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第31期 · 2026-11-26 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
