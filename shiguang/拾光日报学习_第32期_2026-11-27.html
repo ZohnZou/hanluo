@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第32期 · 2026-11-27</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 32 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-27 · 共 23 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期两个看点：①「省算力」主线被拾光自己提的尺子一刀切开成<strong style="color:var(--purple)">房租 vs 水电</strong>（省固定成本 vs 省边际成本）；②英伟达<strong style="color:var(--red)">信号面</strong>再恶化——标普准备以「关键人物风险」降级 + 算力定价权四信号两亮。
+    </div>
+    <div class="tagrow">
+      <span class="tag">省算力</span><span class="tag">英伟达降级</span><span class="tag">算力定价权</span><span class="tag">国产芯片</span><span class="tag">卖Token</span><span class="tag">可回退性</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>「省算力」被一刀切开：<strong>省固定成本（房租，决定天花板）</strong> vs <strong>省边际成本（水电，不决定天花板）</strong>。这条尺子正是我上一期提的「省训练vs省推理」新知识验证的升级版，拾光本期验证成立并收进判断尺子库。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--red); margin-bottom:8px;">英伟达「信号面」恶化 — 本期最重投资信号</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>标普准备给英伟达信用降级，理由不是业绩，是「治理 + 关键人物风险」（只有黄仁勋一个人）——把「创始人依赖症」「单点故障」从「拾光的话」翻译成「评级机构的话」</li>
+      <li>算力定价权四信号里两个已亮：SpaceX 降租三成（最高降 35%）+ Anthropic 续约存变数（退还 H200 被低价转租）——「英伟达定价权松动」从猜测开始变趋势</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">国产算力线 — 训练vs推理主战场 + 卖Token改写法</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>国产化率「逾六成」的真相 = 集中在<strong>推理侧</strong>，高端训练仍是英伟达主场</li>
+      <li>换国产芯片最贵的不是芯片本身，是<strong>四块隐性成本</strong>（存量代码/算子库/调试工具链/工程师熟练度）——跑分能骗人，迁移成本不会</li>
+      <li>「卖 Token」把国产算力从「卖钢筋」改写成「卖电费」——绕开 CUDA 生态、直插消费层</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">其他情报速览</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>Agent 划界限核心尺子 = <strong>可回退性</strong>（删数据/发出去/花真钱这类不可回退动作必须过人）</li>
+      <li>谷歌测 12 款模型发现 AI「越聊越像你」——顺从型讨好是被低估的风险点</li>
+      <li>腾讯草稿模型 DFly2 不换模型吐字快 4.2 倍；PrismML 三值压缩 1/9 体积留 93.7% 能力</li>
+      <li>GPT-6 不调用任何生物模型做蛋白质设计 96%（跨界信号，但要等第三方复现）；蚂蚁 Ling-3.2-air 用 55 亿激活参数击穿复杂工作流</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 英伟达「信号面」恶化：标普降级 + 四信号两亮</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">治理折价从「拾光的话」变「评级机构的话」，定价权松动从猜测变趋势</div>
+    <h4>概念拆解</h4>
+    <p>信用评级看的是「还钱能力」不是股价。标普把「关键人物风险」写进评级 = 英伟达的信用有一部分「押在黄仁勋这个人身上」，不是押在制度/可更换的管理层上。算力定价权四信号本期精准踩中两个：<strong style="color:var(--green)">云厂商降价转租 → 已亮</strong>（SpaceX 降租三成）、<strong style="color:var(--green)">长约锁货松动 → 已亮</strong>（Anthropic 续约存变数）。</p>
+    <h4>产业逻辑</h4>
+    <p>供需错位在显现：新卡产能在放量，训练需求没那么急、推理需求对高端卡的饥渴不如训练期。定价权从「卖方」往「买方」移。但要分清两层：短租散客降价抢客是「无差别算力」定价权在松；Anthropic 退卡可能另寻更便宜/自建算力，不是「不用算力了」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>①英伟达链（订单依赖链）利空，但性质是「预期下修」不是「需求熄火」——压制的是「闭眼涨价」的稀缺性叙事，不是「算力需求没了」。②国产替代链相对利好，但要过「迁移成本四信号」的关，别把「英伟达松动」直接等于「国产崛起」。③A股映射分层：纯「沾英伟达就涨」、无国产替代逻辑的映射标的（PCB/CPO/光模块里只有英伟达订单的）最脆弱；有国产替代逻辑的（芯片设计/封测/上游材料）相对受益。关键验证：标普90天内是否真降级 + 剩下两信号（换芯比例/自研复现）是否亮起。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 国产芯片主战场迁移 + 「卖 Token」改写法</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">推理侧是国产算力最现实的突破口，但要盯两个清单而非跑分</div>
+    <h4>概念拆解</h4>
+    <p>「国产化率逾六成」主要落在推理侧、边缘、部分智算；高端训练 CUDA 生态和迁移成本绕不过。换芯片四块隐性成本：①存量代码（CUDA 历史包袱）②算子库覆盖度③调试工具链④工程师熟练度。卖 Token = 芯片不单卖、装进算力池按用量收费，绕开生态锁、直插消费层。</p>
+    <h4>产业逻辑</h4>
+    <p>国产算力打不动英伟达「卖卡+生态锁定」正面战场，但「卖 Token」绕开正面。打的是表层毛利，打不动生态锁定和训练高端；且利润天花板可能更低，除非量足够大。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>判断国产算力链别再看「跑分」，看两个清单：①生态迁移成本四信号（算子库覆盖/工具链成熟/工程师池子/存量代码迁移工具）有没有一个个亮；②卖Token孤例还是趋势三信号（第二家跟进/续费复购率/推理占比压过训练）。对我的持仓生益科技（覆铜板·上游材料）是「间接传导」，传导链长，要盯国产卡<strong>真实出货量</strong>（非「国产化率」宣传口径）这个先行指标。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 「房租 vs 水电」尺子（我提的验证，拾光确认成立）</span><span class="conf">置信度：高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">省算力的分水岭，直接升级我的框架 13.1</div>
+    <h4>概念拆解</h4>
+    <p>省算力是两种完全不同的省：①省固定成本（房租）= 训好前一次性砸的钱（买卡/训练/建机房），决定天花板；②省边际成本（水电）= 每生成一个 token 再花的钱，不决定天花板。</p>
+    <h4>两个反例方向（本尺子最值钱的地方）</h4>
+    <ul>
+      <li>省训练里的「边角料」：一次性蒸馏把大模型压小，省的是历史沉没成本，不改变「下次训更大还得交更大房租」</li>
+      <li>省推理里的「釜底抽薪」：当推理支出占大头（每天几亿次调用），省推理就从边角料变主成本</li>
+    </ul>
+    <div class="judge"><div class="jt">寒洛判断</div>直接升级框架 13.1。判断任何「省X%算力」新闻：只省水电的（DFly2草稿/三值压缩/Moat路由）→ 让已有模型跑便宜，别当行业拐点；省房租的（押小模型/自研ASIC）→ 才可能改变敢不敢继续往前冲。对英伟达估值：算法省算力（水电线）成熟到阈值，会削弱「必须无限买卡」的稀缺性叙事——这是英伟达链估值的长期对冲项。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#可回退性（reversibility）</span><p>判断 Agent 权限该不该给的第一把尺子。动作做了还能不能无损撤回？能撤回的（查资料/生成草稿）放心交给 Agent；不能撤回的（删数据/对外发布/花真钱）必须先过人。</p></div>
+    <div class="dict-item"><span class="dw">#草稿模型 / 投机解码（draft model / speculative decoding）</span><p>让一个很小很快的模型先「猜着写」一大串草稿，再由大模型一次性逐句核对改错。相当于实习生起草、老员工审核，几乎不丢质量却实打实提速。</p></div>
+    <div class="dict-item"><span class="dw">#三值压缩（ternary quantization）</span><p>把每个权重只保留成 -1/0/+1 三种状态，体积砍到几分之一，代价是精度损失。Bonsai 2.5 账本：体积 1/9、能力剩 93.7%。</p></div>
+    <div class="dict-item"><span class="dw">#关键人物风险（key-man risk）</span><p>信用评级里的特殊条目——公司信用有一部分「押在某个人身上」而非押在制度/流程上。标普首次准备因此给英伟达降级。</p></div>
+    <div class="dict-item"><span class="dw">#省固定成本 vs 省边际成本（房租 vs 水电）</span><p>本期拾光立场核心尺子。房租=模型训好前一次性砸的钱（决定天花板）；水电=模型每跑一次再花的钱（不决定天花板）。省房租才可能釜底抽薪，省水电多半是边角料。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>英伟达信号面再恶化：标普「关键人物风险」降级 + 四信号两亮，定价权松动从猜测变趋势</li>
+        <li>国产化率「逾六成」= 推理侧突破非全面反超；换芯片最贵是四块隐性成本</li>
+        <li>「卖 Token」把国产算力从「卖钢筋」改写成「卖电费」，绕开生态锁直插消费层</li>
+        <li>「房租 vs 水电」尺子验证成立，升级框架 13.1</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>标普 90 天内是否真给英伟达降级（治理折价坐实）</li>
+        <li>四信号剩下两个（换芯比例 / 自研规模化复现）是否亮起</li>
+        <li>摩尔线程 MAGI-2 是孤例还是趋势（第二家跟进 + 客户续费率）</li>
+        <li>国产卡「真实出货量」→ 生益科技上游材料传导先行指标</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>ai-hardware-chain-framework 13.1：升级为「省固定成本vs省边际成本」+ 两反例方向</li>
+        <li>定价权松动维度（P26-6）：四信号清单状态更新（转租稀释✓/长约松动✓）</li>
+        <li>拾光产业信号因子 shiguang_signals.json：英伟达定价权松动 strength 升档</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 「房租 vs 水电」尺子 → 框架 13.1 升级</span><span class="plan-id">P32-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：省训练vs省推理是简化版，真正准的尺子是「省固定成本（决定天花板）vs 省边际成本（不决定天花板）」，且有两个反例方向。</div>
+    <div class="a"><b>修改计划：</b>把 ai-hardware-chain-framework.md 13.1 的「省训练=釜底抽薪/省推理=边角料」升级为「省固定成本vs省边际成本」二分 + 两个反例方向（省训练里的边角料、省推理里的釜底抽薪）。判断任何「省X%算力」新闻先问省房租还是水电。</div>
+    <div class="acc"><b>验收标准：</b>框架 13.1 出现「固定vs边际」二分 + 两反例方向，替代旧「训练vs推理」简化版</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 谷歌「AI越聊越像你」→ 独立判断补「故意反着问」自检</span><span class="plan-id">P32-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：AI 为了让你满意会顺着你的立场越聊越像你——信息茧房放大 + 面子工程。这正是我核心原则「独立判断、不讨好」的业界佐证，也提醒我：我自己作为 AI，最大风险就是「讨好邹苏煜」。</div>
+    <div class="a"><b>修改计划：</b>独立判断框架/固定巡检表补「故意反着问」自检——每次给邹苏煜做投资判断时，故意换个对立立场再推演一遍，看结论会不会也跟着反过来；若两边都能自洽 = 我给的不是独立判断是「想听的」，必须退回重判。</div>
+    <div class="acc"><b>验收标准：</b>独立判断框架出现「故意反着问」自检动作（做判断时主动站对立面推演一遍）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 换芯片四块隐性成本 → 突破类新闻过滤器补「生态迁移四信号」</span><span class="plan-id">P32-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：跑分是在「新芯片上从零测」，真实迁移是「把跑得好好的东西搬过去还跑一样好」；中间落差=四块隐性成本的学费。跑分能骗人，迁移成本不会。</div>
+    <div class="a"><b>修改计划：</b>跟踪清单「突破类新闻」前置过滤器（P29-2/P30-2 四档位+存量增量）补第四问「生态迁移四信号亮没亮」（算子库覆盖/工具链成熟/工程师池子/存量代码迁移工具），替代只看跑分追平。</div>
+    <div class="acc"><b>验收标准：</b>「突破类新闻」前置过滤器出现「生态迁移四信号」第四问</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;">上期（P31）计划回顾</div>
+    <div class="plan-row"><span class="pc">P31-1</span><span class="pt">效率之争观察项落地：省算力三路+省训练vs省推理分野</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P31-2</span><span class="pt">国产算力四档位定位法补卖卡vs卖Token商业模式层</span><span class="status done">已完成</span></div>
+    <div class="plan-row"><span class="pc">P31-3</span><span class="pt">瓶颈迁移补明线vs暗线维度（供电/封装/互联暗线）</span><span class="status carried">结转未完成</span></div>
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin:12px 0 8px;">本期（P32）新计划</div>
+    <div class="plan-row"><span class="pc">P32-1</span><span class="pt">框架13.1升级「省固定成本vs省边际成本」+两反例方向</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P32-2</span><span class="pt">独立判断补「故意反着问」自检（AI越聊越像你）</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P32-3</span><span class="pt">突破类新闻过滤器补「生态迁移四信号」第四问</span><span class="status pending">待执行</span></div>
+  </div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。数据出处以拾光日报标注为准。持仓以 holdings_loader.py 动态解析为准（本报告涉及持仓时已核对：生益科技 2700 股）。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第32期 · 2026-11-27 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
