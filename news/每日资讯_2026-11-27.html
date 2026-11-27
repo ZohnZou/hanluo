@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日资讯 - 2026-11-27</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f5f5f5; padding: 16px; color: #333; line-height: 1.6; }
+
+.header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 24px; border-radius: 16px; margin-bottom: 16px; }
+.header h1 { font-size: 24px; margin-bottom: 8px; }
+.header .date { opacity: 0.8; font-size: 14px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.kpi-card { background: white; padding: 16px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.kpi-value { font-size: 24px; font-weight: 700; }
+.kpi-value.up { color: #e53935; }
+.kpi-value.down { color: #43a047; }
+.kpi-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+.section { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.section-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #f0f0f0; }
+
+.news-item { padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+.news-item:last-child { border-bottom: none; }
+.news-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.news-title { font-weight: 600; font-size: 15px; color: #1a1a2e; text-decoration: none; }
+.news-title:hover { color: #2196f3; }
+.news-source { font-size: 11px; color: #888; margin-left: auto; }
+.news-content { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+.news-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.tag { padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #e3f2fd; color: #1565c0; }
+.news-comment { font-size: 13px; color: #666; padding: 8px 10px; background: #fff9e6; border-radius: 6px; border-left: 3px solid #ffc107; line-height: 1.5; }
+
+.us-market { background: #f8f9fa; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.us-title { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 12px; }
+.us-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.us-item { background: white; padding: 14px; border-radius: 8px; text-align: center; }
+.us-name { font-size: 12px; color: #666; margin-bottom: 6px; }
+.us-price { font-size: 18px; font-weight: 600; color: #1a1a2e; }
+.us-pct { font-size: 14px; font-weight: 500; margin-top: 4px; }
+.us-pct.up { color: #e53935; }
+.us-pct.down { color: #43a047; }
+
+.analysis-box { background: #fafafa; padding: 16px; border-radius: 10px; border-left: 4px solid #2196f3; }
+.analysis-box h4 { font-size: 14px; color: #1a1a2e; margin-bottom: 10px; margin-top: 16px; font-weight: 600; }
+.analysis-box h4:first-child { margin-top: 0; }
+.analysis-box p { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 12px; }
+.analysis-box ul { padding-left: 20px; margin-bottom: 14px; }
+.analysis-box li { font-size: 14px; color: #555; margin-bottom: 8px; line-height: 1.7; }
+
+.risk-box { background: #fff3e0; padding: 14px; border-radius: 10px; border-left: 4px solid #ff9800; margin-top: 16px; }
+.risk-box h4 { font-size: 13px; color: #e65100; margin-bottom: 8px; }
+.risk-box li { font-size: 12px; color: #555; margin-bottom: 4px; }
+
+.footer { text-align: center; color: #888; font-size: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+
+@media(max-width:768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .us-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📰 每日资讯</h1>
+  <div class="date">2026-11-27 07:30 生成</div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-value up">+0.01%</div><div class="kpi-label">上证指数</div></div>
+  <div class="kpi-card"><div class="kpi-value up">+0.29%</div><div class="kpi-label">创业板指</div></div>
+  <div class="kpi-card"><div class="kpi-value up">8</div><div class="kpi-label">涨停数</div></div>
+  <div class="kpi-card"><div class="kpi-value up">—</div><div class="kpi-label">北向资金</div></div>
+</div>
+
+<div class="us-market">
+  <div class="us-title">🇺🇸 美股隔夜收盘</div>
+  <div class="us-grid">
+    <div class="us-item"><div class="us-name">纳斯达克</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+    <div class="us-item"><div class="us-name">标普500</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+    <div class="us-item"><div class="us-name">道琼斯</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+    <div class="us-item"><div class="us-name">费城半导体</div><div class="us-price">—</div><div class="us-pct down">—</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📰 市场快讯（20条含寒洛点评）</div>
+  <div class="news-item"><div class="news-title">[美股,港股,A股] 航空电池走向工程验证 技术与市场仍需双向突破</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 市场调整私募机构密集发声 看好A股中长期投资价值</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 动力电池格局重塑 二线阵营分化明显</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 不拼硬件拼生态 AI手机市场“升温”</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 消费端扩容产业端突围 人工智能应用加速落地</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 厄瓜多尔一工业船疑似发生氨气泄漏事故 致4人死亡</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 据报道，韩国评估扩大股市稳定基金</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 中国进出口银行：前10个月科技贷款投放超7000亿元</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 公募密集自购 多路增量资金持续入场</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 欧洲央行将迎“稳健之手”：欧元区成员国已同意推荐德科斯担任欧央行行长</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 日本JERA计划在发电厂附近建设Anthropic和Meta数据中心</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 强风暴袭击美国东海岸 致数十万用户停电 数千航班受扰</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 富时A50期指连续夜盘收跌0.02%，报12511点</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[港股,A股] 多伦多股票指数收盘上涨246.89点，涨幅0.72%，报34426.88点</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 国际原子能机构就扎波罗热核电站第九次局部停火安排与俄乌接触</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 巴西雷亚尔大涨2.7%，因市场押注特拉布科将加入卢拉政府</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 巴西基准股指涨超5%，触及盘中高点</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 美元指数上涨</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 马克龙表示，若今年未达成协议，欧盟预算谈判将于2027年下半年重启</div><div class="news-content">💬 关注相关板块机会</div></div>
+<div class="news-item"><div class="news-title">[美股,港股,A股] 土耳其央行暂停一周期回购拍卖</div><div class="news-content">💬 关注相关板块机会</div></div>
+
+</div>
+
+<div class="section">
+  <div class="section-title">📊 寒洛分析</div>
+  <div class="analysis-box">
+    <div class="analysis-block"><p><strong>📊 大盘：</strong>上证+0.01%(3477点) 偏强，创业板+0.29%。</p><p><strong>🔥 TOP5机会：</strong>暂无</p><p><strong>📈 操作：</strong>不追高，关注回调到布林中轨的强势股。</p></div>
+  </div>
+</div>
+
+<div class="footer">
+  寒洛每日资讯 | 数据来源：Tushare/东方财富/财联社
+</div>
+
+</body>
+</html>
