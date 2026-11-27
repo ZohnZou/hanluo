@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>操盘复盘 2026-11-27</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --amber: #d29922;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+    line-height: 1.65;
+    padding: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header { text-align: center; padding: 20px 8px 8px; }
+  .header h1 { font-size: 22px; letter-spacing: 1px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; background: rgba(210,153,34,.15); color: var(--amber); border: 1px solid rgba(210,153,34,.4); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+  .card h2 { font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .code { color: var(--blue); font-weight: 600; font-family: monospace; }
+  .up { color: var(--red); font-weight: 700; }
+  .down { color: var(--green); font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+  .cell { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .cell .k { font-size: 11px; color: var(--muted); }
+  .cell .v { font-size: 16px; font-weight: 600; margin-top: 2px; font-family: monospace; }
+  .divider { border-top: 1px dashed var(--border); margin: 14px 0; }
+  .sec-title { font-size: 13px; color: var(--purple); font-weight: 700; margin: 14px 0 6px; letter-spacing: 1px; }
+  ul { padding-left: 18px; }
+  li { margin: 6px 0; font-size: 14px; }
+  .judge { background: rgba(88,166,255,.08); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .danger { background: rgba(248,81,73,.08); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .warn { background: rgba(210,153,34,.08); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin: 18px 0 6px; }
+  .chip { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; margin-left:4px; }
+  .chip.red { background:rgba(248,81,73,.15); color:var(--red); }
+  .chip.green { background:rgba(63,185,80,.15); color:var(--green); }
+  .chip.grey { background:rgba(139,148,158,.15); color:var(--muted); }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 8px 0; }
+  th, td { padding: 7px 10px; border: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; }
+  td { font-family: monospace; }
+  .src { margin: 12px 0 0; border-top: 1px dashed var(--border); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .src summary { cursor: pointer; padding: 10px 2px 4px; user-select: none; font-weight: 600; list-style: none; }
+  .src summary::-webkit-details-marker { display: none; }
+  .src summary:hover { color: var(--text); }
+  .src-label { color: var(--muted); font-weight: 600; }
+  .src-action { margin-left: 8px; color: var(--blue); font-size: 11px; font-weight: 400; }
+  .src[open] .src-action { display: none; }
+  .src-body { padding: 6px 2px 2px; }
+  .src-item { display: grid; grid-template-columns: minmax(110px, 30%) 1fr; gap: 4px 14px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .src-item:last-child { border-bottom: none; }
+  .src-item .src-dt { color: var(--text); }
+  .src-item .src-dd { min-width: 0; }
+  .src-item .src-dd span { display: block; margin-top: 3px; color: var(--muted); }
+  .src-body code { font-family: monospace; background: rgba(88,166,255,.08); color: var(--blue); border-radius: 4px; padding: 1px 6px; font-size: 11px; }
+  .src-body p { margin-top: 8px; font-size: 12px; }
+  @media (max-width: 640px) {
+    body { padding: 10px; font-size: 13px; }
+    .header h1 { font-size: 18px; }
+    .card { padding: 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    li { font-size: 13px; }
+    .cell .v { font-size: 14px; }
+    .src-item { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>📋 操盘复盘 · 2026-11-27</h1>
+    <div class="sub">生益科技涨停封板，站上 MA20 · 政策托底 + 超跌反弹共振，性质待确认</div>
+    <div class="tag">数据源 Tushare VIP · realtime_quote 当日收盘</div>
+  </div>
+
+  <div class="card">
+    <h2>生益科技 <span class="code">600183</span> <span class="chip grey">2700股</span> <span class="chip grey">成本105.93</span> <span class="chip red">现价68.04 +10.01%</span> <span class="chip green">浮亏-35.77%</span></h2>
+    <div class="grid">
+      <div class="cell"><div class="k">今日收盘</div><div class="v up">68.04</div></div>
+      <div class="cell"><div class="k">涨跌幅</div><div class="v up">+10.01%</div></div>
+      <div class="cell"><div class="k">今日最低</div><div class="v">60.74</div></div>
+      <div class="cell"><div class="k">今日最高</div><div class="v">68.04</div></div>
+      <div class="cell"><div class="k">MA5</div><div class="v">62.13</div></div>
+      <div class="cell"><div class="k">MA10</div><div class="v">61.02</div></div>
+      <div class="cell"><div class="k">MA20</div><div class="v">67.88</div></div>
+      <div class="cell"><div class="k">布林下轨</div><div class="v">52.31</div></div>
+    </div>
+
+    <div class="sec-title">今日走势</div>
+    <p style="font-size:14px;">低开 61.65（昨收 61.85，微低开 -0.32%），开盘小幅下探至全天最低 60.74（-1.79%），随后一路放量拉升，午后封死涨停 68.04（+10.01%），涨停封板至收盘，收出<strong class="up">光头涨停阳线</strong>（收盘=最高=涨停价）。成交 133.02 万手 / 86.10 亿元，为近半月最大量，超过 11-24 炸板日（122.8 万手 / 79.1 亿）。当日有国常会「稳市 + 优化中央汇金类平准基金功能」政策利好，PCB/覆铜板板块集体反弹，生益作为覆铜板龙头领涨封板。</p>
+
+    <div class="sec-title">技术面</div>
+    <ul>
+      <li><strong class="up">光头涨停、收盘=最高=涨停价、封板到尾盘</strong>——与 11-24「涨停开盘炸板、长上影假阳线」的出货形态截然相反，这是真封板，不是冲高回落。</li>
+      <li><strong>一举站回 11-24 炸板高点 66.83 上方，并站上 MA20（67.88，+0.24%）</strong>——11-26 复盘点名的「试金石」（能否放量过 MA20）今日放量兑现。</li>
+      <li>站上 MA5（62.13）、MA10（61.02），短期均线转多头；但 MA20 刚收复（+0.24%），尚未站稳，需次日确认。</li>
+      <li>放量 133 万手 / 86 亿，超过 11-24 炸板日出货量，量价配合，不是无量空拉。</li>
+      <li>上方压力仍在：75.71（11-12 收盘）、83.45（布林上轨），9-10 月 90-146 的高位套牢盘密集，解套抛压重。</li>
+      <li>政策催化成分要冷静区分：今日涨停是「板块 beta（国常会稳市利好）+ 超跌反弹」共振，生益基本面（覆铜板景气、英伟达链订单）今日并无新增变化。</li>
+    </ul>
+
+    <div class="sec-title">支撑 / 压力</div>
+    <div class="tablewrap"><table>
+      <tr><th>类型</th><th>价位</th><th>说明</th></tr>
+      <tr><td>压力</td><td>83.45</td><td>布林上轨</td></tr>
+      <tr><td>压力</td><td>75.71</td><td>11-12 收盘，前期平台</td></tr>
+      <tr><td>支撑</td><td>67.88</td><td>MA20（刚收复，次日关键确认位）</td></tr>
+      <tr><td>支撑</td><td>66.83</td><td>11-24 炸板高点（突破后转支撑）</td></tr>
+      <tr><td>支撑</td><td>62.13</td><td>MA5</td></tr>
+      <tr><td>支撑</td><td>60.74</td><td>今日低点</td></tr>
+      <tr><td>支撑</td><td>58.37</td><td>11-20 前低（关键防线）</td></tr>
+    </table></div>
+
+    <div class="judge"><b>我的判断：</b>今天的涨停，我承认它强，不硬拗之前的判断——放量涨停 + 站上 MA20 + 光头封板，这是 11-24 炸板以来技术面最好的信号，我 11-26 复盘点的「试金石」今天确实兑现了。<br><br>但我不会因为一根涨停就改口说「反转确认」。三点清醒：<br><br><b>一，这波涨停的驱动是「政策 + 情绪」，不是「业绩」。</b>今天国常会「稳市 + 平准基金」利好，PCB/覆铜板整个板块在涨，生益是板块 beta 里的领涨，不是走出独立 alpha。基本面（覆铜板景气度、英伟达链订单）今天没有新东西。政策托底能封住下跌空间，但拉不出「业绩驱动的趋势行情」——这跟我今天早盘解读国常会时说的一回事：托底不是推涨。<br><br><b>二，MA20 刚站上 +0.24%，一根涨停不构成趋势反转确认。</b>真正的确认是明天能不能站稳 MA20 上方、量能不快速萎缩。今天 86 亿是天量，明天要是缩到 40 亿，就是一日游。<br><br><b>三，你的核心问题从头到尾不是「生益能不能反弹」，是「满仓单票 99.88% 的风险敞口」。</b>涨停让浮亏从 -41.61% 收窄到 -35.77%，但风险敞口一分没降——你仍然把整个账户押在一只票上，可用资金 213 块。</div>
+
+    <div class="danger"><b>风险直说：</b>涨停给了你一个比昨天更好的减仓窗口（68.04 vs 61.85），不是继续满仓赌单边的理由。如果你信这波是反转，正确姿势也是「分批减」——先减一部分锁定反弹利润、落袋为安，留底仓博 MA20 上方空间；而不是满仓继续扛，把「减仓防守」的机会白白放走。真反转了，你留的底仓照样吃到；假反转（利好出货），你减掉的部分就是逃命钱。</div>
+
+    <details class="src">
+      <summary><span class="src-label">📎 数据溯源</span> · Tushare VIP<span class="src-action">查看口径</span></summary>
+      <div class="src-body">
+        <div class="src-item"><div class="src-dt">今日收盘 / 涨跌幅</div><div class="src-dd"><code>ts.realtime_quote(ts_code='600183.SH')</code><span>PRICE=68.04 / PRE_CLOSE=61.85，涨跌幅自算 (PRICE−PRE_CLOSE)/PRE_CLOSE · 收盘后 15:00+ 即有；禁止 pro.daily（当日延迟落库会取到昨收）</span></div></div>
+        <div class="src-item"><div class="src-dt">今日最低 / 最高</div><div class="src-dd"><code>ts.realtime_quote</code><span>LOW=60.74 / HIGH=68.04 字段</span></div></div>
+        <div class="src-item"><div class="src-dt">MA5 / MA10 / MA20</div><div class="src-dd"><code>pro.daily close 序列 + 并入当日收盘 68.04 重算</code><span>当日未落库，直接算会得到截至昨收的旧值（MA20 昨口径 68.83 → 今口径 67.88）</span></div></div>
+        <div class="src-item"><div class="src-dt">布林下轨</div><div class="src-dd"><code>MA20 − 2σ = 52.31</code><span>σ = 近 20 日收盘价标准差</span></div></div>
+        <div class="src-item"><div class="src-dt">成交量 / 额</div><div class="src-dd"><code>realtime VOLUME=133,021,338股 / AMOUNT=86.10亿</code><span>对比 pro.daily 近半月 vol 判断放量</span></div></div>
+        <p>计算口径：收盘价、均线、布林以 Tushare VIP 为唯一源；涨跌色遵循 A股红涨绿跌。浮亏 = 2700 × (68.04 − 105.93) = -102,303（-35.77%）。</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2>🎯 明日策略要点</h2>
+    <ul>
+      <li><strong>关键确认位 MA20（67.88）</strong>：明天站稳 → 反弹延续，上看 75（11-12 平台）；跌破 → 今日涨停是情绪脉冲，回到 62-66 区间。</li>
+      <li><strong>量能信号</strong>：今日 86 亿天量，明天缩到一半以下（&lt;45 亿）= 一日游，减仓；维持 60 亿以上 = 有资金接力，可再看一天。</li>
+      <li><strong>操作</strong>：无论涨跌，满仓单票都要降。涨停后次日高开冲高（到 75 附近）是减仓最好位置；低开破 66.83（炸板高点）也减。</li>
+      <li><strong>上方 75-83 是 9-10 月密集套牢区</strong>，反弹到这里解套抛压会重，别指望一次冲过去。</li>
+      <li><strong>铁律</strong>：单票 99.88% 仓位不可持续，反弹是降仓窗口不是加仓点。仓位你自己管，但风险敞口我必须点名。</li>
+    </ul>
+    <details class="src">
+      <summary><span class="src-label">📎 数据溯源</span> · 策略依据<span class="src-action">查看口径</span></summary>
+      <div class="src-body">
+        <div class="src-item"><div class="src-dt">明日策略</div><div class="src-dd"><code>当日技术面 + 支撑压力位</code><span>独立判断，不构成投资建议</span></div></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="foot">寒洛 · 操盘复盘 · 数据源 Tushare VIP（realtime_quote 当日收盘）</div>
+</body>
+</html>
