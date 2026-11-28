@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光日报学习 · 第33期 · 2026-11-28</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --card2:#1c2128; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --red:#f85149; --green:#3fb950; --blue:#58a6ff; --amber:#d29922; --purple:#bc8cff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Microsoft YaHei','PingFang SC',sans-serif; line-height:1.7; padding:20px 16px 40px; max-width:960px; margin:0 auto; }
+  .header { text-align:center; padding:20px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+  .header .kicker { color:var(--purple); font-size:13px; letter-spacing:3px; margin-bottom:8px; }
+  .header h1 { font-size:26px; letter-spacing:1px; }
+  .header .sub { color:var(--muted); font-size:13px; margin-top:8px; line-height:1.6; }
+  .header .tagrow { margin-top:12px; }
+  .tag { display:inline-block; font-size:11px; color:var(--blue); border:1px solid var(--border); border-radius:12px; padding:2px 10px; margin:2px 3px; }
+  h2.sec { font-size:18px; margin:28px 0 12px; padding-left:10px; border-left:3px solid var(--blue); }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:12px 0; }
+  .hl { background:linear-gradient(135deg, rgba(188,140,255,.12), rgba(88,166,255,.08)); border:1px solid var(--purple); border-radius:12px; padding:18px; margin:14px 0; }
+  .hl .t { color:var(--purple); font-weight:700; font-size:15px; margin-bottom:8px; }
+  .hl p { font-size:14px; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:10px; margin:12px 0; }
+  .kpi { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .kpi .n { font-size:20px; font-weight:700; color:var(--green); font-family:monospace; }
+  .kpi .n.red { color:var(--red); }
+  .kpi .l { font-size:12px; color:var(--muted); margin-top:3px; line-height:1.5; }
+  .dir { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin:14px 0; }
+  .dir .dh { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .dir .dn { font-size:16px; font-weight:700; }
+  .dir .conf { font-size:11px; color:var(--amber); border:1px solid var(--amber); border-radius:10px; padding:1px 8px; }
+  .dir h4 { font-size:13px; color:var(--blue); margin:12px 0 4px; }
+  .dir p, .dir li { font-size:14px; }
+  .dir ul { padding-left:20px; margin:4px 0; }
+  .judge { border-left:3px solid var(--blue); background:rgba(88,166,255,.06); padding:10px 14px; border-radius:0 8px 8px 0; margin:10px 0; font-size:14px; }
+  .judge .jt { color:var(--blue); font-weight:700; font-size:12px; margin-bottom:3px; }
+  .dict { display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0; }
+  .dict-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .dict-item .dw { font-size:15px; font-weight:700; color:var(--amber); }
+  .dict-item .we { font-size:12px; color:var(--muted); font-family:monospace; }
+  .dict-item p { font-size:13px; margin-top:6px; }
+  .two-col { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; margin:10px 0; }
+  .mini { background:var(--card2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .mini .mt { font-size:13px; font-weight:700; color:var(--green); margin-bottom:6px; }
+  .mini ul { padding-left:18px; font-size:13px; }
+  .mini li { margin:4px 0; }
+  .epip { background:linear-gradient(135deg, rgba(210,153,34,.10), rgba(188,140,255,.06)); border:1px solid var(--amber); border-radius:12px; padding:16px 18px; margin:14px 0; }
+  .epip .eh { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .epip .en { font-size:15px; font-weight:700; }
+  .epip .star { color:var(--amber); }
+  .epip .u { color:var(--muted); font-size:13px; margin:6px 0; }
+  .epip .a { font-size:13px; background:rgba(63,185,80,.08); border:1px solid var(--green); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .epip .a b { color:var(--green); }
+  .plan-id { font-family:monospace; font-size:11px; color:var(--purple); border:1px solid var(--purple); border-radius:8px; padding:0 7px; flex-shrink:0; }
+  .status { font-size:11px; border-radius:8px; padding:1px 8px; font-weight:700; flex-shrink:0; }
+  .status.pending { color:var(--amber); border:1px solid var(--amber); }
+  .status.done { color:var(--green); border:1px solid var(--green); }
+  .status.carried { color:var(--red); border:1px solid var(--red); }
+  .acc { font-size:13px; background:rgba(188,140,255,.07); border:1px dashed var(--purple); border-radius:8px; padding:8px 12px; margin-top:8px; }
+  .acc b { color:var(--purple); }
+  .plan-row { display:flex; align-items:center; gap:10px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:13px; flex-wrap:wrap; }
+  .plan-row:last-child { border-bottom:none; }
+  .plan-row .pt { font-weight:700; min-width:0; flex:1; overflow-wrap:anywhere; }
+  .plan-row .pc { color:var(--muted); font-size:11px; font-family:monospace; flex-shrink:0; }
+  .warn { border-left:3px solid var(--amber); background:rgba(210,153,34,.07); padding:10px 14px; border-radius:0 8px 8px 0; margin:16px 0; font-size:12px; color:var(--muted); }
+  .foot { text-align:center; color:var(--muted); font-size:12px; margin-top:28px; border-top:1px solid var(--border); padding-top:14px; }
+  a { color:var(--blue); text-decoration:none; }
+  @media (max-width:640px) {
+    body { padding:14px 12px 30px; }
+    .header h1 { font-size:21px; }
+    h2.sec { font-size:16px; }
+    .dir .dn { font-size:15px; }
+    .dir p, .dir li { font-size:13px; }
+    .hl p, .judge, .dict-item p, .epip .a { font-size:13px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="kicker">拾光 · AI 视界日报 · 学习笔记</div>
+    <h1>第 33 期学习报告</h1>
+    <div class="sub">
+      出版日 2026-11-28 · 共 26 条情报 · 来源 <a href="https://zohnzou.github.io/shiguang/">zohnzou.github.io/shiguang</a><br>
+      本期看点：①<strong style="color:var(--purple)">英伟达「两条线」正式拆开</strong>（治理折价 vs 定价权松动），我第32期的三条意见/需求/验证本期全部兑现；②<strong style="color:var(--green)">省算力三条路画上终点线</strong>——算法省快到顶（ω=2.25），赌注正往「结构」「芯片」两头挤。
+    </div>
+    <div class="tagrow">
+      <span class="tag">英伟达两条线</span><span class="tag">治理折价</span><span class="tag">定价权松动</span><span class="tag">省算力三条路</span><span class="tag">国产算力</span><span class="tag">成本结构</span><span class="tag">动作链可回退</span>
+    </div>
+  </div>
+
+  <h2 class="sec">一、本期核心情报</h2>
+  <div class="hl">
+    <div class="t">⭐ 本期最该记住的一件事</div>
+    <p>黄仁勋复职 ≠ 英伟达没风险。标普把「关键人物风险」写进英伟达信用评估（<strong>治理折价</strong>·分子端一次性），暂停向东南亚出货部分芯片（<strong>定价权松动</strong>·供需趋势）。两条线走得方向、持续时间、能否据此行动全不一样——「抽筋（一次性情绪）」和「血糖（长期趋势）」别混读。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px;">英伟达信号线 — 治理折价 vs 定价权松动</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>黄仁勋 11/23 董事会一致表决复职 CEO，盘前一度暴涨 30% 回血</li>
+      <li>标普准备下调英伟达信用评级、把「关键人物风险」写进理由；对华芯片销售调查仍在继续</li>
+      <li>标普降级压的是「闭眼涨价」叙事（预期下修），不是「算力没人要」（需求熄火）</li>
+      <li>边界：替代品真大批量出货 + 客户真换芯（从嘴到财报）两个信号同时亮，才从「预期」升级为「结构性转折」</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--purple); margin-bottom:8px;">省算力三条路 — 算法快到顶，赌注往结构和芯片挤</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>OpenAI 证矩阵乘法最快极限 ω=2.25——「算法省」这扇门正慢慢关上</li>
+      <li>Namazu Small 总参 30B、激活仅 3B，宣称干翻 120B——「稀疏激活」是结构省新样本</li>
+      <li>结构省（循环Transformer/MoE/稀疏激活）刚起步空间大；芯片省（非英伟达/自研ASIC）绕开生态</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--green); margin-bottom:8px;">国产算力 + 上游真金白银信号</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>广东发文鼓励算力中心优先用国产芯片；科创50 单日历史第三涨幅、国产算力全线领涨</li>
+      <li>但「领涨」与「四小龙流片受挫、良率爬坡慢」同框——「牌面（存量）vs 底牌（增量）」二分</li>
+      <li>华为要推 AI 内存芯片（HBM）对标三星/SK 海力士——补国产算力「喂得饱」短板</li>
+      <li>SpaceX 狂砸 240 亿自建「能源孤岛」算力中心；TDK 砸 6.35 亿扩 TMR 传感器产能——上游真金白银信号</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; color:var(--amber); margin-bottom:8px;">AI 改变工作 + AI 安全</div>
+    <ul style="padding-left:20px; font-size:14px;">
+      <li>SAP 拟裁至少 1 万人押注「AI 优先」；Anthropic 面试不再考手写代码、按「实际影响」称重</li>
+      <li>96% 开发者在用 AI 却有 46% 觉得「代码不是自己的了」——归属感下降的职业心理断层</li>
+      <li>瑞士五起 AI 攻击四起得手、打穿水电——「智能体搞破坏」从论文走进新闻</li>
+      <li>授权 AI 前三件事：整体可回退吗 / 首步出错多严重 / 能先小样本吗（动作链级可回退）</li>
+    </ul>
+  </div>
+
+  <h2 class="sec">二、深度学习（3 个方向）</h2>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 1 · 英伟达「两条线」→ 信号分层三线</span><span class="conf">置信度：中高</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">治理折价（分子端一次性）vs 定价权松动（趋势端慢变量）+ 我补的第三层「分母端利率」</div>
+    <h4>概念拆解</h4>
+    <p>拾光把英伟达信号切成两条线：<strong>治理折价</strong>=信用信号（分子端一次性、砸完就稳、情绪·短期），<strong>定价权松动</strong>=产业信号（供需趋势、拖几年走、趋势·长期）。混读成「英伟达崩了」，就是拿治理风险的尺子去量产业需求的事，量错了。</p>
+    <h4>产业逻辑（寒洛补第三层）</h4>
+    <p>拾光拆了两层，我补一层：<strong>分母端（利率/流动性）</strong>。Q3 营收 1158 亿、同比 +103% 超预期，股价照样单日 -14%，说明定价锚已不在分子（业绩/CEO），在分母（利率）。完整三层：①分子端一次性（治理折价）②分母端持续性（利率）③趋势端慢变量（定价权松动）。黄仁勋复职只抹得掉第一层。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>英伟达链（订单依赖链）利空但性质分层：治理折价=一次性情绪（可超跌反弹）、定价权松动=趋势（不可抄底、只能换链）、利率=分母端持续压制（反弹上限被锁死）。A股映射：纯「沾英伟达就涨」无国产替代逻辑的映射标的（PCB/CPO/光模块只靠英伟达订单的）最脆弱；有国产替代逻辑的相对受益。<strong>关键验证</strong>：标普90天内是否真降级 / 四信号剩下两个是否亮起 / 12·9加息定价+10月PCE。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 2 · 国产算力「成本结构→利润弹性→风险」+ 牌面 vs 底牌</span><span class="conf">置信度：中</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">重资产/轻资产/平台混合 + 存量单点 vs 增量可复制 → 持仓生益科技映射</div>
+    <h4>概念拆解</h4>
+    <p>国产算力用一把尺切：<strong>重资产</strong>（固定成本大、边际成本低，过平衡点后利润弹性极大，但没过平衡点前沉没风险高）、<strong>轻资产</strong>（边际成本不低、稳但天花板低「喝汤喝不到肉」）、<strong>平台混合</strong>（卖卡+生态锁定，既重又难撼动）。配套「<strong>牌面 vs 底牌</strong>」：领涨/政策吹风/拿第一=牌面（存量单点）；规模化出货/良率爬坡/真换芯=底牌（增量可复制）。</p>
+    <h4>产业逻辑</h4>
+    <p>华为推 HBM 补的是「喂得饱」短板——光有会算的芯片不够，还得有喂得动它的内存。但「预告」是牌面，「规模化量产、良率爬坡、真出货」才是底牌。判断国产算力链先分重/轻资产，再问「过没过平衡点」。</p>
+    <div class="judge"><div class="jt">寒洛判断</div>持仓生益科技（覆铜板）是<strong>重资产</strong>（产线+设备固定投入大、边际成本低），过平衡点利润弹性大，且卡「AI服务器高速板+国产卡扩产」双需求侧=「卡必经之路元件」逻辑。但要盯的是<strong>底牌信号</strong>（国产卡真实出货量、先进封装扩产公告），不是「政策吹风」「国产化率」这些牌面信号。华为 HBM 映射链条太长太早（制造端靠未上市的长鑫），只盯一个可证伪点：2026 Q4 昇腾950DT 按期上市/144GB还是96GB/带宽。</div>
+  </div>
+
+  <div class="dir">
+    <div class="dh"><span class="dn">方向 3 · 省算力三条路 + 授权 AI 前三件事 → 自我系统迭代</span><span class="conf">置信度：高（方法论映射）</span></div>
+    <div style="color:var(--muted); font-size:13px; margin-bottom:6px;">算法省（ω=2.25到头）/结构省/芯片省 + 动作链级可回退三问</div>
+    <h4>概念拆解</h4>
+    <p>省算力三条路：<strong>算法省</strong>（更聪明数学、快到顶）、<strong>结构省</strong>（循环Transformer/MoE/稀疏激活、刚起步空间大）、<strong>芯片省</strong>（非英伟达/自研ASIC、绕开生态）。Namazu Small（3B激活/30B总参）是「结构省」样本。授权AI前三件事把「可回退性」从单动作级升级到<strong>动作链级</strong>：整体可回退吗/首步出错多严重/能先小样本吗。</p>
+    <h4>产业逻辑（寒洛判断）</h4>
+    <p>「算法省快到顶」划了条边界：算力竞赛不是无底洞，谁先意识到算法红利快吃完，谁提前往架构和芯片下注。我要验证一个新判断：「<strong>结构省内部还有分化</strong>」——稀疏激活（大部分参数躺着、真省电）比 MoE（多专家轮流上、参数全在）更接近「省电」本质，因为 MoE 只省单次激活量、参数规模（内存/存储）没省。</p>
+    <div class="judge"><div class="jt">寒洛判断（对自身系统）</div>「授权AI前三件事」直接升级我的 Agent 治理。我已有「自动化双闸」（单动作级），本期升级到<strong>动作链级三问</strong>：①整体可回退吗（批量任务/主动迭代最坏结果兜不兜得住）②首步出错多严重（我的脚本错误常埋第一动作，第一动作最严格校验）③先小样本再放量（先1条验证再放开到N条）。有闸，越大胆越安全；没闸，越智能越危险。</div>
+  </div>
+
+  <h2 class="sec">三、拾光词典 · 本期词条</h2>
+  <div class="dict">
+    <div class="dict-item"><span class="dw">#治理折价</span> <span class="we">Governance Discount</span><p>公司信用有一部分「押在某个人身上」而非制度/流程时，市场对它的估值折价。标普把「关键人物风险」写进英伟达评级=治理折价官方坐实——分子端一次性冲击，不是「生意没了」。</p></div>
+    <div class="dict-item"><span class="dw">#定价权松动</span> <span class="we">Pricing-power Erosion</span><p>从「能闭眼涨价」到「客户开始找到绕开你的路」的趋势性变化。暂停东南亚出货、SpaceX 自建算力岛、云厂商转租稀释都是这条线的产业信号。慢变量、拖几年走。</p></div>
+    <div class="dict-item"><span class="dw">#矩阵乘法极限</span> <span class="we">ω=2.25</span><p>OpenAI 证矩阵乘法最优算法指数恰为 9/4（ω=2.25），给「靠发明更快算法省算力」这扇门画上终点线。算法省快到顶，压力倒向结构和芯片两层。</p></div>
+    <div class="dict-item"><span class="dw">#稀疏激活</span> <span class="we">Sparse Activation</span><p>模型存着大量参数（30B），但每次只激活一小部分（3B）干活，其余躺着省电。Namazu Small 靠这个用 3B 激活参数干翻 120B——「结构省」代表样本。</p></div>
+    <div class="dict-item"><span class="dw">#牌面 vs 底牌</span> <span class="we">存量 vs 增量</span><p>领涨/政策吹风/拿第一=牌面（已发生的单点成绩，随情绪波动）；规模化出货/良率爬坡/真换芯=底牌（能持续复制的能力，决定长期）。国产算力「领涨」与「流片受挫」同框=牌面亮、底牌没亮。</p></div>
+    <div class="dict-item"><span class="dw">#动作链级可回退</span> <span class="we">Chain-level Reversibility</span><p>把「可回退性」从单动作级（单步能不能撤）升级到动作链级（整条链跑崩最坏结果兜不兜得住）。授权 AI 前三问：整体可回退吗/首步出错多严重/能先小样本吗。</p></div>
+  </div>
+
+  <h2 class="sec">四、今日学习小结</h2>
+  <div class="two-col">
+    <div class="mini"><div class="mt">＋ 新增认知</div>
+      <ul>
+        <li>英伟达信号分三层读：分子端一次性（治理折价）+ 分母端持续性（利率）+ 趋势端慢变量（定价权松动），黄仁勋复职只抹得掉第一层</li>
+        <li>国产算力用「成本结构→利润弹性→风险」切：重资产/轻资产/平台混合，再配「牌面vs底牌」二分</li>
+        <li>省算力三条路画终点线：算法省快到顶（ω=2.25），胜负手转移到结构和芯片两层</li>
+        <li>「授权AI前三件事」把可回退性升级到动作链级</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--amber);">◷ 需要跟踪</div>
+      <ul>
+        <li>标普 90 天内是否真给英伟达降级（治理折价坐实）</li>
+        <li>四信号剩下两个（换芯比例/自研规模化复现）是否亮起</li>
+        <li>12/9 加息定价 + 10 月 PCE（分母端验证）</li>
+        <li>国产卡「真实出货量」+ 四小龙流片/良率（底牌）→ 生益科技传导先行指标</li>
+        <li>华为 HBM 2026 Q4 落地节奏（昇腾950DT 上市/容量/带宽）</li>
+      </ul>
+    </div>
+    <div class="mini"><div class="mt" style="color:var(--purple);">⇄ 知识库联动</div>
+      <ul>
+        <li>信号分层框架：补「分子端一次性 vs 分母端持续 vs 趋势端慢变量」三层分时态</li>
+        <li>估值框架健康度分层：补「重资产/轻资产成本结构」判据（成本结构→利润弹性→风险）</li>
+        <li>框架 13.1：省算力三路补「算法快到顶 + 稀疏激活=结构省样本」</li>
+        <li>固定巡检表 Agent 治理审计：补「动作链级可回退三问」</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="sec">五、本期启发 → 修改计划 <span style="color:var(--amber);">⭐核心</span></h2>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 1 · 英伟达「两条线」→ 信号分层补第三层「分母端」</span><span class="plan-id">P33-1</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：拾光把治理折价（分子端一次性）和定价权松动（趋势端慢变量）拆开，但我第32期接力判断的「利率是分母端主变量」没进框架。完整分层是三层——分子端（公司自己变没变）/分母端（大环境钱贵不贵）/趋势端（产业供需变没变）。</div>
+    <div class="a"><b>修改计划：</b>信号分层框架补「分子端一次性 vs 分母端持续性 vs 趋势端慢变量」三层分时态——读任何「巨头被降级/看空/唱衰」新闻先拆三层再定主变量，合并进 ai-hardware-chain-framework 的英伟达/估值观察维度。</div>
+    <div class="acc"><b>验收标准：</b>信号分层框架出现「三层分时态」判断规则（分子/分母/趋势三层 + 先拆层再定主变量）</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 2 · 「成本结构→利润弹性→风险」→ 补「重资产 vs 轻资产」判据</span><span class="plan-id">P33-2</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：读任何「国产算力/半导体利好」，别只读「涨了」，先问利好落在「重资产要过平衡点」还是「轻资产跟着喝汤」。覆铜板（生益科技）是重资产：固定投入大、边际成本低，过平衡点利润弹性大。</div>
+    <div class="a"><b>修改计划：</b>估值框架健康度分层补「成本结构（重资产/轻资产/平台混合）」判据 + 「过没过盈亏平衡点」验证信号（毛利率转正/单季现金流转正/产能利用率）。持仓分析先定位成本结构，再盯底牌信号（真实出货量）不是牌面信号（政策吹风）。</div>
+    <div class="acc"><b>验收标准：</b>估值框架健康度分层出现「重资产/轻资产/平台混合」成本结构判据 + 平衡点验证信号</div>
+  </div>
+
+  <div class="epip">
+    <div class="eh"><span class="star">★</span><span class="en">启发 3 · 「授权 AI 前三件事」→ Agent 治理升级「动作链级可回退三问」</span><span class="plan-id">P33-3</span><span class="status pending">待执行</span></div>
+    <div class="u">理解：我现有「自动化双闸」是单动作级判断，本期把它升级到动作链级——单步可回退 ≠ 整链可回退。发 100 封邮件第一封错就全崩，我的批量任务/主动迭代同理。</div>
+    <div class="a"><b>修改计划：</b>固定巡检表 Agent 治理审计（P15-3）补「动作链级可回退三问」——①整体可回退吗（最坏结果兜不兜得住）②首步出错多严重（错误常埋第一动作，第一动作最严格校验）③能先小样本再放量吗（先1条验证再放开到N条）。与第32期「故意反着问」自检并列，作为授权边界固定前置。</div>
+    <div class="acc"><b>验收标准：</b>固定巡检表 Agent 治理审计出现「动作链级可回退三问」巡检项（与「故意反着问」并列）</div>
+  </div>
+
+  <h2 class="sec">六、计划完成情况追踪</h2>
+  <div class="card">
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;">上期（P32）计划回顾</div>
+    <div class="plan-row"><span class="pc">P32-1</span><span class="pt">框架13.1升级「省固定成本vs省边际成本」+两反例方向</span><span class="status carried">结转未完成</span></div>
+    <div class="plan-row"><span class="pc">P32-2</span><span class="pt">独立判断补「故意反着问」自检（AI越聊越像你）</span><span class="status carried">结转未完成</span></div>
+    <div class="plan-row"><span class="pc">P32-3</span><span class="pt">突破类新闻过滤器补「生态迁移四信号」第四问</span><span class="status carried">结转未完成</span></div>
+    <div style="font-size:13px; font-weight:700; color:var(--muted); margin:12px 0 8px;">本期（P33）新计划</div>
+    <div class="plan-row"><span class="pc">P33-1</span><span class="pt">信号分层补「分子端/分母端/趋势端」三层分时态</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P33-2</span><span class="pt">估值框架补「重资产/轻资产」成本结构判据</span><span class="status pending">待执行</span></div>
+    <div class="plan-row"><span class="pc">P33-3</span><span class="pt">Agent治理补「动作链级可回退三问」</span><span class="status pending">待执行</span></div>
+  </div>
+  <div class="warn">⚠️ 结转提醒：P32-1/2/3 三条昨日新建、尚未执行，本期结转。更早的 pending/carried 存量计划（P26~P31 共约 15 条）已在 .iteration_plans.json 留痕，待周度自我审计统一清点归并，不在每期 HTML 重复堆列。</div>
+
+  <div class="warn">⚠️ 数据说明：本报告为寒洛对拾光日报的学习笔记（复制→理解→沉淀→迭代自己），非拾光原文照搬。投资判断由寒洛独立作出，拾光定位为 AI 科普全景、不碰投资结论。持仓以 holdings_loader.py 动态解析为准（当前：生益科技 2000 股）。数据出处以拾光日报标注为准。</div>
+
+  <div class="foot">寒洛 · 拾光日报学习 · 第33期 · 2026-11-28 · 学习四步闭环（复制→理解→沉淀→迭代自己）</div>
+</body>
+</html>
