@@ -1,12 +1,24 @@
 {
   "updated": "2026-11-28",
-  "total": 436,
+  "total": 450,
   "items": [
     {
       "type": "因子规则库",
-      "date": "2026-11-27",
+      "date": "2026-11-28",
       "title": "因子库与规则库全景",
       "url": "system/index.html"
+    },
+    {
+      "type": "早报",
+      "date": "2026-11-28",
+      "title": "早报_2026-11-28",
+      "url": "brief/早报_2026-11-28.html"
+    },
+    {
+      "type": "每日资讯",
+      "date": "2026-11-28",
+      "title": "每日资讯_2026-11-28",
+      "url": "news/每日资讯_2026-11-28.html"
     },
     {
       "type": "拾光日报学习",
@@ -73,6 +85,18 @@
       "date": "2026-11-27",
       "title": "账户全量历史报告_20261127",
       "url": "account/账户全量历史报告_20261127.html"
+    },
+    {
+      "type": "信号总览",
+      "date": "2026-11-27",
+      "title": "overview_20261127",
+      "url": "overview/overview_20261127.html"
+    },
+    {
+      "type": "诚实画像",
+      "date": "2026-11-27",
+      "title": "profile_20261127",
+      "url": "profile/profile_20261127.html"
     },
     {
       "type": "操盘复盘",
@@ -147,6 +171,18 @@
       "url": "etf_flow/ETF资金流报告_20261126.html"
     },
     {
+      "type": "信号总览",
+      "date": "2026-11-26",
+      "title": "overview_20261126",
+      "url": "overview/overview_20261126.html"
+    },
+    {
+      "type": "诚实画像",
+      "date": "2026-11-26",
+      "title": "profile_20261126",
+      "url": "profile/profile_20261126.html"
+    },
+    {
       "type": "操盘复盘",
       "date": "2026-11-25",
       "title": "操盘复盘_2026-11-25",
@@ -213,6 +249,18 @@
       "url": "etf_flow/ETF资金流报告_20261125.html"
     },
     {
+      "type": "信号总览",
+      "date": "2026-11-25",
+      "title": "overview_20261125",
+      "url": "overview/overview_20261125.html"
+    },
+    {
+      "type": "诚实画像",
+      "date": "2026-11-25",
+      "title": "profile_20261125",
+      "url": "profile/profile_20261125.html"
+    },
+    {
       "type": "操盘复盘",
       "date": "2026-11-24",
       "title": "操盘复盘_2026-11-24",
@@ -277,6 +325,18 @@
       "date": "2026-11-24",
       "title": "ETF资金流报告_20261124",
       "url": "etf_flow/ETF资金流报告_20261124.html"
+    },
+    {
+      "type": "信号总览",
+      "date": "2026-11-24",
+      "title": "overview_20261124",
+      "url": "overview/overview_20261124.html"
+    },
+    {
+      "type": "诚实画像",
+      "date": "2026-11-24",
+      "title": "profile_20261124",
+      "url": "profile/profile_20261124.html"
     },
     {
       "type": "操盘复盘",
@@ -351,6 +411,18 @@
       "url": "etf_flow/ETF资金流报告_20261123.html"
     },
     {
+      "type": "信号总览",
+      "date": "2026-11-23",
+      "title": "overview_20261123",
+      "url": "overview/overview_20261123.html"
+    },
+    {
+      "type": "诚实画像",
+      "date": "2026-11-23",
+      "title": "profile_20261123",
+      "url": "profile/profile_20261123.html"
+    },
+    {
       "type": "早报",
       "date": "2026-11-22",
       "title": "早报_2026-11-22",
@@ -379,6 +451,18 @@
       "date": "2026-11-22",
       "title": "拾光日报学习_第27期_2026-11-22",
       "url": "shiguang/拾光日报学习_第27期_2026-11-22.html"
+    },
+    {
+      "type": "信号总览",
+      "date": "2026-11-22",
+      "title": "overview_20261122",
+      "url": "overview/overview_20261122.html"
+    },
+    {
+      "type": "诚实画像",
+      "date": "2026-11-22",
+      "title": "profile_20261122",
+      "url": "profile/profile_20261122.html"
     },
     {
       "type": "早报",

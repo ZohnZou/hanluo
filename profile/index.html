@@ -30,7 +30,7 @@
 <body>
   <a class="back" href="../">← 返回总目录</a>
   <div class="list-title">诚实画像</div>
-  <div class="list-sub">共 5 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
+  <div class="list-sub">共 6 份 · 按日期倒序 · <span style="color:var(--red)">NEW</span>=新增未读，点开即消除</div>
   <div id="list"></div>
   <div class="foot">寒洛 · 自动更新</div>
 <script>
@@ -52,7 +52,7 @@ function isNew(date, url) {
 }
 
 const TYPE = "诚实画像";
-const data = {"items": [{"type": "诚实画像", "date": "2026-11-26", "title": "profile_20261126", "url": "profile/profile_20261126.html"}, {"type": "诚实画像", "date": "2026-11-25", "title": "profile_20261125", "url": "profile/profile_20261125.html"}, {"type": "诚实画像", "date": "2026-11-24", "title": "profile_20261124", "url": "profile/profile_20261124.html"}, {"type": "诚实画像", "date": "2026-11-23", "title": "profile_20261123", "url": "profile/profile_20261123.html"}, {"type": "诚实画像", "date": "2026-11-22", "title": "profile_20261122", "url": "profile/profile_20261122.html"}]};
+const data = {"items": [{"type": "诚实画像", "date": "2026-11-27", "title": "profile_20261127", "url": "profile/profile_20261127.html"}, {"type": "诚实画像", "date": "2026-11-26", "title": "profile_20261126", "url": "profile/profile_20261126.html"}, {"type": "诚实画像", "date": "2026-11-25", "title": "profile_20261125", "url": "profile/profile_20261125.html"}, {"type": "诚实画像", "date": "2026-11-24", "title": "profile_20261124", "url": "profile/profile_20261124.html"}, {"type": "诚实画像", "date": "2026-11-23", "title": "profile_20261123", "url": "profile/profile_20261123.html"}, {"type": "诚实画像", "date": "2026-11-22", "title": "profile_20261122", "url": "profile/profile_20261122.html"}]};
   const items = data.items.filter(i => i.type === TYPE).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
   const list = document.getElementById('list');
   items.forEach(i => {
